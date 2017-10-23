@@ -28,6 +28,15 @@ public class Practise_1_2_11 {
 						throw new RuntimeException(e);
 					}
 				} break;
+				case 4 :
+				case 6 :
+				case 9 :
+				case 11 : {
+					if (day < 1 || day > 30) {
+						DateFormatInvalidException e = new DateFormatInvalidException("the date " + month + "/" + day + "is not exist");
+						throw new RuntimeException(e);
+					}
+				}
 				case 2 : {
 					/* 
 					 *  if  (year能被4整除  and  不能被100整除)  or  year能被400整除
@@ -47,15 +56,6 @@ public class Practise_1_2_11 {
 						throw new RuntimeException(e);
 					}	
 				} break;
-				case 4 :
-				case 6 :
-				case 9 :
-				case 11 : {
-					if (day < 1 || day > 30) {
-						DateFormatInvalidException e = new DateFormatInvalidException("the date " + month + "/" + day + "is not exist");
-						throw new RuntimeException(e);
-					}
-				}
 				default : {
 					DateFormatInvalidException e = new DateFormatInvalidException("the date " + month + "/" + day + "is not exist");
 					throw new RuntimeException(e);

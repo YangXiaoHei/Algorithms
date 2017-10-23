@@ -4,7 +4,6 @@ import java.awt.Color;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_1_37 {
-	
 	/*
 	 * 正常的打乱
 	 */
@@ -103,7 +102,9 @@ public class Practise_1_1_37 {
 		double stdDev = standardeviation(recordTable);
 		return stdDev;
 	}
-	
+	/*
+	 * 记录落到每个列的次数
+	 */
 	public static void record(boolean foolish, int[][] record, int shuffleCount, int[] arr) {
 		for(int i = 0; i < shuffleCount; i++) {
 			reset(arr);

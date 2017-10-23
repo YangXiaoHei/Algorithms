@@ -6,7 +6,6 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 public class Practise_1_1_34 {
-	
 	/*
 	 * 打印出最大和最小值
 	 * 
