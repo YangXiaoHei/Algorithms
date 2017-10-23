@@ -1,10 +1,9 @@
 package 第一章_数据抽象;
 
 import java.awt.Color;
-import java.util.*;
 import edu.princeton.cs.algs4.*;
 
-public class Practise_1_2_3 {
+public class Practise_1_2_03 {
 	static class Rectangle {
 		Point2D leftUp, leftDown, rightUp, rightDown;
 		Rectangle(Point2D lu, Point2D ld, Point2D rd, Point2D ru) {
@@ -60,9 +59,6 @@ public class Practise_1_2_3 {
 									 new Point2D(xlo, ylo),
 									 new Point2D(xhi, ylo),
 									 new Point2D(xhi, yhi));
-//			StdDraw.setPenColor(Color.red);
-//			StdDraw.setPenRadius(0.01);
-//			rects[i].draw();
 		}
 		
 		for(int i = 0; i < N; i++)

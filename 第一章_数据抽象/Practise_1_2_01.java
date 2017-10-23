@@ -1,11 +1,9 @@
 package 第一章_数据抽象;
 
 import java.awt.Color;
-import java.util.*;
 import edu.princeton.cs.algs4.*;
 
-public class Practise_1_2_1 {
-	
+public class Practise_1_2_01 {
 	public static void nearstDistance(int N) {
 		StdDraw.setXscale(0, 100);
 		StdDraw.setYscale(0, 100);
