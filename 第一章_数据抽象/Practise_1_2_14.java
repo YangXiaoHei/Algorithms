@@ -14,18 +14,9 @@ public class Practise_1_2_14 {
 			String[] result = transaction.split("\\s+");
 			if (result.length != 3)
 				throw new RuntimeException("input" + transaction + "invalid");
-			
 			who = result[0];
-			if (Pattern.compile("[^a-zA-Z'·]").matcher(who).find())
-				throw new RuntimeException("invalid name " + who);
-			
 			when = result[1];
-			if (!Pattern.compile("\\d{1,4}[-\\\\]\\d{1,2}[-\\\\]\\d{1,2}").matcher(when).find())
-				throw new RuntimeException("invalid date " + when);
-			
 			amount = result[2];
-			if (!Pattern.compile("[1-9]\\d*(\\.\\d+)?").matcher(amount).find())
-				throw new RuntimeException("invalid amount " + when);
 		}
 		String who() { return who; }
 		String when() { return when; }
