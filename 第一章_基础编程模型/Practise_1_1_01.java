@@ -17,4 +17,10 @@ public class Practise_1_1_01 {
 		 */
 		StdOut.println( true && false || true && true );
 	}
+	// output :
+	/*
+	 * 	7
+		200.0000002
+		true
+	 */
 }

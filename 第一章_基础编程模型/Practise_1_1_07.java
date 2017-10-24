@@ -7,10 +7,10 @@ public class Practise_1_1_07 {
 	 * 1.1.7  平方根 （牛顿迭代法）
 	 */
 	public static double practise_1_1_07_a(double c) {
-		double t = c;
-		while(Math.abs(t - c / t) > .0001) 
-			t = (c / t + t) / 2.0;
-		return t;
+		double result = c;
+		while(Math.abs(result - c / result) > .0001) 
+			result = (c / result + result) / 2.0;
+		return result;
 	}
 	public static void practise_1_1_07_a_draw() {
 		StdDraw.setXscale(0, 100);
