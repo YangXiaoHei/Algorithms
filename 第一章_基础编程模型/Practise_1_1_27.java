@@ -68,4 +68,8 @@ public class Practise_1_1_27 {
 	public static void main(String[] args) {
 		practise_1_1_27();
 	}
+	// output :
+	/*
+	 * 3.461350681450802E-32
+	 */
 }

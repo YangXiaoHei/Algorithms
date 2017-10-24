@@ -10,4 +10,9 @@ public class Practise_1_2_04 {
 		StdOut.println(string1);
 		StdOut.println(string2);
 	}
+	// output : 
+	/*
+	 * 	world
+		hello
+	 */
 }

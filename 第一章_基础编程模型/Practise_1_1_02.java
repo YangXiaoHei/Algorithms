@@ -21,4 +21,12 @@ public class Practise_1_1_02 {
 		 */
 		StdOut.println(1 + 2 + "3");
 	}
+	// output :
+	/*
+	 * 	1.618
+		10.0
+		true
+		33
+
+	 */
 }

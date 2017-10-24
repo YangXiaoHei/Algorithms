@@ -14,4 +14,8 @@ public class Practise_1_1_03 {
 		else
 			StdOut.println("not equal");
 	}
+	// output : configure the envionment variables and execute to see output
+	/*
+	 * equal
+	 */
 }

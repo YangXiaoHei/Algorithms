@@ -36,4 +36,20 @@ public class Practise_1_1_30 {
 	public static void main(String[] args) {
 		printArr(createArr());
 	}
+	// output :
+	/*
+	 *     *                               
+		 *  *  *  *  *  *  *  *  *  *  *  * 
+		    *     *     *     *     *     * 
+		    *  *     *  *     *  *     *  * 
+		    *     *     *     *     *     * 
+		    *  *  *  *     *  *  *  *     * 
+		    *           *     *           * 
+		    *  *  *  *  *  *     *  *  *  * 
+		    *     *     *     *     *     * 
+		    *  *     *  *     *  *     *  * 
+		    *     *           *     *     * 
+		    *  *  *  *  *  *  *  *  *  *    
+
+	 */
 }

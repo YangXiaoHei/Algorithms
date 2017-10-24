@@ -47,4 +47,8 @@ public class Practise_1_1_22 {
 	public static void main(String[] args) {
 		practise_1_1_22();
 	}
+	// output :
+	/*
+	 * index = -1 递归深度 = 14
+	 */
 }

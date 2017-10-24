@@ -6,4 +6,5 @@ public class Practise_1_1_04 {
 	public static void main(String[] args) {
 		// 太简单了不做
 	}
+	// output : 
 }

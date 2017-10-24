@@ -23,4 +23,12 @@ public class Practise_1_2_08 {
 		StdOut.println("a = " + Arrays.toString(a));
 		StdOut.println("b = " + Arrays.toString(b));
 	}
+	// output : 
+	/*
+	 * 	a = [10, 11, 12, 13, 14]
+		b = [0, 1, 2, 3, 4]
+		==========================
+		a = [0, 1, 2, 3, 4]
+		b = [10, 11, 12, 13, 14]
+	 */
 }

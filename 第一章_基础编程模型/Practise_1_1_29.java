@@ -40,4 +40,11 @@ public class Practise_1_1_29 {
 		StdOut.println("i = " + rank(4, arr));
 		StdOut.println("j = " + count(4, arr));
 	}
+	// output :
+	/*
+	 *  [0, 0, 0, 1, 1, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 8]
+		i = 7
+		j = 5
+
+	 */
 }

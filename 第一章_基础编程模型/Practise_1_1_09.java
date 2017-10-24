@@ -13,4 +13,9 @@ public class Practise_1_1_09 {
 			s = (n % 2) + s;
 		System.out.println(s);
 	}
+	// output :
+	/*
+	 * 1111111100001
+
+	 */
 }

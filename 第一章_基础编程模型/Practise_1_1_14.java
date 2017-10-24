@@ -17,4 +17,9 @@ public class Practise_1_1_14 {
 		}
 		StdOut.println("N = " + N + " result = " + count);
 	}
+	// output :
+	/*
+	 * N = 902983 result = 19
+
+	 */
 }

@@ -8,7 +8,7 @@ public class Practise_1_1_23 {
 		if (c != '+' && c != '-')
 			throw new RuntimeException("not supported argument");
 		
-		int[] whiteList = new In(/* enter your file full path */).readAllInts();
+		int[] whiteList = new In("/Users/bot/Desktop/algs4-data/largeW.txt").readAllInts();
 		Arrays.sort(whiteList);
 		while(!StdIn.isEmpty()) {
 			int number = StdIn.readInt();
@@ -24,4 +24,24 @@ public class Practise_1_1_23 {
 	public static void main(String[] args) {
 		practise_23('+');
 	}
+	// output : 
+	/*
+	 * 	4
+		4 不在白名单哪
+		5
+		5 不在白名单哪
+		6
+		7
+		8
+		8 不在白名单哪
+		10
+		11
+		11 不在白名单哪
+		12
+		23
+		34
+		34
+		45
+		45 不在白名单哪
+	 */
 }

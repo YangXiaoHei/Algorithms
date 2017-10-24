@@ -11,4 +11,9 @@ public class Practise_1_1_16 {
 		//311361142246
 		StdOut.println(exR1(6));
 	}
+	// output :
+	/*
+	 * 311361142246
+
+	 */
 }

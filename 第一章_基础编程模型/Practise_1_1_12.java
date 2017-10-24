@@ -12,4 +12,8 @@ public class Practise_1_1_12 {
 		for(int i = 0; i < 10; i++)
 			StdOut.print(a[i] + " ");
 	}
+	// output :
+	/*
+	 * 0 1 2 3 4 4 3 2 1 0 
+	 */
 }

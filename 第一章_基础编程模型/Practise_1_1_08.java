@@ -17,4 +17,11 @@ public class Practise_1_1_08 {
 		 */
 		StdOut.println((char)('a' + 4));  
 	}
+	// output :
+	/*
+	 * 	b
+		197
+		e
+
+	 */
 }

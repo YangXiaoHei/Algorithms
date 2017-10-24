@@ -16,4 +16,8 @@ public class Practise_1_2_07 {
 	public static void main(String[] args) {
 		StdOut.println(mystery("123456"));
 	}
+	// output :
+	/*
+	 * 654321
+	 */
 }

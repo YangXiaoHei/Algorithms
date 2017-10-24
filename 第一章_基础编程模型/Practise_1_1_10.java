@@ -8,4 +8,5 @@ public class Practise_1_1_10 {
 //		for(int i = 0; i < 10; i++) 
 //			a[i] = i * i;
 	}
+	// output : complie error
 }

@@ -23,4 +23,10 @@ public class Practise_1_1_18 {
 		StdOut.println(mystery(2, 25) + "  " + mystery(3, 11));
 		StdOut.println(mystery_2(2, 25) + "  " + mystery_2(3, 11));
 	}
+	// output :
+	/*
+	 * 	50  33
+		33554432  177147
+
+	 */
 }

@@ -44,9 +44,14 @@ public class Practise_1_1_07 {
 		StdOut.println(sum);
 	}
 	public static void main(String[] args) {
-//		practise_1_1_07_a_draw();
+		practise_1_1_07_a_draw();
 		practise_1_1_07_b();
 		practise_1_1_07_c();
-		
 	}
+	// output : execute to see graph drawing
+	/*
+	 * 	499500
+		10000
+
+	 */
 }

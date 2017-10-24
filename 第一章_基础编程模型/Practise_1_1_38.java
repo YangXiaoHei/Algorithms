@@ -27,7 +27,7 @@ public class Practise_1_1_38 {
 			if(arr[i] == key) return i;
 		return -1;
 	}
-	public static String path = "/Users/bot/Desktop/Algorithms4/Algorithms4/algs4-data";
+	public static String path = "/Users/bot/Desktop/algs4-data";
 	public static void testBruteForceSearchAndBinarySearch(int key, int[] arr) {
 		StdOut.println(arr.length + " 条数据中查找 " + key);
 		long start = System.nanoTime();
@@ -50,4 +50,15 @@ public class Practise_1_1_38 {
 		testBruteForceSearchAndBinarySearch(key, largeT);
 		testBruteForceSearchAndBinarySearch(key, largeW);
 	}
+	// output : 
+	/*
+	 * 	1000000 条数据中查找 10000
+		暴力查找用时 : 575251
+		二分查找用时 : 5009
+		=======================
+		1000000 条数据中查找 10000
+		暴力查找用时 : 1559985
+		二分查找用时 : 2490
+		=======================
+	 */
 }

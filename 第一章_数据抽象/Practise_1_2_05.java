@@ -9,4 +9,8 @@ public class Practise_1_2_05 {
 		s.substring(6, 11);
 		StdOut.println(s);
 	}
+	// output :
+	/*
+	 * Hello World
+	 */
 }

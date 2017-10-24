@@ -10,4 +10,8 @@ public class Practise_1_2_06 {
 	public static void main(String[] args) {
 		StdOut.println(isCircularRotation("12345", "45123"));
 	}
+	// output :
+	/*
+	 * true
+	 */
 }

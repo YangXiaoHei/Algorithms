@@ -43,4 +43,9 @@ public class Practise_1_2_09 {
 		StdOut.println("在长度为 " + N + " 的数组中查找 " + key);
 		StdOut.println(counter);
 	}
+	// output : 
+	/*
+	 * 	在长度为 1000000 的数组中查找 626760
+		BinarySearch check times 20
+	 */
 }

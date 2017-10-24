@@ -52,4 +52,5 @@ public class Practise_1_1_32 {
 	public static void main(String[] args) {
 		draw(randomArr(1, 3), 10, 1, 3);
 	}
+	// output : execute to see graph drawing
 }

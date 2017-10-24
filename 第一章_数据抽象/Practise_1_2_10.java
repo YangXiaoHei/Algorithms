@@ -66,4 +66,5 @@ public class Practise_1_2_10 {
 			else
 				counter.decrement();
 	}
+	// output : execute to see graphic drawing
 }

@@ -18,4 +18,11 @@ public class Practise_1_1_26 {
 		StdOut.println("after compare and swap");
 		StdOut.println("a = " + a + " b = " + b + " c = " + c);
 	}
+	// output :
+	/*
+	 * 	a = 39 b = 67 c = 45
+		after compare and swap
+		a = 39 b = 45 c = 67
+
+	 */
 }

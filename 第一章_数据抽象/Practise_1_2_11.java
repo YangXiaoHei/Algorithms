@@ -76,4 +76,8 @@ public class Practise_1_2_11 {
 		SmartDate date = new SmartDate(2, 29, 1024);
 		StdOut.println(date);
 	}
+	// output : 
+	/*
+	 * 日期 : 1024/2/29
+	 */
 }

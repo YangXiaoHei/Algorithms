@@ -92,4 +92,5 @@ public class Practise_1_1_31 {
 	public static void main(String[] args) {
 		draw(10 /* 一万个点 */, 0.8 /* 0.3的概率会连线 */);
 	}
+	// output : execute to see graph drawing
 }

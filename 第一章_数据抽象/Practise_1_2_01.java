@@ -39,4 +39,8 @@ public class Practise_1_2_01 {
 	public static void main(String[] args) {
 		nearstDistance(100);
 	}
+	// output : execute to see graphic drawing
+	/*
+	 * 两点之间最近距离为 : 0.803675497818708
+	 */
 }

@@ -177,4 +177,5 @@ public class Practise_1_1_37 {
 								shuffleCount, 
 								samplePointCount);
 	}
+	// output : execute to see graphic drawing
 }

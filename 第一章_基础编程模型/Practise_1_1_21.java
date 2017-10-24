@@ -40,4 +40,18 @@ public class Practise_1_1_21 {
 		}
 		StdOut.println(Arrays.deepToString(newItem));
 	}
+	// output :
+	/*
+	 * 	yangxiaohei
+		32
+		43
+		yangdahei
+		43
+		54
+		yangzhonghei
+		99
+		99
+		end
+		[[yangxiaohei, 32, 43, 0.744], [yangdahei, 43, 54, 0.796], [yangzhonghei, 99, 99, 1.000]]
+	 */
 }

@@ -11,4 +11,9 @@ public class Practise_1_1_05 {
 		else
 			StdOut.println("false");
 	}
+	// output :
+	/*
+	 * false
+
+	 */
 }
