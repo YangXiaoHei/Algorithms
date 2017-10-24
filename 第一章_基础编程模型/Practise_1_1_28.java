@@ -33,7 +33,6 @@ public class Practise_1_1_28 {
 	}
 	
 	public static void main(String[] args) {
-//		int[] arr = new In("").readAllInts();
 		int[] arr = randomArray();
 		StdOut.println("去重前 : " + Arrays.toString(arr));
 		arr = distinct(arr);

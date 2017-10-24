@@ -12,9 +12,6 @@ public class Practise_1_1_07 {
 			t = (c / t + t) / 2.0;
 		return t;
 	}
-	/*
-	 * 绘制 y = sqrt(x) 图像
-	 */
 	public static void practise_1_1_07_a_draw() {
 		StdDraw.setXscale(0, 100);
 		StdDraw.setYscale(0, 15);

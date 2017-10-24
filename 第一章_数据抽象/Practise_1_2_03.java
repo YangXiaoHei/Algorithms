@@ -75,7 +75,7 @@ public class Practise_1_2_03 {
 						r1.strokeLine(); r2.strokeLine();
 					}
 					
-					// 判断是否包含
+					// 是否包含
 					Rectangle r1 = rects[i];
 					Rectangle r2 = rects[j];
 					if (contains(r1, r2)) {

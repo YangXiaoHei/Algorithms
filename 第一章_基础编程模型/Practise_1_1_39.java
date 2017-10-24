@@ -4,35 +4,15 @@ import java.util.*;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_1_39 {
-	public static int binarySearch(int key, int[] arr) {
-		int lo = 0, hi = arr.length - 1, mid = 0;
-		while(lo <= hi) {
-			mid = (lo + hi) / 2;
-			if 		(key < arr[mid]) hi = mid - 1;
-			else if (key > arr[mid]) lo = mid + 1;
-			else		return mid;
-		}
-		return -1;
-	}
+	/*
+	 * 随机数组
+	 */
 	public static int[] sourceArr(int N) {
 		int[] arr = new int[N];
 		for(int i = 0; i < N; i++)
 			arr[i] = StdRandom.uniform(100000, 1000000);
 		Arrays.sort(arr);
 		return arr;
-	}
-	public static int[] getNormalTypeArr(List<Integer> list) {
-		int[] newArr = new int[list.size()];
-		for(int k = 0; k < newArr.length; k++)
-			newArr[k] = list.get(k);
-		return newArr;
-	}
-	
-	public static List<Integer> initList(int[] arr) {
-		LinkedList<Integer> list = new LinkedList<Integer>();
-		for(int i = 0; i < arr.length; i++)
-			list.add(arr[i]);
-		return list;
 	}
 	/*
 	 * 有序数组寻找共同元素算法

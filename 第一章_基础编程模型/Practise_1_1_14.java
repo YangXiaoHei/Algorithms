@@ -4,6 +4,9 @@ import edu.princeton.cs.algs4.*;
 
 public class Practise_1_1_14 {
 	public static void main(String[] args) {
+		/*
+		 * 不使用 Math 
+		 */
 		long N = StdRandom.uniform(1000000);
 		long sum = 1;
 		int count = 0;

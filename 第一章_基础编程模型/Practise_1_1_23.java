@@ -8,7 +8,7 @@ public class Practise_1_1_23 {
 		if (c != '+' && c != '-')
 			throw new RuntimeException("not supported argument");
 		
-		int[] whiteList = new In(/* enter your test fileName */).readAllInts();
+		int[] whiteList = new In(/* enter your file full path */).readAllInts();
 		Arrays.sort(whiteList);
 		while(!StdIn.isEmpty()) {
 			int number = StdIn.readInt();

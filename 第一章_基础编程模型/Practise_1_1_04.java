@@ -4,6 +4,6 @@ import edu.princeton.cs.algs4.*;
 
 public class Practise_1_1_04 {
 	public static void main(String[] args) {
-		// emmmmmmm....
+		// 太简单了不做
 	}
 }

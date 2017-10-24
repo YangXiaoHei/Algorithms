@@ -33,6 +33,8 @@ public class Practise_1_1_27 {
 	}
 	/*
 	 * 数组实现
+	 * 
+	 * @link https://yangxiaohei.github.io/2017/10/21/Algorithms4-习题-1-1-27-详解/
 	 */
 	public static double binomial_modified(int N, int k, double p) {
 		if(N < 0 || k < 0) return 0.0;

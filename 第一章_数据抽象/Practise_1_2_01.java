@@ -4,6 +4,9 @@ import java.awt.Color;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_2_01 {
+	/*
+	 * 两点间最近距离，用红线描出
+	 */
 	public static void nearstDistance(int N) {
 		StdDraw.setXscale(0, 100);
 		StdDraw.setYscale(0, 100);

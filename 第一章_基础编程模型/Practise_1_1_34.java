@@ -124,13 +124,7 @@ public class Practise_1_1_34 {
 	/*
 	 * 将 N 个数按照随机顺序打印
 	 * 
-	 * 啥意思啊😂，那就按照读入的顺序打印，不也是一种随机吗？难道不是吗？
-	 */
-	public static void randomPrint(double d) {
-		StdOut.println(d);
-	}
-	/*
-	 * 将 N 个数按照随机顺序打印
+	 * 
 	 */
 	public static void randomPrint(double[] arr) {
 		boolean[] printed = new boolean[arr.length];

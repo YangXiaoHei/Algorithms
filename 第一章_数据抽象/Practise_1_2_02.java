@@ -3,6 +3,9 @@ package 第一章_数据抽象;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_2_02 {
+	/*
+	 * 打印相交
+	 */
 	public static void intersectPrint(int N) {
 		Interval1D[] intervals = new Interval1D[N];
 		for(int i = 0; i < N; i++) {

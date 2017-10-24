@@ -28,7 +28,7 @@ public class Practise_1_1_38 {
 		return -1;
 	}
 	public static String path = "/Users/bot/Desktop/Algorithms4/Algorithms4/algs4-data";
-	public static void test(int key, int[] arr) {
+	public static void testBruteForceSearchAndBinarySearch(int key, int[] arr) {
 		StdOut.println(arr.length + " 条数据中查找 " + key);
 		long start = System.nanoTime();
 		int index = bruteForceSearch(key, arr);
@@ -47,7 +47,7 @@ public class Practise_1_1_38 {
 		int key = 10000;
 		int[] largeT = new In(path + "/largeT.txt").readAllInts();
 		int[] largeW = new In(path + "/largeW.txt").readAllInts();
-		test(key, largeT);
-		test(key, largeW);
+		testBruteForceSearchAndBinarySearch(key, largeT);
+		testBruteForceSearchAndBinarySearch(key, largeW);
 	}
 }
