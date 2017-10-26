@@ -1,12 +1,8 @@
 package 第一章_数据抽象;
 
 import java.util.regex.*;
+import edu.princeton.cs.algs4.*;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
-import 第一章_数据抽象.Practise_1_2_12.DateFormatInvalidException;
-import 第一章_数据抽象.Practise_1_2_12.SmartDate;
-import 第一章_数据抽象.Practise_1_2_14.Transaction;
 public class Practise_1_2_19 {
 	static class Transaction {
 		private final String who;
@@ -214,13 +210,13 @@ public class Practise_1_2_19 {
 		/*
 		 * 获取一个合法的随机日期
 		 */
-		static SmartDate randomDate() {
+		static Date randomDate() {
 			// 范围小一点好验证
 			int year = StdRandom.uniform(1900, 2051);
 			int month = StdRandom.uniform(1, 13);
 			int[] daysPerMonth = daysPerMonth(year);
 			int day = StdRandom.uniform(1, daysPerMonth[month - 1]);
-			return new SmartDate(month, day, year);
+			return new Date(month + "-" + day + "-" + year);
 		}
 		
 		/*
@@ -257,7 +253,7 @@ public class Practise_1_2_19 {
 		StdOut.println("===================================================");
 		
 		for(int i = 0; i < 10; i++)
-			StdOut.println(SmartDate.randomDate());
+			StdOut.println(Date.randomDate());
 	}
 	// output :
 	/*

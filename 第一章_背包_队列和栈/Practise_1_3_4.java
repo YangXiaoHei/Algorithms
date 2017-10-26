@@ -66,4 +66,9 @@ public class Practise_1_3_4 {
 		StdOut.println(isParenthesesPairing(s1));
 		StdOut.println(isParenthesesPairing(s2));
 	}
+	// output 
+	/*
+	 * 	true
+		false
+	 */
 }
