@@ -11,7 +11,7 @@ public class Practise_1_2_19 {
 		Transaction(String transaction) {
 			String[] result = transaction.split("\\s+");
 			if (result.length != 3)
-				throw new RuntimeException("input" + transaction + "invalid");
+				throw new RuntimeException("input " + transaction + " invalid");
 			
 			who = result[0];
 			if (Pattern.compile("[^a-zA-Z'·]").matcher(who).find())
