@@ -54,7 +54,7 @@ public class Practise_1_3_4 {
 			if (stack.isEmpty())
 				stack.push(ss);
 			else if ((stack.peek().equals("(") && ss.equals(")")) ||
-					 (stack.peek().equals("{") && ss.equals("}"))||
+					 (stack.peek().equals("{") && ss.equals("}")) ||
 					 (stack.peek().equals("[") && ss.equals("]")))
 				stack.pop();
 		return stack.isEmpty();
