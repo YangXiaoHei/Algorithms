@@ -16,7 +16,6 @@ public class Practise_1_3_8 {
 			if (size == items.length)
 				resize(size * 2);
 			items[size++] = s;
-			StdOut.println(this);
 		}
 		String pop() {
 			if(isEmpty())
@@ -25,7 +24,6 @@ public class Practise_1_3_8 {
 			items[size] = null;
 			if (size > 0 && size == items.length / 4)
 				resize(items.length / 2);
-			StdOut.println(this);
 			return old;
 		}
 		boolean isEmpty() {
