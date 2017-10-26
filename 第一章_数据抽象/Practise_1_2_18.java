@@ -1,7 +1,6 @@
 package 第一章_数据抽象;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.*;
 
 public class Practise_1_2_18 {
 	static class Accumulator {
@@ -63,11 +62,11 @@ public class Practise_1_2_18 {
 	}
 	// output :
 	/*
-	 * 	================= 累加器 ==================
+	 * 	================= 使用递推式 ==================
 		方差 810.3122222222221
 		标准差 28.465983598362136
 		平均值 52.97
-		================= 普通 ==================
+		================= 直接套公式 ==================
 		方差 802.2090999999999
 		标准差 28.32329606525342
 		平均值 52.97

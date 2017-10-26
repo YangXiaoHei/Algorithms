@@ -259,4 +259,46 @@ public class Practise_1_2_19 {
 		for(int i = 0; i < 10; i++)
 			StdOut.println(SmartDate.randomDate());
 	}
+	// output :
+	/*
+	 * 	Name : YangXiaoHei
+		Date : 1917-7-11
+		Amount : 65790.24945351756
+		
+		Name : YangXiaoHei
+		Date : 1917-7-11
+		Amount : 65790.24945351756
+		
+		Name : HELLO
+		Date : 1994-4-2
+		Amount : 52602.30867099687
+		
+		Name : HELLO
+		Date : 1994-4-2
+		Amount : 105788.62370665546
+		
+		Name : YangXiaoHei
+		Date : 1994-5-9
+		Amount : 65790.24945351756
+		
+		Name : HELLO
+		Date : 1994-4-2
+		Amount : 105788.62370665546
+		
+		Name : HELLO
+		Date : 1994-4-2
+		Amount : 105788.6
+		
+		===================================================
+		日期 : 2036-11-6 【周四】
+		日期 : 1969-7-20 【周日】
+		日期 : 2011-8-30 【周二】
+		日期 : 2031-1-6 【周一】
+		日期 : 1982-7-13 【周二】
+		日期 : 1963-4-10 【周三】
+		日期 : 1952-6-2 【周一】
+		日期 : 1977-6-3 【周五】
+		日期 : 1918-8-7 【周三】
+		日期 : 1986-1-19 【周日】
+	 */
 }
