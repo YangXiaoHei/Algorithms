@@ -2,7 +2,7 @@ package 第一章_背包_队列和栈;
 
 import edu.princeton.cs.algs4.StdOut;
 
-public class Practise_1_3_3 {
+public class Practise_1_3_03 {
 	/*
 	 * 数组实现能自动调整空间的栈
 	 */

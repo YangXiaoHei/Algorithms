@@ -1,10 +1,10 @@
 package 第一章_背包_队列和栈;
 
-import static 第一章_背包_队列和栈.Practise_1_3_4.*;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.StdOut;
+import static 第一章_背包_队列和栈.Practise_1_3_04.*;
 
-public class Practise_1_3_9 {
-	 public static String transform(String str) {
+public class Practise_1_3_09 {
+	public static String transform(String str) {
 		 LinkedListStack<String> complete = new LinkedListStack<String>();
 		 LinkedListStack<String> optr = new LinkedListStack<String>();
 		 for(String s : str.split("")) {
@@ -22,7 +22,7 @@ public class Practise_1_3_9 {
 		 return complete.pop();
 	 }
 
-    public static void main(String[] args) {
-        StdOut.println(transform("1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) )"));
-    }
+   public static void main(String[] args) {
+       StdOut.println(transform("1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) )"));
+   }
 }

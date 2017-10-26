@@ -2,7 +2,7 @@ package 第一章_背包_队列和栈;
 
 import edu.princeton.cs.algs4.StdOut;
 
-public class Practise_1_3_1 {
+public class Practise_1_3_01 {
 	/*
 	 * 数组实现一个固定容量的栈
 	 */

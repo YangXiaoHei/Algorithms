@@ -1,10 +1,9 @@
 package 第一章_背包_队列和栈;
 
-import java.util.*;
-
+import java.util.Iterator;
 import edu.princeton.cs.algs4.StdOut;
 
-public class Practise_1_3_5 {
+public class Practise_1_3_05 {
 	/*
 	 * 用数组实现长度可调整的栈
 	 */

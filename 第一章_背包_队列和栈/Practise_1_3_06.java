@@ -2,7 +2,7 @@ package 第一章_背包_队列和栈;
 
 import edu.princeton.cs.algs4.StdOut;
 
-public class Practise_1_3_6 {
+public class Practise_1_3_06 {
 	/*
 	 * 容量固定的栈
 	 */
@@ -100,5 +100,4 @@ public class Practise_1_3_6 {
 		===== 操作后  =====
 		队列 : 9 8 7 6 5 4 3 2 1 0 
 	 */
-
 }

@@ -1,7 +1,6 @@
 package 第一章_背包_队列和栈;
 
-import static 第一章_背包_队列和栈.Practise_1_3_4.*;
-
+import static 第一章_背包_队列和栈.Practise_1_3_04.*;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_10 {
@@ -45,7 +44,8 @@ public class Practise_1_3_10 {
 		while(!optrStack.isEmpty()) {
 			if(isOpnd(sb.substring(0, 1))) {
 				int cur = 0;
-				while(cur != sb.length() && isOpnd(sb.substring(cur, cur + 1))) cur++;
+				while(cur != sb.length() && 
+					 isOpnd(sb.substring(cur, cur + 1))) cur++;
 				opndStack.push(sb.substring(0, cur));
 				sb.delete(0, cur);
 			} else {
@@ -73,4 +73,9 @@ public class Practise_1_3_10 {
 		StdOut.println(InfixToPostfix("2 * 3 / (2 - 1) + 3 * ( 4 - 1 )"));
 		StdOut.println(InfixToPostfix("11 + 2 * 3 / (4 + 5) - 9 * (8 + 3)"));
 	}
+	// output 
+	/*
+	 * 	2 3 * 2 1 - / 3 4 1 - * +
+		11 2 3 * 4 5 + / + 9 8 3 + * -
+	 */
 }

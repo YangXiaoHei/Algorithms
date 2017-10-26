@@ -1,10 +1,9 @@
 package 第一章_背包_队列和栈;
 
-import java.util.*;
-
+import java.util.Iterator;
 import edu.princeton.cs.algs4.StdOut;
 
-public class Practise_1_3_7 {
+public class Practise_1_3_07 {
 	interface StackInterface<T> {
 		void push(T item);
 		T pop();

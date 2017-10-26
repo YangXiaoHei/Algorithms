@@ -1,8 +1,8 @@
 package 第一章_背包_队列和栈;
 
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.StdOut;
 
-public class Practise_1_3_2 {
+public class Practise_1_3_02 {
 	/*
 	 * 链表实现一个可变容量的栈
 	 */
