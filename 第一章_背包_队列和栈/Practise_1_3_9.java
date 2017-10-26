@@ -1,8 +1,7 @@
 package 第一章_背包_队列和栈;
 
 import static 第一章_背包_队列和栈.Practise_1_3_4.*;
-
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_9 {
 	 public static String transform(String str) {
@@ -25,6 +24,5 @@ public class Practise_1_3_9 {
 
     public static void main(String[] args) {
         StdOut.println(transform("1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) )"));
-        StdOut.println(transform("1 * 2 ) * 3 - 4 ) ) * 5 - 6 ) ) )"));
     }
 }

@@ -50,14 +50,13 @@ public class Practise_1_3_4 {
 	 */
 	public static boolean isParenthesesPairing(String s) {
 		LinkedListStack<String> stack = new LinkedListStack<String>();
-		for(String ss : s.split("")) {
+		for(String ss : s.split("")) 
 			if (stack.isEmpty())
 				stack.push(ss);
-			else if ((stack.peek().equals("(") && ss.equals("")) ||
-					(stack.peek().equals("{") && ss.equals("}")) ||
-					(stack.peek().equals("[") && ss.equals("]")))
+			else if ((stack.peek().equals("(") && ss.equals(")")) ||
+					 (stack.peek().equals("{") && ss.equals("}"))||
+					 (stack.peek().equals("[") && ss.equals("]")))
 				stack.pop();
-		}
 		return stack.isEmpty();
 	}
 	public static void main(String[] args) {
