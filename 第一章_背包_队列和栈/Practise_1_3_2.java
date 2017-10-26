@@ -64,4 +64,8 @@ public class Practise_1_3_2 {
 	public static void main(String[] args) {
 		inputPrint();
 	}
+	// output 
+	/*
+	 * was best times of the was the it 
+	 */
 }
