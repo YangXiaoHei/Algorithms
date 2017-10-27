@@ -45,6 +45,9 @@ public class Practise_1_3_13 {
 	}
 	public static void main(String[] args) {
 		Queue<Integer> queue = new Queue<Integer>();
+		/*
+		 * a 是唯一可能的序列，其他序列的情况都不会出现
+		 */
  		queue.enqueue(0);
  		queue.enqueue(1);
  		queue.enqueue(2);
@@ -65,6 +68,5 @@ public class Practise_1_3_13 {
  		queue.dequeue();
  		queue.dequeue();
  		queue.dequeue();
- 		StdOut.println("除了 a 是可能的序列，其他序列都不可能出现");
 	}
 }
