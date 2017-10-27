@@ -1,7 +1,6 @@
 package 第一章_背包_队列和栈;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_14 {
 	static class Queue<T> {
@@ -53,13 +52,17 @@ public class Practise_1_3_14 {
 			return sb.toString();
 		}
 	}
-	public static void main(String[] args) {
+	public static boolean[] sourceArr() {
 		boolean[] optrs = new boolean[20];
 		for(int i = 0; i < 20; i++)
 			optrs[i] = StdRandom.bernoulli(0.4);
+		return optrs;
+	}
+	public static void main(String[] args) {
+		boolean[] operationTable = sourceArr();
 		Queue<Integer> queue = new Queue<Integer>();
 		int k = 0;
-		queue.enqueue(k++);
+		queue.enqueue(k++);	
 		queue.enqueue(k++);
 		queue.enqueue(k++);
 		queue.enqueue(k++);
@@ -67,7 +70,7 @@ public class Practise_1_3_14 {
 		queue.enqueue(k++);
 		try {
 			for(int i = 0; i < 20; i++)
-				if (optrs[i])
+				if (operationTable[i])
 					queue.enqueue(k++);
 				else
 					queue.dequeue();
@@ -95,6 +98,35 @@ public class Practise_1_3_14 {
 		| 7  |    |     <<< head : 0  tail : 1 >>>
 		|    |    |     <<< head : 1  tail : 1 >>>
 		ahead of schedule
+		game over
+	 */
+	/*
+	 * 	| 0  |     <<< head : 0  tail : 0 >>>
+		| 0  | 1  |     <<< head : 0  tail : 0 >>>
+		| 0  | 1  | 2  |    |     <<< head : 0  tail : 3 >>>
+		| 0  | 1  | 2  | 3  |     <<< head : 0  tail : 0 >>>
+		| 0  | 1  | 2  | 3  | 4  |    |    |    |     <<< head : 0  tail : 5 >>>
+		| 0  | 1  | 2  | 3  | 4  | 5  |    |    |     <<< head : 0  tail : 6 >>>
+		| 0  | 1  | 2  | 3  | 4  | 5  | 6  |    |     <<< head : 0  tail : 7 >>>
+		| 0  | 1  | 2  | 3  | 4  | 5  | 6  | 7  |     <<< head : 0  tail : 0 >>>
+		|    | 1  | 2  | 3  | 4  | 5  | 6  | 7  |     <<< head : 1  tail : 0 >>>
+		|    |    | 2  | 3  | 4  | 5  | 6  | 7  |     <<< head : 2  tail : 0 >>>
+		|    |    |    | 3  | 4  | 5  | 6  | 7  |     <<< head : 3  tail : 0 >>>
+		| 8  |    |    | 3  | 4  | 5  | 6  | 7  |     <<< head : 3  tail : 1 >>>
+		| 8  | 9  |    | 3  | 4  | 5  | 6  | 7  |     <<< head : 3  tail : 2 >>>
+		| 8  | 9  |    |    | 4  | 5  | 6  | 7  |     <<< head : 4  tail : 2 >>>
+		| 8  | 9  |    |    |    | 5  | 6  | 7  |     <<< head : 5  tail : 2 >>>
+		| 8  | 9  |    |    |    |    | 6  | 7  |     <<< head : 6  tail : 2 >>>
+		| 8  | 9  |    |    |    |    |    | 7  |     <<< head : 7  tail : 2 >>>
+		| 8  | 9  |    |    |     <<< head : 0  tail : 2 >>>
+		| 8  | 9  | 10 |    |     <<< head : 0  tail : 3 >>>
+		|    | 9  | 10 |    |     <<< head : 1  tail : 3 >>>
+		| 10 |    |     <<< head : 0  tail : 1 >>>
+		|    |    |     <<< head : 1  tail : 1 >>>
+		|    | 11 |     <<< head : 1  tail : 0 >>>
+		| 12 | 11 |     <<< head : 1  tail : 1 >>>
+		| 12 |    |     <<< head : 0  tail : 1 >>>
+		| 12 | 13 |     <<< head : 0  tail : 0 >>>
 		game over
 	 */
 }
