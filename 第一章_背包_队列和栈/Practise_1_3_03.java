@@ -20,6 +20,7 @@ public class Practise_1_3_03 {
 			if (isEmpty())
 				throw new RuntimeException("attempt to pop from a empty stack");
 			Item pop = items[--N];
+			items[N] = null;
 			if (N > 0 && N == items.length / 4)
 				resize(items.length / 2);
 			if (log)

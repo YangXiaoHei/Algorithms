@@ -26,7 +26,9 @@ public class Practise_1_3_01 {
 		String pop() {
 			if(isEmpty())
 				throw new RuntimeException("attempt to pop in a empty stack!");
-			return strings[--N];
+			String s = strings[--N];
+			strings[N] = null;
+			return s;
 		}
 		public String toString() {
 			StringBuilder sb = new StringBuilder();

@@ -27,6 +27,7 @@ public class Practise_1_3_11 {
 		}
 		T pop() {
 			T pop = item[--N];
+			item[N] = null;
 			if (N > 0 && N == item.length / 4)
 				resize(item.length / 2);
 			return pop;

@@ -9,12 +9,8 @@ public class Practise_1_3_13 {
 		private int head;
 		private int tail;
 		@SuppressWarnings("unchecked")
-		Queue(int max) {
-			items = (T[])new Object[max];
-		}
-		Queue() {
-			this(10);
-		}
+		Queue(int max) { items = (T[])new Object[max]; }
+		Queue() { this(10); }
 		void enqueue(T e) {
 			if (isFull())
 				throw new RuntimeException("queue is full");
@@ -27,6 +23,7 @@ public class Practise_1_3_13 {
 				throw new RuntimeException("queue is empty");
 			N--;
 			T deq = items[head];
+			items[head] = null;
 			head = (head + 1) % items.length;
 			StdOut.print(deq + " ");
 			return deq;
@@ -69,4 +66,8 @@ public class Practise_1_3_13 {
  		queue.dequeue();
  		queue.dequeue();
 	}
+	// output
+	/*
+	 * 0 1 2 3 4 5 6 7 8 9 
+	 */
 }

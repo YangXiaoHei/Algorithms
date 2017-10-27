@@ -22,7 +22,9 @@ public class Practise_1_3_06 {
 		Item pop() {
 			if (isEmpty())
 				throw new RuntimeException("nothing to pop in the stack");
-			return items[--size];
+			Item e = items[--size];
+			items[size] = null;
+			return e;
 		}
 		boolean isEmpty() {
 			return size == 0;
@@ -63,6 +65,7 @@ public class Practise_1_3_06 {
 				throw new RuntimeException("queue is empty");
 			size--;
 			Item deq = items[head];
+			items[head] = null;
 			head = (head + 1) % items.length;
 			return deq;
 		}
