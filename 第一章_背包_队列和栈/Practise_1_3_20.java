@@ -11,7 +11,6 @@ public class Practise_1_3_20 {
 			this.next = next;
 		}
 	}
-	
 	public static void printList(Node beg) {
 		while(beg.next != null) {
 			if (beg.item >= 0) 
@@ -20,7 +19,6 @@ public class Practise_1_3_20 {
 		}
 		StdOut.println(beg.item);
 	}
-	
 	public static int deleteKthElem(Node sentinel, int k) {
 		if (sentinel == null || sentinel.next == null) 
 			throw new RuntimeException("the list does not have any element to delete");
@@ -56,15 +54,15 @@ public class Practise_1_3_20 {
 		StdOut.println("initialize a list");
 		printList(header);
 		
-		StdOut.println("\nafter delete first element");
+		StdOut.println("\nafter delete the first element");
 		deleteKthElem(header, 0);
 		printList(header);
 		
-		StdOut.println("\nafter delete 3th element");
+		StdOut.println("\nafter delete the 3th element");
 		deleteKthElem(header, 3);
 		printList(header);
 		
-		StdOut.println("\nafter delete 5th element");
+		StdOut.println("\nafter delete the 5th element");
 		deleteKthElem(header, 5);
 		printList(header);
 		
@@ -76,18 +74,19 @@ public class Practise_1_3_20 {
 	 * 	initialize a list
 		0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11
 		
-		delete first element
+		after delete the first element
 		1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11
 		
-		delete 3th element
+		after delete the 3th element
 		1 -> 2 -> 3 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11
 		
-		delete 5th element
+		after delete the 5th element
 		1 -> 2 -> 3 -> 5 -> 6 -> 8 -> 9 -> 10 -> 11
 		
-		delete a not exist element
+		after delete a not exist element
 		Exception in thread "main" java.lang.RuntimeException: 9 is out of list's size boundary
 			at 第一章_背包_队列和栈.Practise_1_3_20.deleteKthElem(Practise_1_3_20.java:34)
 			at 第一章_背包_队列和栈.Practise_1_3_20.main(Practise_1_3_20.java:72)
+
 	 */
 }
