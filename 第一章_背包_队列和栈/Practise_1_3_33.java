@@ -97,7 +97,7 @@ public class Practise_1_3_33 {
 		
 		public Iterator<T> iterator() {
 			return new Iterator<T>() {
-				private int i = head;
+				private int i = head + 1;
 				public boolean hasNext() {
 					return i < tail;
 				}
@@ -209,9 +209,9 @@ public class Practise_1_3_33 {
 		}
 		public Iterator<T> iterator() {
 			return new Iterator<T>() {
-				Node cur = header;
+				Node cur = header.next;
 				public boolean hasNext() {
-					return cur.next != tailer;
+					return cur != tailer;
 				}
 				public T next() {
 					T item = cur.item;
@@ -224,43 +224,141 @@ public class Practise_1_3_33 {
 			};
 		}
 	}
+	
+	public static void basicOperationTest() {
+		StdOut.println("basic operation test");
+		 Deque<Integer> deque = new ResizingArrayDeque<Integer>();	// double linked list implementation
+			deque.pushLeft(0);
+			deque.pushRight(1);
+			deque.pushLeft(2);
+			deque.pushLeft(3);
+			deque.popLeft();
+			deque.popRight();
+			deque.popLeft();
+			deque.pushLeft(99);
+			deque.pushRight(98);
+			deque.pushLeft(97);
+			deque.pushLeft(96);
+			deque.pushLeft(95);
+			deque.pushRight(94);
+			deque.pushLeft(93);
+			deque.pushLeft(92);
+			deque.popLeft();
+			deque.popRight();
+			deque.popLeft();
+			deque.pushLeft(91);
+			deque.pushRight(90);
+			deque.pushLeft(89);
+			deque.pushLeft(88);
+			deque.popLeft();
+			deque.popLeft();
+			deque.popLeft();
+			deque.popLeft();
+			deque.popLeft();
+			deque.popLeft();
+			deque.popLeft();
+			deque.popRight();
+			deque.popLeft();
+			deque.popLeft();
+			
+			deque = new DoubleLinkedListDeque<Integer>();	// double linked list implementation
+			deque.pushLeft(0);
+			deque.pushRight(1);
+			deque.pushLeft(2);
+			deque.pushLeft(3);
+			deque.popLeft();
+			deque.popRight();
+			deque.popLeft();
+			deque.pushLeft(99);
+			deque.pushRight(98);
+			deque.pushLeft(97);
+			deque.pushLeft(96);
+			deque.pushLeft(95);
+			deque.pushRight(94);
+			deque.pushLeft(93);
+			deque.pushLeft(92);
+			deque.popLeft();
+			deque.popRight();
+			deque.popLeft();
+			deque.pushLeft(91);
+			deque.pushRight(90);
+			deque.pushLeft(89);
+			deque.pushLeft(88);
+			deque.popLeft();
+			deque.popLeft();
+			deque.popLeft();
+			deque.popLeft();
+			deque.popLeft();
+			deque.popLeft();
+			deque.popLeft();
+			deque.popRight();
+			deque.popLeft();
+			deque.popLeft();
+	}
+	public static void iteratorTest() {
+		StdOut.println("\n\n\n\niterator test");
+		 Deque<Integer> deque = new ResizingArrayDeque<Integer>();	// double linked list implementation
+			deque.pushLeft(0);
+			deque.pushRight(1);
+			deque.pushLeft(2);
+			deque.pushLeft(3);
+			deque.popLeft();
+			deque.popRight();
+			deque.popLeft();
+			deque.pushLeft(99);
+			deque.pushRight(98);
+			deque.pushLeft(97);
+			deque.pushLeft(96);
+			deque.pushLeft(95);
+			deque.pushRight(94);
+			deque.pushLeft(93);
+			deque.pushLeft(92);
+			deque.popLeft();
+			deque.popRight();
+			deque.popLeft();
+			deque.pushLeft(91);
+			deque.pushRight(90);
+			deque.pushLeft(89);
+			deque.pushLeft(88);
+			
+			for(Integer i : deque)
+				StdOut.print(String.format("【%d】", i));
+			StdOut.println();
+			
+			deque = new DoubleLinkedListDeque<Integer>();	// double linked list implementation
+			deque.pushLeft(0);
+			deque.pushRight(1);
+			deque.pushLeft(2);
+			deque.pushLeft(3);
+			deque.popLeft();
+			deque.popRight();
+			deque.popLeft();
+			deque.pushLeft(99);
+			deque.pushRight(98);
+			deque.pushLeft(97);
+			deque.pushLeft(96);
+			deque.pushLeft(95);
+			deque.pushRight(94);
+			deque.pushLeft(93);
+			deque.pushLeft(92);
+			deque.popLeft();
+			deque.popRight();
+			deque.popLeft();
+			deque.pushLeft(91);
+			deque.pushRight(90);
+			deque.pushLeft(89);
+			deque.pushLeft(88);
+			
+			for(Integer i : deque)
+				StdOut.print(String.format("【%d】", i));
+			StdOut.println();
+	}
 
 	public static void main(String[] args) {
-		 Deque<Integer> deque = 
-		 		new DoubleLinkedListDeque<Integer>();	// double linked list implementation
-//				new ResizingArrayDeque<Integer>();		// resizing array implementation 
-		deque.pushLeft(0);
-		deque.pushRight(1);
-		deque.pushLeft(2);
-		deque.pushLeft(3);
-		deque.popLeft();
-		deque.popRight();
-		deque.popLeft();
-		deque.pushLeft(99);
-		deque.pushRight(98);
-		deque.pushLeft(97);
-		deque.pushLeft(96);
-		deque.pushLeft(95);
-		deque.pushRight(94);
-		deque.pushLeft(93);
-		deque.pushLeft(92);
-		deque.popLeft();
-		deque.popRight();
-		deque.popLeft();
-		deque.pushLeft(91);
-		deque.pushRight(90);
-		deque.pushLeft(89);
-		deque.pushLeft(88);
-		deque.popLeft();
-		deque.popLeft();
-		deque.popLeft();
-		deque.popLeft();
-		deque.popLeft();
-		deque.popLeft();
-		deque.popLeft();
-		deque.popRight();
-		deque.popLeft();
-		deque.popLeft();
+		basicOperationTest();
+		iteratorTest();
+		
+		
 	}
 	// output  resizing array implementation
 	/*
