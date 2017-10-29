@@ -1,6 +1,5 @@
 package 第一章_背包_队列和栈;
 
-
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_27 {
@@ -64,4 +63,11 @@ public class Practise_1_3_27 {
 		StdOut.print("\nthe max value is " + max(first));
 		
 	}
+	// output 
+	/*
+	 * 	initialize a list
+		66 -> 50 -> 77 -> 28 -> 77 -> 74 -> 54 -> 21 -> 44 -> 64 -> 98 -> 13 -> 11 -> 34 -> 92 -> 15 -> 51 -> 2
+		
+		the max value is 98
+	 */
 }
