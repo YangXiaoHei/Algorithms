@@ -1,8 +1,7 @@
 package 第一章_背包_队列和栈;
 
 import java.util.*;
-
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.*;
 
 interface Deque<T> extends Iterable<T> {
 	boolean isEmpty();		// 双向队列是否为空
@@ -113,6 +112,7 @@ public class Practise_1_3_33 {
 			};
 		}
 		public String toString() {
+			if (isEmpty()) return "[empty]";
 			StringBuilder sb = new StringBuilder();
 			sb.append("|");
 			for(int i = 0; i < items.length; i++)
@@ -122,8 +122,113 @@ public class Practise_1_3_33 {
 			return sb.toString();
 		}
 	}
+	
+	/*
+	 * implemented by linked list
+	 */
+	static class DoubleLinkedListDeque<T> implements Deque<T> {
+		private class Node {
+			T item;
+			Node next;
+			Node prev;
+			Node(T item, Node prev, Node next) {
+				this.item = item;
+				this.prev = prev;
+				this.next = next;
+			}
+			Node() { this(null, null, null); }
+			void insertAfter(T item) {
+				Node node = new Node(item, this, this.next);
+				if (next != null)
+					next.prev = node;
+				next = node;
+			}
+			void insertBefore(T item) {
+				Node node = new Node(item, this.prev, this);
+				if (prev != null)
+					prev.next = node;
+				prev = node;
+			}
+			T delete() {
+				T del = item;
+				item = null;
+				if (next != null)
+					next.prev = prev;
+				if (prev != null)
+					prev.next = next;
+				return del;
+			}
+		}
+		private Node header = new Node();
+		private Node tailer = new Node();
+		{
+			header.next = tailer;
+			tailer.prev = header;
+			header.prev = null;
+			tailer.next = null;
+		}
+		private int size;
+		public boolean isEmpty() { return size == 0; }
+		public int size() { return size; }
+		public void pushLeft(T item) {
+			size++;
+			header.insertAfter(item);
+			StdOut.println(this);
+		}
+		public void pushRight(T item) {
+			size++;
+			tailer.insertBefore(item);
+			StdOut.println(this);
+		}
+		public T popLeft() {
+			if (isEmpty())
+				throw new RuntimeException("pop from a empty deque");
+			size--;
+			T del = header.next.delete();
+			StdOut.println(this);
+			return del;
+		}
+		public T popRight() {
+			if (isEmpty())
+				throw new RuntimeException("pop form a empty deque");
+			size--;
+			T del = tailer.prev.delete();
+			StdOut.println(this);
+			return del;
+		}
+		public String toString() {
+			if (isEmpty()) return "[empty]";
+			StringBuilder sb = new StringBuilder();
+			Node cur = header.next;
+			while(cur.next != tailer) {
+				sb.append(cur.item + " - ");
+				cur = cur.next;
+			}
+			sb.append(cur.item);
+			return sb.toString();
+		}
+		public Iterator<T> iterator() {
+			return new Iterator<T>() {
+				Node cur = header;
+				public boolean hasNext() {
+					return cur.next != tailer;
+				}
+				public T next() {
+					T item = cur.item;
+					cur = cur.next;
+					return item;
+				}
+				public void remove() {
+					throw new UnsupportedOperationException();
+				}
+			};
+		}
+	}
+
 	public static void main(String[] args) {
-		Deque<Integer> deque = new ResizingArrayDeque<Integer>();
+		 Deque<Integer> deque = 
+		 		new DoubleLinkedListDeque<Integer>();	// double linked list implementation
+//				new ResizingArrayDeque<Integer>();		// resizing array implementation 
 		deque.pushLeft(0);
 		deque.pushRight(1);
 		deque.pushLeft(2);
@@ -156,6 +261,76 @@ public class Practise_1_3_33 {
 		deque.popRight();
 		deque.popLeft();
 		deque.popLeft();
-		
 	}
+	// output  resizing array implementation
+	/*
+	 * 	|  0 |    |      <<<<< head : -1 tail : 1 >>>>>>
+		|  0 |  1 |      <<<<< head : -1 tail : 2 >>>>>>
+		|  2 |  0 |  1 |    |      <<<<< head : -1 tail : 3 >>>>>>
+		|    |    |  3 |  2 |  0 |  1 |    |    |      <<<<< head : 1 tail : 6 >>>>>>
+		|    |    |    |  2 |  0 |  1 |    |    |      <<<<< head : 2 tail : 6 >>>>>>
+		|    |  2 |  0 |    |      <<<<< head : 0 tail : 3 >>>>>>
+		|  0 |    |      <<<<< head : -1 tail : 1 >>>>>>
+		|    | 99 |  0 |    |      <<<<< head : 0 tail : 3 >>>>>>
+		|    | 99 |  0 | 98 |      <<<<< head : 0 tail : 4 >>>>>>
+		| 97 | 99 |  0 | 98 |      <<<<< head : -1 tail : 4 >>>>>>
+		|    | 96 | 97 | 99 |  0 | 98 |    |    |      <<<<< head : 0 tail : 6 >>>>>>
+		| 95 | 96 | 97 | 99 |  0 | 98 |    |    |      <<<<< head : -1 tail : 6 >>>>>>
+		| 95 | 96 | 97 | 99 |  0 | 98 | 94 |    |      <<<<< head : -1 tail : 7 >>>>>>
+		|    |    |    |    | 93 | 95 | 96 | 97 | 99 |  0 | 98 | 94 |    |    |    |    |      <<<<< head : 3 tail : 12 >>>>>>
+		|    |    |    | 92 | 93 | 95 | 96 | 97 | 99 |  0 | 98 | 94 |    |    |    |    |      <<<<< head : 2 tail : 12 >>>>>>
+		|    |    |    |    | 93 | 95 | 96 | 97 | 99 |  0 | 98 | 94 |    |    |    |    |      <<<<< head : 3 tail : 12 >>>>>>
+		|    |    |    |    | 93 | 95 | 96 | 97 | 99 |  0 | 98 |    |    |    |    |    |      <<<<< head : 3 tail : 11 >>>>>>
+		|    |    |    |    |    | 95 | 96 | 97 | 99 |  0 | 98 |    |    |    |    |    |      <<<<< head : 4 tail : 11 >>>>>>
+		|    |    |    |    | 91 | 95 | 96 | 97 | 99 |  0 | 98 |    |    |    |    |    |      <<<<< head : 3 tail : 11 >>>>>>
+		|    |    |    |    | 91 | 95 | 96 | 97 | 99 |  0 | 98 | 90 |    |    |    |    |      <<<<< head : 3 tail : 12 >>>>>>
+		|    |    |    | 89 | 91 | 95 | 96 | 97 | 99 |  0 | 98 | 90 |    |    |    |    |      <<<<< head : 2 tail : 12 >>>>>>
+		|    |    | 88 | 89 | 91 | 95 | 96 | 97 | 99 |  0 | 98 | 90 |    |    |    |    |      <<<<< head : 1 tail : 12 >>>>>>
+		|    |    |    | 89 | 91 | 95 | 96 | 97 | 99 |  0 | 98 | 90 |    |    |    |    |      <<<<< head : 2 tail : 12 >>>>>>
+		|    |    |    |    | 91 | 95 | 96 | 97 | 99 |  0 | 98 | 90 |    |    |    |    |      <<<<< head : 3 tail : 12 >>>>>>
+		|    |    |    |    |    | 95 | 96 | 97 | 99 |  0 | 98 | 90 |    |    |    |    |      <<<<< head : 4 tail : 12 >>>>>>
+		|    |    |    |    |    |    | 96 | 97 | 99 |  0 | 98 | 90 |    |    |    |    |      <<<<< head : 5 tail : 12 >>>>>>
+		|    |    |    |    |    |    |    | 97 | 99 |  0 | 98 | 90 |    |    |    |    |      <<<<< head : 6 tail : 12 >>>>>>
+		|    |    | 99 |  0 | 98 | 90 |    |    |      <<<<< head : 1 tail : 6 >>>>>>
+		|    |    |    |  0 | 98 | 90 |    |    |      <<<<< head : 2 tail : 6 >>>>>>
+		|    |  0 | 98 |    |      <<<<< head : 0 tail : 3 >>>>>>
+		| 98 |    |      <<<<< head : -1 tail : 1 >>>>>>
+		[empty]
+	 */
+	
+	// output double linked list implementation
+	/*
+	 *	0
+		0 - 1
+		2 - 0 - 1
+		3 - 2 - 0 - 1
+		2 - 0 - 1
+		2 - 0
+		0
+		99 - 0
+		99 - 0 - 98
+		97 - 99 - 0 - 98
+		96 - 97 - 99 - 0 - 98
+		95 - 96 - 97 - 99 - 0 - 98
+		95 - 96 - 97 - 99 - 0 - 98 - 94
+		93 - 95 - 96 - 97 - 99 - 0 - 98 - 94
+		92 - 93 - 95 - 96 - 97 - 99 - 0 - 98 - 94
+		93 - 95 - 96 - 97 - 99 - 0 - 98 - 94
+		93 - 95 - 96 - 97 - 99 - 0 - 98
+		95 - 96 - 97 - 99 - 0 - 98
+		91 - 95 - 96 - 97 - 99 - 0 - 98
+		91 - 95 - 96 - 97 - 99 - 0 - 98 - 90
+		89 - 91 - 95 - 96 - 97 - 99 - 0 - 98 - 90
+		88 - 89 - 91 - 95 - 96 - 97 - 99 - 0 - 98 - 90
+		89 - 91 - 95 - 96 - 97 - 99 - 0 - 98 - 90
+		91 - 95 - 96 - 97 - 99 - 0 - 98 - 90
+		95 - 96 - 97 - 99 - 0 - 98 - 90
+		96 - 97 - 99 - 0 - 98 - 90
+		97 - 99 - 0 - 98 - 90
+		99 - 0 - 98 - 90
+		0 - 98 - 90
+		0 - 98
+		98
+		[empty]
+	 */
 }
