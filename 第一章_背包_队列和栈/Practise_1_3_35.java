@@ -116,7 +116,11 @@ public class Practise_1_3_35 {
 					enqueue(cards[i][j]);
 		}
 		String deal() {
-			return dequeue();
+			try {
+				return dequeue();
+			} catch (Exception e) {
+				throw new RuntimeException("no cards~");
+			}
 		}
 	}
 	static class Person {
@@ -147,7 +151,6 @@ public class Practise_1_3_35 {
 			StdOut.println(p2);
 			StdOut.println(p3);
 			StdOut.println(p4);
-			cards.deal();
 	}
 	
 	public static void main(String[] args) {
