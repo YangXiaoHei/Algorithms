@@ -50,7 +50,7 @@ public class Practise_1_3_40 {
 			if (same != null)
 				header.insertAfter(same.delete());
 			else
-				tailer.insertBefore(item);
+				header.insertAfter(item);
 			size++;
 			StdOut.println(this + " 		read : " + item);
 		}
