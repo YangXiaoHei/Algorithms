@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 public class Practise_1_3_37 {
 	static class Josephus {
 		private class Node {
-			int index = -1;
+			int index;
 			Node next;
 			Node prev;
 			Node(int index,Node prev, Node next) {
@@ -32,28 +32,24 @@ public class Practise_1_3_37 {
 				return del;
 			}
 		}
-		Node current = null;
-		Node header = new Node();
-		Node tailer = new Node();
-		{
-			header.next = tailer;
-			tailer.prev = header;
-			header.prev = null;
-			tailer.next = null;
-		}
 		private int M;
 		private int size;
 		private Node cur = null;
 		public Josephus(int N, int M) {
 			if (N == 0 || M == 0)
-				throw new RuntimeException("fuck you!");
+				throw new RuntimeException("are you serious?");
 			this.M = M;
+			Node header = new Node();
+			Node tailer = new Node();
+			header.next = tailer;
+			tailer.prev = header;
+			header.prev = null;
+			tailer.next = null;
 			for(int i = 0; i < N; i++)
 				tailer.insertBefore(size++);
 			cur = header.next;
 			tailer.prev.next = header.next;
 			header.next.prev = tailer.prev;
-			header.next = tailer.prev = null;
 		}
 		public int size() { return size; }
 		public void kill() {
