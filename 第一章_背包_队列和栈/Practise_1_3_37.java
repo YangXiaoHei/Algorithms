@@ -31,6 +31,9 @@ public class Practise_1_3_37 {
 				StdOut.print(del + " ");
 				return del;
 			}
+			public String toString() {
+				return index + "";
+			}
 		}
 		private int M;
 		private int size;
@@ -54,16 +57,15 @@ public class Practise_1_3_37 {
 		public int size() { return size; }
 		public void kill() {
 			if (size == 0) return;
-			if (size > 1) {
+			if (size == 1) {
+				StdOut.print("\nSurvivor : ");
+				cur.delete();
+			} else {
 				for(int i = 0; i < M; i++)
 					cur = cur.next;
 				cur.prev.delete();
-				size--;
-			} else {
-				StdOut.print("\nSurvivor : ");
-				cur.delete();
-				size--;
-			}
+			} 
+			size--;
 		}
 		public void play() {
 			while(size() != 0)
@@ -71,7 +73,7 @@ public class Practise_1_3_37 {
 		}
 	}
 	public static void main(String[] args) {
-		Josephus game = new Josephus(7, 2);
+		Josephus game = new Josephus(3, 1);
 		game.play();
 	}
 }
