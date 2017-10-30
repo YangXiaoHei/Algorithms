@@ -21,8 +21,7 @@ public class Practise_1_3_28 {
 	 *  if we want to find the maximum in 
 	 *  1->2->3->4
 	 *  we should compare 1 and maximum in sublist 2->3->4
-	 *  if we want to find the maximum in 
-	 *  2->3->4
+	 *  if we want to find the maximum in 2->3->4
 	 *  we should compare 2 and maximum in sublist 3->4
 	 *  ....
 	 *  we should compare 3 and 4, so the max one is 4, return 4

@@ -102,9 +102,7 @@ public class Practise_1_3_33 {
 					return i < tail;
 				}
 				public T next() {
-					T next = items[i];
-					i++;
-					return next;
+					return items[i++];
 				}
 				public void remove() {
 					throw new UnsupportedOperationException();
@@ -227,7 +225,7 @@ public class Practise_1_3_33 {
 	
 	public static void basicOperationTest() {
 		StdOut.println("basic operation test");
-		 Deque<Integer> deque = new ResizingArrayDeque<Integer>();	// double linked list implementation
+		 Deque<Integer> deque = new ResizingArrayDeque<Integer>();	// resizing array implementation
 			deque.pushLeft(0);
 			deque.pushRight(1);
 			deque.pushLeft(2);
@@ -357,8 +355,6 @@ public class Practise_1_3_33 {
 	public static void main(String[] args) {
 		basicOperationTest();
 		iteratorTest();
-		
-		
 	}
 	// output  resizing array implementation
 	/*
