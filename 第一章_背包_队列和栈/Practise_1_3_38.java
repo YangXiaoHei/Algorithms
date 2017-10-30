@@ -1,7 +1,6 @@
 package 第一章_背包_队列和栈;
 
 import edu.princeton.cs.algs4.*;
-import java.util.*;
 public class Practise_1_3_38 {
 	interface GeneralizedQueue<T> {
 		boolean isEmpty();
@@ -71,8 +70,76 @@ public class Practise_1_3_38 {
 		}
 	}
 	
-	public static void main(String[] args) {
-		ResizingArrayGeneralizedQueue<Integer> queue = new ResizingArrayGeneralizedQueue<Integer>();
+	/*
+	 * linked list implementation 
+	 */
+	static class LinkedListGeneralizedQueue<T> implements GeneralizedQueue<T> {
+		private class Node {
+			T item;
+			Node prev;
+			Node next;
+			Node(T item, Node prev, Node next) {
+				this.item = item;
+				this.prev = prev;
+				this.next = next;
+			}
+			Node() { this(null, null, null); }
+			T delete() {
+				T del = item;
+				item = null;
+				if (prev != null)
+					prev.next = next;
+				if (next != null)
+					next.prev = prev;
+				return del;
+			}
+			Node insertBefore(T item) {
+				Node n = new Node(item, this.prev, this);
+				if (prev != null)
+					prev.next = n;
+				prev = n;
+				return n;
+			}
+		}
+		private int size;
+		private Node header = new Node();
+		private Node tailer = new Node(); 
+		{
+			header.next = tailer;
+			tailer.prev = header;
+			header.prev = tailer.next = null;
+		}
+		public boolean isEmpty() { return size == 0; }
+		public void insert(T item) {
+			size++;
+			tailer.insertBefore(item);
+			StdOut.println(this);
+		}
+		public T delete(int k) {
+			if (k >= size) 
+				throw new RuntimeException("k " + k + " is out of array's bounds");
+			int kk = k;
+			Node cur = header.next;
+			while(k-- > 0) cur = cur.next;
+			size--;
+			T del = cur.delete();
+			StdOut.println(this + "          k = " + kk + " delete : " + del);
+			return del;
+		}
+		public String toString() {
+			if (isEmpty()) return "[empty]";
+			StringBuilder sb = new StringBuilder();
+			Node cur = header.next;
+			while(cur.next != tailer) {
+				sb.append(cur.item + " -> ");
+				cur = cur.next;
+			}
+			sb.append(cur.item);
+			return sb.toString();
+		}
+	}
+	public static void test() {
+		GeneralizedQueue<Integer> queue = new ResizingArrayGeneralizedQueue<Integer>();
 		for(int i = 0; i < 8; i++)
 			queue.insert(i);
 		for(int i = 0; i < 4; i++)
@@ -88,5 +155,52 @@ public class Practise_1_3_38 {
 		queue.delete(1);
 		queue.delete(0);
 		
+		
+		queue = new LinkedListGeneralizedQueue<Integer>();
+		for(int i = 0; i < 8; i++)
+			queue.insert(i);
+		for(int i = 0; i < 4; i++)
+			queue.delete(0);
+		for(int i = 8; i < 12; i++)
+			queue.insert(i);
+		queue.delete(0);
+		queue.delete(4);
+		queue.delete(2);
+		queue.delete(3);
+		queue.delete(1);
+		queue.delete(2);
+		queue.delete(1);
+		queue.delete(0);
 	}
+	
+	public static void main(String[] args) {
+		test();
+	}
+	// output --> resizing array implementation
+	/*
+	 * 	|  0  |
+		|  0  |  1  |
+		|  0  |  1  |  2  |     |
+		|  0  |  1  |  2  |  3  |
+		|  0  |  1  |  2  |  3  |  4  |     |     |     |
+		|  0  |  1  |  2  |  3  |  4  |  5  |     |     |
+		|  0  |  1  |  2  |  3  |  4  |  5  |  6  |     |
+		|  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |
+		|     |  1  |  2  |  3  |  4  |  5  |  6  |  7  | delete : k = 0 value = 0
+		|     |     |  2  |  3  |  4  |  5  |  6  |  7  | delete : k = 0 value = 1
+		|     |     |     |  3  |  4  |  5  |  6  |  7  | delete : k = 0 value = 2
+		|     |     |     |     |  4  |  5  |  6  |  7  | delete : k = 0 value = 3
+		|  8  |     |     |     |  4  |  5  |  6  |  7  |
+		|  8  |  9  |     |     |  4  |  5  |  6  |  7  |
+		|  8  |  9  |  10 |     |  4  |  5  |  6  |  7  |
+		|  8  |  9  |  10 |  11 |  4  |  5  |  6  |  7  |
+		|  8  |  9  |  10 |  11 |     |  5  |  6  |  7  | delete : k = 0 value = 4
+		|  7  |  8  |  10 |  11 |     |     |  5  |  6  | delete : k = 4 value = 9
+		|  6  |  8  |  10 |  11 |     |     |     |  5  | delete : k = 2 value = 7
+		|  5  |  6  |  8  |  11 |     |     |     |     | delete : k = 3 value = 10
+		|     |  5  |  8  |  11 |     |     |     |     | delete : k = 1 value = 6
+		|  5  |  8  |     |     | delete : k = 2 value = 11
+		|  5  |     | delete : k = 1 value = 8
+		[empty] delete : k = 0 value = 5
+	 */
 }
