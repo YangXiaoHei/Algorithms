@@ -20,13 +20,6 @@ public class Practise_1_3_40 {
 				next = n;
 				return n;
 			}
-			Node insertBefore(T item) {
-				Node n = new Node(item, this.prev, this);
-				if (prev != null)
-					prev.next = n;
-				prev = n;
-				return n;
-			}
 			T delete() {
 				T del = item;
 				item = null;
@@ -94,15 +87,16 @@ public class Practise_1_3_40 {
 	// output
 	/*
 	 * 	1 		read : 1
-		1 -> 2 		read : 2
-		1 -> 2 -> 3 		read : 3
-		3 -> 1 -> 2 		read : 3
-		3 -> 1 -> 2 -> 4 		read : 4
-		3 -> 1 -> 2 -> 4 -> 5 		read : 5
-		3 -> 1 -> 2 -> 4 -> 5 -> 6 		read : 6
-		5 -> 3 -> 1 -> 2 -> 4 -> 6 		read : 5
-		6 -> 5 -> 3 -> 1 -> 2 -> 4 		read : 6
-		4 -> 6 -> 5 -> 3 -> 1 -> 2 		read : 4
-		5 -> 4 -> 6 -> 3 -> 1 -> 2 		read : 5
+		2 -> 1 		read : 2
+		3 -> 2 -> 1 		read : 3
+		3 -> 2 -> 1 		read : 3
+		4 -> 3 -> 2 -> 1 		read : 4
+		5 -> 4 -> 3 -> 2 -> 1 		read : 5
+		6 -> 5 -> 4 -> 3 -> 2 -> 1 		read : 6
+		5 -> 6 -> 4 -> 3 -> 2 -> 1 		read : 5
+		6 -> 5 -> 4 -> 3 -> 2 -> 1 		read : 6
+		4 -> 6 -> 5 -> 3 -> 2 -> 1 		read : 4
+		5 -> 4 -> 6 -> 3 -> 2 -> 1 		read : 5
+
 	 */
 }
