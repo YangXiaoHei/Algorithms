@@ -73,7 +73,12 @@ public class Practise_1_3_37 {
 		}
 	}
 	public static void main(String[] args) {
-		Josephus game = new Josephus(3, 1);
+		Josephus game = new Josephus(7, 2);
 		game.play();
 	}
+	// output
+	/*
+	 * 	1 3 5 0 4 2 
+		Survivor : 6 
+	 */
 }
