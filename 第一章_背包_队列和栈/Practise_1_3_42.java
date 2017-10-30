@@ -6,6 +6,7 @@ public class Practise_1_3_42 {
 	/*
 	 * resizing array implementation
 	 */
+	@SuppressWarnings("unchecked")
 	static class ResizingArrayStack<T> {
 		T[] items = (T[])new Object[1];
 		private int size;
@@ -70,9 +71,6 @@ public class Practise_1_3_42 {
 			T item;
 			Node next;
 			Node(T item, Node next) { this.item = item; this.next = next; }
-			void insertAfter(T item) {
-				next = new Node(item, next);
-			}
 		}
 		private Node top = null;
 		LinkedListStack() {}
@@ -136,4 +134,67 @@ public class Practise_1_3_42 {
 		arrayImplementationTest();
 		listImplementationTest();
 	}
+	// output
+	/*
+	 * 	stack-0 |   0 |
+		stack-0 |   0 |   1 |
+		stack-0 |   0 |   1 |   2 |     |
+		stack-0 |   0 |   1 |   2 |   3 |
+		stack-0 |   0 |   1 |   2 |   3 |   4 |     |     |     |
+		stack-0 |   0 |   1 |   2 |   3 |   4 |   5 |     |     |
+		stack-0 |   0 |   1 |   2 |   3 |   4 |   5 |   6 |     |
+		stack-0 |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |
+		stack-0 |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |     |     |     |     |     |     |     |
+		stack-0 |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |     |     |     |     |     |     |
+		stack-0 |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |     |     |     |     |     |     |     |
+		stack-0 |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |     |     |     |     |     |     |     |     |
+		stack-0 |   0 |   1 |   2 |   3 |   4 |   5 |   6 |     |     |     |     |     |     |     |     |     |
+		stack-0 |   0 |   1 |   2 |   3 |   4 |   5 |     |     |     |     |     |     |     |     |     |     |
+		stack-0 |   0 |   1 |   2 |   3 |   4 |     |     |     |     |     |     |     |     |     |     |     |
+		stack-1 |   0 |   1 |   2 |   3 |     |     |     |     |
+		stack-1 |   0 |   1 |   2 |     |     |     |     |     |
+		stack-1 |   0 |   1 |     |     |
+		stack-1 |   0 |     |
+		[empty]
+		stack-1 |   0 |     |
+		stack-1 |   0 |   1 |
+		stack-1 |   0 |   1 |   2 |     |
+		stack-1 |   0 |   1 |   2 |   3 |
+		stack-1 |   0 |   1 |   2 |   3 |   4 |     |     |     |
+		stack-1 |   0 |   1 |   2 |   3 |   4 |   5 |     |     |
+		stack-1 |   0 |   1 |   2 |   3 |   4 |   5 |   6 |     |
+		stack-1 |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |
+		stack-1 |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |     |     |     |     |     |     |     |
+		stack-1 |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |     |     |     |     |     |     |
+		0
+		1 -> 0
+		2 -> 1 -> 0
+		3 -> 2 -> 1 -> 0
+		4 -> 3 -> 2 -> 1 -> 0
+		5 -> 4 -> 3 -> 2 -> 1 -> 0
+		6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0
+		7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0
+		8 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0
+		9 -> 8 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0
+		8 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0
+		7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0
+		6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0
+		5 -> 4 -> 3 -> 2 -> 1 -> 0
+		4 -> 3 -> 2 -> 1 -> 0
+		3 -> 2 -> 1 -> 0
+		2 -> 1 -> 0
+		1 -> 0
+		0
+		[empty]
+		0
+		1 -> 0
+		2 -> 1 -> 0
+		3 -> 2 -> 1 -> 0
+		4 -> 3 -> 2 -> 1 -> 0
+		5 -> 4 -> 3 -> 2 -> 1 -> 0
+		6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0
+		7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0
+		8 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0
+		9 -> 8 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1 -> 0
+	 */
 }
