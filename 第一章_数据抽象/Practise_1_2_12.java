@@ -143,9 +143,8 @@ public class Practise_1_2_12 {
 			int[] daysPerMonth = daysPerMonth(year);
 			for(int i = 1; i < month; i++)
 				days += daysPerMonth[i - 1];
-			days += day - 1;
-			int dayOfTheWeek = (days + 1 - 1) % 7;
-			return dayOfTheWeek + 1;
+			days += (day - 1);
+			return days % 7 + 1;
 		}
 		/*
 		 * 获取一个合法的随机日期
