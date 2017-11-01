@@ -68,16 +68,11 @@ public class Practise_1_3_44 {
 				public Iterator<T> iterator() {
 					return new Iterator<T>() {
 						private Node cur = header.next;
-						public boolean hasNext() { 
-							return cur != tailer; 
-						}
+						public boolean hasNext() { return cur != tailer; }
 						public T next() {
 							T next = cur.item;
 							cur = cur.next;
 							return next;
-						}
-						public void remove() {
-							throw new UnsupportedOperationException();
 						}
 					};
 				}
@@ -88,16 +83,11 @@ public class Practise_1_3_44 {
 				public Iterator<T> iterator() {
 					return new Iterator<T>() {
 						private Node cur = tailer.prev;
-						public boolean hasNext() { 
-							return cur != header; 
-						}
+						public boolean hasNext() { return cur != header; }
 						public T next() {
 							T prev = cur.item;
 							cur = cur.prev;
 							return prev;
-						}
-						public void remove() {
-							throw new UnsupportedOperationException();
 						}
 					};
 				}
@@ -176,4 +166,38 @@ public class Practise_1_3_44 {
 		StdOut.println("\ntell present size");
 		StdOut.println(buffer.size());
 	}
+	// output
+	/*
+	 * 	insert character at cursor and move cursor point to next position
+		a  | 
+		a b  | 
+		a b c  | 
+		a b c d  | 
+		a b c d e  | 
+		a b c d e f  | 
+		a b c d e f g  | 
+		a b c d e f g h  | 
+		
+		cursor move left
+		a b c  | d e f g h 
+		
+		cursor move right
+		a b c d e f  | g h 
+		
+		delete character at cursor
+		a b c d e  | g h 
+		a b c d  | g h 
+		a b c  | g h 
+		
+		cursor move right
+		a b c g h  | 
+		
+		delete character at cursor
+		a b c g  | 
+		a b c  | 
+		a b  | 
+		
+		tell present size
+		2
+	 */
 }
