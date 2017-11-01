@@ -94,11 +94,11 @@ public class Practise_1_3_45 {
 			if (!sequence[i].equals(stack.peek())) 
 				stack.push(Integer.toString(j++));
 		    else {
+		    	i++;
 				stack.pop();
-				i++;
 			}
 		}
-		StdOut.println(stack.isEmpty()); ;
+		StdOut.println(stack.isEmpty());
 	}
 	
 	public static void main(String[] args) {
