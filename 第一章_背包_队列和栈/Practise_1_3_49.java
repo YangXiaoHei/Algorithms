@@ -3,6 +3,7 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_49 {
+	@SuppressWarnings("unchecked")
 	static class Stack<T> {
 		private T[] items = (T[])new Object[1];
 		private int size;
@@ -75,7 +76,11 @@ public class Practise_1_3_49 {
 			Queue<Integer> queue = new Queue<Integer>();
 			for (int i = 0; i < 10; i++)
 				queue.enqueue(i);
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 5; i++)
+				StdOut.print(queue.dequeue() + " ");
+			for (int i = 10; i < 20; i++)
+				queue.enqueue(i);
+			while (!queue.isEmpty())
 				StdOut.print(queue.dequeue() + " ");
 		}
 	}
@@ -83,4 +88,9 @@ public class Practise_1_3_49 {
 		Stack.stackTest();
 		Queue.queueTest();
 	}
+	// output
+	/*
+	 * 	|  0 |  1 |  2 |  3 |    |    |    |    |
+		0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 
+	 */
 }
