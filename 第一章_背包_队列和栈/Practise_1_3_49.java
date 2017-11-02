@@ -45,7 +45,10 @@ public class Practise_1_3_49 {
 		}
 	}
 	
-	static class Queue<T> {
+	/*
+	 * Two stack implementation
+	 */
+	static class TwoStackQueue<T> {
 		private Stack<T> stack1 = new Stack<T>();
 		private Stack<T> stack2 = new Stack<T>();
 		public int size() { return stack1.size() + stack2.size(); }
@@ -73,7 +76,7 @@ public class Practise_1_3_49 {
 			}
 		}
 		public static void queueTest() {
-			Queue<Integer> queue = new Queue<Integer>();
+			TwoStackQueue<Integer> queue = new TwoStackQueue<Integer>();
 			for (int i = 0; i < 10; i++)
 				queue.enqueue(i);
 			for (int i = 0; i < 5; i++)
@@ -86,7 +89,7 @@ public class Practise_1_3_49 {
 	}
 	public static void main(String[] args) {
 		Stack.stackTest();
-		Queue.queueTest();
+		TwoStackQueue.queueTest();
 	}
 	// output
 	/*
