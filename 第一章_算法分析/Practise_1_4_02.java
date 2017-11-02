@@ -36,4 +36,10 @@ public class Practise_1_4_02 {
 		StdOut.println("正确处理溢出 ：" + ThreeSum.correctCount(arr));
 		StdOut.println("不处理溢出 : " + ThreeSum.buggyCount(arr));
 	}
+	// output
+	/*
+	 * 	正确处理溢出 ：0
+		不处理溢出 : 1	
+
+	 */
 }
