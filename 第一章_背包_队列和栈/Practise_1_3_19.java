@@ -20,6 +20,20 @@ public class Practise_1_3_19 {
 		StdOut.println(tmp.item);
 	}
 	
+	public static <T> Node<T> removeLast(Node<T> list) {
+		if (list == null)
+			throw new NullPointerException();
+		if (list.next == null) 
+			return null;
+		Node<T> p = list, q = list.next;
+		while (q.next != null) {
+			p = q;
+			q = q.next;
+		}
+		q.item = null;
+		p.next = null;
+		return list;
+	}
 	public static void main(String[] args) {
 		Node<Integer> first = 
 				new Node<Integer>(0, 
@@ -35,10 +49,7 @@ public class Practise_1_3_19 {
 		printList(first);
 		
 		StdOut.println("\nafter delete tail node");
-		Node<Integer> hunter = first;
-		while(hunter.next.next != null)
-			hunter = hunter.next;
-		hunter.next = null;
+		first = removeLast(first);
 		
 		printList(first);
 	}
