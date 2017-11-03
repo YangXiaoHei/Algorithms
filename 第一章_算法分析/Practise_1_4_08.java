@@ -62,4 +62,14 @@ public class Practise_1_4_08 {
 	public static void main(String[] args) {
 		testTwoApproaches();
 	}
+	// output 
+	/*
+	 * 	 Fast way result : 2000009757 
+		 total time : 0.017000
+		 ================
+		 Slow way result : 2000009757
+		 total time : 7.493000
+		 ================
+
+	 */
 }
