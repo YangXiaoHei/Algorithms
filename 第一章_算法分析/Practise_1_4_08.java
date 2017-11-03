@@ -1,38 +1,50 @@
 package 第一章_算法分析;
 
-import java.util.Arrays;
-
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import java.util.*;
+import edu.princeton.cs.algs4.*;
 
 public class Practise_1_4_08 {
+	/*
+	 * O(N^2)
+	 */
 	static class EqualPairCount {
-		public static int count(int[] a) {
-			int cnt = 0;
+		public static long count(int[] a) {
+			Stopwatch timer = new Stopwatch();
+			long cnt = 0;
 			int N = a.length;
 			for (int i = 0; i < N; i++)
 				for (int j = i + 1; j < N; j++)
-					if (a[i] == a[j]) {
+					if (a[i] == a[j]) 
 						cnt++;
-//						StdOut.println(String.format("i = %d j = %d", i, j));
-					}
+			StdOut.println(String.format("Slow way result : "
+					+ "%d\n total time : %f\n================", 
+					 cnt, timer.elapsedTime()));
 			return cnt;
 		}
 	}
+	/*
+	 * O(N * log(N))
+	 */
 	static class EqualPairCountFast {
-		public static int count(int[] a) {
-			// cut meaningless situation
+		public static long count(int[] a) {
 			if (a == null || a.length < 2)
 				return 0;
-			// avoid to destorying the original array
-			int[] arr = new int[a.length];
-			System.arraycopy(a, 0, arr, 0 , a.length);
+			Stopwatch timer = new Stopwatch();
+			int[] arr = a;
 			Arrays.sort(arr);
-			int cnt = 0, i = 1;
+			long cnt = 0;
+			int i = 1, pre = 0, cur = 1;
 			while (i < arr.length) {
-				if (arr[i - 1] != arr[i]) i++;
-				else { cnt++; i += 2; }
+				pre = i - 1; cur = i;
+				if (arr[pre] != arr[cur]) i++;
+				else {
+					while (i < arr.length && arr[cur] == arr[i]) i++;
+					int equalCount = i - pre;
+					cnt += equalCount  * (equalCount - 1) / 2;
+				}
 			}
+			StdOut.println(String.format("Fast way result : %d \n total time : %f\n================", 
+					cnt, timer.elapsedTime()));
 			return cnt;
 		}
 	}
@@ -43,10 +55,9 @@ public class Practise_1_4_08 {
 		return arr;
 	}
 	public static void testTwoApproaches() {
-		int[] arr = sourceArr(10);
-		StdOut.println(Arrays.toString(arr));
-		StdOut.println(EqualPairCount.count(arr));
-		StdOut.println(EqualPairCountFast.count(arr));
+		int[] arr = sourceArr(200000);
+		EqualPairCountFast.count(arr);
+		EqualPairCount.count(arr);
 	}
 	public static void main(String[] args) {
 		testTwoApproaches();
