@@ -6,6 +6,7 @@ public class Practise_1_3_24 {
 	static class Node<T> {
 		T item;
 		Node<T> next;
+		Node(T item) { this(item, null); }
 		Node(T item, Node<T> next) {
 			this.item = item;
 			this.next = next;
@@ -20,13 +21,9 @@ public class Practise_1_3_24 {
 		StdOut.println(list.item);
 	}
 	public static <T> void removeAfter(Node<T> node) {
-		if (node == null || node.next == null) {
-			StdOut.println("do nothing");
-			return;
-		}
-		Node<T> next = node.next;
+		if (node == null || node.next == null) return;
+		node.next.item = null;
 		node.next = node.next.next;
-		next.item = null;
 	}
 	public static void main(String[] args) {
 		Node<Integer> first = 
@@ -37,7 +34,7 @@ public class Practise_1_3_24 {
 				new Node<Integer>(4, 
 				new Node<Integer>(5, 
 				new Node<Integer>(6, 
-				new Node<Integer>(7, null))))))));
+				new Node<Integer>(7))))))));
 		StdOut.println("initialize a list");
 		printList(first);
 		
