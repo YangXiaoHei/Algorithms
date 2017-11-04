@@ -7,6 +7,9 @@ public class Practise_1_4_11 {
 	static class StaticSETofInts {
 		private int[] numbers;
 		StaticSETofInts (int[] a) { numbers = a; }
+		/*
+		 * if key is contained in collection
+		 */
 		boolean contains(int key) {
 			int lo = 0, hi = numbers.length;
 			while (lo <= hi) {
@@ -17,12 +20,18 @@ public class Practise_1_4_11 {
 			}
 			return false;
 		}
+		/*
+		 * the amount of key
+		 */
 		int howMany(int key) {
 			int leftRank = minimumRank(key);
 			if (leftRank < 0) return 0;
 			int rightRank = maximumRank(key);
 			return rightRank - leftRank + 1;
 		}
+		/*
+		 * the minimum index of key
+		 */
 		int minimumRank(int key) {
 			int lo = 0, hi = numbers.length, mid = 0;
 			while (lo <= hi) {
@@ -34,6 +43,9 @@ public class Practise_1_4_11 {
 			}
 			return numbers[mid] == key ? mid : -1;
 		}
+		/*
+		 * the maximum index of key
+		 */
 		int maximumRank(int key) {
 			int lo = 0, hi = numbers.length - 1, mid = 0;
 			while (lo <= hi) {
@@ -47,6 +59,9 @@ public class Practise_1_4_11 {
 			return numbers[mid] == key ? mid : -1;
 		}
 	}
+	/*
+	 * generate a sorted random array
+	 */
 	public static int[] sourceArr(int N) {
 		int[] arr = new int[N];
 		for (int i = 0; i < N; i++)
@@ -54,6 +69,9 @@ public class Practise_1_4_11 {
 		Arrays.sort(arr);
 		return arr;
 	}
+	/*
+	 * print array
+	 */
 	public static void printArray(int[] arr) {
 		for (int i = 0; i < arr.length; i++)
 			if ((i + 1) % 10 == 0)
