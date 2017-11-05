@@ -1,60 +1,60 @@
 package 第一章_算法分析;
 
+import java.util.*;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_4_16 {
 	/*
-	 * 寻找局部最小值
+	 * 寻找最接近的一对
 	 */
-	public static int localMinimum(int[] a) {
-		int lo = 0, hi = a.length - 1, mid = 0;
-		while (hi - lo > 1) {
-			mid = (lo + hi) / 2;
-			if (a[mid] > a[mid - 1] && a[mid] < a[mid + 1]) break;
-			if (a[mid - 1] < a[mid + 1])
-				hi = mid;
-			else
-				lo = mid;
+	public static void closestPair(double[] a) {
+		if (a == null || a.length < 2)
+			throw new IllegalArgumentException("a is null or elements count less than required");
+		Arrays.sort(a);
+		double n1 = 0, n2 = 0;
+		double distance = Double.MAX_VALUE;
+		for (int i = 1, j = 0; i < a.length; i++) {
+			if (a[i - 1] != a[i]) {
+				double dis = Math.abs(a[j] - a[i]);
+				if (dis < distance) {
+					distance = dis;
+					n1 = a[j]; 
+					n2 = a[i];
+				}
+				j = i; 
+			} 
 		}
-		return hi - lo == 1 ? -1 : mid;
+		StdOut.printf("closest pair is %8.3f %8.3f", n1, n2);
 	}
 	/*
 	 * 产生已排序随机数组
 	 */
-	public static int[] sourceArr(int N) {
-		int[] arr = new int[N];
+	public static double[] sourceArr(int N) {
+		double[] arr = new double[N];
 		for (int i = 0; i < N; i++)
-			arr[i] = StdRandom.uniform(0, 100);
+			arr[i] = StdRandom.uniform(-100.0, 100.0);
 		return arr;
 	}
 	/*
 	 * 打印数组
 	 */
-	public static void printArray(int[] arr) {
+	public static void printArray(double[] arr) {
 		for (int i = 0; i < arr.length; i++)
 			if ((i + 1) % 10 == 0)
-				StdOut.printf("%3d\n", arr[i]);
+				StdOut.printf("%8.3f\n", arr[i]);
 			else
-				StdOut.printf("%3d", arr[i]);
+				StdOut.printf("%8.3f", arr[i]);
 		StdOut.println();
 	}
 	public static void main(String[] args) {
-		int[] arr = sourceArr(10);
+		double[] arr = sourceArr(10);
 		printArray(arr);
-		StdOut.println("局部最小值 : " + localMinimum(arr));
+		closestPair(arr);
 	}
 	// output
 	/*
-	 *  62  4 43 65 14 11 17 55 54 62
+	 *    63.609 -18.195 -58.362  41.024  10.381 -70.240 -28.405  11.502 -25.867  -9.362
 
-		局部最小值 : 6
-		
-		54 27 19 53  2 82 66 51 37 86
-
-		局部最小值 : -1
-
-		79 79 83 39 43 45  7 87 21 72
-
-		局部最小值 : 4
+		  closest pair is   10.381   11.502
 	 */
 }
