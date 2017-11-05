@@ -78,6 +78,7 @@ public class Practise_1_4_13 {
 	     * 8
 	     */
 	    private  double y;    // y coordinate
+	    // ...
 	}
 	
 	/*
@@ -107,6 +108,7 @@ public class Practise_1_4_13 {
 		 * 8
 		 */
 	    private  Interval1D y;
+	    // ...
 	}
 	
 	// 16 + 8 = 24
@@ -159,5 +161,6 @@ public class Practise_1_4_13 {
 	     * 8
 	     */
 	    private double value;
+	    // ...
 	}
 }
