@@ -3,109 +3,116 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_26 {
+	/*
+	 * 链表结点
+	 */
 	static class Node<T> {
 		T item;
 		Node<T> next;
-		Node() { this(null, null); }
-		Node(T item, Node<T> next) {
-			this.item = item;
-			this.next = next;
-		}
 		Node(T item) { this(item, null); }
+		Node(Node<T> next) { this(null, next); } 
+		Node(T item, Node<T> next) { this.item = item; this.next = next; }
 	}
-	static class List<L> {
-		// if you don't keep a header sentinel node, you can't remove the 
-		// first node when you assign the first node to function argument
-		private Node<L> header = new Node<L>();
-		// if we keep a tailer sentinel node, inserting a node can be much more easily
-		// but now, i just don't want to use the above mentioned method here
-		List<L> insert(L item) {
-			Node<L> node = new Node<L>(item);
-			if (header.next == null) {
-				header.next = node;
-				node.next = null;
-			} else {
-				Node<L> tmp = header;
-				while(tmp.next != null)
-					tmp = tmp.next;
-				tmp.next = node;
-				node.next = null;
-			}
-			// return self reference so that we can use dot to achieve chained function call
-			return this;
+	/*
+	 * 删除以 list 为表头的链表中所有值为 key 的结点
+	 */
+	public static <T> Node<T> removeAll(Node<T> list, T key) {
+		Node<T> header = new Node<T>(list);
+		Node<T> cur = header;
+		while (cur.next != null) {
+			if (cur.next.item.equals(key))
+				cur.next = cur.next.next;
+			else
+				cur = cur.next;
 		}
-		/*
-		 * remove all node value of key
-		 */
-		public void remove(L key) {
-			Node<L> ne = header.next;
-			if (ne == null) return;
-			Node<L> pr = header;
-			while(ne != null) {
-				if (ne.item.equals(key)) {
-					pr.next = pr.next.next;
-					ne.item = null;
-					ne = pr.next;
-				} else {
-					pr = ne;
-					ne = ne.next;
-				}
-			}
-		}
-		public String toString() {
-			Node<L> tmp = header.next;
-			if (tmp == null)
-				return "[empty]";
-			StringBuilder sb = new StringBuilder();
-			while(tmp.next != null) {
-				sb.append(tmp.item + " -> ");
-				tmp = tmp.next;
-			}
-			sb.append(tmp.item);
-			return sb.toString();
-		}
+		return header.next;
 	}
-	public static <T> void remove(List<T> list, T key) {
-		list.remove(key);
+	/*
+	 * 打印链表
+	 */
+	public static <T> void printList(Node<T> list) {
+		if (list == null) {
+			StdOut.println("empty list");
+			return;
+		}
+		while (list.next != null) {
+			StdOut.print(list.item + " -> ");
+			list = list.next;
+		}
+		StdOut.println(list.item);
 	}
+	
 	public static void main(String[] args) {
-		List<Integer> list = new List<Integer>();
-		list
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4))
-		.insert(StdRandom.uniform(1, 4));
-		StdOut.println("initialize a list");
-		StdOut.println(list);
 		
-		Integer key = StdRandom.uniform(1, 4);
-		StdOut.println("\nafter remove all node value of " + key);
-		remove(list, key);
-		StdOut.println(list);
+		// Key to be removed
+		int key = 2;
+		
+		// TestCase 1
+		Node<Integer> list = new Node<Integer>(2, 
+							 new Node<Integer>(2,
+							 new Node<Integer>(2,
+							 new Node<Integer>(3,
+							 new Node<Integer>(4,
+							 new Node<Integer>(5,
+							 new Node<Integer>(2,
+							 new Node<Integer>(2,
+							 new Node<Integer>(2)))))))));
+		StdOut.println("Initialize list");
+		printList(list);
+		StdOut.println("After removing all node value of " + key);
+		list = removeAll(list, key);
+		printList(list);
+		
+		// TestCase 2
+		list = new Node<Integer>(2, 
+			   new Node<Integer>(2,
+			   new Node<Integer>(2)));
+		 StdOut.println("\nInitialize list");
+		 printList(list);
+		 StdOut.println("After removing all node value of " + key);
+		 list = removeAll(list, key);
+		 printList(list);
+		  
+		 
+		// TestCase 3
+		list = new Node<Integer>(3, 
+			   new Node<Integer>(4,
+			   new Node<Integer>(5)));
+		 StdOut.println("\nInitialize list");
+		 printList(list);
+		 StdOut.println("After removing all node value of " + key);
+		 list = removeAll(list, key);
+		 printList(list);
+		 
+		// TestCase 4
+		 list = null;
+		 StdOut.println("\nInitialize list");
+		 printList(list);
+		 StdOut.println("After removing all node value of " + key);
+		 list = removeAll(list, key);
+		 printList(list);																	 
 	}
 	// output 
 	/*
-	 * 	initialize a list
-		2 -> 3 -> 3 -> 2 -> 1 -> 3 -> 3 -> 2 -> 2 -> 3 -> 2 -> 3 -> 3 -> 1 -> 3 -> 1 -> 1 -> 2 -> 3 -> 2
+	 * 	Initialize list
+		2 -> 2 -> 2 -> 3 -> 4 -> 5 -> 2 -> 2 -> 2
+		After removing all node value of 2
+		3 -> 4 -> 5
 		
-		after remove all node value of 2
-		3 -> 3 -> 1 -> 3 -> 3 -> 3 -> 3 -> 3 -> 1 -> 3 -> 1 -> 1 -> 3
+		Initialize list
+		2 -> 2 -> 2
+		After removing all node value of 2
+		empty list
+		
+		Initialize list
+		3 -> 4 -> 5
+		After removing all node value of 2
+		3 -> 4 -> 5
+		
+		Initialize list
+		empty list
+		After removing all node value of 2
+		empty list
 
 	 */
 }
