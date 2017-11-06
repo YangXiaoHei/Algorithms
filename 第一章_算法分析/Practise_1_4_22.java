@@ -36,29 +36,20 @@ public class Practise_1_4_22 {
 			 * 第 93 项 long 溢出
 			 */
 			fibo = new int[47];
-			fibo[0] = 0;
-			int index = 1;
+//			fibo[0] = 0;
+			int index = 0;
 			for (int i = 0; i < fibo.length - 1; i++)
 				fibo[index++] = fibo(i);
 			
-			int i = 0, j = fibo.length - 1;
-			while (i <= j) {
-				int tmp = fibo[i];
-				fibo[i] = fibo[j];
-				fibo[j] = tmp;
-				j--; i++;
-			}
+//			StdOut.println(Arrays.toString(fibo));
 		}
 		/*
 		 * 在 lo 和 hi 间寻找斐波纳切分割点
 		 */
 		public static int splitBetween(int lo, int hi) {
 			int fIndex = 0;
-			while (fibo[fIndex] > (hi - lo)) {
-				fIndex++;
-				if (fIndex == fibo.length) return -1;
-			}
-			return fibo[fIndex] + lo - 1;
+			while (fibo[fIndex] <= (hi - lo))  fIndex++;
+			return fibo[--fIndex] + lo - 1;
 		}
 		/*
 		 * 斐波纳切查找
