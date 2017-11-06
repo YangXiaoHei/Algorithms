@@ -17,10 +17,10 @@ public class Practise_1_4_22 {
 		 * 计算斐波纳切数列第 k 项
 		 */
 		public static int fibo(int k) {
-			int prev = 1, next = 1;
+			int prev = 1, next = 1, kk = k;
 			while (--k > 0) {
 				if (isOverflow(next, prev))
-					StdOut.printf("next = %d prev = %d 开始溢出\n", next, prev);
+					StdOut.printf("k = %d next = %d prev = %d 开始溢出\n",kk, next, prev);
 				next = next + prev;
 				prev = next - prev;
 			}
@@ -35,13 +35,9 @@ public class Practise_1_4_22 {
 			 * 斐波纳切第 46 项 int 溢出
 			 * 第 93 项 long 溢出
 			 */
-			fibo = new int[47];
-//			fibo[0] = 0;
-			int index = 0;
-			for (int i = 0; i < fibo.length - 1; i++)
-				fibo[index++] = fibo(i);
-			
-//			StdOut.println(Arrays.toString(fibo));
+			fibo = new int[46];
+			for (int i = 0; i < fibo.length; i++)
+				fibo[i] = fibo(i);
 		}
 		/*
 		 * 在 lo 和 hi 间寻找斐波纳切分割点
