@@ -7,22 +7,30 @@ public class Practise_1_4_24 {
 	 * 查找丢鸡蛋会摔碎的起始楼层
 	 */
 	static class ThrowingEggsFromABuilding {
-		private static int brokenEggs;
-		private static int throwTimes;
+		private static int brokenEggs; // 记录摔碎的鸡蛋数
+		private static int throwTimes; // 记录丢鸡蛋次数
 		public static int searchStorey_lgN(boolean[] building) {
 			brokenEggs = 0;
 			throwTimes = 0;
 			int N = building.length;
+			// 如果在顶层丢都不会碎，那就不用找了
 			if (!building[N - 1]) return -1;
 			int lo = 0, hi = N - 1, mid = 0;
 			// lgN
 			while (lo < hi) {
 				mid = (lo + hi) / 2;
 				throwTimes++;
+				
+				// 如果在 mid 层丢碎了，那么把查找上届缩小至 mid
 				if ( building[mid]) { hi = mid; brokenEggs++; }
+				
+				// 如果在 mid 层没有碎，那么把查找上届缩小至 mid + 1
 				if (!building[mid]) lo = mid + 1;
 			}
+			// 如果是因为 lo 越过了 hi 而跳出循环，说明没找到
 			if (lo > hi) return -1;
+			
+			// 否则，lo 和 hi 相遇，此时便是起始楼层
 			return hi;
 		}
 
@@ -31,11 +39,16 @@ public class Practise_1_4_24 {
 			throwTimes = 0;
 			int N = building.length;
 			int k = 1;
-			// lgF
-			while (k < N && !building[k])  k *= 2;
+			
+			// 先用序列 2^k 逐层试探
+			while (k < N && !building[k]) { throwTimes++; k *= 2; }
+			
+			//如果不是因为数组越界而跳出循环，说明摔碎了鸡蛋
+			if (k < N) brokenEggs++;
+			
+			// 选取一个合适的查找上届
 			k /= 2;
 			int lo = k, hi = k * 2 >= N ? N - 1 : k * 2, mid = 0;
-			// lg(N - F + x)
 			while (lo < hi) {
 				mid = (lo + hi) / 2;
 				throwTimes++;
@@ -83,10 +96,9 @@ public class Practise_1_4_24 {
 	// output
 	/*
 	 *    
-		方法一 : 丢鸡蛋从楼层 189640 开始会摔碎
-		方法一 : 扔了 20 次，摔碎 14 次
-		方法二 : 丢鸡蛋从楼层 189640 开始会摔碎
-		方法二 : 扔了 17 次，摔碎 9 次
-
+		方法一 : 丢鸡蛋从楼层 783011 开始会摔碎
+		方法一 : 扔了 20 次，摔碎 11 次
+		方法二 : 丢鸡蛋从楼层 783011 开始会摔碎
+		方法二 : 扔了 39 次，摔碎 9 次
 	 */
 }
