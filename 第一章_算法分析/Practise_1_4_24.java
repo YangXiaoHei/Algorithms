@@ -8,13 +8,18 @@ public class Practise_1_4_24 {
 	 * 查找丢鸡蛋会碎的起始楼层
 	 */
 	static class ThrowingEggsFromABuilding {
+		private static int brokenEggs;
+		private static int throwTimes;
 		public static int searchStorey(boolean[] building) {
+			brokenEggs = 0;
+			throwTimes = 0;
 			int N = building.length;
 			if (!building[N - 1]) return -1;
 			int lo = 0, hi = N - 1, mid = 0;
 			while (lo < hi) {
 				mid = (lo + hi) / 2;
-				if ( building[mid]) hi = mid;
+				throwTimes++;
+				if ( building[mid]) { hi = mid; brokenEggs++; }
 				if (!building[mid]) lo = mid + 1;
 			}
 			if (lo > hi) return -1;
@@ -25,7 +30,7 @@ public class Practise_1_4_24 {
 	 * 获取一个随机楼层
 	 */
 	public static boolean[] sourceArr(int N) {
-		int leftCount = StdRandom.uniform(0, N + 1);
+		int leftCount = StdRandom.uniform(1, N);
 		boolean[] arr = new boolean[N];
 		for (int i = 0; i < leftCount; i++)
 			arr[i] = false;
@@ -46,15 +51,25 @@ public class Practise_1_4_24 {
 	}
 	
 	public static void main(String[] args) {
-		boolean[] arr = sourceArr(5);
+		boolean[] arr = sourceArr(100);
 		printArray(arr);
 		int floor = ThrowingEggsFromABuilding.searchStorey(arr);
-		StdOut.printf("丢鸡蛋从楼层 %d 开始会摔碎", floor + 1);
+		StdOut.printf("丢鸡蛋从楼层 %d 开始会摔碎\n", floor + 1);
+		StdOut.printf("扔了 %d 次，摔碎 %d 次", ThrowingEggsFromABuilding.throwTimes, ThrowingEggsFromABuilding.brokenEggs);
 	}
 	// output
 	/*
-	 *    1    2    3    4    5 
-		false false false true true 
-		丢鸡蛋从楼层 4 开始会摔碎
+	 *    
+		false false false false false false false false false false false 
+		false false false false false false false false false false false 
+		false false false false false false false false false false false 
+		false false false false false false false false false false false
+		false false false false false false false false false false false 
+		false false false false false false false false false false false 
+		false false false false false false false false false false false 
+		false false false false false false false true true true true true 
+		true true true true true true true true true true true 
+		丢鸡蛋从楼层 85 开始会摔碎
+		扔了 6 次，摔碎 2 次
 	 */
 }
