@@ -1,11 +1,10 @@
 package 第一章_算法分析;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.*;
 
 public class Practise_1_4_24 {
 	/*
-	 * 查找丢鸡蛋会碎的起始楼层
+	 * 查找丢鸡蛋会摔碎的起始楼层
 	 */
 	static class ThrowingEggsFromABuilding {
 		private static int brokenEggs;
@@ -73,9 +72,7 @@ public class Practise_1_4_24 {
 	
 	public static void main(String[] args) {
 		boolean[] arr = sourceArr(1000000);
-//		printArray(arr);
 		int floor_lgN = ThrowingEggsFromABuilding.searchStorey_lgN(arr);
-		
 		StdOut.printf("方法一 : 丢鸡蛋从楼层 %d 开始会摔碎\n", floor_lgN + 1);
 		StdOut.printf("方法一 : 扔了 %d 次，摔碎 %d 次\n", ThrowingEggsFromABuilding.throwTimes, ThrowingEggsFromABuilding.brokenEggs);
 		
