@@ -4,6 +4,7 @@ import java.util.*;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_4_20 {
+	
 	/*
 	 * 查找双调数组的分割点
 	 */
