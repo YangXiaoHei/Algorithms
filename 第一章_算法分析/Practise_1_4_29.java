@@ -62,6 +62,32 @@ public class Practise_1_4_29 {
 			return sb.toString();
 		}
 	}
+	/*
+	 * steque
+	 *  2 1 4 5
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * stack1
+	 * 
+	 * 
+	 * 
+	 * 2
+	 * 1
+	 * 4
+	 * 
+	 * 
+	 * stack2
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	static class Steque<T> {
 		private Stack<T> stack1 = new Stack<T>(); // 入栈的正序
 		private Stack<T> stack2 = new Stack<T>(); // 入队的逆序
