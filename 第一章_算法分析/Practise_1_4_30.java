@@ -163,5 +163,15 @@ public class Practise_1_4_30 {
 		StdOut.println(deque.popLeft());
 		StdOut.println(deque.popRight());
 	}
+	// output
+	/*
+	 *  7
+		5
+		6
+		4
+		1
+		3
+		2
 
+	 */
 }
