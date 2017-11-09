@@ -79,14 +79,38 @@ public class Practise_1_4_35 {
 			int[] newItems = new int[newSize];
 			for (int i = 0; i < size; i++)
 				newItems[i] = items[i];
-			// 1次
 			items = newItems;
 		}
 	}
 	
-	
-	
-	public static void main(String[] args) {
-		
+	static class Stack_Array_Integer {
+		private Integer[] items = new Integer[1];
+		private int size;
+		void push(int item) {
+			/* 
+			 * 第一次扩容后容量为2,旧元素迁移 1 次
+			 * 第二次扩容 4 -> 2
+			 * 第三次扩容 8 -> 4
+			 * 第四次扩容 16 -> 8
+			 * 
+			 * 压入 N 个元素过程中，数组访问的次数为
+			 * 
+			 * N + 4 + 8 + 16 + ... + 2N = 5N - 4 ~5N
+			 * 
+			 * N 次 push 操作会造成最多 lgN 次扩容，
+			 * 每次扩容都会创建一个新数组，同时每次 push 也会创建一个新对象, 
+			 * 因此创建对象的数量为 lgN + N ~N
+			 * 
+			 */
+			if (size == items.length)
+				resize(2 * size);
+			items[size++] = item;
+		}
+		void resize(int newSize) {
+			Integer[] newItems = new Integer[newSize];
+			for (int i = 0; i < size; i++)
+				newItems[i] = items[i];
+			items = newItems;
+		}
 	}
 }
