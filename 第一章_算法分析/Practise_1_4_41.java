@@ -148,52 +148,82 @@ public class Practise_1_4_41 {
 	
 	/*
 	 * output
-	 *	TwoSum : 规模 : 100 用时 : 0.000200 倍率 : Infinity
-		TwoSum : 规模 : 200 用时 : 0.000100 倍率 : 0.500000
-		TwoSum : 规模 : 400 用时 : 0.000100 倍率 : 1.000000
-		TwoSum : 规模 : 800 用时 : 0.000150 倍率 : 1.500000
-		TwoSum : 规模 : 1600 用时 : 0.000100 倍率 : 0.666667
-		TwoSum : 规模 : 3200 用时 : 0.000350 倍率 : 3.500000
-		TwoSum : 规模 : 6400 用时 : 0.000400 倍率 : 1.142857
-		TwoSum : 规模 : 12800 用时 : 0.001350 倍率 : 3.375000
-		TwoSum : 规模 : 25600 用时 : 0.003700 倍率 : 2.740741
-		TwoSum : 规模 : 51200 用时 : 0.004250 倍率 : 1.148649
-		TwoSum : 规模 : 102400 用时 : 0.005900 倍率 : 1.388235
-		TwoSum : 规模 : 204800 用时 : 0.011300 倍率 : 1.915254
-		TwoSum : 规模 : 409600 用时 : 0.020850 倍率 : 1.845133
-		TwoSum : 规模 : 819200 用时 : 0.038700 倍率 : 1.856115
-		TwoSum : 规模 : 1638400 用时 : 0.074200 倍率 : 1.917313
-		TwoSum : 规模 : 3276800 用时 : 0.148450 倍率 : 2.000674
-		TwoSum : 规模 : 6553600 用时 : 0.304350 倍率 : 2.050185
-		TwoSum : 规模 : 13107200 用时 : 0.614500 倍率 : 2.019057
-		TwoSum : 规模 : 26214400 用时 : 1.221250 倍率 : 1.987388
-		TwoSum : 规模 : 52428800 用时 : 2.470150 倍率 : 2.022641
-		TwoSum : 规模 : 104857600 用时 : 4.807600 倍率 : 1.946279
+	 *	TwoSumFast : 规模 : 100 用时 : 0.000200 倍率 : Infinity
+		TwoSumFast : 规模 : 200 用时 : 0.000100 倍率 : 0.500000
+		TwoSumFast : 规模 : 400 用时 : 0.000100 倍率 : 1.000000
+		TwoSumFast : 规模 : 800 用时 : 0.000150 倍率 : 1.500000
+		TwoSumFast : 规模 : 1600 用时 : 0.000100 倍率 : 0.666667
+		TwoSumFast : 规模 : 3200 用时 : 0.000350 倍率 : 3.500000
+		TwoSumFast : 规模 : 6400 用时 : 0.000400 倍率 : 1.142857
+		TwoSumFast : 规模 : 12800 用时 : 0.001350 倍率 : 3.375000
+		TwoSumFast : 规模 : 25600 用时 : 0.003700 倍率 : 2.740741
+		TwoSumFast : 规模 : 51200 用时 : 0.004250 倍率 : 1.148649
+		TwoSumFast : 规模 : 102400 用时 : 0.005900 倍率 : 1.388235
+		TwoSumFast : 规模 : 204800 用时 : 0.011300 倍率 : 1.915254
+		TwoSumFast : 规模 : 409600 用时 : 0.020850 倍率 : 1.845133
+		TwoSumFast : 规模 : 819200 用时 : 0.038700 倍率 : 1.856115
+		TwoSumFast : 规模 : 1638400 用时 : 0.074200 倍率 : 1.917313
+		TwoSumFast : 规模 : 3276800 用时 : 0.148450 倍率 : 2.000674
+		TwoSumFast : 规模 : 6553600 用时 : 0.304350 倍率 : 2.050185
+		TwoSumFast : 规模 : 13107200 用时 : 0.614500 倍率 : 2.019057
+		TwoSumFast : 规模 : 26214400 用时 : 1.221250 倍率 : 1.987388
+		TwoSumFast : 规模 : 52428800 用时 : 2.470150 倍率 : 2.022641
+		TwoSumFast : 规模 : 104857600 用时 : 4.807600 倍率 : 1.946279
 	 */
 	static void doubleRatioTwoFast() {
 		double prev = 0;
 		for (int i = 100, j = 0; j < 21; i += i, j++) {
 			double cur = timeTrial_TwoFast(i, 20);
-			StdOut.printf("TwoSum : 规模 : %d 用时 : %f 倍率 : %f\n", 
+			StdOut.printf("TwoSumFast : 规模 : %d 用时 : %f 倍率 : %f\n", 
 					i, cur, cur / prev);
 			prev = cur;
 		}
 	}
 	
-	
+	/*
+	 * output
+	 * 	ThreeSum : 规模 : 100 用时 : 0.001300 倍率 : Infinity
+		ThreeSum : 规模 : 200 用时 : 0.000500 倍率 : 0.384615
+		ThreeSum : 规模 : 400 用时 : 0.004300 倍率 : 8.600000
+		ThreeSum : 规模 : 800 用时 : 0.034800 倍率 : 8.093023
+		ThreeSum : 规模 : 1600 用时 : 0.230100 倍率 : 6.612069
+		ThreeSum : 规模 : 3200 用时 : 1.792300 倍率 : 7.789222
+		ThreeSum : 规模 : 6400 用时 : 14.256600 倍率 : 7.954360
+	 */
 	static void doubleRatioThree() {
 		double prev = 0;
 		for (int i = 100, j = 0; j < 7; i += i, j++) {
 			double cur = timeTrial_Three(i, 10);
-			StdOut.printf("TwoSum : 规模 : %d 用时 : %f 倍率 : %f\n", 
+			StdOut.printf("ThreeSum : 规模 : %d 用时 : %f 倍率 : %f\n", 
 					i, cur, cur / prev);
 			prev = cur;
 		}
 	}
 	
-	
+	/*
+	 * output
+	 * 
+	 * 	ThreeSumFast : 规模 : 100 用时 : 0.000350 倍率 : Infinity
+		ThreeSumFast : 规模 : 200 用时 : 0.000750 倍率 : 2.142857
+		ThreeSumFast : 规模 : 400 用时 : 0.003300 倍率 : 4.400000
+		ThreeSumFast : 规模 : 800 用时 : 0.013350 倍率 : 4.045455
+		ThreeSumFast : 规模 : 1600 用时 : 0.058250 倍率 : 4.363296
+		ThreeSumFast : 规模 : 3200 用时 : 0.247950 倍率 : 4.256652
+		ThreeSumFast : 规模 : 6400 用时 : 1.051350 倍率 : 4.240169
+		ThreeSumFast : 规模 : 12800 用时 : 4.363550 倍率 : 4.150426
+		ThreeSumFast : 规模 : 25600 用时 : 17.622100 倍率 : 4.038478
+	 */
+	static void doubleRatioThreeFast() {
+		double prev = 0;
+		for (int i = 100, j = 0; j < 9; i += i, j++) {
+			double cur = timeTrial_ThreeFast(i, 20);
+			StdOut.printf("ThreeSumFast : 规模 : %d 用时 : %f 倍率 : %f\n", 
+					i, cur, cur / prev);
+			prev = cur;
+		}
+	}
+
 	public static void main(String[] args) {
-		doubleRatioThree();
 		
 	}
 }
