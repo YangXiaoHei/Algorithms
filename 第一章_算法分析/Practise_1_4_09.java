@@ -45,6 +45,8 @@ public class Practise_1_4_09 {
 		 * T(2^r * N0) -> 2^(r * b) * T
 		 * 
 		 * T(r) -> 2^(lgN/N0 * b) * T
+		 * T(r) -> 2^lg((N/N0)^b) * T
+		 * T(r) -> (N/N0)^b * T
 		 * 
 		 * so we can draw a conclusion total time will be 2^(lgN/N0 * b) * T
 		 * 
