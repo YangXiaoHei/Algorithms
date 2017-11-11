@@ -1,9 +1,7 @@
 package 第一章_算法分析;
 
 import java.util.*;
-
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.*;
 
 public class Practise_1_4_44 {
 	static int totalBeforeDuplicationAppear(int N) {
