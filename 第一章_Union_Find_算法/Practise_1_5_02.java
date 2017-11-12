@@ -10,7 +10,7 @@ public class Practise_1_5_02 {
 				id[i] = i;
 		}
 		private int accessTimes;
-		private int unionAccessTotalTimes;
+		private int accessTotalTimes;
 		int find(int p) {
 			while (true) {
 				accessTimes++;
@@ -29,27 +29,26 @@ public class Practise_1_5_02 {
 			if (pRoot != qRoot) {
 				id[pRoot] = qRoot;
 				accessTimes++;
-				unionAccessTotalTimes += accessTimes;
+				accessTotalTimes += accessTimes;
 				StdOut.printf("连接 %d %d 访问数组 : %d 次  总共访问数组 : %d 次\n", 
-						p, q, accessTimes, unionAccessTotalTimes);
+						p, q, accessTimes, accessTotalTimes);
 				StdOut.println(this);
 			} else {
-				unionAccessTotalTimes += accessTimes;
+				accessTotalTimes += accessTimes;
 				StdOut.printf("%d %d 已连通 访问数组 : %d 次  总共访问数组 : %d 次\n", 
-						p, q, accessTimes, unionAccessTotalTimes);
+						p, q, accessTimes, accessTotalTimes);
 				StdOut.println(this);
 			}
 		}
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
-			sb.append("----------------------------\n");
+			sb.append("-----------------------------\n");
 			sb.append("索引:\t");
-			for (int i = 0; i < id.length; i++)
-				sb.append(" " + i);
-			sb.append("\n\t");
-			for (int i = 0; i < id.length; i++)
-				sb.append(" " + id[i]);
-			sb.append("\n----------------------------\n");
+			int i = 0;
+			while (i < id.length) sb.append(" " + i++);
+			sb.append("\n\t"); i = 0;
+			while (i < id.length) sb.append(" " + id[i++]);
+			sb.append("\n---------------------------\n");
 			return sb.toString();
 		}
 	}
