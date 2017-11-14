@@ -67,6 +67,12 @@ public class Practise_1_5_13 {
 			return sb.toString();
 		}
 	}
+	/*
+	 * 路径压缩的加权 quick-union 方法几乎是解决大规模连通性问题的最优方案
+	 * 
+	 * 以下是对 10^8 个触点，进行 10^8 次方连接的处理
+	 * 多次运行，可以得出最后形成的树高几乎不会超过 5
+	 */
 	public static void main(String[] args) {
 		int N = 100000000;
 		Stopwatch timer = new Stopwatch();
