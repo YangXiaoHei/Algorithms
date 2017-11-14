@@ -37,14 +37,9 @@ public class Practise_1_5_14 {
 				StdOut.printf("%d %d 已连通\n",p, q);
 				return;
 			}
-			if (depth[pRoot] == depth[qRoot]) {
-				id[pRoot] = qRoot;
-				update(pRoot);
-			} else if (depth[pRoot] < depth[qRoot]) {
-				id[pRoot] = qRoot;
-			} else {
-				id[qRoot] = pRoot;
-			}
+			if 		(depth[pRoot] < depth[qRoot]) id[pRoot] = qRoot;
+			else if (depth[pRoot] > depth[qRoot]) id[qRoot] = pRoot;
+			else {  id[pRoot] = qRoot; update(pRoot); }
 			StdOut.printf("连接 %d %d\n", p, q);
 			StdOut.println(this);
 		}
