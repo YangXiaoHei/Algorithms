@@ -37,7 +37,7 @@ public class Practise_1_5_14 {
 				StdOut.printf("%d %d 已连通\n",p, q);
 				return;
 			}
-			if 		(depth[pRoot] < depth[qRoot]) id[pRoot] = qRoot;
+			if      (depth[pRoot] < depth[qRoot]) id[pRoot] = qRoot;
 			else if (depth[pRoot] > depth[qRoot]) id[qRoot] = pRoot;
 			else 	{  id[pRoot] = qRoot; update(pRoot); } // 合并高度相等的树，更新高度
 			StdOut.printf("连接 %d %d\n", p, q);
