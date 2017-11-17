@@ -6,13 +6,19 @@ import java.util.*;
 public class Practise_1_5_18 {
     static RandomBag<Connection> randomGridGenerator(int N) {
         RandomBag<Connection> rb = new RandomBag<Connection>();
-        for (int p = 0; p < N; p++) {
-            for (int q = 0; q < N; q++) {
-                if (p != q) {
-                    rb.add(new Connection(p, q));
-                }
-            }
-        }
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < N - 1; j++) 
+                if (StdRandom.bernoulli(0.5))
+                    rb.add(new Connection(i * N + j, i * N + j + 1));
+                else
+                    rb.add(new Connection(i * N + j + 1, i * N + j));
+        
+        for (int i = 0; i < N - 1; i++)
+            for (int j = 0; j < N; j++)
+                if (StdRandom.bernoulli(0.5))
+                    rb.add(new Connection(i * N + j, i * N + N + j));
+                else
+                    rb.add(new Connection(i * N + N + j, i * N + j));
         return rb;
     }
     static class Connection {
@@ -63,100 +69,51 @@ public class Practise_1_5_18 {
         }
     }
     public static void main(String[] args) {
-       for (Connection c : randomGridGenerator(10))
+       for (Connection c : randomGridGenerator(5))
            StdOut.println(c);
     }
     // output
     /*
-     *  { 8, 0 }
-        { 9, 1 }
-        { 2, 5 }
-        { 0, 6 }
+     *  { 2, 1 }
+        { 15, 10 }
+        { 20, 21 }
+        { 14, 13 }
         { 1, 6 }
-        { 6, 9 }
-        { 8, 7 }
-        { 4, 8 }
-        { 2, 4 }
-        { 2, 3 }
-        { 5, 4 }
-        { 6, 0 }
-        { 3, 5 }
-        { 7, 3 }
+        { 19, 14 }
+        { 16, 15 }
         { 0, 5 }
-        { 7, 2 }
-        { 7, 8 }
-        { 6, 8 }
-        { 9, 6 }
-        { 1, 7 }
-        { 9, 8 }
-        { 4, 3 }
+        { 17, 18 }
+        { 16, 11 }
         { 8, 9 }
-        { 4, 2 }
-        { 5, 3 }
-        { 3, 2 }
         { 5, 6 }
-        { 6, 5 }
-        { 1, 9 }
-        { 7, 9 }
-        { 9, 3 }
-        { 2, 0 }
-        { 0, 1 }
-        { 1, 4 }
-        { 7, 4 }
-        { 9, 0 }
-        { 9, 2 }
-        { 6, 4 }
-        { 0, 3 }
+        { 11, 12 }
         { 6, 7 }
-        { 1, 3 }
-        { 7, 6 }
-        { 3, 7 }
-        { 2, 1 }
-        { 5, 9 }
-        { 6, 3 }
-        { 3, 0 }
-        { 5, 8 }
-        { 3, 1 }
-        { 8, 1 }
-        { 9, 7 }
-        { 0, 4 }
-        { 2, 6 }
-        { 3, 6 }
-        { 2, 7 }
-        { 4, 1 }
-        { 5, 1 }
-        { 7, 1 }
-        { 0, 2 }
-        { 6, 2 }
-        { 7, 5 }
+        { 22, 21 }
+        { 12, 17 }
         { 3, 8 }
-        { 8, 3 }
-        { 1, 0 }
-        { 4, 6 }
-        { 2, 8 }
-        { 8, 2 }
-        { 0, 8 }
-        { 4, 9 }
-        { 7, 0 }
-        { 1, 8 }
-        { 5, 2 }
-        { 4, 5 }
+        { 24, 19 }
+        { 11, 6 }
+        { 20, 15 }
+        { 12, 13 }
+        { 22, 23 }
+        { 12, 7 }
+        { 23, 18 }
+        { 0, 1 }
+        { 2, 7 }
+        { 17, 16 }
+        { 19, 18 }
+        { 2, 3 }
+        { 13, 18 }
+        { 5, 10 }
+        { 4, 3 }
+        { 23, 24 }
+        { 21, 16 }
         { 9, 4 }
-        { 5, 7 }
-        { 0, 9 }
-        { 4, 7 }
-        { 1, 5 }
-        { 3, 4 }
-        { 3, 9 }
-        { 9, 5 }
-        { 8, 4 }
-        { 4, 0 }
-        { 1, 2 }
-        { 8, 5 }
-        { 6, 1 }
-        { 5, 0 }
-        { 0, 7 }
-        { 2, 9 }
-        { 8, 6 }
+        { 9, 14 }
+        { 8, 13 }
+        { 8, 7 }
+        { 22, 17 }
+        { 10, 11 }
      */
+     
 }
