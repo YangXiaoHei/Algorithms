@@ -26,16 +26,6 @@ public class Practise_1_5_20 {
        }
        private Node header = new Node();
        boolean isEmpty() { return header == null; }
-       int find(int p) {
-           Node cur = header.next;
-           while (cur != null && cur.value != p) 
-               cur = cur.next;
-           if (cur == null)
-               throw new RuntimeException("out of list's bounds");
-           while (cur.parent.value != cur.value) 
-               cur = cur.parent;
-           return cur.value;
-       }
        Node findNode(int p) {
            Node cur = header.next;
            while (cur != null && cur.value != p) 
@@ -67,7 +57,7 @@ public class Practise_1_5_20 {
    static class ListWeightedQuickUnion {
        private List id = new List();
        int newSite(int p) { return id.insertAsLast(p).value(); }
-       int find(int p) { return id.find(p); }
+       int find(int p) { return id.findNode(p).value(); }
        List.Node findNode(int p) { return id.findNode(p); }
        boolean connected(int p, int q) { return find(p) == find(q); }
        void union(int p, int q) {
