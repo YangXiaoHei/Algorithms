@@ -1,9 +1,7 @@
 package 第一章_Union_Find_算法;
 
 import java.awt.Color;
-
 import edu.princeton.cs.algs4.*;
-import 第一章_Union_Find_算法.Practise_1_5_25.UF;
 
 public class Practise_1_5_26 {
     interface UF {
@@ -18,7 +16,7 @@ public class Practise_1_5_26 {
     static void amortizedDraw(int N, Class<?> type) throws Exception {
         StdDraw.setXscale(0, N);
         StdDraw.setYscale(-N, N * 2);
-        StdDraw.setPenRadius(.001);
+        StdDraw.setPenRadius(.003);
         UF uf = (UF)type.getDeclaredConstructor(int.class).newInstance(N);
         Text_Generator gen = new Text_RandomPairGenerator(N);
         int i = 0;
@@ -32,7 +30,6 @@ public class Practise_1_5_26 {
             StdDraw.setPenColor(Color.red);
             StdDraw.point(i, uf.totalAccess() / i);
         }
-        
     }
     /*
      * Quick-Find
@@ -48,11 +45,6 @@ public class Practise_1_5_26 {
             for (int i = 0; i < N; i++)
                 id[i] = i;
             count = N;
-        }
-        public void reset() {
-            for (int i = 0; i < id.length; i++) 
-                id[i] = i;
-            count = id.length;
         }
         public int prevAccess() { return eachLoopAccessTimes; }
         public int totalAccess() { return accessTotalTimes; }
@@ -96,18 +88,19 @@ public class Practise_1_5_26 {
             count = N;
         }
         public int find(int p) {
-            while (p != id[p])
-                p = id[p];
+            while (true) {
+                eachLoopAccessTimes++;
+                if (p != id[p]) {
+                    eachLoopAccessTimes++;
+                    p = id[p];
+                } else
+                    break;
+            }
             return p;  
         }
         public int prevAccess() { return eachLoopAccessTimes; }
         public int totalAccess() { return accessTotalTimes; }
         public void cleanPrevAccess() { eachLoopAccessTimes = 0; }
-        public void reset() {
-            for (int i = 0; i < id.length; i++) 
-                id[i] = i;
-            count = id.length;
-        }
         public boolean connected(int p, int q) { return find(p) == find(q); }
         public boolean allConnected() { return count == 1; }
         public void union(int p, int q) {
@@ -115,6 +108,8 @@ public class Practise_1_5_26 {
             int qRoot = find(q);
             if (pRoot == qRoot) return;
             id[pRoot] = qRoot;
+            eachLoopAccessTimes++;
+            accessTotalTimes += eachLoopAccessTimes;
             count--;
         }
     }
@@ -137,17 +132,16 @@ public class Practise_1_5_26 {
             }
             count = N;
         }
-        public void reset() {
-            for (int i = 0; i < id.length; i++) {
-                id[i] = i;
-                size[i] = 1;
-            }
-            count = id.length;
-        }
         public int find(int p) {
-            while (p != id[p])
-                p = id[p];
-            return p;  
+            while (true) {
+                eachLoopAccessTimes++;
+                if (p != id[p]) {
+                    eachLoopAccessTimes++;
+                    p = id[p];
+                } else
+                    break;
+            }
+            return p;    
         }
         public int prevAccess() { return eachLoopAccessTimes; }
         public int totalAccess() { return accessTotalTimes; }
@@ -157,18 +151,24 @@ public class Practise_1_5_26 {
         public void union(int p, int q) {
             int pRoot = find(p);
             int qRoot = find(q);
-            if (pRoot == qRoot) return;
-            if (size[pRoot] < size[qRoot]) {
-                id[pRoot] = qRoot;
-                size[qRoot] += size[pRoot];
-            } else {
-                id[qRoot] = pRoot;
-                size[pRoot] += size[qRoot];
+            if (pRoot != qRoot) {
+                eachLoopAccessTimes += 2;
+                if (size[pRoot] < size[qRoot]) {
+                    id[pRoot] = qRoot;
+                    size[qRoot] += size[pRoot];
+                } else {
+                    id[qRoot] = pRoot;
+                    size[pRoot] += size[qRoot];
+                }
+                eachLoopAccessTimes += 4;
             }
+            accessTotalTimes += eachLoopAccessTimes;
             count--;
         }
     }
     public static void main(String[] args) throws Exception {
-        amortizedDraw(10000, QF.class);
+//        amortizedDraw(1000, QF.class);
+        amortizedDraw(1000, QU.class);
+//        amortizedDraw(1000, WQU.class);
     }
 }
