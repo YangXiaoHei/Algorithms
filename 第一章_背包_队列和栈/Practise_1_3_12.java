@@ -6,7 +6,18 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_12 {
 	/*
-	 * 双向链表, 实现正序迭代功能，并使用匿名内部类实现逆序迭代功能
+	 * 思路 :
+	 * 
+	 * 用数组实现的栈拷贝功能很简单，下面说一下用链表实现如何拷贝
+	 * 基本思路是遍历链表中的每个结点，并将其 push 到新的 栈中
+	 * 原栈为 
+	 * 栈顶 4 -> 3 -> 2 -> 1 -> 0 栈底
+	 * 假如直接用 top 开始依次拷贝，我们只能得到一个逆序的副本
+	 * 栈顶 0 -> 1 -> 2 -> 3 -> 4 栈底
+	 * 因此我们准备一个逆序的迭代器，在对原栈的遍历中，就可以从栈底元素开始 push 到新栈
+	 * 从而得到
+	 * 新栈栈顶 4 -> 3 -> 2 -> 1 -> 0
+	 * 以下是双向链表的实现
 	 */
 	static class Stack<T> implements Iterable<T> {
 		private static int counter = 0;
@@ -109,4 +120,34 @@ public class Practise_1_3_12 {
 		Stack<String> copy = Stack.copy(s);
 		StdOut.println(copy);
 	}
+	// output
+	/*
+	 *  被复制的栈 :
+        === Stack 【0】 ===
+        9
+        8
+        7
+        6
+        5
+        4
+        3
+        2
+        1
+        0
+        === Bottom ===
+        
+        复制出来的栈 :
+        === Stack 【1】 ===
+        9
+        8
+        7
+        6
+        5
+        4
+        3
+        2
+        1
+        0
+        === Bottom ===
+	 */
 }

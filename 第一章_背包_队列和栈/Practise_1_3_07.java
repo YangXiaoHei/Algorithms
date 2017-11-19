@@ -4,12 +4,19 @@ import java.util.Iterator;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_07 {
+    /*
+     * 思路 :
+     * 
+     * 检查栈中是否有元素，没有就返回 null
+     * 有就返回栈顶元素而不弹出
+     * 
+     * 
+     */
 	interface StackInterface<T> {
 		void push(T item);
 		T pop();
 		T peek();
 		boolean isEmpty();
-		boolean isFull();
 	}
 	static class Stack<T> implements StackInterface<T>, Iterable<T> {
 		class Node {
@@ -34,25 +41,15 @@ public class Practise_1_3_07 {
 			top = top.next;
 			return pop;
 		}
-		public boolean isEmpty() {
-			return top == null;
-		}
-		public boolean isFull() {
-			return false;
-		}
+		public boolean isEmpty() { return top == null; }
 		public Iterator<T> iterator() {
 			return new Iterator<T>() {
 				private Node n = top;
-				public boolean hasNext() {
-					return n != null;
-				}
+				public boolean hasNext() { return n != null; }
 				public T next() {
 					T ret = n.item;
 					n = n.next;
 					return ret;
-				}
-				public void remove() {
-					throw new RuntimeException("不支持哦");
 				}
 			};
 		}

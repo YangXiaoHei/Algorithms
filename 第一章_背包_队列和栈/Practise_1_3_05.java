@@ -5,7 +5,20 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_05 {
 	/*
-	 * 用数组实现长度可调整的栈
+	 * 思路 ：
+	 * 
+	 * 举两个例子试一下，比如 4，运行后栈内容为
+	 * 1
+	 * 0
+	 * 0
+	 * 打印结果为 100
+	 * 
+	 * 比如 6， 运行后栈内容为
+	 * 1
+	 * 1
+	 * 0
+	 * 打印结果为 110
+	 * 结果是打印 N 的二进制表示
 	 */
 	@SuppressWarnings("unchecked")
 	static class ResizingArrayStack<Item> implements Iterable<Item> {

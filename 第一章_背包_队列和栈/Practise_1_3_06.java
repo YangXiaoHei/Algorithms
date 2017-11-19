@@ -4,7 +4,17 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_06 {
 	/*
-	 * 容量固定的栈
+	 * 思路 :
+	 * 
+	 * 脑补一下可以知道，假如队列内容是 1 2 3 4 5
+	 * 入栈后变为
+	 * 5
+	 * 4
+	 * 3
+	 * 2
+	 * 1
+	 * 再入队后变为 5 4 3 2 1 相当于逆序了这个队列
+	 * 
 	 */
 	static class Stack<Item> {
 		private Item[] items;

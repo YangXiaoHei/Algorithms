@@ -4,8 +4,40 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_02 {
 	/*
-	 * 链表实现一个可变容量的栈
+	 * 思路 :
+	 * 
+	 * was
+	 * it
 	 */
+    /*
+     * 
+     * 
+     * (was 被弹出)
+     * it
+     */  //was
+    /*
+     * 
+     * (best 被弹出)
+     * the
+     * it 
+     */ // was best
+    /*
+     * (times 被弹出)
+     * (of 被弹出)
+     * (the 被弹出)
+     * it 
+     */ // was best times of the
+    /*
+     * 
+     * (was 被弹出)
+     * it
+     * it
+     */ // was best times of the was
+    /*
+     * (the 被弹出)
+     * (it 被弹出)
+     * it
+     */ // was best times of the was the it
 	static class LinkedListStack<Item> {
 		class Node {
 			Item item;

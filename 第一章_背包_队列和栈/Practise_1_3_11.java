@@ -6,7 +6,14 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_11 {
 	/*
-	 * 用数组实现可变长度的栈
+	 * 思路 :
+	 * 
+	 * 准备一个操作数栈，遍历整个表达式
+	 * 
+	 * 如果读到运算符，就在操作数栈中弹两个元素出来，把运算后结果放回操作数栈
+	 * 如果读到操作数，就将其放到操作数栈中
+	 * 最后操作数栈顶元素即为最终结果
+	 * 
 	 */
 	static class Stack<T> {
 		@SuppressWarnings("unchecked")

@@ -3,6 +3,86 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_08 {
+    /*
+     * 思路 :
+     * 
+     * 栈中数组初始容量为 1
+     * push it
+     * push was 数组扩容为 2
+     * 
+     * ======
+     * was
+     * it
+     * ======
+     * 
+     * push the 数组扩容为 4
+     * 
+     * ======
+     * 
+     * the
+     * was
+     * it
+     * ======
+     * 
+     * push best
+     * pop best
+     * 
+     * 栈内容为
+     * 
+     * ======
+     * 
+     * the
+     * was
+     * it
+     * ======
+     * 
+     * push of
+     * push times 数组扩容为 8
+     * 
+     * ======
+     * 
+     * 
+     * 
+     * times
+     * of
+     * the
+     * was
+     * it
+     * ======
+     * 
+     * pop times
+     * pop of
+     * pop the 数组缩容为 4
+     * 
+     * ======
+     * 
+     *
+     * was
+     * it
+     * ======
+     * 
+     * push it
+     * push was
+     * pop was
+     * 
+     * ======
+     * 
+     * it
+     * was
+     * it
+     * ======
+     * 
+     * push the
+     * pop the
+     * pop it
+     * 
+     * ======
+     * 
+     * 
+     * was
+     * it
+     * ======
+     */
 	static class DoublingStackOfStrings {
 		String[] items = new String[1];
 		private int size;

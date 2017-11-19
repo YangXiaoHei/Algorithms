@@ -3,6 +3,15 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_13 {
+    /*
+     * 思路 :
+     * 
+     * 队列是先进先出的数据结构，而我们已经规定好，入队顺序是 0 ~ 9
+     * 因此不可能最先入队的 0 都还没有出队，而后入队的 4 已经出队
+     * 
+     * 所以只有 a 是对的
+     * 
+     */
 	static class Queue<T> {
 		private T[] items;
 		private int N;

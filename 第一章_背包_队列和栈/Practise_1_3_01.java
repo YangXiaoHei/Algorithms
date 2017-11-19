@@ -4,7 +4,10 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_01 {
 	/*
-	 * 数组实现一个固定容量的栈
+	 * 思路 :
+	 * 
+	 * FixedCapacityStack 是一个定容栈，内部有定长的数组存储栈元素
+	 * 因此只需要判断当前元素数量是否等于数组长度就 OK
 	 */
 	static class FixedCapacityStackOfStrings {
 		private String[] strings;
@@ -17,12 +20,8 @@ public class Practise_1_3_01 {
 				throw new RuntimeException("stack is full!");
 			strings[N++] = s;
 		}
-		boolean isFull() {
-			return N == strings.length;
-		}
-		boolean isEmpty() {
-			return N == 0;
-		}
+		boolean isFull() { return N == strings.length; }
+		boolean isEmpty() { return N == 0; }
 		String pop() {
 			if(isEmpty())
 				throw new RuntimeException("attempt to pop in a empty stack!");

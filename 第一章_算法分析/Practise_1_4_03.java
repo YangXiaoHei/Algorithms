@@ -10,10 +10,10 @@ public class Practise_1_4_03 {
 			for (int i = 0; i < N; i++)
 				a[i] = StdRandom.uniform(-MAX, MAX);
 			Stopwatch timer = new Stopwatch();
-			int cnt = ThreeSum.count(a);
+			ThreeSum.count(a);
 			return timer.elapsedTime();
 		}
-		public static void drawN(int N) {
+		public static void drawStd(int N) {
 			StdDraw.setXscale(0, N);
 			StdDraw.setYscale(0, 1);
 			StdDraw.setPenRadius(.001);
@@ -23,17 +23,15 @@ public class Practise_1_4_03 {
 		public static void drawLgN(int N) {
 			StdDraw.setXscale(0, N);
 			StdDraw.setYscale(-10, 10);
-			StdDraw.setPenRadius(.01);
-			for (int i = 0; i < N; i += 10) 
-				StdDraw.point(i, 0);
-			for (int i = 1; i < N; i += 100) {
+			StdDraw.setPenRadius(.001);
+			for (int i = 1; i < N; i++) {
 				StdDraw.point(i, Math.log(timeTrial(i)));
 			}
 		}
 	}
 	public static void main(String[] args) {
-		DoublingTest.drawN(3000);
-		DoublingTest.drawLgN(8000);
+		DoublingTest.drawStd(3000);
+		DoublingTest.drawLgN(3000);
 	}
 	// output : execute to see drawing
 }
