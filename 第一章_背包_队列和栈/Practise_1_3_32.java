@@ -3,12 +3,19 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_32 {
+    /*
+     * 思路 :
+     * 
+     * 在链表内部使用一对虚拟的头结点和尾结点
+     * 并在结点内部封装 insertAfter insertBefore 方法
+     * 让我们可以在 O(1) 时间内完成删除头，删除尾，在尾部添加 和 在头部删除等操作，而无需遍历定位头尾结点位置
+     */
 	static class Steque<T> {
 		private class Node {
 			T item;
 			Node next;
 			Node prev;
-			Node() { this(null, null, null); }
+			Node() {}
 			Node(T item, Node prev, Node next) {
 				this.item = item;
 				this.prev = prev;

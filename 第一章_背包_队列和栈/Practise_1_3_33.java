@@ -3,6 +3,20 @@ package 第一章_背包_队列和栈;
 import java.util.*;
 import edu.princeton.cs.algs4.*;
 
+/*
+ * 思路 :
+ * 
+ * 链表的实现十分简单，在次仅说明可变数组的实现方式
+ * 
+ * 我们始终使用 head 和 tail 两个变量，用于指向头元素的前一个槽位和尾元素的后一个槽位
+ * 当 pushLeft 时，如果 head < 0, 说明左侧已经没法再添加元素了，此时进行扩容操作，
+ * 并使新元素和迁移到新数组中的元素一块，位于整个数组的中央
+ * pushRight  操作亦然
+ * 
+ * 当 popLeft 或 popRight 操作时，如果操作后的元素个数等于数组长度的四分之一，
+ * 那么我们将数组缩减为原先的一半，并将所有元素移到整个数组的中央
+ * 
+ */
 interface Deque<T> extends Iterable<T> {
 	boolean isEmpty();		// 双向队列是否为空
 	int size();				// 双向队列的元素数量

@@ -2,7 +2,13 @@ package 第一章_背包_队列和栈;
 
 import edu.princeton.cs.algs4.*;
 import java.util.*;
-
+/*
+ * 思路 :
+ * 
+ * 在迭代器中拷贝一份数组副本，并执行随机打乱，然后迭代器实现在此打乱数组上的迭代操作 
+ * 
+ * 
+ */
 public class Practise_1_3_34 {
 	@SuppressWarnings("unchecked")
 	static class RandomBag<T> implements Iterable<T> {

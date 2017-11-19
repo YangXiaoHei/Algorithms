@@ -3,6 +3,12 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_31 {
+    /*
+     * 思路 :
+     * 
+     * 通过将结点的插入添加删除等基本操纵封装到结点内部，我们可以便捷的实现所有链表操作
+     * 
+     */
 	static class DoubleNode<T> {
 		T item;
 		DoubleNode<T> next;
@@ -53,15 +59,11 @@ public class Practise_1_3_31 {
 		/*
 		 * 在指定结点之前插入新结点
 		 */
-		static <T> void insertAfter(DoubleNode<T> node, T item) {
-			node.insertAfter(item);
-		}
+		static <T> void insertAfter(DoubleNode<T> node, T item) { node.insertAfter(item); }
 		/*
 		 * 在指定结点之后插入新结点
 		 */
-		static <T> void insertBefore(DoubleNode<T> node, T item) {
-			node.insertBefore(item);
-		}
+		static <T> void insertBefore(DoubleNode<T> node, T item) { node.insertBefore(item); }
 		/*
 		 * 在表头插入结点
 		 */
@@ -105,9 +107,6 @@ public class Practise_1_3_31 {
 		static <T> T remove(DoubleNode<T> random, DoubleNode<T> node) {
 			return remove(random, node.item);
 		}
-		/*
-		 * 打印
-		 */
 		void print() {
 			DoubleNode<T> current = this;
 			while(current.prev != null)
