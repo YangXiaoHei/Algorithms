@@ -1,9 +1,17 @@
 package 第一章_背包_队列和栈;
 
 import java.util.*;
-
 import edu.princeton.cs.algs4.StdOut;
 
+/*
+ * 思路 :
+ * 
+ * 在栈中用两个变量分别记录 pop 数和 push 数
+ * 在迭代器初始化时，记录下当前的 pop 数和 push 数，调用每个方法前，先检查当前的 push 和 pop 
+ * 是否等于原先记录的 push 和 pop 数，如果不等，说明在迭代器执行期间，栈执行了 push 或 pop 操作
+ * 此时抛出异常即可
+ * 
+ */
 public class Practise_1_3_50 {
 	static class Stack<T> implements Iterable<T> {
 		private class Node {
