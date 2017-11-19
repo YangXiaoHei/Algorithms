@@ -5,6 +5,13 @@ import java.util.*;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_15 {
+    /*
+     * 思路 :
+     * 
+     * 假设队列只能进行入队出队操作，那么其实就是计算要出队几次能达到第 k 个元素的问题
+     * 答案是需要出队 size - k 次，然后接下来的出队就弹出了第 k 个元素
+     * 
+     */
 	static class Queue<T> {
 		@SuppressWarnings("unchecked")
 		private T[] items = (T[])new Object[1];

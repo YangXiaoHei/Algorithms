@@ -3,6 +3,15 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_14 {
+    /*
+     * 思路：
+     * 
+     * 实现方式很简单，只需要用一个变量 size 记录元素个数，并在每次入队时判断
+     * 如果此时 size 已经等于数组长度，那么就进行一次扩容
+     * 需要注意的是把旧元素搬迁到新数组时，需要一点小技巧，
+     * 因为在旧数组中的队列可能头元素的索引大于尾元素的索引，“环绕式添加"
+     * 
+     */
 	static class Queue<T> {
 		@SuppressWarnings("unchecked")
 		private T[] items = (T[])new Object[1];

@@ -4,6 +4,11 @@ import java.util.regex.*;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_16 {
+    /*
+     * 思路 :
+     * 
+     * 没啥好说的
+     */
 	static class Date {
 		private final int day;
 		private final int month;
@@ -30,9 +35,8 @@ public class Practise_1_3_16 {
 	public static Date[] readDates(String name) {
 		In in = new In(name);
 		Practise_1_3_15.Queue<Date> queue = new Practise_1_3_15.Queue<Date>();
-		while(!in.isEmpty()) {
+		while(!in.isEmpty()) 
 			queue.enqueue(new Date(in.readString()));
-		}
 		int N = queue.size();
 		Date[] a = new Date[N];
 		for(int i = 0; i < N; i++)
@@ -41,9 +45,8 @@ public class Practise_1_3_16 {
 	}
 	
 	public static void main(String[] args) {
-		for(Date date : readDates("/Users/bot/Desktop/dateTest.txt")) {
+		for(Date date : readDates("/Users/bot/Desktop/dateTest.txt")) 
 			StdOut.println(date);
-		}
 	}
 	// file content 
 	/*	

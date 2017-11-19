@@ -5,6 +5,11 @@ import java.util.regex.*;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_17 {
+    /*
+     * 思路 :
+     * 
+     * 没啥好说的
+     */
 	static class Transaction {
 		private final String who;
 		private final String when;
@@ -33,9 +38,8 @@ public class Practise_1_3_17 {
 	public static Transaction[] readTransactions(String name) {
 		In in = new In(name);
 		Practise_1_3_15.Queue<Transaction> queue = new Practise_1_3_15.Queue<Transaction>();
-		while(!in.isEmpty()) {
+		while(!in.isEmpty()) 
 			queue.enqueue(new Transaction(in.readLine()));
-		}
 		int N = queue.size();
 		Transaction[] arr = new Transaction[N];
 		for(int i = 0; i < N; i++)
@@ -43,9 +47,8 @@ public class Practise_1_3_17 {
 		return arr;
 	}
 	public static void main(String[] args) {
-		for(Transaction t : readTransactions("/Users/bot/Desktop/transactionTest.txt")) {
+		for(Transaction t : readTransactions("/Users/bot/Desktop/transactionTest.txt")) 
 			StdOut.println(t);
-		}
 	}
 	// file content 
 	/*

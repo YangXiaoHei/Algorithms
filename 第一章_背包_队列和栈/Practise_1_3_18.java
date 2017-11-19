@@ -3,6 +3,11 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_18 {
+    /*
+     * 思路 :
+     * 
+     * 没啥好说的
+     */
 	static class Node<T> {
 		T item;
 		Node<T> next;
