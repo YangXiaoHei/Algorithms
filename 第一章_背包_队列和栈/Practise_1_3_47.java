@@ -2,6 +2,12 @@ package 第一章_背包_队列和栈;
 
 import edu.princeton.cs.algs4.StdOut;
 
+/*
+ * 思路 : 
+ * 
+ * 只需要将其中某个栈，队列或 Steque 的尾结点指向另一个栈，队列或 Steque 的首结点即可
+ * 
+ */
 public class Practise_1_3_47 {
 	static class Node<T> {
 		T item;

@@ -3,6 +3,14 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.*;
 import java.util.*;
 
+/*
+ * 思路 :
+ * 
+ * 拷贝一份原队列中数组的内容，只拷贝实际的元素，空位忽略
+ * 然后打乱这份数组拷贝
+ * 在迭代器中使用这份打乱的数组拷贝
+ * 
+ */
 public class Practise_1_3_36 {
 	static class RandomQueue<T> implements Iterable<T> {
 		@SuppressWarnings("unchecked")

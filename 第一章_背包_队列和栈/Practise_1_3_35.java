@@ -2,7 +2,13 @@ package 第一章_背包_队列和栈;
 
 import java.util.*;
 import edu.princeton.cs.algs4.*;
-
+/*
+ * 思路 :
+ * 
+ * 使用变量 head 指向队头元素，使用变量 tail 指向队尾元素的下一位置
+ * 当 dequeue 时，随机抽取队中任意元素与队头元素交换，然后删掉队头元素
+ * 扩容和缩容策略和前面使用动态调整容量的数组实现队列一样
+ */
 public class Practise_1_3_35 {
 	static class RandomQueue<T> {
 		@SuppressWarnings("unchecked")
@@ -99,9 +105,9 @@ public class Practise_1_3_35 {
 	};
 	static class StackOfPlayingCards extends RandomQueue<String> {
 		StackOfPlayingCards() {
-			for(int i = 0; i < cards.length; i++)
-				for(int j = 0; j < cards[i].length; j++)
-					enqueue(cards[i][j]);
+		    for(int i = 0; i < cards.length; i++)
+		        for(int j = 0; j < cards[i].length; j++)
+		            enqueue(cards[i][j]);
 		}
 		String deal() {
 			try {

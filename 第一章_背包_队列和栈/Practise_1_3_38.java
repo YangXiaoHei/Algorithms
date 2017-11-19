@@ -1,6 +1,22 @@
 package 第一章_背包_队列和栈;
 
 import edu.princeton.cs.algs4.*;
+/*
+ * 思路 :
+ * 
+ * 对于 序列 "6 7 空 空 0 1 2 3 4 5"
+ *              👆   👆
+ *              tail head
+ * 假如我们想要删除第 6 个元素，那么我们就从要删除元素的前一个元素开始，往后覆盖 6 次
+ * 变为 5 7 空 空 0 0 1 2 3 4
+ *         👆   👆
+ *        tail head
+ * 然后我们将 head 指向元素置为 null
+ * 变为 5 7 空 空 空 0 1 2 3 4
+ *         👆      👆
+ *        tail    head
+ * 接下来进行是否缩容的后续操作
+ */
 public class Practise_1_3_38 {
 	interface GeneralizedQueue<T> {
 		boolean isEmpty();
@@ -29,16 +45,14 @@ public class Practise_1_3_38 {
 		public T delete(int k) {
 			if (k >= size)
 				throw new RuntimeException("index of " + k + "out of array bounds");
-			int cur = head;
-			for(int i = 0; i < k; i++)
-				cur = (cur + 1) % items.length;
+			int cur = (head + k) % items.length;
 			T del = items[cur];
 			for(int i = 0; i < k; i++) {
-				int curIndex = cur;
-				int preIndex = curIndex - 1 < 0 ? items.length - 1 : curIndex - 1;
+				int curIndex = cur--;
+                if (cur < 0) cur = items.length - 1;
+				int preIndex = curIndex - 1;
+				if (preIndex < 0) preIndex = items.length - 1;
 				items[curIndex] = items[preIndex];
-				cur--;
-				if (cur < 0) cur = items.length - 1;
 			}
 			items[head] = null;
 			head = (head + 1) % items.length;

@@ -4,6 +4,19 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.*;
 
 public class Practise_1_3_44 {
+    /*
+     * 思路 :
+     * 
+     * 使用两个栈来模拟左侧屏幕和右侧屏幕
+     * 如下图所示
+     * ------------     -------------
+     * |   left 栈         right 栈  |
+     * ------------     ------------- 
+     * 当插入元素时，相当于往左侧栈中 push
+     * 当光标左移时，相当于把左侧栈元素 pop 到右侧栈中
+     * 当光标右移时，相当于把右侧栈元素 pop 到左侧栈中
+     * 
+     */
 	static class Stack<T> {
 		private class Node {
 			T item;

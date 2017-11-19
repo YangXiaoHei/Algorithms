@@ -2,12 +2,21 @@ package 第一章_背包_队列和栈;
 
 import edu.princeton.cs.algs4.StdOut;
 
+/*
+ * 思路 :
+ * 
+ * 使用双向环形链表来解决这个问题
+ * 我们使用一个 cur 变量来记录当前报数的人，如果报到 M，我们就将这个结点删掉，模拟杀死过程
+ * 最后当 kill 时，如果环形链表只剩下一个结点，那么这个结点就表示最终存活的人
+ * 
+ * 我们在结点内部封装了 delete 方法，因此我们
+ * 
+ */
 public class Practise_1_3_37 {
 	static class Josephus {
 		private class Node {
 			int index;
-			Node next;
-			Node prev;
+			Node next, prev;
 			Node(int index,Node prev, Node next) {
 				this.index = index;
 				this.next = next;
@@ -31,9 +40,7 @@ public class Practise_1_3_37 {
 				StdOut.print(del + " ");
 				return del;
 			}
-			public String toString() {
-				return index + "";
-			}
+			public String toString() { return index + ""; }
 		}
 		private int M;
 		private int size;
@@ -42,6 +49,9 @@ public class Practise_1_3_37 {
 			if (N == 0 || M == 0)
 				throw new RuntimeException("are you serious?");
 			this.M = M;
+			/*
+			 * 构建环形链表
+			 */
 			Node header = new Node();
 			Node tailer = new Node();
 			header.next = tailer;
@@ -63,6 +73,8 @@ public class Practise_1_3_37 {
 			} else {
 				for(int i = 0; i < M; i++)
 					cur = cur.next;
+				
+				// 此时 cur 指向报出死亡数字的下一个人，我们把上一个报数的人杀死
 				cur.prev.delete();
 			} 
 			size--;

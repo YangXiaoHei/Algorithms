@@ -3,6 +3,13 @@ package 第一章_背包_队列和栈;
 import java.util.*;
 import edu.princeton.cs.algs4.*;
 
+/*
+ * 思路 :
+ * 
+ * 这里提供了基于可变数组的实现，以及链表的实现
+ * 对于可变数组来说，只需要在构造器中拷贝一份数组的副本即可
+ * 对于链表来说，需要对每个结点进行拷贝
+ */
 public class Practise_1_3_41 {
 	/*
 	 * resizing array implementation

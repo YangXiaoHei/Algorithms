@@ -1,7 +1,12 @@
 package 第一章_背包_队列和栈;
 
 import edu.princeton.cs.algs4.StdOut;
-
+/*
+ * 思路 :
+ * 
+ * 按照题目所说，为链表提供一个 search 方法，执行指定元素的查找工作，返回指定的结点
+ * 
+ */
 public class Practise_1_3_40 {
 	static class MoveToFront<T> {
 		private class Node {

@@ -2,6 +2,13 @@ package 第一章_背包_队列和栈;
 
 import edu.princeton.cs.algs4.StdOut;
 
+/*
+ * 思路 :
+ * 
+ * 对于可变数组实现的栈进行拷贝，只需要把源栈的数组从末尾元素开始逐个添加到新栈中即可
+ * 对于链表实现的栈来说，我们可以先把源栈中的每个结点从栈顶位置开始逐次插入到新栈中，然后再逆序整个链表即可
+ * 
+ */
 public class Practise_1_3_42 {
 	/*
 	 * resizing array implementation

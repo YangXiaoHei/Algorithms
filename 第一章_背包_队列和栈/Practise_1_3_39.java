@@ -3,13 +3,15 @@ package 第一章_背包_队列和栈;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
 import edu.princeton.cs.algs4.*;
-
+/*
+ * 思路 :
+ * 
+ * 阅读并参考了 ArrayBlockingQueue 的实现
+ * 
+ */
 public class Practise_1_3_39 {
 	static class RingBuffer<T> {
-		private int size;
-		private int capacity;
-		private int head;
-		private int tail;
+		private int size, capacity, head, tail;
 		private T[] items;
 		private ReentrantLock lock;
 		private Condition empty;
@@ -25,13 +27,18 @@ public class Practise_1_3_39 {
 		T dequeue() throws InterruptedException {
 			lock.lockInterruptibly();
 			try {
+			    // 如果当前队列为空，那么让当前线程在 empty 条件上陷入等待
 				while(isEmpty()) {
 					StdOut.println("♣️Consumer is waiting ...");
 					empty.await();
 				}
+				
+				// 如果当前线程被唤醒，那么说明由元素可供出列
 				T deq = items[head];
 				head = (head + 1) % items.length;
 				size--;
+				
+				// 出列了一个元素，那么如果由线程在 full 条件上陷入等待，我们将其唤醒
 				full.signalAll();
 				return deq;
 			} finally {
@@ -43,13 +50,19 @@ public class Practise_1_3_39 {
 				throw new NullPointerException();
 			lock.lockInterruptibly();
 			try {
+			    
+			    // 如果入队时发现队列已经满了，那么让当前线程在 full 条件上陷入等待
 				while(isFull()) {
 					StdOut.println("♥️Producer is waiting ...");
 					full.await();
 				}
+				
+				// 如果当前线程被唤醒，说明队列中出现可供入队的空位，我们执行入队操作
 				size++;
 				items[tail] = item;
 				tail = (tail + 1) % items.length;
+				
+				// 入队一次后，如果由在 empty 条件上陷入等待的线程，我们将其唤醒
 				empty.signalAll();
 			} finally {
 				lock.unlock();
@@ -71,7 +84,6 @@ public class Practise_1_3_39 {
 		private final int id = counter++;
 		public String toString() { return "food " + id; }
 	}
-	
 	static class Consumer implements Runnable {
 		private RingBuffer<Food> buffer;
 		public Consumer(RingBuffer<Food> buffer) { this.buffer = buffer; }

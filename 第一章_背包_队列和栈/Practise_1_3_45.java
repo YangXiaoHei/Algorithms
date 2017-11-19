@@ -1,21 +1,29 @@
 package 第一章_背包_队列和栈;
 
 import java.util.Arrays;
+import edu.princeton.cs.algs4.*;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
-
+/*
+ * 思路 :
+ * 
+ * 判断混合序列是否会向下溢出很简单，我们可以遍历整个字符串，读到非减号就加一，代表栈中的元素数量，
+ * 读到减号就减一，代表 pop 出一个元素，执行一次迭代后，判断栈容量是否为负数，如果是，那么就是个非法的混合序列
+ * 
+ * 判断某个给定序列是否能由栈产生
+ * 我们首先用一个 i 来表示遍历整个字符串的索引，用 j 来表示需要 push 进栈的元素，
+ * 
+ * 如果当前读到的值不等于栈顶元素的值，那么就 push(j++)
+ * 如果当前读到的值等于栈顶元素的值，那么就将其 pop(), 同时 i++
+ * 循环退出的条件时，必须 i < 字符串长度，并且 j <= 字符串长度 
+ * 
+ *  退出循环后，判断栈是否为空，如果是，那么就是一个可能由栈操作产生的序列，否则就不是
+ */
 public class Practise_1_3_45 {
 	static class Stack<T> {
 		private class Node {
 			T item;
 			Node next;
 			Node(T item, Node next) { this.item = item; this.next = next; }
-			Node insertAfter(T item) {
-				Node n = new Node(item, next);
-				next = n;
-				return n;
-			}
 		}
 		private Node top = null;
 		private int size;
