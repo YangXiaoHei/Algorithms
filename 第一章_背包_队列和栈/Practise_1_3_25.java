@@ -3,6 +3,12 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_25 {
+    /*
+     * 思路 :
+     * 
+     * 先让作为后续结点的结点接住前续结点的后续，然后让前序结点指向该后续结点即可
+     * 
+     */
 	static class Node<T> {
 		T item;
 		Node<T> next;

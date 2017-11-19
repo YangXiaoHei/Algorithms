@@ -3,6 +3,14 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_20 {
+    /*
+     * 思路 :
+     * 
+     * 需要考虑 k 越界，k = 0两种情况
+     * 假设当前链表是没有哨兵结点的，那么在 k = 0时，直接返回 first.next，相当于删除了头结点
+     * 否则就用一个指针依次往后移动，如果下一个元素是 null 说明 k 越界
+     * 如果下一个元素就是待删除元素，跳出循环，将当前指针的 .next 置为 .next.next
+     */
 	static class Node {
 		int item;
 		Node next;

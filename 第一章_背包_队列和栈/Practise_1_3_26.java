@@ -3,9 +3,15 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_26 {
-	/*
-	 * 链表结点
-	 */
+    /*
+     * 思路 :
+     * 
+     * 为避免过多的判断语句（比如: 判断传入的 list 是否为 null, 判断头结点是否就是需要删除的结点），
+     * 在方法内部使用一个虚拟的头结点指向作为参数传入的结点
+     * 然后从该虚拟头结点开始逐项检查，看当前结点的后续是否就是满足删除条件的结点，若是就删除，不是就再往后遍历
+     * 最后返回该虚拟头结点的后续
+     * 
+     */
 	static class Node<T> {
 		T item;
 		Node<T> next;
@@ -27,9 +33,6 @@ public class Practise_1_3_26 {
 		}
 		return header.next;
 	}
-	/*
-	 * 打印链表
-	 */
 	public static <T> void printList(Node<T> list) {
 		if (list == null) {
 			StdOut.println("empty list");

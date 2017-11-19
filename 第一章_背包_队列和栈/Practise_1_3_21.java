@@ -4,19 +4,20 @@ import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_21 {
 	/*
-	 * 链表节点
+	 * 思路 :
+	 * 
+	 * 从传入的结点开始依次检查元素的 item 域是否等于 key, 不等就往后挪
+	 * 将进入循环条件设置为 list != null 避免了对传入参数为 null 的检查
 	 */
 	static class Node<T> {
 		T item;
 		Node<T> next;
+		Node(T item) { this(item, null); }
 		Node(T item, Node<T> next) {
 			this.item = item;
 			this.next = next;
 		}
 	}
-	/*
-	 * 打印链表
-	 */
 	public static <T> void printList(Node<T> list) {
 		if (list == null) return;
 		while(list.next != null) {
@@ -25,16 +26,11 @@ public class Practise_1_3_21 {
 		}
 		StdOut.println(list.item);
 	}
-	/*
-	 * 在链表中查找 key
-	 */
 	public static <T> boolean find(Node<T> list, T key) {
-		if (list == null) return false;
-		while(list.next != null) {
+		while(list != null) {
 			if (list.item.equals(key))
 				return true;
-			else
-				list = list.next;
+			list = list.next;
 		}
 		return false;
 	}
@@ -53,7 +49,7 @@ public class Practise_1_3_21 {
 				new Node<Integer>(StdRandom.uniform(1, 20), 
 				new Node<Integer>(StdRandom.uniform(1, 20), 
 				new Node<Integer>(StdRandom.uniform(1, 20), 
-				new Node<Integer>(StdRandom.uniform(1, 20), null))))))))))))));
+				new Node<Integer>(StdRandom.uniform(1, 20)))))))))))))));
 		StdOut.println("initialize a list");
 		printList(first);
 		

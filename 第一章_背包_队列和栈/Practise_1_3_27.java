@@ -3,17 +3,21 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_27 {
+    /*
+     * 思路 :
+     * 
+     * 假设头结点元素为最大，依次往后检查各项结点的元素值，如果比当前记录的最大元素值大，就覆盖
+     * 
+     */
 	static class Node<T> {
 		T item;
 		Node<T> next;
+		Node(T item) { this(item, null); }
 		Node(T item, Node<T> next) {
 			this.item = item;
 			this.next = next;
 		}
 	}
-	/*
-	 * print whole list
-	 */
 	public static <T> void printList(Node<T> list) {
 		if (list == null) return;
 		while(list.next != null) {
@@ -22,9 +26,6 @@ public class Practise_1_3_27 {
 		}
 		StdOut.println(list.item);
 	}
-	/*
-	 * find the maximum
-	 */
 	public static int max(Node<Integer> list) {
 		if (list == null) return 0;
 		int max = list.item;
@@ -56,7 +57,7 @@ public class Practise_1_3_27 {
 				new Node<Integer>(StdRandom.uniform(1, 100), 
 				new Node<Integer>(StdRandom.uniform(1, 100), 
 				new Node<Integer>(StdRandom.uniform(1, 100), 
-				new Node<Integer>(StdRandom.uniform(1, 100), null))))))))))))))))));
+				new Node<Integer>(StdRandom.uniform(1, 100)))))))))))))))))));
 		StdOut.println("initialize a list");
 		printList(first);
 		

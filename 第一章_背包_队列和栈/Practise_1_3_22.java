@@ -3,15 +3,18 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_3_22 {
+    /*
+     * 思路 :
+     * 
+     * 因为要在 x 后面插入 t, 所以 x 本来后面接的结点由 t 来连接，再把 x 后续接上 t
+     */
 	static class Node<T> {
 		T item;
 		Node<T> next;
+		Node(T item) { this(item, null); }
 		Node(T item, Node<T> next) {
 			this.item = item;
 			this.next = next;
-		}
-		Node(T item) {
-			this(item, null);
 		}
 	}
 	/*
@@ -21,9 +24,6 @@ public class Practise_1_3_22 {
 		t.next = x.next;
 		x.next = t;
 	}
-	/*
-	 * 打印链表
-	 */
 	public static <T> void printList(Node<T> list) {
 		if (list == null) return;
 		while(list.next != null) {
@@ -42,7 +42,7 @@ public class Practise_1_3_22 {
 				new Node<Integer>(4, 
 				new Node<Integer>(5, 
 				new Node<Integer>(6, 
-				new Node<Integer>(7, null))))))));
+				new Node<Integer>(7))))))));
 		StdOut.println("initialize a list");
 		printList(first);
 		

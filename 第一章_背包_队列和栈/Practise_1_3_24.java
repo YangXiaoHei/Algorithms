@@ -3,6 +3,12 @@ package 第一章_背包_队列和栈;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_3_24 {
+    /*
+     * 思路 :
+     * 
+     * 只要让该结点的 next 域指向 next 域的 next 域即可
+     * 
+     */
 	static class Node<T> {
 		T item;
 		Node<T> next;
@@ -22,7 +28,6 @@ public class Practise_1_3_24 {
 	}
 	public static <T> void removeAfter(Node<T> node) {
 		if (node == null || node.next == null) return;
-		node.next.item = null;
 		node.next = node.next.next;
 	}
 	public static void main(String[] args) {
