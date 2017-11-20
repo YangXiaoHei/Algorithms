@@ -110,8 +110,10 @@ public class Practise_1_4_10 {
 		    int lo = 0, hi = arr.length - 1, mid = 0;
 		    while (lo < hi) {
 		        mid = (int)Math.ceil((lo + hi) / 2.0);
-		        if (key > arr[mid]) lo = mid;
-		        else hi = mid - 1;
+		        if (key > arr[mid]) 
+		            lo = mid;
+		        else 
+		            hi = mid - 1;
 		    }
 		    return arr[++hi] == key ? hi : -1;
 		}

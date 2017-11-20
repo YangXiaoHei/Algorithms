@@ -2,7 +2,22 @@ package 第一章_算法分析;
 
 import java.util.*;
 import edu.princeton.cs.algs4.*;
-
+/*
+ * 思路 :
+ * 
+ * 查找目标的最大索引
+ * 
+ * 当且仅当 arr[mid] > key 时, hi = mid, 否则就让 lo = mid + 1
+ * 
+ * 最后让 lo - 1 即为所求
+ * 
+ * 查找目标的最小索引
+ * 
+ * 当且仅当 arr[mid] < key 时，lo = mid, 否则就让 hi = mid - 1
+ * 
+ * 最后让 hi + 1 即为所求
+ * 
+ */
 public class Practise_1_4_11 {
 	static class StaticSETofInts {
 		private int[] numbers;
@@ -34,29 +49,28 @@ public class Practise_1_4_11 {
 		 */
 		int minimumRank(int key) {
 			int lo = 0, hi = numbers.length, mid = 0;
-			while (lo <= hi) {
-				mid = (lo + hi) / 2;
-				if 		(numbers[mid] > key) hi = mid - 1;
-				else if (numbers[mid] < key) lo = mid + 1;
-				else if (lo != hi) { lo = 0; hi = mid; }
-				else	break;
+			while (lo < hi) {
+				mid = (int)Math.ceil((lo + hi) / 2.0);
+				if (numbers[mid] < key)
+				    lo = mid;
+				else
+				    hi = mid - 1;
 			}
-			return numbers[mid] == key ? mid : -1;
+			return numbers[++hi] == key ? mid : -1;
 		}
 		/*
 		 * the maximum index of key
 		 */
 		int maximumRank(int key) {
 			int lo = 0, hi = numbers.length - 1, mid = 0;
-			while (lo <= hi) {
+			while (lo < hi) {
 				mid = (lo + hi) / 2;
-				if 		(numbers[mid] > key) hi = mid - 1;
-				else if (numbers[mid] < key) lo = mid + 1;
-				else if (mid == numbers.length - 1) break;
-				else if (numbers[mid + 1] != key) break;
-				else 	{ lo = mid + 1; hi = numbers.length - 1; }
+				if (numbers[mid] > key)
+				    hi = mid;
+				else
+				    lo = mid + 1;
 			}
-			return numbers[mid] == key ? mid : -1;
+			return numbers[--lo] == key ? mid : -1;
 		}
 	}
 	/*
@@ -89,17 +103,17 @@ public class Practise_1_4_11 {
 	}
 	// output
 	/*
-	 * 	  0  0  0  0  0  0  1  1  1  1
-		  1  1  2  2  2  3  3  3  3  3
-		  3  4  4  4  4  4  4  5  5  5
-		  5  6  6  6  6  6  7  7  7  7
-		  7  8  8  8  8  9  9  9  9 10
-		 10 10 10 11 11 11 11 11 11 12
-		 12 12 13 13 13 13 13 13 13 14
-		 14 14 14 14 14 14 14 15 15 15
-		 16 16 16 16 17 17 17 17 17 17
-		 18 18 18 18 18 18 19 19 19 19
-
-		the number of key 5 is 4
+	 * 	      0  0  1  1  1  2  2  2  2  2
+              2  3  3  3  3  3  3  4  4  4
+              4  4  4  4  5  5  6  6  6  6
+              6  6  7  7  7  8  8  8  9  9
+              9  9 10 10 10 10 10 10 11 11
+             11 11 11 12 12 12 12 12 12 12
+             12 13 13 14 14 14 14 14 14 14
+             14 15 15 15 15 15 15 16 16 16
+             16 16 17 17 17 17 17 17 18 18
+             18 18 18 18 19 19 19 19 19 19
+            
+            the number of key 5 is 2
 	 */
 }
