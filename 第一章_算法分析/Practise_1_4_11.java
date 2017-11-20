@@ -9,14 +9,14 @@ import edu.princeton.cs.algs4.*;
  * 
  * 当且仅当 arr[mid] > key 时, hi = mid, 否则就让 lo = mid + 1
  * 
- * 最后让 lo - 1 即为所求
+ * 最后让 lo - 1 即为所求, 要注意对 lo == items.length - 1 的情况特殊处理
  * 
  * 查找目标的最小索引，要注意的是，操作系统默认让 int 型除法向零舍入，因此单纯凭借 lo = mid
  * 无法让区域有效的缩小，因此手动让 (lo + hi) / 2 向上舍入
  * 
  * 当且仅当 arr[mid] < key 时，lo = mid, 否则就让 hi = mid - 1
  * 
- * 最后让 hi + 1 即为所求
+ * 最后让 hi + 1 即为所求, 要注意对 hi == 0 的情况特殊处理
  * 
  */
 public class Practise_1_4_11 {
@@ -75,6 +75,9 @@ public class Practise_1_4_11 {
 				else
 				    lo = mid + 1;
 			}
+			// lo == numbers.length - 1
+			if (numbers[lo] == key) return lo;
+			// lo != numbers.length - 1
 			return --lo < 0 || numbers[lo] != key ? -1 : lo;
 		}
 	}

@@ -5,7 +5,15 @@ import edu.princeton.cs.algs4.*;
 
 public class Practise_1_4_16 {
 	/*
-	 * 寻找最接近的一对
+	 * 思路 : 
+	 * 
+	 * 首先我们将数组排序，这是一个 N * log(N) 的操作
+	 * 然后我们采用如下策略遍历整个数组，用一个变量来记录最小距离，将其初始化为 Double.Max_Value
+	 * 从 i = 1 开始，比较 a[i] 和 a[i - 1]
+	 * 
+	 * 如果相等，那么就忽略，让 i 递增
+	 * 如果不相等，我们计算出 a[i] 和 a[i - 1] 的最小距离，判断是否小于之前的记录，若小于，那么就更新记录
+	 * 
 	 */
 	public static void closestPair(double[] a) {
 		if (a == null || a.length < 2)
@@ -13,15 +21,14 @@ public class Practise_1_4_16 {
 		Arrays.sort(a);
 		double n1 = 0, n2 = 0;
 		double distance = Double.MAX_VALUE;
-		for (int i = 1, j = 0; i < a.length; i++) {
+		for (int i = 1; i < a.length; i++) {
 			if (a[i - 1] != a[i]) {
-				double dis = Math.abs(a[j] - a[i]);
+				double dis = Math.abs(a[i - 1] - a[i]);
 				if (dis < distance) {
 					distance = dis;
-					n1 = a[j]; 
+					n1 = a[i - 1]; 
 					n2 = a[i];
 				}
-				j = i; 
 			} 
 		}
 		StdOut.printf("closest pair is %8.3f %8.3f", n1, n2);

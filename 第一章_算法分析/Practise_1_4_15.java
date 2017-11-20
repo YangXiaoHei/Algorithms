@@ -6,6 +6,8 @@ import edu.princeton.cs.algs4.*;
 public class Practise_1_4_15 {
 	static class TwoSumFaster {
 		/*
+		 * 思路 :
+		 * 
 		 * 对于已排序数组，右边的值都比左侧大，所以如果 
 		 * a[left] + a[right] > 0
 		 * 那么，此时无论这个左侧索引的右边选择什么值来与 a[right] 相加，

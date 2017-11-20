@@ -135,12 +135,11 @@ public class Practise_1_4_10 {
             return --lo < 0 || arr[lo] != key ? -1 : lo;
         }
 		public static int[] sourceArr(int N) {
-//			int[] arr = new int[N];
-//			for (int i = 0; i < N; i++)
-//				arr[i] = StdRandom.uniform(0, 10);
-//			Arrays.sort(arr);
-//			return arr;
-		    return new int[] {0, 1, 2, 2, 3};
+			int[] arr = new int[N];
+			for (int i = 0; i < N; i++)
+				arr[i] = StdRandom.uniform(0, 10);
+			Arrays.sort(arr);
+			return arr;
 		}
 		public static void printArray(int[] arr) {
 			for (int i = 0; i < arr.length; i++)
@@ -153,11 +152,11 @@ public class Practise_1_4_10 {
 		public static void test(int key, int N) {
 			int[] arr = sourceArr(N);
 			printArray(arr);
-			StdOut.println("minimum index of " + key + " is " + maximumRank(key, arr));
+			StdOut.println("minimum index of " + key + " is " + rank(key, arr));
 		}
 	}
 	public static void main(String[] args)  {
-		BinarySearchModified.test(4, 100);
+		BinarySearchModified.test(3, 100);
 	}
 	// output
 	/*

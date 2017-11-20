@@ -6,6 +6,12 @@ import edu.princeton.cs.algs4.*;
 public class Practise_1_4_17 {
 	/*
 	 *  最遥远的一对
+	 *  
+	 *  思路 :
+	 *  
+	 *  最遥远的一对一定是由最大值和最小值构成的，找出最大最小即可
+	 *  
+	 *  
 	 */
 	public static void fairestPair(double[] a) {
 		double max = Double.MIN_VALUE;

@@ -8,7 +8,6 @@ public class Practise_1_4_14 {
      * 这里直接使用暴力解法则时间为 C(n, 4) = N(N - 1)(N - 2)(N - 3)/24 ~N^4
      * 通过改进最后一个循环，效率变为 ~N^3 * log(N)
      * 
-     * 
      */
 	public static int binarySearch(int key, int[] a) {
 		int lo = 0, hi = a.length - 1, mid = 0;
@@ -19,8 +18,8 @@ public class Practise_1_4_14 {
 			else
 			    hi = mid - 1;
  		}
-		if (++lo == a.length || a[lo] != key) return -1;
-		return lo;
+		if (a[lo] == key) return lo;
+		return ++lo == a.length || a[lo] != key ? -1 : lo;
 	}
 	
 	static class FourSum {
