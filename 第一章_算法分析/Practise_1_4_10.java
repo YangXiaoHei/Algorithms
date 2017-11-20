@@ -1,6 +1,8 @@
 package 第一章_算法分析;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_4_10 {
@@ -101,21 +103,18 @@ public class Practise_1_4_10 {
 			}
 			return array[mid] == key ? mid : -1;
 		}
-		/*
-         * in that way, we can guarantee O(logN) in the worst situation
-         */
-		public static int rank(int key, int[] arr) {
+	    /*
+	     * in that way, we can guarantee O(logN) in the worst situation
+	     */
+		public static int rank(int key, int[] arr)  {
 		    int lo = 0, hi = arr.length - 1, mid = 0;
 		    while (lo < hi) {
-		        mid = (lo + hi) / 2;
-		        if (arr[mid] < key)
-		            lo = mid;
-		        else
-		            hi = mid - 1;
+		        mid = (int)Math.ceil((lo + hi) / 2.0);
+		        if (key > arr[mid]) lo = mid;
+		        else hi = mid - 1;
 		    }
 		    return arr[++hi] == key ? hi : -1;
 		}
-		
 		public static int[] sourceArr(int N) {
 			int[] arr = new int[N];
 			for (int i = 0; i < N; i++)
@@ -137,7 +136,7 @@ public class Practise_1_4_10 {
 			StdOut.println("minimum index of " + key + " is " + rank(key, arr));
 		}
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		BinarySearchModified.test(3, 100);
 	}
 	// output
