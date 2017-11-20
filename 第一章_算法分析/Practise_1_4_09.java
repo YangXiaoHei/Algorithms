@@ -38,17 +38,17 @@ public class Practise_1_4_09 {
 	public static void main(String[] args) {
 		/*
 		 * 
-		 * 	   T(N0) -> T
-		 * T(2 * N0) -> 2^b * T
-		 * T(2^2 * N0) -> 2^(2b) * T
-		 * T(2^3 * N0) -> 2^(3b) * T
-		 * T(2^r * N0) -> 2^(r * b) * T
+		 * T(N0) -> T0
+		 * T(2 * N0) -> 2^b * T0
+		 * T(2^2 * N0) -> 2^(2b) * T0
+		 * T(2^3 * N0) -> 2^(3b) * T0
+		 * T(2^r * N0) -> 2^(r * b) * T0
 		 * 
-		 * T(r) -> 2^(lgN/N0 * b) * T
-		 * T(r) -> 2^lg((N/N0)^b) * T
-		 * T(r) -> (N/N0)^b * T
+		 * T(r) -> 2^(lgN/N0 * b) * T0
+		 * T(r) -> 2^lg((N/N0)^b) * T0
+		 * T(r) -> (N/N0)^b * T0
 		 * 
-		 * so we can draw a conclusion total time will be 2^(lgN/N0 * b) * T
+		 * 所以我们可以得到总耗时为 (N/N0)^b * T0
 		 * 
 		 * for example
 		 * 

@@ -1,7 +1,12 @@
 package 第一章_算法分析;
 
 import edu.princeton.cs.algs4.*;
-
+/*
+ * 思路 :
+ * 
+ * 请看下方注释
+ * 
+ */
 public class Practise_1_4_06 {
 	/*
 	 * a

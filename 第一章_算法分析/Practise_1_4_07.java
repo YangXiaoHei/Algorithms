@@ -1,7 +1,11 @@
 package 第一章_算法分析;
 
 import edu.princeton.cs.algs4.StdOut;
-
+/*
+ * 思路 :
+ * 
+ * 请看下方注释
+ */
 public class Practise_1_4_07 {
 	static class ThreeSum {
 		public static int count(int a[]) {

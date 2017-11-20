@@ -2,7 +2,18 @@ package 第一章_算法分析;
 
 import java.util.*;
 import edu.princeton.cs.algs4.*;
-
+/*
+ * 思路 :
+ * 
+ * 暴力解法很简单，查找 C(n, 2) 个组合，并对每对进行比较
+ * 改善后的线性对数级别，首先我们对数组进行排序，根据 JDK 源码的注释，排序算法的时耗为 O(N * log(N))
+ * 然后我们进行一轮遍历，遍历时做下列事情
+ * 
+ * 判断 arr[pre] 和 arr[cur] 是否相等，如果相等，就把 cur++ 一直到 arr[pre] != arr[cur]
+ * 此时相等的整数对数量为 C(cur - prev, 2)
+ * 如果不相等，就把 pre 和 cur 同时 ++, 因此进行一轮遍历的时耗为 O(N)
+ * 总时耗为 O(N * log(N) + O(N) ~ O(N * log(N))
+ */
 public class Practise_1_4_08 {
 	/*
 	 * O(N^2)
@@ -26,7 +37,9 @@ public class Practise_1_4_08 {
 	 * O(N * log(N))
 	 */
 	static class EqualPairCountFast {
+	    
 		public static long count(int[] a) {
+		    StdRandom.uniform();
 			if (a == null || a.length < 2)
 				return 0;
 			Stopwatch timer = new Stopwatch();

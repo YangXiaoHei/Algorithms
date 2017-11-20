@@ -1,7 +1,12 @@
 package 第一章_算法分析;
 
 import java.util.Arrays;
-
+/*
+ * 
+ * 思路 :
+ * 
+ * 请见下方注释
+ */
 public class Practise_1_4_04 {
 	static class BinarySearch {
 		public static int rank(int k, int[] a) {
@@ -29,11 +34,9 @@ public class Practise_1_4_04 {
 			 *  N * t2
 			 */
 			for (int i = 0; i < N; i++)
-				/*
-				 * N + N - 1 + N - 2 + ... + 1 = N(N + 1) / 2
-				 * 
-				 * t3 * N(N + 1) / 2
-				 */
+			    /*
+			     * 使用组合数公式为 C(n, 2) = N(N-1) / 2
+			     */
 				for (int j = i + 1; j < N; j++)
 					if (a[i] + a[j] == 0)
 						/*
@@ -41,7 +44,7 @@ public class Practise_1_4_04 {
 						 */
 						cnt++;
 			/*
-			 * total : t0 + t1 + N * t2 + t3 * (N^2 + N) / 2 + x * t4
+			 * total : t0 + t1 + N * t2 + t3 * (N^2 - N) / 2 + x * t4
 			 */
 			return cnt;
 		}
@@ -77,8 +80,5 @@ public class Practise_1_4_04 {
 			 */
 			return cnt;
 		}
-	}
-	public static void main(String[] args) {
-		
 	}
 }

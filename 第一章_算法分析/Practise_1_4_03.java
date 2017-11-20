@@ -1,7 +1,13 @@
 package 第一章_算法分析;
 
 import edu.princeton.cs.algs4.*;
-
+/*
+ * 思路 :
+ * 
+ * ThreeSum 是一个 O(n^3) 的算法，因此倍率实验得出的值应该最终会稳定在 8
+ * 因此我们如果对运行时间取对数，会得到一条斜率为 3 的直线
+ * 
+ */
 public class Practise_1_4_03 {
 	static class DoublingTest {
 		public static double timeTrial(int N) {

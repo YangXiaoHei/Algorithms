@@ -3,6 +3,13 @@ package 第一章_算法分析;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_4_02 {
+    /*
+     * 思路 :
+     * 
+     * 对于 int 型的溢出，我们只需要将运算数中的某一个提升为 long, 
+     * 那么结果就会被提升为 long int 型的溢出也就被正确处理了
+     * 
+     */
 	static class ThreeSum {
 		/*
 		 * 正确处理溢出
