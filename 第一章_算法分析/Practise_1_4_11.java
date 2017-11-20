@@ -11,7 +11,8 @@ import edu.princeton.cs.algs4.*;
  * 
  * 最后让 lo - 1 即为所求
  * 
- * 查找目标的最小索引
+ * 查找目标的最小索引，要注意的是，操作系统默认让 int 型除法向零舍入，因此单纯凭借 lo = mid
+ * 无法让区域有效的缩小，因此手动让 (lo + hi) / 2 向上舍入
  * 
  * 当且仅当 arr[mid] < key 时，lo = mid, 否则就让 hi = mid - 1
  * 
@@ -48,7 +49,8 @@ public class Practise_1_4_11 {
 		 * the minimum index of key
 		 */
 		int minimumRank(int key) {
-			int lo = 0, hi = numbers.length, mid = 0;
+		    int N = numbers.length;
+			int lo = 0, hi = N - 1, mid = 0;
 			while (lo < hi) {
 				mid = (int)Math.ceil((lo + hi) / 2.0);
 				if (numbers[mid] < key)
@@ -56,7 +58,10 @@ public class Practise_1_4_11 {
 				else
 				    hi = mid - 1;
 			}
-			return numbers[++hi] == key ? mid : -1;
+			// hi = 0
+			if (numbers[hi] == key) return hi;
+			// hi != 0
+			return ++hi == N || numbers[hi] != key ? -1 : hi;
 		}
 		/*
 		 * the maximum index of key
@@ -70,7 +75,7 @@ public class Practise_1_4_11 {
 				else
 				    lo = mid + 1;
 			}
-			return numbers[--lo] == key ? mid : -1;
+			return --lo < 0 || numbers[lo] != key ? -1 : lo;
 		}
 	}
 	/*

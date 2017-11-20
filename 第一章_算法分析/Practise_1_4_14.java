@@ -4,16 +4,23 @@ import java.util.*;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_4_14 {
+    /*
+     * 这里直接使用暴力解法则时间为 C(n, 4) = N(N - 1)(N - 2)(N - 3)/24 ~N^4
+     * 通过改进最后一个循环，效率变为 ~N^3 * log(N)
+     * 
+     * 
+     */
 	public static int binarySearch(int key, int[] a) {
 		int lo = 0, hi = a.length - 1, mid = 0;
-		while (lo <= hi) {
-			mid = (lo + hi) / 2;
-			if 		(a[mid] < key) lo = mid + 1;
-			else if (a[mid] > key) hi = mid - 1;
-			else if (lo != hi) { lo = 0; hi = mid; }
-			else	break;
+		while (lo < hi) {
+			mid = (int)Math.ceil((lo + hi) / 2.0);
+			if (a[mid] < key)
+			    lo = mid;
+			else
+			    hi = mid - 1;
  		}
-		return a[mid] == key ? mid : -1;
+		if (++lo == a.length || a[lo] != key) return -1;
+		return lo;
 	}
 	
 	static class FourSum {

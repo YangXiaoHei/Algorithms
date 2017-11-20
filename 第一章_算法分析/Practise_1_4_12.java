@@ -2,7 +2,17 @@ package 第一章_算法分析;
 
 import java.util.*;
 import edu.princeton.cs.algs4.*;
-
+/*
+ * 思路 :
+ * 
+ * 运行时间为 N 说明只能遍历一遍
+ * 我们首先用两个索引指向两个有序数组
+ * 
+ * 如果 a[i] > b[j] 说明索引比 j 小的数据都不可能与 a[i] 相等，此时让 j 往后挪
+ * 如果 a[i] < b[j] 说明索引比 i 小的数据都不可能与 b[j] 相等，此时让 i 往后挪
+ * 如果 a[i] = ab[j] 说明已经找到一个共同元素，那么就让各自的索引分别向后挪一位
+ * 
+ */
 public class Practise_1_4_12 {
 	/*
 	 * find common element within O(N)

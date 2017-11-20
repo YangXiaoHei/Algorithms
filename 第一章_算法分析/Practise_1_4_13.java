@@ -2,7 +2,13 @@ package 第一章_算法分析;
 
 import java.util.*;
 import edu.princeton.cs.algs4.*;
-
+/*
+ * 
+ * 思路 :
+ * 
+ * 请看下方注释
+ * 
+ */
 public class Practise_1_4_13 {
 	
 	 // 16 /* 对象开销 */ + 8 /* double */ + 4 /* int */ = 28 + 4 /* 填充字节 */ = 32
