@@ -2,6 +2,17 @@ package 第一章_算法分析;
 
 import edu.princeton.cs.algs4.*;
 
+/*
+ * 思路 :
+ * 
+ * 使用两个栈来实现 Steque
+ * stack1 提供 push pop 操作支持
+ * stack2 提供 enqueue 操作支持
+ * 在每次 push 和 pop 操作时，都检查 stack2 是否有 enqueue 的元素，如果有的话，就把他们全部 pop 进 stack1
+ * 同时，在每次进行 enqueue 操作时，检查 stack1 是否已经有入栈元素，如果有的话，就把他们全部倒进 stack2
+ * 以方便从栈底添加元素，模拟 enqueue 操作
+ * 
+ */
 public class Practise_1_4_29 {
 	static class Stack<T> {
 		private class Node {
@@ -62,32 +73,6 @@ public class Practise_1_4_29 {
 			return sb.toString();
 		}
 	}
-	/*
-	 * steque
-	 *  2 1 4 5
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * stack1
-	 * 
-	 * 
-	 * 
-	 * 2
-	 * 1
-	 * 4
-	 * 
-	 * 
-	 * stack2
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
 	static class Steque<T> {
 		private Stack<T> stack1 = new Stack<T>(); // 入栈的正序
 		private Stack<T> stack2 = new Stack<T>(); // 入队的逆序

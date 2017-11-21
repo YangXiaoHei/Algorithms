@@ -2,6 +2,17 @@ package 第一章_算法分析;
 
 import edu.princeton.cs.algs4.StdOut;
 
+/*
+ * 思路 :
+ * 
+ * 我们使用 steque 负责 pushLeft 和 pushRight 以及 popLeft
+ * 由于 popRight 操作需要将 steque 的所有元素倒入 stack 中，因此每次 popRight 时，假如 stack 为空，
+ * 就把所有元素倒入 stack, 在 pushLeft, pushRight popLeft 时，每次都判断若 steque 为空，就将 stack 
+ * 的所有元素倒入 steque 中 
+ * 
+ * 
+ * 
+ */
 public class Practise_1_4_30 {
 	static class Node<T> {
 		T item;
@@ -84,36 +95,6 @@ public class Practise_1_4_30 {
 			tailer.insertBefore(item);
 		}
 	}
-	/*
-	 *     
-	 *   3 2 1 5
-	 *    
-	 * 
-	 * 
-	 * stack
-	 *  
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * steque
-	 * 
-	 * 
-	 * 3
-	 * 2
-	 * 1
-	 * 5
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
 	static class Deque<T> {
 		private Steque<T> steque = new Steque<T>();
 		private Stack<T> stack = new Stack<T>();

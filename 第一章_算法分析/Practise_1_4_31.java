@@ -2,6 +2,16 @@ package 第一章_算法分析;
 
 import edu.princeton.cs.algs4.StdOut;
 
+/*
+ * 思路 :
+ * 
+ * 三个栈的 A B C 功能如下
+ * 
+ * A 负责 pushLeft popLeft 
+ * C 负责 pushRight popRight
+ * B 负责 当 popLeft A 为空，作为 C 将底部一半元素倒入到 A 的临时缓冲区
+ *   负责 当 popRight C 为空时，作为 A 将底部一半元素倒入 C 的临时缓冲区
+ */
 public class Practise_1_4_31 {
 	static class Stack<T> {
 		private class Node {
@@ -51,41 +61,6 @@ public class Practise_1_4_31 {
 			return header.next.delete();
 		}
 	}
-	/*
-	 * 
-	 *   1 2 3 4 5 6
-	 * 
-	 * 
-	 * 
-	 * left
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * middle
-	 * 
-	 * 
-	 * 
-	 * 4
-	 * 5
-	 * 6
-	 * 
-	 * 
-	 * 
-	 * right
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 3
-	 * 2
-	 * 1
-	 * 
-	 */
 	static class Deque<T> {
 		private Stack<T> stackLeft = new Stack<T>();
 		private Stack<T> stackMiddle = new Stack<T>();
