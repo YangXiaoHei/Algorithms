@@ -15,6 +15,13 @@ public class Practise_1_4_25 {
 	}
 	/*
 	 * 找出丢鸡蛋会摔碎的起始楼层
+	 * 
+	 * 条件 ： 2 个鸡蛋，N 层楼，最低摔碎楼层为 F
+	 * 
+	 * 先计算出 sqrt(N)，然后由 1 * sqrt(N), 2 * sqrt(N) ... k * sqrt(N) 逐层试探，
+	 * 当第一个鸡蛋被摔碎时，k <= sqrt(N)，接下来我们 以从上一次鸡蛋没摔碎的楼层为查找下届，鸡蛋摔碎的楼层为查找上届
+	 * 然后逐层试探，那么此说最多也就是 sqrt(N) 次，因此合计扔了 2 * sqrt(N) 次
+	 * 
 	 */
 	static class ThrowingEggFromABuilding {
 		public static int throwTimes; // 记录扔鸡蛋次数

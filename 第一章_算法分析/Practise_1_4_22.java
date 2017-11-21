@@ -4,7 +4,14 @@ import java.util.*;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_4_22 {
-	
+	/*
+	 * 思路 :
+	 * 
+	 * 对于斐波那契查找所采取的思路是，先通过 lo hi 确定一个在其间的分割点，
+	 * 然后确定分割点元素和目标元素的大小关系，之后转向一个子区域，继续用 lo hi 
+	 * 确定分割点，然后重复上述步骤，二分查找的区间范围以 2次幂递减，而斐波那契也是增长率很快的函数
+	 * 查找范围也减少的很快
+	 */
 	static class FibonacciSearch {
 		/*
 		 * 判断 int 加法操作是否溢出
@@ -33,7 +40,7 @@ public class Practise_1_4_22 {
 		static {
 			/*
 			 * 斐波纳切第 46 项 int 溢出
-			 * 第 93 项 long 溢出
+			 *        第 93 项 long 溢出
 			 */
 			fibo = new int[46];
 			for (int i = 0; i < fibo.length; i++)
@@ -47,12 +54,6 @@ public class Practise_1_4_22 {
 			while (fibo[fIndex] <= (hi - lo))  fIndex++;
 			return fibo[--fIndex] + lo - 1;
 		}
-		/*
-		 * 1 1 2 3 5 8 13 21 34 55
-		 * 
-		 * 
-		 * 
-		 */
 		/*
 		 * 斐波纳切查找
 		 */

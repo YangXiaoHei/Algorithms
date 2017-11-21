@@ -5,7 +5,11 @@ import edu.princeton.cs.algs4.*;
 
 public class Practise_1_4_23 {
 	/*
-	 * 二分查找
+	 * 思路 :
+	 * 
+	 * 和二分查找一样，只是二分查找命中条件是相等，
+	 * 而该题只要求命中元素和目标元素的距离在可接受范围内，就算命中
+	 * 
 	 */
 	public static int binarySearch(double[] a, double key) {
 		return binarySearchRecur(a, key, 0, a.length - 1);

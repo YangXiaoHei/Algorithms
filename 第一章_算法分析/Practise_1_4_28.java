@@ -2,6 +2,14 @@ package 第一章_算法分析;
 
 import edu.princeton.cs.algs4.StdOut;
 
+/*
+ * 思路 :
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 public class Practise_1_4_28 {
 	static class Queue<T> {
 		@SuppressWarnings("unchecked")
@@ -55,22 +63,13 @@ public class Practise_1_4_28 {
 		boolean isEmpty() { return queue.isEmpty(); }
 		int size() { return queue.size(); }
 		void push(T item) {
-			if (queue.isEmpty())
-				queue.enqueue(item);
-			else {
-				@SuppressWarnings("unchecked")
-				T[] tmp = (T[])new Object[queue.size()];
-				int k = 0;
-				while (!queue.isEmpty())
-					tmp[k++] = queue.dequeue();
-				queue.enqueue(item);
-				for (T t : tmp)
-					queue.enqueue(t);
-			}
+			queue.enqueue(item);
 		}
 		T pop() {
 			if (isEmpty())
 				throw new RuntimeException("pop from a empty stack");
+			for (int i = 0; i < queue.size() - 1; i++)
+			    queue.enqueue(queue.dequeue());
 			return queue.dequeue();
 		}
 	}

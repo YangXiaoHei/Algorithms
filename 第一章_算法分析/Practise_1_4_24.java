@@ -5,6 +5,21 @@ import edu.princeton.cs.algs4.*;
 public class Practise_1_4_24 {
 	/*
 	 * 查找丢鸡蛋会摔碎的起始楼层
+	 * 
+	 * 思路 :
+	 * 
+	 * 条件 ：N 层楼，无数个鸡蛋, 最低摔碎楼层为 F
+	 * 
+	 * 对于摔碎 lgN 个鸡蛋 的思路，首先在 (lo + hi) / 2 层扔，如果摔碎了，把查找上届缩小至 mid
+	 * 如果没摔碎，把查找下届增加至 mid + 1, 假如 mid 率先命中最低摔碎楼层，那么接下来所有分支都会走 lo = mid + 1
+	 * 最后循环在 lo == hi 时跳出
+	 * 假如 mid + 1 率先命中最低摔碎楼层，那么接下来所有分支都会走 hi = mid, 最后循环在 lo == hi 时跳出
+	 * 
+	 * 
+	 * 对于 摔碎2lgF个鸡蛋 的思路，首先我们挑选 2^i 层逐层试探，这样第一次摔碎鸡蛋时摔碎数量为 ~lgF
+	 * 接下来我们在 以上一次没摔碎楼层为查找下届和以第一次摔碎楼层为查找上届间二分查找，这样摔碎的鸡蛋数量为 ~lgF
+	 * 合计 ~2lgF
+	 * 
 	 */
 	static class ThrowingEggsFromABuilding {
 		private static int brokenEggs; // 记录摔碎的鸡蛋数
@@ -34,7 +49,7 @@ public class Practise_1_4_24 {
 			return hi;
 		}
 
-		public static int searchStorey_lgF(boolean[] building) {
+		public static int searchStorey_2lgF(boolean[] building) {
 			brokenEggs = 0;
 			throwTimes = 0;
 			int N = building.length;
@@ -89,7 +104,7 @@ public class Practise_1_4_24 {
 		StdOut.printf("方法一 : 丢鸡蛋从楼层 %d 开始会摔碎\n", floor_lgN + 1);
 		StdOut.printf("方法一 : 扔了 %d 次，摔碎 %d 次\n", ThrowingEggsFromABuilding.throwTimes, ThrowingEggsFromABuilding.brokenEggs);
 		
-		int floor_lgF = ThrowingEggsFromABuilding.searchStorey_lgF(arr);
+		int floor_lgF = ThrowingEggsFromABuilding.searchStorey_2lgF(arr);
 		StdOut.printf("方法二 : 丢鸡蛋从楼层 %d 开始会摔碎\n", floor_lgF + 1);
 		StdOut.printf("方法二 : 扔了 %d 次，摔碎 %d 次\n", ThrowingEggsFromABuilding.throwTimes, ThrowingEggsFromABuilding.brokenEggs);
 	}
