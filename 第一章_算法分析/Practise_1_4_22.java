@@ -48,6 +48,12 @@ public class Practise_1_4_22 {
 			return fibo[--fIndex] + lo - 1;
 		}
 		/*
+		 * 1 1 2 3 5 8 13 21 34 55
+		 * 
+		 * 
+		 * 
+		 */
+		/*
 		 * 斐波纳切查找
 		 */
 		public static int rank(int key, int[] arr) {
@@ -84,7 +90,7 @@ public class Practise_1_4_22 {
 	}
 	
 	public static void main(String[] args) {
-		int[] arr = sourceArr(100);
+		int[] arr = sourceArr(10);
 		printArray(arr);
 		StdOut.println("斐波纳切查找结果 : " + FibonacciSearch.rank(4, arr));
 	}
