@@ -71,7 +71,5 @@ public class Practise_1_4_14 {
 			a[2] = -87 a[4] = -16 a[7] = 35 a[9] = 68
 			a[3] = -43 a[4] = -16 a[5] = -9 a[9] = 68
 			four sum is 3
-
-
 	 */
 }

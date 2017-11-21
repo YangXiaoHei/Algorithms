@@ -6,30 +6,55 @@ import edu.princeton.cs.algs4.*;
 public class Practise_1_4_19 {
 	/*
 	 * 矩阵局部最小元素
+	 * 
+	 * 思路 :
+	 * 
+	 * 首先我们不断用二分法缩小行索引，在每次二分命中的行中，找到一个最小的元素，这时我们得到一个列索引
+	 * 可以知道，由于这个元素已经是该行最小，因此肯定满足左侧右侧都大于它 
+	 * a[?][min] < a[?][min + 1] && a[?][min] > a[?][min - 1]
+	 * 此时我们再检测上下是否大于该元素，如果是，那么此元素就是局部最小值
+	 * 如果不是，那么我们挑选上下元素中小的那一侧范围，继续二分，最后可能找到，也可能找不到
+	 * 但我们保证了算法的运行时间为 O(N)
+	 * 
 	 */
-	public static int[] localMinimumOfMatrix(int[][] a) {
+    static class Result {
+        int row = -1, column = -1, value;
+        Result() {}
+        Result(int row, int column, int value) {
+            this.row = row;
+            this.column = column;
+            this.value = value;
+        }
+        public String toString() {
+            return String.format("[%d,  %d] = %d\n", row, column, value);
+        }
+    }
+	public static Result localMinimumOfMatrix(int[][] a) {
 		int N = a.length;
-		int lo = 0, hi = N - 1, midRow = 0, midCol = N / 2;
-		while (lo < hi) {
+		int lo = 0, hi = N - 1, midRow = 0;
+		while (lo <= hi) {
 			midRow = (lo + hi) / 2;
-			if (midRow == 0 || midRow == N - 1) break;
-			
 			int minColIndex = minimumColumnIndex(a[midRow]);
+			if (midRow == 0) {
+			    if (a[midRow][minColIndex] < a[midRow + 1][minColIndex])
+			        return new Result(midRow, minColIndex, a[midRow][minColIndex]);
+			    return null;
+			}
+			
+			if (midRow == N - 1) {
+			    if (a[midRow][minColIndex] < a[midRow - 1][minColIndex])
+			        return new Result(midRow, minColIndex, a[midRow][minColIndex]);
+			    return null;
+			}
+			
 			if (a[midRow - 1][minColIndex] > a[midRow][minColIndex] &&
 				a[midRow + 1][minColIndex] > a[midRow][minColIndex]) 
-				return  new int[] {midRow, minColIndex, a[midRow][minColIndex]};
-			
-			int minRowIndex = minimumRowIndex(a, midCol, lo, hi);
-			if (a[minRowIndex][midCol - 1] > a[minRowIndex][midCol] &&
-				a[minRowIndex][midCol + 1] > a[minRowIndex][midCol]) 
-				return  new int[] {minRowIndex, midCol, a[midRow][minColIndex]};
-			
+				return  new Result(midRow, minColIndex, a[midRow][minColIndex]);
+		    
 			if (a[midRow - 1][minColIndex] < a[midRow + 1][minColIndex]) {
-				lo = 0;
 				hi = midRow - 1;
 			} else {
 				lo = midRow + 1;
-				hi = N - 1;
 			}
 		}
 		return null;
@@ -67,15 +92,15 @@ public class Practise_1_4_19 {
 	 * 生成 N * N 个无重复的整数
 	 */
 	public static int[][] sourceArr(int N) {
-		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		Set<Integer> set = new HashSet<Integer>();
 		int[][] a = new int[N][];
 		for (int i = 0; i < N; i++) {
 			a[i] = new int[N];
 			for (int j = 0; j < N; j++) {
 				int random = StdRandom.uniform(1, 150);
-				while (map.containsKey(random))
+				while (set.contains(random))
 					random = StdRandom.uniform(1, 150);
-				map.put(random, random);
+				set.add(random);
 				a[i][j] = random;
 			}
 		}
@@ -104,24 +129,19 @@ public class Practise_1_4_19 {
 	public static void main(String[] args) {
 		int[][] a = sourceArr(6);
 		printArray(a);
-		int[] results = localMinimumOfMatrix(a);
-		if (results == null)
-			StdOut.println("没找到咯");
-		else
-			StdOut.printf("row : %d column %d result : %d",
-				results[0], results[1], results[2]);
+		StdOut.println(localMinimumOfMatrix(a));
 	}
 	// output
 	/*
-	 *       0   1   2   3   4   5   
+	 *        0   1   2   3   4   5   
 
-		0    122 108 78  97  116 141 
-		1    52  131 103 115 90  129 
-		2    69  95  99  117 27  145 
-		3    136 1   72  147 61  8   
-		4    55  28  149 48  5   37  
-		5    18  76  42  112 80  13  
-		
-		row : 2 column 4 result : 27
+        0    82  75  107 114 74  15  
+        1    46  96  149 69  65  139 
+        2    78  43  3   119 136 56  
+        3    100 70  5   52  39  112 
+        4    85  11  147 84  79  123 
+        5    37  1   4   44  129 144 
+        
+        [2,  2] = 3
 	 */
 }
