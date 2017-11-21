@@ -4,7 +4,22 @@ import java.util.*;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_4_20 {
-	
+    /*
+     * 思路 : 
+     * 
+     * 首先我们通过二分法找出分割点，即在该点 splitIndex 处满足 a[splitIndex] > a[splitIndex + 1]
+     * 并且 a[splitIndex] > a[splitIndex - 1]
+     * 
+     * 找到分割点的思路如下 : 先算出 mid, 如果 mid + 1 小于 mid, 此时我们位于一个单调递减的序列，
+     * 分割点在左边，让 hi = mid
+     * 如果 mid - 1 小于 mid，此时我们位于一个单调递增的序列，
+     * 分割点在右边，让 lo = mid + 1,
+     * 假如 hi 率先命中 splitIndex, 那么因为左侧元素全部小于 hi, 所以随着 lo + 1, 最后 hi == lo 跳出循环
+     * 假如 lo 率先命中 splitIndex, 那么因为右侧元素全部小于 hi, 所以随着 hi = mid, 最后 hi == lo 跳出循环
+     * 
+     * 当我们确定了分割点后，就用分割点确定了两个查找区域，我们选择先查找元素较少的一方，假如找到，直接返回结果
+     * 假如没找到，再去找元素较多的那个区域，对两个区域都分别用二分法，因此最后的运行时间不过 klog(N) k < 2
+     */
 	/*
 	 * 查找双调数组的分割点
 	 */

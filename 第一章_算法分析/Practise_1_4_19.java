@@ -14,7 +14,7 @@ public class Practise_1_4_19 {
 	 * a[?][min] < a[?][min + 1] && a[?][min] > a[?][min - 1]
 	 * 此时我们再检测上下是否大于该元素，如果是，那么此元素就是局部最小值
 	 * 如果不是，那么我们挑选上下元素中小的那一侧范围，继续二分，最后可能找到，也可能找不到
-	 * 但我们保证了算法的运行时间为 O(N)
+	 * 但起码我们保证了算法的运行时间为 O(N)
 	 * 
 	 */
     static class Result {
@@ -48,8 +48,9 @@ public class Practise_1_4_19 {
 			}
 			
 			if (a[midRow - 1][minColIndex] > a[midRow][minColIndex] &&
-				a[midRow + 1][minColIndex] > a[midRow][minColIndex]) 
+				a[midRow + 1][minColIndex] > a[midRow][minColIndex]) {
 				return  new Result(midRow, minColIndex, a[midRow][minColIndex]);
+			}
 		    
 			if (a[midRow - 1][minColIndex] < a[midRow + 1][minColIndex]) {
 				hi = midRow - 1;
@@ -58,20 +59,6 @@ public class Practise_1_4_19 {
 			}
 		}
 		return null;
-	}
-	/*
-	 * 获取中间列最小元素的行索引
-	 */
-	public static int minimumRowIndex(int[][] a,int column, int rowStart, int rowEnd) {
-		int min = Integer.MAX_VALUE;
-		int index = 0;
-		for (int i = rowStart; i <= rowEnd; i++) {
-			if (a[i][column] < min) {
-				min = a[i][column];
-				index = i;
-			}
-		}
-		return index;
 	}
 	
 	/*
@@ -116,7 +103,6 @@ public class Practise_1_4_19 {
 			StdOut.printf("%-4d", i);
 		}
 		StdOut.println("\n");
-		
 		for (int i = 0; i < arr.length; i++) {
 			StdOut.printf("%-3d  ", i);
 			for (int j = 0; j < arr[i].length; j++) 
