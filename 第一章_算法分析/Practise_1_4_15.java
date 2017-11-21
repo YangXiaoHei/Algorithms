@@ -15,8 +15,12 @@ public class Practise_1_4_15 {
 		 * 同样的，如果 a[left] + a[right] < 0
 		 * 说明无论在这个右侧索引的左边选择什么值，都不能让和大于等于0，
 		 * 因为都它们都小于 a[right],此时我们让左侧索引加1
+		 * 
+		 * 进一步优化，如果最小元素都大于0，全部都是正数，那也就不可能找得到 TwoSum 了
+		 * 所以第一步，判断首元素是否大于等于0
 		 */
 		public static int count(int[] a) {
+		    if (a == null || a.length == 0 || a[0] > 0) return 0;
 			int cnt = 0, N = a.length, lo = 0, hi = N - 1;
 			while (lo <= hi) {
 				if 		(a[lo] + a[hi] < 0) lo++;
@@ -28,6 +32,7 @@ public class Practise_1_4_15 {
 	}
 	static class ThreeSumFaster {
 		public static int count(int[] a) {
+		    if (a == null || a.length == 0 || a[0] > 0) return 0;
 			int cnt = 0, N = a.length, lo = 0, hi = 0;
 			for (int i = 0; i < N; i++) {
 				lo = i + 1; hi = N - 1;
