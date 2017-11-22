@@ -7,7 +7,7 @@ public class Practise_1_4_40 {
     /*
      * 思路 :
      * 
-     * 
+     * 结果为 N^3/16M
      * 
      * 
      */
@@ -45,16 +45,16 @@ public class Practise_1_4_40 {
         int[] arr = new int[N];
         int size = 0, r = 0;
         while (size < N) {
-            while (set.contains(r = StdRandom.uniform(-100, 100)));
+            while (set.contains(r = StdRandom.uniform(-100000, 100000)));
             arr[size++] = r;
             set.add(r);
         }
         return arr;
     }
 	public static void main(String[] args) {
-		int[] arr = sourceArr(50);
-		StdOut.println(Arrays.toString(arr));
-		StdOut.println(ThreeSum.fastCount(arr));
+	    int N = 1000;
+		int[] arr = sourceArr(N);
+		StdOut.println("理论值 : " + Math.pow(N, 3) / (16 * 100000) + "  实验值 : " + ThreeSum.fastCount(arr));
 	}
 	// output
 	/*
