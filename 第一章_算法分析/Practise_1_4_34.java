@@ -3,6 +3,16 @@ package 第一章_算法分析;
 import java.util.*;
 import edu.princeton.cs.algs4.*;
 
+/*
+ * 思路 :
+ * 
+ * 首先我们把距离定义为无穷大，然后用两个索引指向 lo = 0 和 hi = max
+ * 猜一次 lo, 再猜一次 hi, 因为后面这次猜了 hi，所以假如结果是冷，说明神秘数字在 mid 的左边，更靠近 lo，
+ * 那么就令 hi = mid
+ * 如果结果是热，说明神秘数字在 mid 的右边，更靠近 hi，那么就令 lo = mid
+ * 然后重复上述步骤，直到猜中
+ * 
+ */
 public class Practise_1_4_34 {
 	static class GuessGame {
 		public enum Result { CORRECT, HOT, COLD };
