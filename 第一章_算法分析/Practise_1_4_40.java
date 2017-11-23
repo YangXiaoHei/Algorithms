@@ -7,8 +7,15 @@ public class Practise_1_4_40 {
     /*
      * 思路 :
      * 
-     * 结果为 N^3/16M
      * 
+     * N 个数中挑 3 个的不同组合为 C(N, 3) ~ N^3/6
+     * 从 [-M, M] 中选 3 个数共有 (2M + 1)^N 种方式
+     * 从 [-M, M] 中选 3 个和为 0 的数共有 3M^2 + 3M + 1 种方式
+     * 从 [-M, M] 中选 3 个和不为 0 的数共有 (2M + 1)^(N - 1) 种方式
+     * 总共有 N^3/6 * (3M^2 + 3M + 1) * (2M + 1)^(N - 1)
+     * 所以平均值为 (N^3/6 * (3M^2 + 3M + 1) * (2M + 1)^(N - 1)) / (2M + 1)^N
+     * 
+     * 结果为 N^3/16M
      * 
      */
     static class ThreeSum {
@@ -52,14 +59,18 @@ public class Practise_1_4_40 {
         return arr;
     }
 	public static void main(String[] args) {
-	    int N = 1000;
-		int[] arr = sourceArr(N);
-		StdOut.println("理论值 : " + Math.pow(N, 3) / (16 * 100000) + "  实验值 : " + ThreeSum.fastCount(arr));
+	    int N = 1000, loops = 100;
+	    double rel = 0;
+	    int i = loops;
+	    while (i-- > 0)
+	        rel += ThreeSum.fastCount(sourceArr(N));
+	    rel /= loops * 1.0;
+		StdOut.println("理论值 : " + Math.pow(N, 3) / (16 * 100000) + "  实验值 : " + rel);
 	}
 	// output
 	/*
-	 * [-7, 92, 20, 68, -16, 41, -97, 16, -23, -48, 0, -42, -25, 10, 7, -65, -87, -5, 21, -82, -72, -89, 52, 34, -59, -90, 98, 63, -32, -77, -53, 59, -4, -55, -74, 95, -21, -57, -71, -47, -62, 9, 15, -69, 74, -28, -22, -45, -11, -6]
-        66
+	 * 理论值 : 625.0  实验值 : 626.82
 
+	 * 
 	 */
 }
