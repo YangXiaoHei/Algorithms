@@ -37,7 +37,7 @@ public class Text_Selection {
     }
    
     public static void main(String[] args) {
-        Integer[] arr = sourceArr(10);
+        Integer[] arr = Text_RandomArray.sourceArr(10);
         sort(arr);
         show(arr);
     }
