@@ -17,6 +17,9 @@ import edu.princeton.cs.algs4.StdOut;
  * 插入排序在最坏的情况下，即元素序列完全逆序的情况下，需要 
  * 1 + 2 + 3 + ... + N-1 = N(N-1)/2 ~ N^2/2 次 比较 和 N(N-1)/2 ~N^2/2 次交换
  * 
+ * 插入算法每次判断出 前者 比 后者大时，都交换元素，此时涉及到三个动作，int tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+ * 其实只需要将大的元素往右移，就可以只访问两次数组，性能可以大幅提高
+ * 
  */
 public class Text_Insertion {
     public static void sort(Comparable[] a) {
