@@ -17,17 +17,16 @@ public class Text_SortCompare {
                 a[i] = StdRandom.uniform();
             total += time(alg, a);
         }
-        return total;
+        return total / T * 1.0;
     }
     public static void main(String[] args) {
         String alg1 = "Insertion";
         String alg2 = "Selection";
-        int N = 1500;
+        int N = 2000;
         int T = 100;
         double t1 = timeRandomInput(alg1, N, T);
         double t2 = timeRandomInput(alg2, N, T);
-        StdOut.printf("For %d random Doubles\n %s is", N, alg1);
-        StdOut.printf("  %.1f times faster than %s\n", t2 / t1, alg2);
+        StdOut.printf("%s / %s = %.1f\n", alg1, alg2, t1/t2);
     }
     // output
     /*
