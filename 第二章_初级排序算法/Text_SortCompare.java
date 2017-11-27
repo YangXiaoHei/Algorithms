@@ -1,5 +1,7 @@
 package 第二章_初级排序算法;
 
+import java.util.Arrays;
+
 import edu.princeton.cs.algs4.*;
 
 public class Text_SortCompare {
@@ -11,10 +13,11 @@ public class Text_SortCompare {
     }
     public static double timeRandomInput(String alg, int N, int T) {
         double total = 0.0;
-        Double[] a = new Double[N];
         for (int t = 0; t < T; t++) {
+            Double[] a = new Double[N];
             for (int i = 0; i < N; i++)
                 a[i] = StdRandom.uniform();
+            Arrays.sort(a);
             total += time(alg, a);
         }
         return total / T * 1.0;
@@ -22,11 +25,11 @@ public class Text_SortCompare {
     public static void main(String[] args) {
         String alg1 = "Insertion";
         String alg2 = "Selection";
-        int N = 2000;
-        int T = 100;
+        int N = 100000;
+        int T = 1;
         double t1 = timeRandomInput(alg1, N, T);
         double t2 = timeRandomInput(alg2, N, T);
-        StdOut.printf("%s / %s = %.1f\n", alg1, alg2, t1/t2);
+        StdOut.printf("%s / %s = %.1f t1 = %.1f t2 = %.1f\n", alg1, alg2, t1/t2, t1, t2);
     }
     // output
     /*

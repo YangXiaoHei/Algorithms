@@ -29,6 +29,23 @@ public class Text_Insertion {
                 exch(a, j, j - 1);
         }
     }
+    public static void sort_i(Comparable[] a) {
+        int N = a.length;
+        boolean needInsert = false;
+        for (int i = 1; i < N; i++) {
+            Comparable b = a[i];
+            int j;
+            needInsert = false;
+            for (j = i - 1; j >= 0; j--) {
+                if (less(b, a[j])) {
+                    a[j + 1] = a[j];
+                    needInsert = true;
+                }
+            }
+            if (needInsert)
+                a[++j] = b;
+        }
+    }
     public static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;
     }
@@ -36,8 +53,9 @@ public class Text_Insertion {
         Comparable t = a[i]; a[i] = a[j]; a[j] = t;
     }
     public static void main(String[] args) {
-        Integer[] arr = Text_RandomArray.sourceArr(100);
-        sort(arr);
+        Integer[] arr = Text_RandomArray.sourceArr(10);
+//        Integer[] arr = new Integer[] {4, 3, 2, 1};
+        sort_i(arr);
         for (int i = 0; i < arr.length; i++) 
             StdOut.print(arr[i] + " ");
         StdOut.println();
