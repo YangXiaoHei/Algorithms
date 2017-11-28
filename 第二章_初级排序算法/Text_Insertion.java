@@ -1,6 +1,6 @@
 package 第二章_初级排序算法;
 
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.*;
 import static 第二章_初级排序算法.Text_Array.*;
 /*
  * 插入排序 :
@@ -30,21 +30,16 @@ public class Text_Insertion {
                 exch(a, j, j - 1);
         }
     }
-    public static void sort_i(Comparable[] a) {
+    public static void sort_improve(Comparable[] a) {
         int N = a.length;
-        boolean needInsert = false;
         for (int i = 1; i < N; i++) {
-            Comparable b = a[i];
-            int j;
-            needInsert = false;
-            for (j = i - 1; j >= 0; j--) {
-                if (less(b, a[j])) {
+            if (less(a[i], a[i - 1])) {
+                Comparable t = a[i];
+                int j;
+                for (j = i - 1; j >= 0 && less(t, a[j]); j--) 
                     a[j + 1] = a[j];
-                    needInsert = true;
-                }
+                a[j + 1] = t;
             }
-            if (needInsert)
-                a[++j] = b;
         }
     }
     public static boolean less(Comparable v, Comparable w) {
@@ -53,11 +48,45 @@ public class Text_Insertion {
     public static void exch(Comparable[] a, int i, int j) {
         Comparable t = a[i]; a[i] = a[j]; a[j] = t;
     }
-    public static void main(String[] args) {
-        Integer[] arr = sourceArr(10);
-        sort_i(arr);
-        for (int i = 0; i < arr.length; i++) 
-            StdOut.print(arr[i] + " ");
-        StdOut.println();
+    public static void performenceTest(int T, int N) {
+        double avrg = 0, avrgImpo = 0;
+        Stopwatch timer = null;
+        for (int i = 0; i < T; i++) {
+            Integer[] arr = sourceArr(N);
+            Integer[] copy = copy(arr);
+            
+            timer = new Stopwatch();
+            sort(arr);
+            avrg += timer.elapsedTime();
+            
+            timer = new Stopwatch();
+            sort_improve(copy);
+            avrgImpo += timer.elapsedTime();
+        }
+        StdOut.printf("对规模为 %d 的数组进行排序，【改善】性能是【未改善】性能的 %f 倍\n", N, avrg / avrgImpo);
     }
+    public static void main(String[] args) {
+        Integer[] arr = sourceArr(30, 0, 50);
+        StdOut.println("======= 排序开始 ========");
+        printWithIndexs(arr);
+        sort_improve(arr);
+        StdOut.println("======= 排序完成 ========");
+        printWithIndexs(arr);
+        
+        StdOut.println("======= 性能改善 ========");
+        performenceTest(10, 40000);
+    }
+    // output
+    /*
+     * 
+     *   ======= 排序开始 ========
+        0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   
+        26   14   0    40   11   34   32   31   48   13   49   21   35   30   43   23   34   49   11   0    19   37   27   29   16   21   19   30   49   31   
+        ======= 排序完成 ========
+        0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   
+        0    0    11   11   13   14   16   19   19   21   21   23   26   27   29   30   30   31   31   32   34   34   35   37   40   43   48   49   49   49   
+        ======= 性能改善 ========
+        对规模为 40000 的数组进行排序，【改善】性能是【未改善】性能的 2.302630 倍
+     * 
+     */
 }

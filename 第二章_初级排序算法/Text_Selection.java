@@ -49,7 +49,6 @@ public class Text_Selection {
             if (less(a[i], a[i - 1])) return false;
         return true;
     }
-   
     public static void main(String[] args) {
         Integer[] arr = sourceArr(10);
         sort(arr);

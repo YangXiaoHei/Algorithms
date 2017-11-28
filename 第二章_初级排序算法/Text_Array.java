@@ -34,6 +34,14 @@ public class Text_Array {
             arr[i] = new Integer(StdRandom.uniform(lo, hi));
         return arr;
     }
+    public static Integer[] copy(Integer[] src) {
+        if (src == null)
+            throw new IllegalArgumentException("source array cannot be null!");
+        Integer[] copy = new Integer[src.length];
+        for (int i = 0; i < src.length; i++) 
+            copy[i] = src[i].intValue();
+        return copy;
+    }
     /*
      * 产生一个 元素类型为 Integer 的无重复元素数组
      * 
