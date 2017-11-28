@@ -73,13 +73,23 @@ public class Text_Array {
      * @param hi 随机数上界，不能取到
      */
     public static Integer[] partialOrder(int N, int lo, int hi) {
+        return partialOrder(N, lo, hi, 0.2);
+    }
+    /*
+     * 产生一个 元素类型为 Integer 的部分有序数组，会随机产生指定比列的逆序对
+     * 
+     * @param N 数组尺寸
+     * @param lo 随机数下界，可以取到
+     * @param hi 随机数上界，不能取到
+     */
+    public static Integer[] partialOrder(int N, int lo, int hi, double scale) {
         if (N < 2)
             throw new IllegalArgumentException("array size cannot less than 2!");
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
         Integer[] arr = sourceArrNoDupli(N, lo, hi);
         Arrays.sort(arr);
-        int reverse = N / 5;
+        int reverse = (int)(N * scale);
         while (reverse-- > 0) {
             int i = StdRandom.uniform(N);
             int j = StdRandom.uniform(N);

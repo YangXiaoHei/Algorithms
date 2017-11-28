@@ -2,38 +2,70 @@ package 第二章_初级排序算法;
 
 import java.util.Arrays;
 import edu.princeton.cs.algs4.*;
+import static 第二章_初级排序算法.Text_Array.*;
 
 public class Text_SortCompare {
-    public static double time(String alg, Double[] a) {
+    public static double time(String alg, Integer[] a) {
         Stopwatch timer = new Stopwatch();
         if (alg.equals("Insertion")) Text_Insertion.sort(a);
         if (alg.equals("Selection")) Text_Selection.sort(a);
         return timer.elapsedTime();
     }
-    public static double timeRandomInput(String alg, int N, int T) {
+    /*
+     * 通过改变逆序对的比例，可以发现，逆序对数量越接近于数组元素数量，那么插入排序相对于选择排序的优势就越小
+     * 
+     * 
+     */
+    public static double timeRandomInput(String alg, int N, int T, double factor) {
         double total = 0.0;
+        Double[] a = new Double[N];
         for (int t = 0; t < T; t++) {
-            Double[] a = new Double[N];
-            for (int i = 0; i < N; i++)
-                a[i] = StdRandom.uniform();
-            Arrays.sort(a);
-            total += time(alg, a);
+            Integer[] arr = partialOrder(N, -100000, 100000, factor);
+            total += time(alg, arr);
         }
-        return total / T * 1.0;
+        return total;
     }
     public static void main(String[] args) {
         String alg1 = "Insertion";
         String alg2 = "Selection";
-        int N = 100000;
-        int T = 1;
-        double t1 = timeRandomInput(alg1, N, T);
-        double t2 = timeRandomInput(alg2, N, T);
-        StdOut.printf("%s / %s = %.1f t1 = %.1f t2 = %.1f\n", alg1, alg2, t1/t2, t1, t2);
+        int N = 10000;
+        int T = 5;
+        double factor = 1;
+        double t1 = timeRandomInput(alg1, N, T, factor);
+        double t2 = timeRandomInput(alg2, N, T, factor);
+        StdOut.printf("逆序对比例 : %.1f%%\n插入排序比选择排序快 %.3f 倍\n",factor * 100, t2 / t1);
     }
     // output
     /*
-     * For 1500 random Doubles
-         Insertion is  0.7 times faster than Selection
+     *  逆序对比例 : 10%
+        插入排序比选择排序快 3.135 倍
+
+        逆序对比例 : 20%
+        插入排序比选择排序快 2.349 倍
+
+        逆序对比例 : 30%
+        插入排序比选择排序快 1.803 倍
+        
+        逆序对比例 : 40%
+        插入排序比选择排序快 1.543 倍
+        
+        逆序对比例 : 50%
+        插入排序比选择排序快 1.474 倍
+        
+        逆序对比例 : 60%
+        插入排序比选择排序快 1.379 倍
+        
+        逆序对比例 : 70%
+        插入排序比选择排序快 1.191 倍
+        
+        逆序对比例 : 80%
+        插入排序比选择排序快 1.282 倍
+
+        逆序对比例 : 90%
+        插入排序比选择排序快 1.187 倍
+
+        逆序对比例 : 100%
+        插入排序比选择排序快 1.135 倍
 
      */
 }
