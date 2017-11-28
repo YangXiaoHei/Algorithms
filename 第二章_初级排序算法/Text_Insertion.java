@@ -1,6 +1,7 @@
 package 第二章_初级排序算法;
 
 import edu.princeton.cs.algs4.StdOut;
+import static 第二章_初级排序算法.Text_RandomArray.*;
 /*
  * 插入排序 :
  * 
@@ -53,8 +54,7 @@ public class Text_Insertion {
         Comparable t = a[i]; a[i] = a[j]; a[j] = t;
     }
     public static void main(String[] args) {
-        Integer[] arr = Text_RandomArray.sourceArr(10);
-//        Integer[] arr = new Integer[] {4, 3, 2, 1};
+        Integer[] arr = sourceArr(10);
         sort_i(arr);
         for (int i = 0; i < arr.length; i++) 
             StdOut.print(arr[i] + " ");

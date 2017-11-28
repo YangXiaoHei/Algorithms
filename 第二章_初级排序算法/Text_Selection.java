@@ -1,9 +1,7 @@
 package 第二章_初级排序算法;
 
-import java.util.Arrays;
-
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import static 第二章_初级排序算法.Text_RandomArray.*;
 
 /*
  * 选择排序 :
@@ -53,7 +51,7 @@ public class Text_Selection {
     }
    
     public static void main(String[] args) {
-        Integer[] arr = Text_RandomArray.sourceArr(10);
+        Integer[] arr = sourceArr(10);
         sort(arr);
         show(arr);
     }
