@@ -1,7 +1,7 @@
 package 第二章_初级排序算法;
 
 import edu.princeton.cs.algs4.StdOut;
-import static 第二章_初级排序算法.Text_RandomArray.*;
+import static 第二章_初级排序算法.Text_Array.*;
 
 /*
  * h 递增序列为 3 * k + 1 = 1 4 13 40 121 364

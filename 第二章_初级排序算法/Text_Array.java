@@ -3,7 +3,7 @@ package 第二章_初级排序算法;
 import java.util.*;
 import edu.princeton.cs.algs4.*;
 
-public class Text_RandomArray {
+public class Text_Array {
     /*
      * 产生一个 元素类型为 Integer 的数组, 默认元素上下界为 [-100, 100)
      * 
