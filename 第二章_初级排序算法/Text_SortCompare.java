@@ -1,20 +1,20 @@
 package 第二章_初级排序算法;
 
-import java.util.Arrays;
+import java.util.*;
 import edu.princeton.cs.algs4.*;
 import static 第二章_初级排序算法.Text_Array.*;
 
 public class Text_SortCompare {
     public static double time(String alg, Integer[] a) {
         Stopwatch timer = new Stopwatch();
-        if (alg.equals("Insertion")) Text_Insertion.sort(a);
+        if (alg.equals("Insertion")) Text_Insertion.sort_improve(a);
         if (alg.equals("Selection")) Text_Selection.sort(a);
         return timer.elapsedTime();
     }
     /*
      * 通过改变逆序对的比例，可以发现，逆序对数量越接近于数组元素数量，那么插入排序相对于选择排序的优势就越小
-     * 
-     * 
+     * 这里的插入排序选用了性能提升版本，如果是强行交换数组元素的话，那么在逆序对数量接近数组元素个数的情况下
+     * 插入排序几乎不会比选择排序快，可以看出，数组交换的成本很高昂
      */
     public static double timeRandomInput(String alg, int N, int T, double factor) {
         double total = 0.0;
