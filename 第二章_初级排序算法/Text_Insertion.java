@@ -74,7 +74,7 @@ public class Text_Insertion {
         printWithIndexs(arr);
         
         StdOut.println("======= 性能改善 ========");
-        performenceTest(10, 40000);
+        performenceTest(4, 40000);
     }
     // output
     /*
