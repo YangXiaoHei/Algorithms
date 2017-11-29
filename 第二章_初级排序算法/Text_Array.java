@@ -41,6 +41,21 @@ public class Text_Array {
     }
     
     /*
+     * 生成一个从 lo 到 hi 的自然增长序列的 int 数组
+     * 
+     * @param lo 元素下界，能取到
+     * @param hi 元素上界，能取到
+     */
+    public static int[] sourceArrInt(int lo, int hi) {
+        if (lo >= hi)
+            throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
+        int N = hi - lo + 1;
+        int[] arr = new int[N];
+        for (int i = 0; i < N; i++) 
+            arr[i] = lo++;
+        return arr;
+    }
+    /*
      * 生成一个从 lo 到 hi 的自然增长序列的 Integer 数组
      * 
      * @param lo 元素下界，能取到
@@ -183,6 +198,28 @@ public class Text_Array {
             throw new IllegalArgumentException("lo cannot greater or equal than hi!");
         int N = hi - lo + 1;
         Integer[] arr = sourceArr(lo, hi);
+        Arrays.sort(arr);
+        int i = 0, j = N - 1;
+        while (i <= j) {
+            Integer t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
+            i++; j--;
+        }
+        return arr;
+    }
+    /*
+     * 产生一个 元素类型为 Integer 的逆序数组，元素从 hi 到 lo 递减
+     * 
+     * @param N 数组尺寸
+     * @param lo 元素下界，可以取到
+     * @param hi 元素上界，可以取到
+     */
+    public static int[] reverseOrderInt(int hi, int lo) {
+        if (lo >= hi)
+            throw new IllegalArgumentException("lo cannot greater or equal than hi!");
+        int N = hi - lo + 1;
+        int[] arr = sourceArrInt(lo, hi);
         Arrays.sort(arr);
         int i = 0, j = N - 1;
         while (i <= j) {
