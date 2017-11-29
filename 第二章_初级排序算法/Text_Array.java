@@ -187,6 +187,19 @@ public class Text_Array {
         return arr;
     }
     /*
+     * 返回一个每个元素任意数量的 int 数组，数组中每个值可以由可变参数指定
+     * 
+     * @param N 数组尺寸
+     * @param ... 数组中需要填充的元素值
+     */
+    public static int[] threeValueArr(int N, int ...values) {
+        int count = values.length;
+        int[] arr = new int[N];
+        for (int i = 0; i < N; i++)
+            arr[i] = values[StdRandom.uniform(count)];
+        return arr;
+    }
+    /*
      * 产生一个 元素类型为 Integer 的逆序数组，元素从 hi 到 lo 递减
      * 
      * @param N 数组尺寸
