@@ -26,6 +26,19 @@ public class Text_Array {
         Arrays.sort(arr);
         return arr;
     }
+    /*
+     * 返回一个个元素都相等的 int 数组
+     * 
+     * @param N 元素数量
+     * @param key 值
+     */
+    public static int[] allIdenticalArr(int N, int key) {
+        if (N <= 0)
+            throw new IllegalArgumentException("array size cannot be negative or zero!");
+        int[] arr = new int[N];
+        Arrays.fill(arr, key);
+        return arr;
+    }
     
     /*
      * 生成一个从 lo 到 hi 的自然增长序列的 Integer 数组
