@@ -15,6 +15,19 @@ public class Text_Array {
         return sourceArr(0, N);
     }
     /*
+     * 返回一个已经排序完毕元素类型为 int 的数组
+     * 
+     * @param N 元素上界，能取到
+     */
+    public static int[] sortedArr(int N) {
+        if (N <= 0)
+            throw new IllegalArgumentException("array size cannot be negative or zero!");
+        int[] arr = sourceArrIntRandom(N);
+        Arrays.sort(arr);
+        return arr;
+    }
+    
+    /*
      * 生成一个从 lo 到 hi 的自然增长序列的 Integer 数组
      * 
      * @param lo 元素下界，能取到
@@ -41,6 +54,18 @@ public class Text_Array {
         for (int i = 0; i < N; i++) 
             arr[i] = new Integer(StdRandom.uniform(-100, 100));
         return arr;
+    }
+    /*
+     * 产生一个 元素类型为 int 的随机数组, 默认元素上下界为 [-100, 100)
+     * 
+     * @param N 数组尺寸
+     */
+    public static int[] sourceArrIntRandom(int N) {
+        Integer[] arr = sourceArrRandom(N);
+        int[] arri = new int[N];
+        for (int i = 0; i < N; i++)
+            arri[i] = arr[i].intValue();
+        return arri;
     }
     /*
      * 产生一个 元素类型为 Integer 的随机数组
@@ -168,6 +193,16 @@ public class Text_Array {
         StdOut.println();
         for (int i = 0; i < a.length; i++)
             StdOut.printf("%-5s", a[i].toString());
+        StdOut.println();
+    }
+    public static void printWithIndexs(int[] a) {
+        if (a == null)
+            throw new NullPointerException();
+        for (int i = 0; i < a.length; i++)
+            StdOut.printf("%-5d", i);
+        StdOut.println();
+        for (int i = 0; i < a.length; i++)
+            StdOut.printf("%-5d", a[i]);
         StdOut.println();
     }
 }
