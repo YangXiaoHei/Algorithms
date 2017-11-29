@@ -50,7 +50,7 @@ public class Text_Selection {
         return true;
     }
     public static void main(String[] args) {
-        Integer[] arr = sourceArr(10);
+        Integer[] arr = sourceArrRandom(10);
         sort(arr);
         show(arr);
     }

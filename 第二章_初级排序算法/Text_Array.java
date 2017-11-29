@@ -5,11 +5,36 @@ import edu.princeton.cs.algs4.*;
 
 public class Text_Array {
     /*
-     * 产生一个 元素类型为 Integer 的数组, 默认元素上下界为 [-100, 100)
+     * 生成一个从 0 到 N 的自然增长序列的 Integer 数组
+     * 
+     * @param N 元素上界，能取到
+     */
+    public static Integer[] sourceArr(int N) {
+        if (N <= 0)
+            throw new IllegalArgumentException("array size cannot be negative or zero!");
+        return sourceArr(0, N);
+    }
+    /*
+     * 生成一个从 lo 到 hi 的自然增长序列的 Integer 数组
+     * 
+     * @param lo 元素下界，能取到
+     * @param hi 元素上界，能取到
+     */
+    public static Integer[] sourceArr(int lo, int hi) {
+        if (lo >= hi)
+            throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
+        int N = hi - lo + 1;
+        Integer[] arr = new Integer[N];
+        for (int i = 0; i < N; i++) 
+            arr[i] = lo++;
+        return arr;
+    }
+    /*
+     * 产生一个 元素类型为 Integer 的随机数组, 默认元素上下界为 [-100, 100)
      * 
      * @param N 数组尺寸
      */
-    public static Integer[] sourceArr(int N) {
+    public static Integer[] sourceArrRandom(int N) {
         if (N < 0)
             throw new IllegalArgumentException("array size cannot be negative!");
         Integer[] arr = new Integer[N];
@@ -18,13 +43,13 @@ public class Text_Array {
         return arr;
     }
     /*
-     * 产生一个 元素类型为 Integer 的数组
+     * 产生一个 元素类型为 Integer 的随机数组
      * 
      * @param N 数组尺寸
      * @param lo 随机数下界，可以取到
      * @param hi 随机数上界，不能取到
      */
-    public static Integer[] sourceArr(int N, int lo, int hi) {
+    public static Integer[] sourceArrRandom(int N, int lo, int hi) {
         if (N < 0)
             throw new IllegalArgumentException("array size cannot be negative!");
         if (lo >= hi)
@@ -34,6 +59,13 @@ public class Text_Array {
             arr[i] = new Integer(StdRandom.uniform(lo, hi));
         return arr;
     }
+    /*
+     * 通过已有的 Integer 数组拷贝一个新的 Integer 数组，
+     * 注意这里并非只拷贝了数组里的指针，而是重新分配了每个元素的内存地址
+     * 
+     * @param src 待拷贝的源数组
+     * @return 拷贝后的新数组
+     */
     public static Integer[] copy(Integer[] src) {
         if (src == null)
             throw new IllegalArgumentException("source array cannot be null!");
@@ -102,18 +134,17 @@ public class Text_Array {
         return arr;
     }
     /*
-     * 产生一个 元素类型为 Integer 的逆序数组
+     * 产生一个 元素类型为 Integer 的逆序数组，元素从 hi 到 lo 递减
      * 
      * @param N 数组尺寸
-     * @param lo 随机数下界，可以取到
-     * @param hi 随机数上界，不能取到
+     * @param lo 元素下界，可以取到
+     * @param hi 元素上界，可以取到
      */
-    public static Integer[] reverseOrder(int N, int lo, int hi) {
-        if (N < 0)
-            throw new IllegalArgumentException("array size cannot be negative!");
+    public static Integer[] reverseOrder(int hi, int lo) {
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot greater or equal than hi!");
-        Integer[] arr = sourceArr(N, lo, hi);
+        int N = hi - lo + 1;
+        Integer[] arr = sourceArr(lo, hi);
         Arrays.sort(arr);
         int i = 0, j = N - 1;
         while (i <= j) {

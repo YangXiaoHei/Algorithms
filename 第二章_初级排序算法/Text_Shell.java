@@ -12,39 +12,33 @@ import static 第二章_初级排序算法.Text_Array.*;
  * 
  */
 public class Text_Shell {
+    private static int compares = 0;
     public static void sort(Comparable[] a) {
         int N = a.length;
         int h = 1;
         while (h < N / 3) h = 3 * h + 1;
-        int times = 1;
         while (h >= 1) {
-            StdOut.printf("\nh = %d\n", h);
-            for (int i = h; i < N; i++) {
-                StdOut.printf("i 递增为 %d\n", i);
-                for (int j = i; j >= h && less(a[j], a[j - h]); j -= h) {
-                    StdOut.printf("交换了 a[%d] = %d 和 a[%d] = %d\n", j, a[j], j - h, a[j - h]);
+            for (int i = h; i < N; i++) 
+                for (int j = i; j >= h && less(a[j], a[j - h]); j -= h) 
                     exch(a, j, j - h);
-                }
-            }
-            StdOut.printf("\n在 h = %d 情况下完成第 %d 轮交换\n", h, times++);
-            printWithIndexs(a);
-            StdOut.println();
             h /= 3;
         }
     }
     public static boolean less(Comparable v, Comparable w) {
+        compares++;
         return v.compareTo(w) < 0;
     }
     public static void exch(Comparable[] a, int i, int j) {
         Comparable t = a[i]; a[i] = a[j]; a[j] = t;
     }
     public static void main(String[] args) {
-        Integer[] a = reverseOrder(20, 1, 20);
+        Integer[] a = reverseOrder(20, 0);
         StdOut.println("======= 排序开始 ========");
         printWithIndexs(a);
         sort(a);
         StdOut.println("======= 排序完成 ========");
         printWithIndexs(a);
+        StdOut.printf("比较次数 : %d\n", compares);
     }
     // output
     /*

@@ -66,7 +66,7 @@ public class Text_Insertion {
         StdOut.printf("对规模为 %d 的数组进行排序，【改善】性能是【未改善】性能的 %f 倍\n", N, avrg / avrgImpo);
     }
     public static void main(String[] args) {
-        Integer[] arr = sourceArr(30, 0, 50);
+        Integer[] arr = sourceArrRandom(30, 0, 50);
         StdOut.println("======= 排序开始 ========");
         printWithIndexs(arr);
         sort_improve(arr);
