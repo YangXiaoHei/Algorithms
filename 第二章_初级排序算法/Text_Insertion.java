@@ -52,8 +52,8 @@ public class Text_Insertion {
         double avrg = 0, avrgImpo = 0;
         Stopwatch timer = null;
         for (int i = 0; i < T; i++) {
-            Integer[] arr = sourceArr(N);
-            Integer[] copy = copy(arr);
+            Integer[] arr = integerRandom_size(N);
+            Integer[] copy = integerCopy_arr(arr);
             
             timer = new Stopwatch();
             sort(arr);
@@ -66,12 +66,12 @@ public class Text_Insertion {
         StdOut.printf("对规模为 %d 的数组进行排序，【改善】性能是【未改善】性能的 %f 倍\n", N, avrg / avrgImpo);
     }
     public static void main(String[] args) {
-        Integer[] arr = sourceArrRandom(30, 0, 50);
+        Integer[] arr = integerRandom_size_bounds(30, 0, 50);
         StdOut.println("======= 排序开始 ========");
-        printWithIndexs(arr);
+        print(arr);
         sort_improve(arr);
         StdOut.println("======= 排序完成 ========");
-        printWithIndexs(arr);
+        print(arr);
         
         StdOut.println("======= 性能改善 ========");
         performenceTest(4, 40000);

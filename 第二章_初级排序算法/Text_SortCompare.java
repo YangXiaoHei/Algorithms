@@ -20,7 +20,7 @@ public class Text_SortCompare {
         double total = 0.0;
         Double[] a = new Double[N];
         for (int t = 0; t < T; t++) {
-            Integer[] arr = partialOrder(N, -100000, 100000, factor);
+            Integer[] arr = integerPartialOrder_size_bounds_ratio(N, -100000, 100000, factor);
             total += time(alg, arr);
         }
         return total;

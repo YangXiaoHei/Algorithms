@@ -28,7 +28,7 @@ public class Practise_2_1_06 {
         }
     }
     public static void main(String[] args) {
-        int[] arr = allIdenticalArr(100000, 10);
+        int[] arr = intAllSame_size_key(100000, 10);
         double t1, t2;
         Stopwatch timer = new Stopwatch();
         insertion(arr);

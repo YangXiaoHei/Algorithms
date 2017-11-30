@@ -23,7 +23,7 @@ public class Practise_2_1_08 {
         double pre = 0, cur = 0;
         for (int i = N, j = 0; j < T; i += i, j++) {
             Stopwatch timer = new Stopwatch();
-            insertion(threeValueArr(i, 3, 2, 1));
+            insertion(threeValue_size_vrg(i, 3, 2, 1));
             cur = timer.elapsedTime();
             StdOut.printf("规模为 %d 耗时 %.3f  倍率 : %.3f\n", i, cur, cur / pre);
             pre = cur;

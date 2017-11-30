@@ -34,12 +34,12 @@ public class Text_Shell {
         Comparable t = a[i]; a[i] = a[j]; a[j] = t;
     }
     public static void main(String[] args) {
-        Integer[] a = reverseOrder(20, 0);
+        Integer[] a = integerReverseOrder_bounds(20, 0);
         StdOut.println("======= 排序开始 ========");
-        printWithIndexs(a);
+        print(a);
         sort(a);
         StdOut.println("======= 排序完成 ========");
-        printWithIndexs(a);
+        print(a);
         StdOut.printf("比较次数 : %d\n", compares);
     }
     // output

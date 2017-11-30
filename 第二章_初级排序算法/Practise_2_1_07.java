@@ -48,7 +48,7 @@ public class Practise_2_1_07 {
         }    
     }
     public static void main(String[] args) {
-        int[] arr = reverseOrderInt(40000, 0);
+        int[] arr = intReverseOrder_bounds(40000, 0);
         double t1, t2;
         
         Stopwatch timer = new Stopwatch();

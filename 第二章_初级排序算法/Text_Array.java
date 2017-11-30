@@ -5,24 +5,59 @@ import edu.princeton.cs.algs4.*;
 
 public class Text_Array {
     /*
+     * 把 Integer[] 转成 int[]
+     * 
+     * @param iarr 待转换的数组
+     * @throw 空指针异常
+     */
+    public static int[] integerToInt(Integer[] iarr) {
+        if (iarr == null)
+            throw new NullPointerException();
+        int[] arr = new int[iarr.length];
+        for (int i = 0; i < iarr.length; i++)
+            arr[i] = iarr[i].intValue();
+        return arr;
+    }
+    /*
+     * 把 Object[] 转成 int[]，必须要是被类型擦出的 Integer[] 才行，否则抛出非法参数异常
+     * 
+     * @param oarr 待转换的数组
+     * @throw 空指针异常，非法参数异常
+     */
+    public static int[] integerToInt(Object[] oarr) {
+        if (oarr == null)
+            throw new NullPointerException();
+        for (Object o : oarr)
+            if (!(o instanceof Integer))
+                throw new IllegalArgumentException("wrong element type! cast fail!");
+        int N = oarr.length;
+        int[] arr = new int[N];
+        for (int i = 0; i < N; i++)
+            arr[i] = ((Integer)oarr[i]).intValue();
+        return arr;
+    }
+    
+    /*
      * 生成一个从 0 到 N 的自然增长序列的 Integer 数组
      * 
      * @param N 元素上界，能取到
+     * @throw 非法参数异常
      */
-    public static Integer[] sourceArr(int N) {
+    public static Integer[] integer_rightBounds(int N) {
         if (N <= 0)
             throw new IllegalArgumentException("array size cannot be negative or zero!");
-        return sourceArr(0, N);
+        return integer_bounds(0, N);
     }
     /*
      * 返回一个已经排序完毕元素类型为 int 的数组
      * 
      * @param N 元素上界，能取到
+     * @throw 非法参数异常
      */
-    public static int[] sortedArr(int N) {
+    public static int[] intSorted_size(int N) {
         if (N <= 0)
             throw new IllegalArgumentException("array size cannot be negative or zero!");
-        int[] arr = sourceArrIntRandom(N);
+        int[] arr = intRandom_size(N);
         Arrays.sort(arr);
         return arr;
     }
@@ -31,8 +66,9 @@ public class Text_Array {
      * 
      * @param N 元素数量
      * @param key 值
+     * @throw 非法参数异常
      */
-    public static int[] allIdenticalArr(int N, int key) {
+    public static int[] intAllSame_size_key(int N, int key) {
         if (N <= 0)
             throw new IllegalArgumentException("array size cannot be negative or zero!");
         int[] arr = new int[N];
@@ -45,8 +81,9 @@ public class Text_Array {
      * 
      * @param lo 元素下界，能取到
      * @param hi 元素上界，能取到
+     * @throw 非法参数异常
      */
-    public static int[] sourceArrInt(int lo, int hi) {
+    public static int[] int_bounds(int lo, int hi) {
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
         int N = hi - lo + 1;
@@ -60,8 +97,9 @@ public class Text_Array {
      * 
      * @param lo 元素下界，能取到
      * @param hi 元素上界，能取到
+     * @throw 非法参数异常
      */
-    public static Integer[] sourceArr(int lo, int hi) {
+    public static Integer[] integer_bounds(int lo, int hi) {
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
         int N = hi - lo + 1;
@@ -74,8 +112,9 @@ public class Text_Array {
      * 产生一个 元素类型为 Integer 的随机数组, 默认元素上下界为 [-100, 100)
      * 
      * @param N 数组尺寸
+     * @throw 非法参数异常
      */
-    public static Integer[] sourceArrRandom(int N) {
+    public static Integer[] integerRandom_size(int N) {
         if (N < 0)
             throw new IllegalArgumentException("array size cannot be negative!");
         Integer[] arr = new Integer[N];
@@ -87,9 +126,10 @@ public class Text_Array {
      * 产生一个 元素类型为 int 的随机数组, 默认元素上下界为 [-100, 100)
      * 
      * @param N 数组尺寸
+     * @throw 非法参数异常
      */
-    public static int[] sourceArrIntRandom(int N) {
-        Integer[] arr = sourceArrRandom(N);
+    public static int[] intRandom_size(int N) {
+        Integer[] arr = integerRandom_size(N);
         int[] arri = new int[N];
         for (int i = 0; i < N; i++)
             arri[i] = arr[i].intValue();
@@ -101,8 +141,9 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param lo 随机数下界，可以取到
      * @param hi 随机数上界，不能取到
+     * @throw 非法参数异常
      */
-    public static Integer[] sourceArrRandom(int N, int lo, int hi) {
+    public static Integer[] integerRandom_size_bounds(int N, int lo, int hi) {
         if (N < 0)
             throw new IllegalArgumentException("array size cannot be negative!");
         if (lo >= hi)
@@ -118,8 +159,9 @@ public class Text_Array {
      * 
      * @param src 待拷贝的源数组
      * @return 拷贝后的新数组
+     * @throw 非法参数异常
      */
-    public static Integer[] copy(Integer[] src) {
+    public static Integer[] integerCopy_arr(Integer[] src) {
         if (src == null)
             throw new IllegalArgumentException("source array cannot be null!");
         Integer[] copy = new Integer[src.length];
@@ -134,7 +176,7 @@ public class Text_Array {
      * @param lo 随机数下界，可以取到
      * @param hi 随机数上界，不能取到
      */
-    public static Integer[] sourceArrNoDupli(int N, int lo, int hi) {
+    public static Integer[] integerNoDupli_size_bounds(int N, int lo, int hi) {
         if (N < 0)
             throw new IllegalArgumentException("array size cannot be negative!");
         if (N > (hi - lo))
@@ -157,8 +199,8 @@ public class Text_Array {
      * @param lo 随机数下界，可以取到
      * @param hi 随机数上界，不能取到
      */
-    public static Integer[] partialOrder(int N, int lo, int hi) {
-        return partialOrder(N, lo, hi, 0.2);
+    public static Integer[] integerPartialOrder_size_bounds(int N, int lo, int hi) {
+        return integerPartialOrder_size_bounds_ratio(N, lo, hi, 0.2);
     }
     /*
      * 产生一个 元素类型为 Integer 的部分有序数组，会随机产生指定比列的逆序对
@@ -167,12 +209,12 @@ public class Text_Array {
      * @param lo 随机数下界，可以取到
      * @param hi 随机数上界，不能取到
      */
-    public static Integer[] partialOrder(int N, int lo, int hi, double scale) {
+    public static Integer[] integerPartialOrder_size_bounds_ratio(int N, int lo, int hi, double scale) {
         if (N < 2)
             throw new IllegalArgumentException("array size cannot less than 2!");
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
-        Integer[] arr = sourceArrNoDupli(N, lo, hi);
+        Integer[] arr = integerNoDupli_size_bounds(N, lo, hi);
         Arrays.sort(arr);
         int reverse = (int)(N * scale);
         while (reverse-- > 0) {
@@ -192,7 +234,7 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param ... 数组中需要填充的元素值
      */
-    public static int[] threeValueArr(int N, int ...values) {
+    public static int[] threeValue_size_vrg(int N, int ...values) {
         int count = values.length;
         int[] arr = new int[N];
         for (int i = 0; i < N; i++)
@@ -206,11 +248,11 @@ public class Text_Array {
      * @param lo 元素下界，可以取到
      * @param hi 元素上界，可以取到
      */
-    public static Integer[] reverseOrder(int hi, int lo) {
+    public static Integer[] integerReverseOrder_bounds(int hi, int lo) {
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot greater or equal than hi!");
         int N = hi - lo + 1;
-        Integer[] arr = sourceArr(lo, hi);
+        Integer[] arr = integer_bounds(lo, hi);
         Arrays.sort(arr);
         int i = 0, j = N - 1;
         while (i <= j) {
@@ -228,11 +270,11 @@ public class Text_Array {
      * @param lo 元素下界，可以取到
      * @param hi 元素上界，可以取到
      */
-    public static int[] reverseOrderInt(int hi, int lo) {
+    public static int[] intReverseOrder_bounds(int hi, int lo) {
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot greater or equal than hi!");
         int N = hi - lo + 1;
-        int[] arr = sourceArrInt(lo, hi);
+        int[] arr = int_bounds(lo, hi);
         Arrays.sort(arr);
         int i = 0, j = N - 1;
         while (i <= j) {
@@ -248,7 +290,7 @@ public class Text_Array {
      * 
      * @param 待打印数组
      */
-    public static void printWithIndexs(Comparable[] a) {
+    public static void print(Comparable[] a) {
         if (a == null)
             throw new NullPointerException();
         for (int i = 0; i < a.length; i++)
@@ -258,7 +300,7 @@ public class Text_Array {
             StdOut.printf("%-5s", a[i].toString());
         StdOut.println();
     }
-    public static void printWithIndexs(int[] a) {
+    public static void print(int[] a) {
         if (a == null)
             throw new NullPointerException();
         for (int i = 0; i < a.length; i++)
