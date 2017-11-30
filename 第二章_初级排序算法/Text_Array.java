@@ -19,7 +19,7 @@ public class Text_Array {
         return arr;
     }
     /*
-     * 把 Object[] 转成 int[]，必须要是被类型擦出的 Integer[] 才行，否则抛出非法参数异常
+     * 把 Object[] 转成 int[]，必须要是被类型擦除的 Integer[] 才行，否则抛出非法参数异常
      * 
      * @param oarr 待转换的数组
      * @throw 空指针异常，非法参数异常
