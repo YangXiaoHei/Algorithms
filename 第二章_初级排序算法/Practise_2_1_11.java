@@ -24,7 +24,9 @@ public class Practise_2_1_11 {
         }
     }
     public static void main(String[] args) {
-        int[] arr = intRandom_size(21);
+        int[] arr = intRandom_size(30);
+        print(arr);
+        insertion(arr);
         print(arr);
     }
 }

@@ -115,8 +115,8 @@ public class Text_Array {
      * @throw 非法参数异常
      */
     public static Integer[] integerRandom_size(int N) {
-        if (N < 0)
-            throw new IllegalArgumentException("array size cannot be negative!");
+        if (N <= 0)
+            throw new IllegalArgumentException("array size cannot be negative or zero!");
         Integer[] arr = new Integer[N];
         for (int i = 0; i < N; i++) 
             arr[i] = new Integer(StdRandom.uniform(-100, 100));
@@ -293,6 +293,7 @@ public class Text_Array {
     public static void print(Comparable[] a) {
         if (a == null)
             throw new NullPointerException();
+        StdOut.println();
         for (int i = 0; i < a.length; i++)
             StdOut.printf("%-5d", i);
         StdOut.println();
@@ -303,6 +304,7 @@ public class Text_Array {
     public static void print(int[] a) {
         if (a == null)
             throw new NullPointerException();
+        StdOut.println();
         for (int i = 0; i < a.length; i++)
             StdOut.printf("%-5d", i);
         StdOut.println();
