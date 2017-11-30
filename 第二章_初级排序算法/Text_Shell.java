@@ -34,7 +34,7 @@ public class Text_Shell {
         Comparable t = a[i]; a[i] = a[j]; a[j] = t;
     }
     public static void main(String[] args) {
-        Integer[] a = integerReverseOrder_bounds(20, 0);
+        Integer[] a = IntegerReverseOrder_bounds(20, 0);
         StdOut.println("======= 排序开始 ========");
         print(a);
         sort(a);
