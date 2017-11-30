@@ -248,12 +248,45 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param ... 数组中需要填充的元素值
      */
-    public static int[] threeValue_size_vrg(int size, int ...values) {
+    public static int[] int_size_vrg(int size, int ...values) {
+        if (size <= 0 || values == null)
+            throw new IllegalArgumentException();
         int count = values.length;
         int[] arr = new int[size];
         for (int i = 0; i < size; i++)
             arr[i] = values[StdRandom.uniform(count)];
         return arr;
+    }
+    /*
+     * 返回一个每个元素指定数量的 int 数组，数组中每个值可以由可变参数指定
+     * 
+     * @param eachAmount 每种元素填充的数量
+     * @param ... 数组中需要填充的元素值
+     */
+    public static int[] int_amount_vrg(int eachAmount, int ...values) {
+        if (values == null || eachAmount <= 0)
+            throw new IllegalArgumentException();
+        int count = eachAmount * values.length;
+        int[] arr = new int[count];
+        int cur = 0;
+        for (int i = 0; i < values.length; i++)
+            for (int j = 0; j < eachAmount; j++)
+                arr[cur++] = values[i];
+        shuffle(arr);
+        return arr;
+    }
+    /*
+     * 打乱一个数组
+     */
+    public static void shuffle(int[] a) {
+        if (a == null)
+            throw new NullPointerException();
+        for (int i = 0; i < a.length; i++) {
+            int r = i + StdRandom.uniform(a.length - i);
+            int t = a[i];
+            a[i] = a[r];
+            a[r] = t;
+        }
     }
     /*
      * 产生一个 元素类型为 Integer 的逆序数组，元素从 hi 到 lo 递减
