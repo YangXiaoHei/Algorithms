@@ -184,6 +184,21 @@ public class Text_Array {
         return copy;
     }
     /*
+     * 通过已有的 int 数组拷贝一个新的 int 数组
+     * 
+     * @param src 待拷贝的源数组
+     * @return 拷贝后的新数组
+     * @throw 非法参数异常
+     */
+    public static int[] intCopy_arr(int[] src) {
+        if (src == null)
+            throw new IllegalArgumentException("source array cannot be null!");
+        int[] copy = new int[src.length];
+        for (int i = 0; i < src.length; i++) 
+            copy[i] = src[i];
+        return copy;
+    }
+    /*
      * 产生一个 元素类型为 Integer 的无重复元素数组
      * 
      * @param N 数组尺寸
