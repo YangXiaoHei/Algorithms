@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_2_1_17 {
-    public static void draw(Double[] a, int markIndex1, int markIndex2) {
+    public static void draw(Double[] a,boolean mark, int markIndex1, int markIndex2) {
         StdDraw.clear();
         StdDraw.setXscale(-1, a.length);
         StdDraw.setYscale(-0.5, 1.5);
@@ -17,17 +17,20 @@ public class Practise_2_1_17 {
             double y = a[i] / 2.0;
             double rw = (1 - 0.3) / 2;
             double rh = a[i] / 2.0;
-            if (i == markIndex1 || i == markIndex2)
-                StdDraw.setPenColor(Color.RED);
-            else
+            if (mark) {
+                if (i == markIndex1 || i == markIndex2)
+                    StdDraw.setPenColor(Color.RED);
+                else
+                    StdDraw.setPenColor(Color.BLACK);
+            } else
                 StdDraw.setPenColor(Color.BLACK);
-            StdDraw.filledRectangle(x, y, rw, rh);
+            StdDraw.filledRectangle(x, y, rw, rh); 
         }
         try {
-            TimeUnit.MILLISECONDS.sleep(300);
+            TimeUnit.MILLISECONDS.sleep(100);
         } catch (Exception e) {}
     }
-    public static void draw(Double[] a, int markIndex1, int markIndex2, int curmin) {
+    public static void draw(Double[] a, boolean mark, int markIndex1, int markIndex2, int curmin) {
         StdDraw.clear();
         StdDraw.setXscale(-1, a.length);
         StdDraw.setYscale(-0.5, 1.5);
@@ -36,42 +39,47 @@ public class Practise_2_1_17 {
             double y = a[i] / 2.0;
             double rw = (1 - 0.3) / 2;
             double rh = a[i] / 2.0;
-            if (i == markIndex1 || i == markIndex2)
-                StdDraw.setPenColor(Color.RED);
-            else if (i == curmin)
-                StdDraw.setPenColor(Color.BLUE);
-            else
+            if (mark) {
+                if (i == markIndex1 || i == markIndex2)
+                    StdDraw.setPenColor(Color.RED);
+                else if (i == curmin)
+                    StdDraw.setPenColor(Color.BLUE);
+                else
+                    StdDraw.setPenColor(Color.BLACK);
+            } else
                 StdDraw.setPenColor(Color.BLACK);
             StdDraw.filledRectangle(x, y, rw, rh);
         }
         try {
-            TimeUnit.MILLISECONDS.sleep(300);
+            TimeUnit.MILLISECONDS.sleep(100);
         } catch (Exception e) {}
     }
     public static void selection(Double[] a) {
         for (int i = 0; i < a.length; i++) {
             int min = i;
             for (int j = i + 1; j < a.length; j++)  {
-                draw(a, i, j, min);
+                draw(a, true, i, j, min);
                 if (a[j] < a[min]) 
                     min = j;
             }
-            draw(a, i, min);
+            draw(a, true, i, min);
             Double t = a[i];
             a[i] = a[min];
             a[min] = t;
-            draw(a, i, min);
+            draw(a, true, i, min);
         }
+        draw(a, false, 0, 0);
     }
     public static void insertion(Double[] a) {
         for (int i = 1; i < a.length; i++)
             for (int j = i; j > 0 && a[j].compareTo(a[j - 1]) < 0; j--) {
-                draw(a,j, j - 1);
+                draw(a, true, j, j - 1);
                 Double t = a[j];
                 a[j] = a[j - 1];
                 a[j - 1] = t;
-                draw(a,j, j - 1);
+                draw(a, true, j, j - 1);
             }
+        draw(a, false, 0, 0);
     }
     public static void shell(Double[] a) {
         int N = a.length, h = 1;
@@ -79,14 +87,15 @@ public class Practise_2_1_17 {
         while (h >= 1) {
             for (int i = h; i < N; i++) 
                 for (int j = i; j >= h && a[j].compareTo(a[j - h]) < 0; j -= h) {
-                    draw(a, j, j - h);
+                    draw(a, true, j, j - h);
                     Double t = a[j];
                     a[j] = a[j - h];
                     a[j - h] = t;
-                    draw(a, j, j - h);
+                    draw(a, true, j, j - h);
                 }
             h /= 3;
         }
+        draw(a, false, 0, 0);
     }
     public static void main(String[] args) {
         Double[] a = DoubleRandom_size(50);
