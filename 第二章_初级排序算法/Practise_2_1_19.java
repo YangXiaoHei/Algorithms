@@ -20,10 +20,8 @@ public class Practise_2_1_19 {
         }
     }
     public static boolean less(int a, int b) { compares++; return a < b; }
-    
     public static void main(String[] args) {
-        int[] arr = null; 
-        int[] copy = null;
+        int[] arr = null, copy = null;
         while (true) {
             compares = 0;
             arr = intRandom_bounds(1,100);
