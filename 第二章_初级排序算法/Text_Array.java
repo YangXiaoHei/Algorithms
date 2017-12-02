@@ -4,6 +4,74 @@ import java.util.*;
 import edu.princeton.cs.algs4.*;
 
 public class Text_Array {
+    /*
+     * 返回按照高斯分布的 N 个值，均值为 mu
+     * 
+     * @param N 数组尺寸
+     * @param mu 均值 u
+     */
+    public static double[] gaussian(int N, double mu) {
+        double[] arr = new double[N];
+        for (int i = 0; i < N; i++)
+            // 平均值是 u, 那么产生的值最有可能是 u，产生其他值的概率随着大于或小于 u 变得越来越小
+            arr[i] = StdRandom.gaussian(mu, 1);
+        return arr;
+    }
+    /*
+     * 返回按照泊松分布的 N 个值
+     * 
+     * @param N 数组尺寸
+     * @param lambda 单位时间内发生的次数
+     */
+    public static double[] possion(int N, int lambda) {
+        double[] arr = new double[N];
+        for (int i = 0; i < N; i++)
+            // 单位时间内发生某件事的频度是 lambda，那么下一个单位时间内会发生该事件的次数是？
+            arr[i] = StdRandom.poisson(lambda);
+        return arr;
+    }
+    /*
+     * 返回按照几何分布的 N 个值
+     * 
+     * @param N 数组尺寸
+     * @param success 独立试验成功的概率
+     */
+    public static double[] geometric(int N, double success) {
+        double[] arr = new double[N];
+        for (int i = 0; i < N; i++)
+            // 如果某件事成功的概率是 0.1, 那么做了多少次这件事才第一次成功 ?
+            arr[i] = StdRandom.geometric(success);
+        return arr;
+    }
+    /*
+     * 返回按照指定概率离散分布的 N 个值
+     * 
+     * @param N 数组尺寸
+     * @param 概率集，加起来必须等于1
+     */
+    public static double[] discrete(int N, double...probabilities) {
+        if (probabilities == null) throw new IllegalArgumentException("argument array is null");
+        double EPSILON = 1E-14;
+        double sum = 0.0;
+        for (int i = 0; i < probabilities.length; i++) {
+            if (!(probabilities[i] >= 0.0))
+                throw new IllegalArgumentException("array entry " + i + " must be nonnegative: " + probabilities[i]);
+            sum += probabilities[i];
+        }
+        if (sum > 1.0 + EPSILON || sum < 1.0 - EPSILON)
+            throw new IllegalArgumentException("sum of array entries does not approximately equal 1.0: " + sum);
+        double[] arr = new double[N];
+        for (int i = 0; i < N; i++)
+            // 给定 0 ~ N 的每个数出现的概率，那么下一次产生 0 ~ N 中的几 ？
+            arr[i] = StdRandom.discrete(probabilities);
+        return arr;
+    }
+    /*
+     * 从字符串中解析出 int 数组
+     * 
+     * @param s 形如 "1,2,3,4,5,6,6" 的字符串，由 Arrays.toString(new int[]{1,2,3,4,5,6,6}) 产生
+     * 
+     */
     public static int[] parseIntFromString(String s) {
         String[] sArr = s.split(",\\s*");
         int[] arr = new int[sArr.length];
@@ -11,6 +79,12 @@ public class Text_Array {
             arr[i] = Integer.parseInt(sArr[i]);
         return arr;
     }
+    /*
+     * 从字符串中解析出 Double 数组
+     * 
+     * @param s 形如 "1.0,2.0,3.0,4.0,5.0,6.0" 的字符串，由 Arrays.toString(new double[]{1.0,2.0,3.0,4.0,5.0,6.0}) 产生
+     * 
+     */
     public static Double[] parseDoubleFromString(String s) {
         String[] sArr = s.split(",\\s*");
         Double[] arr = new Double[sArr.length];
@@ -399,14 +473,12 @@ public class Text_Array {
         return arr;
     }
     /*
-     * 带索引的打印一个数组
+     * 带索引的打印一个 Comparable 数组
      * 
      * @param 待打印数组
      */
     public static void print(Comparable[] a) {
-        if (a.length == 0) return;
-        if (a == null)
-            throw new NullPointerException();
+        if (a == null || a.length == 0) return;
         StdOut.println();
         for (int i = 0; i < a.length; i++)
             StdOut.printf("%-5d", i);
@@ -415,23 +487,28 @@ public class Text_Array {
             StdOut.printf("%-5s", a[i].toString());
         StdOut.println();
     }
-    public static void print(Double[] a) {
-        if (a.length == 0) return;
-        if (a == null)
-            throw new NullPointerException();
+    /*
+     * 带索引的打印一个 double 数组
+     * 
+     * @param 待打印数组
+     */
+    public static void print(double[] a) {
+        if (a == null || a.length == 0) return;
         StdOut.println();
         for (int i = 0; i < a.length; i++)
-            StdOut.printf("%-10d", i);
+            StdOut.printf("%-5d", i);
         StdOut.println();
         for (int i = 0; i < a.length; i++)
-            StdOut.printf("%-10.3f", a[i]);
+            StdOut.printf("%-5.1f", a[i]);
         StdOut.println();
     }
-    
+    /*
+     * 带索引的打印一个 int 数组
+     * 
+     * @param 待打印数组
+     */
     public static void print(int[] a) {
-        if (a.length == 0) return;
-        if (a == null)
-            throw new NullPointerException();
+        if (a == null || a.length == 0) return;
         StdOut.println();
         for (int i = 0; i < a.length; i++)
             StdOut.printf("%-5d", i);
