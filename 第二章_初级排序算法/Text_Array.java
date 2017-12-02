@@ -50,6 +50,18 @@ public class Text_Array {
             arr[i] = ((Integer)oarr[i]).intValue();
         return arr;
     }
+    public static long[] LongTolong(Object[] oarr) {
+        if (oarr == null)
+            throw new NullPointerException();
+        for (Object o : oarr)
+            if (!(o instanceof Long))
+                throw new IllegalArgumentException("wrong element type! cast fail!");
+        int N = oarr.length;
+        long[] arr = new long[N];
+        for (int i = 0; i < N; i++)
+            arr[i] = ((Long)oarr[i]).longValue();
+        return arr;
+    }
     
     /*
      * 生成一个从 0 到 N 的自然增长序列的 Integer 数组
