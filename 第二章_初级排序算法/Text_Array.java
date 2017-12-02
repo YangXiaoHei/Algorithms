@@ -5,6 +5,40 @@ import edu.princeton.cs.algs4.*;
 
 public class Text_Array {
     /*
+     * 二分查找
+     */
+    public static int rank(int[] a, int key) {
+        int lo = 0, hi = a.length - 1;
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+            if      (a[mid] < key) lo = mid + 1;
+            else if (a[mid] > key) hi = mid - 1;
+            else    return mid;
+        }
+        return -1;
+    }
+    /*
+     * 返回一个数组，其中的每个元素距离最终位置的距离不超过 N
+     * 
+     * @param N 数组尺寸 
+     * @param distance 偏移距离
+     */
+    public static int[] whthinDistance(int N, int distance) {
+        int[] sorted = intNoDupli_size(N);
+        Arrays.sort(sorted);
+        int[] swapped = intCopy_arr(sorted);
+        for (int j = 0; j < N; j++) 
+            for (int k = j + 1; k < N; k++) {
+                if (Math.abs(rank(sorted, swapped[j]) - k) <= distance &&
+                    Math.abs(rank(sorted, swapped[k]) - j) <= distance) {
+                    int t = swapped[j];
+                    swapped[j] = swapped[k];
+                    swapped[k] = t;
+                }
+            }
+        return swapped;
+    }
+    /*
      * 返回按照高斯分布的 N 个值，均值为 mu
      * 
      * @param N 数组尺寸
@@ -272,7 +306,7 @@ public class Text_Array {
             throw new IllegalArgumentException("array size cannot be negative or zero!");
         Integer[] arr = new Integer[size];
         for (int i = 0; i < size; i++) 
-            arr[i] = new Integer(StdRandom.uniform(-100, 100));
+            arr[i] = new Integer(StdRandom.uniform(-size, size));
         return arr;
     }
     /*
@@ -372,6 +406,35 @@ public class Text_Array {
     /*
      * 产生一个 元素类型为 Integer 的无重复元素数组
      * 
+     * @param size 数组尺寸
+     */
+    public static Integer[] IntegerNoDupli_size(int size) {
+        if (size < 0)
+            throw new IllegalArgumentException("array size cannot be negative!");
+        if (size > Integer.MAX_VALUE / 10)
+            throw new IllegalArgumentException("size is too large to generate a no duplicated array");
+        Set<Integer> set = new HashSet<Integer>();
+        Integer[] arr = new Integer[size];
+        for (int i = 0; i < size; i++) {
+            int r = StdRandom.uniform(size * 10);
+            while (set.contains(r))
+                r = StdRandom.uniform(size * 10);
+            arr[i] = r;
+            set.add(r);
+        }
+        return arr;
+    }
+    /*
+     * 产生一个 元素类型为 int 的无重复元素数组
+     * 
+     * @param size 数组尺寸
+     */
+    public static int[] intNoDupli_size(int size) {
+        return IntegerToInt(IntegerNoDupli_size(size));
+    }
+    /*
+     * 产生一个 元素类型为 Integer 的无重复元素数组
+     * 
      * @param N 数组尺寸
      * @param lo 随机数下界，可以取到
      * @param hi 随机数上界，不能取到
@@ -391,6 +454,16 @@ public class Text_Array {
             set.add(r);
         }
         return arr;
+    }
+    /*
+     * 产生一个 元素类型为 int 的无重复元素数组
+     * 
+     * @param N 数组尺寸
+     * @param lo 随机数下界，可以取到
+     * @param hi 随机数上界，不能取到
+     */
+    public static int[] intNoDupli_size_bounds(int size, int lo, int hi) {
+        return IntegerToInt(IntegerNoDupli_size_bounds(size, lo, hi));
     }
     /*
      * 产生一个 元素类型为 Integer 的部分有序数组，会随机产生占数组尺寸 20% 的逆序对
