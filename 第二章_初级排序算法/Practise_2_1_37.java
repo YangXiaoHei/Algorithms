@@ -60,14 +60,14 @@ public class Practise_2_1_37 {
     }
     public static void main(String[] args) {
         StdOut.printf("对照试验 : %.3f\n", shell(intRandom_size(80000)) * 100);
-        StdOut.printf("95%%有序部分随机 : %.3f\n", shell(sorted95PercentageAndOthersRandom(80000)) * 100);
+        StdOut.printf("95%%有序其余随机 : %.3f\n", shell(sorted95PercentageAndOthersRandom(80000)) * 100);
         StdOut.printf("距最终位置不超过10 : %.3f\n", shell(within10(80000)) * 100);
         StdOut.printf("5%%随机分布 : %.3f\n", shell(sorted95PercentageAndOthersRandomOrder(80000)) * 100);
     }
     // output
     /*
      *  对照试验 : 0.070000
-        95%有序部分随机 : 0.020000
+        95%有序其余随机 : 0.020000
         距最终位置不超过10 : 0.014000
         5%随机分布 : 0.073000
      */
