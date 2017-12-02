@@ -136,6 +136,11 @@ public class Text_Array {
             arr[i] = lo++;
         return arr;
     }
+    public static Integer[] IntegerRandom_bounds(int lo, int hi) {
+        Integer[] arr = Integer_bounds(lo, hi);
+        shuffle(arr);
+        return arr;
+    }
     /*
      * 产生一个 元素类型为 Integer 的随机数组, 默认元素上下界为 [-100, 100)
      * 
@@ -325,6 +330,16 @@ public class Text_Array {
      * 打乱一个数组
      */
     public static void shuffle(int[] a) {
+        if (a == null)
+            throw new NullPointerException();
+        for (int i = 0; i < a.length; i++) {
+            int r = i + StdRandom.uniform(a.length - i);
+            int t = a[i];
+            a[i] = a[r];
+            a[r] = t;
+        }
+    }
+    public static void shuffle(Integer[] a) {
         if (a == null)
             throw new NullPointerException();
         for (int i = 0; i < a.length; i++) {
