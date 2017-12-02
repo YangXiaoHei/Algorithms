@@ -2,7 +2,6 @@ package 第二章_初级排序算法;
 
 import static 第二章_初级排序算法.Text_Array.*;
 import edu.princeton.cs.algs4.*;
-import java.util.*;
 
 public class Practise_2_1_29 {
     public static int[] incs_A = { 4188161, 2354689, 1045055, 587521, 260609, 146305, 64769, 36289, 16001, 8929, 3905, 2161, 929, 505, 209, 109, 41, 19, 5, 1};
