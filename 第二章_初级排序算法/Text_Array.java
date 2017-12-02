@@ -112,13 +112,7 @@ public class Text_Array {
      * @throw 非法参数异常
      */
     public static int[] int_bounds(int lo, int hi) {
-        if (lo >= hi)
-            throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
-        int N = hi - lo + 1;
-        int[] arr = new int[N];
-        for (int i = 0; i < N; i++) 
-            arr[i] = lo++;
-        return arr;
+        return IntegerToInt(Integer_bounds(lo, hi));
     }
     /*
      * 生成一个从 lo 到 hi 的自然增长序列的 Integer 数组
@@ -136,6 +130,13 @@ public class Text_Array {
             arr[i] = lo++;
         return arr;
     }
+    /*
+     * 生成一个元素取值从 lo 到 hi 的乱序 Integer 数组
+     * 
+     * @param lo 元素下界，能取到
+     * @param hi 元素上界，能取到
+     * @throw 非法参数异常
+     */
     public static Integer[] IntegerRandom_bounds(int lo, int hi) {
         Integer[] arr = Integer_bounds(lo, hi);
         shuffle(arr);
@@ -162,11 +163,7 @@ public class Text_Array {
      * @throw 非法参数异常
      */
     public static int[] intRandom_size(int size) {
-        Integer[] arr = IntegerRandom_size(size);
-        int[] arri = new int[size];
-        for (int i = 0; i < size; i++)
-            arri[i] = arr[i].intValue();
-        return arri;
+        return IntegerToInt(IntegerRandom_size(size));
     }
     /*
      * 产生一个取值范围是 [lo, hi] 的随机顺序的数组
@@ -176,14 +173,10 @@ public class Text_Array {
      * @throw 非法参数异常
      */
     public static int[] intRandom_bounds(int lo, int hi) {
-        if (lo >= hi)
-            throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
-        int N = hi - lo + 1;
-        int[] arr = new int[N];
-        for (int i = 0; i < N; i++)
-            arr[i] = lo++;
-        shuffle(arr);
-        return arr;
+        return IntegerToInt(IntegerRandom_bounds(lo, hi));
+    }
+    public static int[] intRandom_size_bounds(int size, int lo, int hi) {
+        return IntegerToInt(IntegerRandom_size_bounds(size, lo, hi));
     }
     /*
      * 产生一个 元素类型为 Integer 的随机数组
