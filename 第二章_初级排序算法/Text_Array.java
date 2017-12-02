@@ -10,7 +10,7 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param mu 均值 u
      */
-    public static double[] gaussian(int N, double mu) {
+    public static double[] gaussian_size_mean(int N, double mu) {
         double[] arr = new double[N];
         for (int i = 0; i < N; i++)
             // 平均值是 u, 那么产生的值最有可能是 u，产生其他值的概率随着大于或小于 u 变得越来越小
@@ -23,7 +23,7 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param lambda 单位时间内发生的次数
      */
-    public static double[] possion(int N, int lambda) {
+    public static double[] possion_size_lambda(int N, int lambda) {
         double[] arr = new double[N];
         for (int i = 0; i < N; i++)
             // 单位时间内发生某件事的频度是 lambda，那么下一个单位时间内会发生该事件的次数是？
@@ -36,7 +36,7 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param success 独立试验成功的概率
      */
-    public static double[] geometric(int N, double success) {
+    public static double[] geometric_size_success(int N, double success) {
         double[] arr = new double[N];
         for (int i = 0; i < N; i++)
             // 如果某件事成功的概率是 0.1, 那么做了多少次这件事才第一次成功 ?
@@ -49,7 +49,7 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param 概率集，加起来必须等于1
      */
-    public static double[] discrete(int N, double...probabilities) {
+    public static double[] discrete_size_pros(int N, double...probabilities) {
         if (probabilities == null) throw new IllegalArgumentException("argument array is null");
         double EPSILON = 1E-14;
         double sum = 0.0;
@@ -124,6 +124,12 @@ public class Text_Array {
             arr[i] = ((Integer)oarr[i]).intValue();
         return arr;
     }
+    /*
+     * 把 Object[] 转成 long[]，必须要是被类型擦除的 Long[] 才行，否则抛出非法参数异常
+     * 
+     * @param oarr 待转换的数组
+     * @throw 空指针异常，非法参数异常
+     */
     public static long[] LongTolong(Object[] oarr) {
         if (oarr == null)
             throw new NullPointerException();
@@ -134,6 +140,24 @@ public class Text_Array {
         long[] arr = new long[N];
         for (int i = 0; i < N; i++)
             arr[i] = ((Long)oarr[i]).longValue();
+        return arr;
+    }
+    /*
+     * 把 Double[] 转成 double[]
+     * 
+     * @param oarr 待转换的数组
+     * @throw 空指针异常，非法参数异常
+     */
+    public static double[] DoubleTodouble(Double[] darr) {
+        if (darr == null)
+            throw new NullPointerException();
+        for (Double o : darr)
+            if (!(o instanceof Double))
+                throw new IllegalArgumentException("wrong element type! cast fail!");
+        int N = darr.length;
+        double[] arr = new double[N];
+        for (int i = 0; i < N; i++)
+            arr[i] = ((Double)darr[i]).doubleValue();
         return arr;
     }
     
@@ -161,6 +185,15 @@ public class Text_Array {
         for (int i = 0; i < size; i++)
             d[i] = StdRandom.uniform();
         return d;
+    }
+    /*
+     * 生成一个元素值从 0 到 1 浮点数随机分布的数组
+     * 
+     * @param N 数组尺寸
+     * @throw 非法参数异常
+     */
+    public static double[] doubleRandom_size(int size) {
+        return DoubleTodouble(DoubleRandom_size(size));
     }
     /*
      * 返回一个已经排序完毕元素类型为 int 的数组
@@ -261,6 +294,14 @@ public class Text_Array {
     public static int[] intRandom_bounds(int lo, int hi) {
         return IntegerToInt(IntegerRandom_bounds(lo, hi));
     }
+    /*
+     * 产生一个 元素类型为 int 的随机数组
+     * 
+     * @param N 数组尺寸
+     * @param lo 随机数下界，可以取到
+     * @param hi 随机数上界，不能取到
+     * @throw 非法参数异常
+     */
     public static int[] intRandom_size_bounds(int size, int lo, int hi) {
         return IntegerToInt(IntegerRandom_size_bounds(size, lo, hi));
     }
@@ -296,6 +337,21 @@ public class Text_Array {
         Integer[] copy = new Integer[src.length];
         for (int i = 0; i < src.length; i++) 
             copy[i] = src[i].intValue();
+        return copy;
+    }
+    /*
+     * 通过已有的 double 数组拷贝一个新的 double 数组
+     * 
+     * @param src 待拷贝的源数组
+     * @return 拷贝后的新数组
+     * @throw 非法参数异常
+     */
+    public static double[] doubleCopy_arr(double[] src) {
+        if (src == null)
+            throw new IllegalArgumentException("source array cannot be null!");
+        double[] copy = new double[src.length];
+        for (int i = 0; i < src.length; i++) 
+            copy[i] = src[i];
         return copy;
     }
     /*
