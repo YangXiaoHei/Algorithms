@@ -1,9 +1,7 @@
 package 第二章_初级排序算法;
 
 import static 第二章_初级排序算法.Text_Array.*;
-import java.util.Arrays;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.Stopwatch;
+import edu.princeton.cs.algs4.*;
 
 public class Practise_2_1_24 {
     public static double insertion_A(int[] a) {
@@ -48,6 +46,5 @@ public class Practise_2_1_24 {
     /*
      *  哨兵法 : 1.725000
         普通法 : 4.027000
-
      */
 }
