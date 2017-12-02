@@ -4,6 +4,20 @@ import java.util.*;
 import edu.princeton.cs.algs4.*;
 
 public class Text_Array {
+    public static int[] parseIntFromString(String s) {
+        String[] sArr = s.split(",\\s*");
+        int[] arr = new int[sArr.length];
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = Integer.parseInt(sArr[i]);
+        return arr;
+    }
+    public static Double[] parseDoubleFromString(String s) {
+        String[] sArr = s.split(",\\s*");
+        Double[] arr = new Double[sArr.length];
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = Double.parseDouble(sArr[i]);
+        return arr;
+    }
     /*
      * 把 Integer[] 转成 int[]
      * 
@@ -148,6 +162,23 @@ public class Text_Array {
         for (int i = 0; i < size; i++)
             arri[i] = arr[i].intValue();
         return arri;
+    }
+    /*
+     * 产生一个取值范围是 [lo, hi] 的随机顺序的数组
+     * 
+     * @param lo 下界 可以取到
+     * @param hi 上界 可以取到
+     * @throw 非法参数异常
+     */
+    public static int[] intRandom_bounds(int lo, int hi) {
+        if (lo >= hi)
+            throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
+        int N = hi - lo + 1;
+        int[] arr = new int[N];
+        for (int i = 0; i < N; i++)
+            arr[i] = lo++;
+        shuffle(arr);
+        return arr;
     }
     /*
      * 产生一个 元素类型为 Integer 的随机数组

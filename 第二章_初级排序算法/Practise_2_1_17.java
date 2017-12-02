@@ -1,17 +1,21 @@
 package 第二章_初级排序算法;
 
 import static 第二章_初级排序算法.Text_Array.*;
-
 import java.awt.Color;
 import java.util.concurrent.TimeUnit;
-
 import edu.princeton.cs.algs4.*;
 
 public class Practise_2_1_17 {
+    public static Double[] maxComparesSequence = 
+            parseDoubleFromString("48, 46, 54, 97, 83, 69, 76, 25, 10, 5, 87, 12, 21, 99, 61, 33, 30, 47, 57, 4, 36, 42, 98, 66, 100, 17, 94, 81, 11, 77, 24, 89, 73, 53, 38, 7, 29, 8, 27, 23, 56, 70, 60, 85, 39, 65, 9, 75, 15, 67, 64, 22, 51, 82, 43, 3, 37, 91, 45, 13, 34, 63, 74, 71, 95, 55, 80, 92, 2, 19, 62, 40, 84, 41, 50, 88, 86, 59, 28, 44, 72, 68, 14, 35, 93, 26, 18, 78, 31, 58, 96, 6, 1, 90, 49, 16, 52, 79, 32, 20");
     public static void draw(Double[] a,boolean mark, int markIndex1, int markIndex2) {
+        Double max = Double.MIN_VALUE;
+        for (Double d : a)
+            if (d.compareTo(max) > 0)
+                max = d;
         StdDraw.clear();
         StdDraw.setXscale(-1, a.length);
-        StdDraw.setYscale(-0.5, 1.5);
+        StdDraw.setYscale(-0.5, max.doubleValue() + 0.5);
         for (int i = 0; i < a.length; i++) {
             double x = i;
             double y = a[i] / 2.0;
@@ -31,9 +35,13 @@ public class Practise_2_1_17 {
         } catch (Exception e) {}
     }
     public static void draw(Double[] a, boolean mark, int markIndex1, int markIndex2, int curmin) {
+        Double max = Double.MIN_VALUE;
+        for (Double d : a)
+            if (d.compareTo(max) > 0)
+                max = d;
         StdDraw.clear();
         StdDraw.setXscale(-1, a.length);
-        StdDraw.setYscale(-0.5, 1.5);
+        StdDraw.setYscale(-0.5, max.doubleValue() + 0.5);
         for (int i = 0; i < a.length; i++) {
             double x = i;
             double y = a[i] / 2.0;
@@ -102,5 +110,6 @@ public class Practise_2_1_17 {
 //        insertion(a);
         shell(a);
 //        selection(a);
+//        shell(maxComparesSequence);
     }
 }
