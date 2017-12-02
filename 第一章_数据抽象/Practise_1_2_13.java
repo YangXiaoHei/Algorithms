@@ -23,7 +23,7 @@ public class Practise_1_2_13 {
 			
 			amount = result[2];
 			if (!Pattern.compile("[1-9]\\d*(\\.\\d+)?").matcher(amount).find())
-				throw new RuntimeException("invalid amount " + when);
+				throw new RuntimeException("invalid amount " + amount);
 			
 			StdOut.println(this);
 			StdOut.println("==========================");

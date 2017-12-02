@@ -21,7 +21,7 @@ public class Practise_2_1_20 {
     }
     public static boolean less(int a, int b) { compares++; return a < b; }
     public static void main(String[] args) {
-        int[] arr = int_bounds(1, 100);
+        int[] arr = int_bounds(1, 30);
         int[] copy = intCopy_arr(arr);
         shell(arr);
         StdOut.printf("compares : %d\n", compares);
