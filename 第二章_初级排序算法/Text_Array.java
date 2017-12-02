@@ -404,6 +404,7 @@ public class Text_Array {
      * @param 待打印数组
      */
     public static void print(Comparable[] a) {
+        if (a.length == 0) return;
         if (a == null)
             throw new NullPointerException();
         StdOut.println();
@@ -415,6 +416,7 @@ public class Text_Array {
         StdOut.println();
     }
     public static void print(Double[] a) {
+        if (a.length == 0) return;
         if (a == null)
             throw new NullPointerException();
         StdOut.println();
@@ -427,6 +429,7 @@ public class Text_Array {
     }
     
     public static void print(int[] a) {
+        if (a.length == 0) return;
         if (a == null)
             throw new NullPointerException();
         StdOut.println();

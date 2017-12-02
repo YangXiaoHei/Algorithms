@@ -24,7 +24,6 @@ public class Practise_2_1_33 {
     public static void main(String[] args) {
         StdDraw.setXscale(0, 500);
         StdDraw.setYscale(-1, 1);
-        
         double sum = 0;
         for (int i = 1;; i++) {
             StdDraw.setPenRadius(.004);
