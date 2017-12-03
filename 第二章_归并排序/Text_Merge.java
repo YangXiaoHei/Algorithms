@@ -33,6 +33,22 @@ public class Text_Merge {
         sort_B(a, 0, a.length - 1);
         return timer.elapsedTime();
     }
+    /*
+     * 归并排序改进 C
+     */
+    public static double merge_C(Comparable[] a) {
+        Stopwatch timer = new Stopwatch();
+        Comparable[] aux = a.clone();
+//        StdOut.println(isShallowCopy(aux, a) + "sdfsdfsdf");
+        sort_C(aux, a, 0, a.length - 1);
+        return timer.elapsedTime();
+    }
+    public static boolean isShallowCopy(Comparable[] a, Comparable[] b) {
+        for (Comparable aa : a)
+            for (Comparable bb : b)
+                if (aa.equals(bb) && aa != bb) return false;
+        return true;
+    }
     private static void sort(Comparable[] a, int lo, int hi) {
         if (lo >= hi) return;
         int mid = (lo + hi) / 2;
@@ -59,6 +75,28 @@ public class Text_Merge {
         if (a[mid].compareTo(a[mid + 1]) < 0) return;
         mergeSort(a, lo, mid, hi);
     }
+    public static void sort_C(Comparable[] src, Comparable[] dest, int lo, int hi) {
+        if (hi - lo <= 7) {
+            insertion(dest, lo, hi);
+            return;
+        }
+        int mid = (lo + hi) / 2;
+        sort_C(dest, src, lo, mid);
+        sort_C(dest, src, mid + 1, hi);
+        if (src[mid].compareTo(src[mid + 1]) < 0) {
+            System.arraycopy(src, lo, dest, lo , hi - lo + 1);
+            return;
+        }
+        mergeSort_C(src, dest, lo, mid, hi);
+    }
+    private static void mergeSort_C(Comparable[] src, Comparable[] dest, int lo, int mid, int hi) {
+        int i = lo, j = mid + 1;
+        for (int k = lo; k <= hi; k++) 
+            if      (i > mid)                      dest[k] = src[j++];
+            else if (j > hi)                       dest[k] = src[i++];
+            else if (src[j].compareTo(src[i]) < 0) dest[k] = src[j++];
+            else                                   dest[k] = src[i++];
+    }
     private static void mergeSort(Comparable[] a, int lo, int mid, int hi) {
         int i = lo, j = mid + 1;
         for (int k = lo; k <= hi; k++)
@@ -67,7 +105,7 @@ public class Text_Merge {
             if      (i > mid)                      a[k] = aux[j++];
             else if (j > hi)                       a[k] = aux[i++];
             else if (aux[j].compareTo(aux[i]) < 0) a[k] = aux[j++];
-            else    a[k] = aux[i++]; 
+            else                                   a[k] = aux[i++]; 
     }
     /*
      * 希尔排序
@@ -127,12 +165,32 @@ public class Text_Merge {
         return true;
     }
     public static void main(String[] args) {
-//        draw(1000000);
-        Double[] d = DoubleRandom_size(8000000);
+        int N = 10000000;
+        Double[] d = DoubleRandom_size(N);
         Double[] copy = DoubleCopy_arr(d);
+        Double[] copy1 = DoubleCopy_arr(d);
         Double[] copy2 = DoubleCopy_arr(d);
-        StdOut.printf("归并排序 A : %.3f\n", merge_A(copy));
+        StdOut.printf("========== 规模 : %d ==========\n", N);
+        StdOut.printf("归并排序 C : %.3f\n", merge_C(copy));
+        StdOut.printf("归并排序 B : %.3f\n", merge_B(copy1));
+        StdOut.printf("归并排序 A : %.3f\n", merge_A(copy2));
         StdOut.printf("归并排序 : %.3f\n", merge(d));
-        
     }
+    // output
+    /*
+     *  ========== 规模 : 9000000 ==========
+        归并排序 C : 4.962
+        归并排序 B : 5.165
+        归并排序 A : 5.073
+        归并排序 : 5.973
+        
+        
+        ========== 规模 : 10000000 ==========
+        归并排序 C : 5.659
+        归并排序 B : 6.266
+        归并排序 A : 5.999
+        归并排序 : 14.486
+
+
+     */
 }
