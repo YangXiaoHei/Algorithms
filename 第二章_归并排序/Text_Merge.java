@@ -16,6 +16,18 @@ public class Text_Merge {
         return timer.elapsedTime();
     }
     /*
+     * 归并排序 迭代版
+     */
+    public static double merge_iterativly(Comparable[] a) {
+        Stopwatch timer = new Stopwatch();
+        int N = a.length;
+        aux = new Comparable[N];
+        for (int sz = 1; sz < N; sz += sz) 
+            for (int lo = 0; lo < N - sz; lo += 2 * sz) 
+                mergeSort(a, lo, lo + sz - 1, Math.min(lo + 2 * sz - 1,  N - 1));
+        return timer.elapsedTime();
+    }
+    /*
      * 归并排序改进 A
      */
     public static double merge_A(Comparable[] a) {
@@ -165,32 +177,46 @@ public class Text_Merge {
         return true;
     }
     public static void main(String[] args) {
-        int N = 10000000;
+        int N = 4000000;
         Double[] d = DoubleRandom_size(N);
         Double[] copy = DoubleCopy_arr(d);
         Double[] copy1 = DoubleCopy_arr(d);
         Double[] copy2 = DoubleCopy_arr(d);
+        Double[] copy3 = DoubleCopy_arr(d);
+        Double[] copy4 = DoubleCopy_arr(d);
         StdOut.printf("========== 规模 : %d ==========\n", N);
+        StdOut.printf("希尔排序 : %.3f\n", shell(copy4));
         StdOut.printf("归并排序 C : %.3f\n", merge_C(copy));
         StdOut.printf("归并排序 B : %.3f\n", merge_B(copy1));
         StdOut.printf("归并排序 A : %.3f\n", merge_A(copy2));
         StdOut.printf("归并排序 : %.3f\n", merge(d));
+        StdOut.printf("归并排序 迭代 : %.3f\n", merge_iterativly(copy3));
+        
     }
     // output
     /*
-     *  ========== 规模 : 9000000 ==========
-        归并排序 C : 4.962
-        归并排序 B : 5.165
-        归并排序 A : 5.073
-        归并排序 : 5.973
+     *  ========== 规模 : 5000000 ==========
+        希尔排序 : 7.301
+        归并排序 C : 2.366
+        归并排序 B : 3.050
+        归并排序 A : 2.598
+        归并排序 : 2.552
+        归并排序 迭代 : 2.885
         
+        ========== 规模 : 6000000 ==========
+        希尔排序 : 9.452
+        归并排序 C : 2.954
+        归并排序 B : 3.335
+        归并排序 A : 9.256
+        归并排序 : 3.208
+        归并排序 迭代 : 3.544
         
-        ========== 规模 : 10000000 ==========
-        归并排序 C : 5.659
-        归并排序 B : 6.266
-        归并排序 A : 5.999
-        归并排序 : 14.486
-
-
+        ========== 规模 : 8000000 ==========
+        希尔排序 : 13.570
+        归并排序 C : 4.001
+        归并排序 B : 11.296 // 猜测是垃圾回收导致 ?
+        归并排序 A : 4.459
+        归并排序 : 4.404
+        归并排序 迭代 : 4.867
      */
 }
