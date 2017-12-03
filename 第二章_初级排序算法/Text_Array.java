@@ -389,6 +389,21 @@ public class Text_Array {
         return copy;
     }
     /*
+     * 通过已有的 Double 数组拷贝一个新的 Double 数组
+     * 
+     * @param src 待拷贝的源数组
+     * @return 拷贝后的新数组
+     * @throw 非法参数异常
+     */
+    public static Double[] DoubleCopy_arr(Double[] src) {
+        if (src == null)
+            throw new IllegalArgumentException("source array cannot be null!");
+        Double[] copy = new Double[src.length];
+        for (int i = 0; i < src.length; i++) 
+            copy[i] = src[i].doubleValue();
+        return copy;
+    }
+    /*
      * 通过已有的 int 数组拷贝一个新的 int 数组
      * 
      * @param src 待拷贝的源数组
@@ -614,6 +629,16 @@ public class Text_Array {
         StdOut.println();
         for (int i = 0; i < a.length; i++)
             StdOut.printf("%-5s", a[i].toString());
+        StdOut.println();
+    }
+    public static void print(Double[] a) {
+        if (a == null || a.length == 0) return;
+        StdOut.println();
+        for (int i = 0; i < a.length; i++)
+            StdOut.printf("%-7d", i);
+        StdOut.println();
+        for (int i = 0; i < a.length; i++)
+            StdOut.printf("%-7.2f", a[i].doubleValue());
         StdOut.println();
     }
     /*
