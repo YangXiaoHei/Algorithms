@@ -51,7 +51,6 @@ public class Text_Merge {
     public static double merge_C(Comparable[] a) {
         Stopwatch timer = new Stopwatch();
         Comparable[] aux = a.clone();
-//        StdOut.println(isShallowCopy(aux, a) + "sdfsdfsdf");
         sort_C(aux, a, 0, a.length - 1);
         return timer.elapsedTime();
     }
