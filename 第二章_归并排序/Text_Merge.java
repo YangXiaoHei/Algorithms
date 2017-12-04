@@ -181,19 +181,19 @@ public class Text_Merge {
     public static void main(String[] args) {
         int N = 100000;
         Double[] d = DoubleRandom_size(N);
-        Double[] copy = DoubleCopy_arr(d);
+//        Double[] copy = DoubleCopy_arr(d);
 //        Double[] copy1 = DoubleCopy_arr(d);
 //        Double[] copy2 = DoubleCopy_arr(d);
-//        Double[] copy3 = DoubleCopy_arr(d);
+        Double[] copy3 = DoubleCopy_arr(d);
 //        Double[] copy4 = DoubleCopy_arr(d);
         StdOut.printf("========== 规模 : %d ==========\n", N);
 //        StdOut.printf("希尔排序 : %.3f\n", shell(copy4));
-        StdOut.printf("归并排序 C : %.3f\n", merge_C(copy));
+//        StdOut.printf("归并排序 C : %.3f\n", merge_C(copy));
 //        StdOut.printf("归并排序 B : %.3f\n", merge_B(copy1));
 //        StdOut.printf("归并排序 A : %.3f\n", merge_A(copy2));
 //        StdOut.printf("归并排序 : %.3f\n", merge(d));
-//        StdOut.printf("归并排序 迭代 : %.3f\n", merge_iterativly(copy3));
-        assert isSorted(copy);
+        StdOut.printf("归并排序 迭代 : %.3f\n", merge_iterativly(copy3));
+        assert isSorted(copy3);
         
     }
     // output

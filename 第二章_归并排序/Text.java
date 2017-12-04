@@ -4,6 +4,25 @@ import edu.princeton.cs.algs4.*;
 import static 第二章_初级排序算法.Text_Array.*;
 
 public class Text {
+    public static double merge_iterative(int[] a) {
+        Stopwatch timer = new Stopwatch();
+        int N = a.length;
+        aux = new int[N];
+        for (int sz = 1; sz < N; sz += sz) 
+            for (int lo = 0; lo < N - sz; lo += 2 * sz)
+                mergeSort(a, lo, lo + sz - 1, Math.min(lo + 2 * sz - 1, N - 1));
+        return timer.elapsedTime();
+    }
+    public static void mergeSort(int[] a, int lo, int mid, int hi) {
+        int i = lo, j = mid + 1;
+        for (int k = lo; k <= hi; k++)
+            aux[k] = a[k];
+        for (int k = lo; k <= hi; k++)
+            if      (i > mid)           a[k] = aux[j++];
+            else if (j > hi)            a[k] = aux[i++];
+            else if (aux[j] < aux[i])   a[k] = aux[j++];  
+            else                        a[k] = aux[i++];
+    } 
     private static int[] aux;
     public static double merge(int[] a) {
         Stopwatch timer = new Stopwatch();
@@ -52,8 +71,8 @@ public class Text {
         return true;
     }
     public static void main(String[] args) {
-        int[] arr = intRandom_size(100000);
-        StdOut.printf("规模 : %d 用时 : %.3f\n", arr.length, merge(arr));
+        int[] arr = intRandom_size(10000000);
+        StdOut.printf("规模 : %d 用时 : %.3f\n", arr.length, merge_iterative(arr));
         assert isSorted(arr);
     }
 }
