@@ -665,10 +665,10 @@ public class Text_Array {
         if (a == null || a.length == 0) return;
         StdOut.println();
         for (int i = 0; i < a.length; i++)
-            StdOut.printf("%-5d", i);
+            StdOut.printf("%-8d", i);
         StdOut.println();
         for (int i = 0; i < a.length; i++)
-            StdOut.printf("%-5d", a[i]);
+            StdOut.printf("%-8d", a[i]);
         StdOut.println();
     }
 }
