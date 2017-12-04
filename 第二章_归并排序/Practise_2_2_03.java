@@ -23,10 +23,13 @@ public class Practise_2_2_03 {
         /*
          * E A S Y Q U E S T I O N
          * 
-         * A E   S Y   Q U   E S   I T   N O
+         * A E   S Y   Q U   E S   I T   N O    sz = 1
          * 
-         * A E S Y   E Q S U   
+         * A E S Y   E Q S U   I N O T          sz = 2
          * 
+         * A E E Q S S U Y   I N O T            sz = 4
+         * 
+         * A E E I N O Q S S T U Y              sz = 8
          */
     }
 }
