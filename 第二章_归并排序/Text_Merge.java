@@ -179,25 +179,26 @@ public class Text_Merge {
         return true;
     }
     public static void main(String[] args) {
-        int N = 1000000;
+        int N = 51200000;
         Double[] d = DoubleRandom_size(N);
-        Double[] copy = DoubleCopy_arr(d);
-        Double[] copy1 = DoubleCopy_arr(d);
-        Double[] copy2 = DoubleCopy_arr(d);
-        Double[] copy3 = DoubleCopy_arr(d);
-        Double[] copy4 = DoubleCopy_arr(d);
+//        Double[] copy = DoubleCopy_arr(d);
+//        Double[] copy1 = DoubleCopy_arr(d);
+//        Double[] copy2 = DoubleCopy_arr(d);
+//        Double[] copy3 = DoubleCopy_arr(d);
+//        Double[] copy4 = DoubleCopy_arr(d);
         StdOut.printf("========== 规模 : %d ==========\n", N);
-        StdOut.printf("希尔排序 : %.3f\n", shell(copy4));
-        StdOut.printf("归并排序 C : %.3f\n", merge_C(copy));
-        StdOut.printf("归并排序 B : %.3f\n", merge_B(copy1));
-        StdOut.printf("归并排序 A : %.3f\n", merge_A(copy2));
-        StdOut.printf("归并排序 : %.3f\n", merge(d));
-        StdOut.printf("归并排序 迭代 : %.3f\n", merge_iterativly(copy3));
-        assert isSorted(copy1);
-        assert isSorted(copy2);
-        assert isSorted(copy3);
-        assert isSorted(copy4);
+//        StdOut.printf("希尔排序 : %.3f\n", shell(copy4));
+        StdOut.printf("归并排序 C : %.3f\n", merge_C(d));
+//        StdOut.printf("归并排序 B : %.3f\n", merge_B(copy1));
+//        StdOut.printf("归并排序 A : %.3f\n", merge_A(copy2));
+//        StdOut.printf("归并排序 : %.3f\n", merge(copy));
+//        StdOut.printf("归并排序 迭代 : %.3f\n", merge_iterativly(copy3));
         assert isSorted(d);
+//        assert isSorted(copy1);
+//        assert isSorted(copy2);
+//        assert isSorted(copy3);
+//        assert isSorted(copy4);
+//        assert isSorted(d);
     }
     // output
     /*
