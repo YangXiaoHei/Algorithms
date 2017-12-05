@@ -20,7 +20,6 @@ public class Practise_1_5_13 {
 				root = id[root];
 			while (id[p] != root) {
 				int parent = id[p];
-				sz[parent] -= sz[p];
 				id[p] = root;
 				p = parent;
 			}
@@ -84,7 +83,7 @@ public class Practise_1_5_13 {
 	 * 
 	 */
 	public static void main(String[] args) {
-		int N = 100000000, pairCount = 1000000000;
+		int N = 100000000, pairCount = 100000000;
 		Text_Generator gen = new Text_RandomPairGenerator(N);
 		CompressedWeightedQuickUnion cqu = new CompressedWeightedQuickUnion(N);
 	    Stopwatch timer = new Stopwatch();

@@ -113,8 +113,8 @@ public class Practise_1_5_14 {
 	}
 	public static void main(String[] args) {
 		int N = 20;
-		Stopwatch timer = new Stopwatch();
 		Text_Generator gen = new Text_RandomPairGenerator(N);
+		Stopwatch timer = new Stopwatch();
 		DepthWeightedQuickUnion dcqu = new DepthWeightedQuickUnion(N);
 		for (int i = 0; i < N; i++) {
 			int[] pair = gen.nextPair();

@@ -219,10 +219,9 @@ public class Practise_1_5_24 {
             int root = p;
             while (root != id[root])
                 root = id[root];
-            while (p != id[p]) {
+            while (id[p] != root) {
                 int parent = id[p];
                 id[p] = root;
-                size[parent] -= size[p];
                 p = parent;
             }
             return root;
