@@ -26,7 +26,7 @@ public class Practise_2_2_10 {
         int i = lo, j = hi;
         for (int k = lo; k <= hi; k++)
             if (aux[j] < aux[i])    a[k] = aux[j--];
-            else                a[k] = aux[i++];
+            else                    a[k] = aux[i++];
     }
     public static void main(String[] args) {
         int[] arr = intRandom_size(20);
