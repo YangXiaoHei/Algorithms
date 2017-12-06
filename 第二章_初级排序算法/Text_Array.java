@@ -310,6 +310,29 @@ public class Text_Array {
         return arr;
     }
     /*
+     * 生成一个适合改进条件 a[mid] < a[mid + 1] 发挥作用的数组，适合程度仅次于完全排序就位的数组
+     * 
+     * @param N 数组尺寸，并不一定会用这个值，而是使用 满足 2 的幂次方的小于 N 的最大值
+     * 
+     * 生成的数组如下 [2 1 4 3 6 5 8 7 10 9 12 11 ....]
+     */
+    public static int[] forMergeSortTest(int N) {
+        if (N <= 0)
+            throw new IllegalArgumentException("array size cannot be negative or zero!");
+        int k = (int)(Math.log(N) / Math.log(2));
+        N = (int)Math.pow(2, k);
+        int base = 2, beg = 2, i = 2;
+        int[] arr = new int[N];
+        int index = 0;
+        while (true) {
+            for (int m = 0; m < 2; m++) 
+                arr[index++] = beg--;
+            if (index == N) break;
+            beg = (i++) * base;
+        }
+        return arr;
+    }
+    /*
      * 产生一个 元素类型为 int 的随机数组, 默认元素上下界为 [-100, 100)
      * 
      * @param N 数组尺寸
