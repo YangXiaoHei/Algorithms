@@ -3,11 +3,21 @@ package 第二章_初级排序算法;
 import java.util.*;
 import edu.princeton.cs.algs4.*;
 
+/*
+ * **********************************************************************
+ * 这是一个生成供排序测试数组的工具类，在此工具类中，方法的实现和命名统一遵守下列隐含条件
+ * 
+ * 1, 对于指定了元素取值左右边界的函数，边界默认是闭区间，而非半开半闭区间，换言之，上界和下界都能取到
+ * 2, Java 支持函数重载，因此不再按照自解释的长句子给函数命名，尽量以简洁为主
+ * 3, 如果没有额外说明，函数默认生成的是随机数组，元素取值域为 [-size, size]
+ * 4, 对于需要生成无重复随机值的函数，元素取值域为 [0, size * 10]
+ * **********************************************************************
+ */
 public class Text_Array {
     /*
      * 二分查找
      */
-    public static int rank(int[] a, int key) {
+    public static int binarySearch(int[] a, int key) {
         int lo = 0, hi = a.length - 1;
         while (lo <= hi) {
             int mid = (lo + hi) / 2;
@@ -24,13 +34,13 @@ public class Text_Array {
      * @param distance 偏移距离
      */
     public static int[] whthinDistance(int N, int distance) {
-        int[] sorted = intNoDupli_size(N);
+        int[] sorted = intsNoDupli(N);
         Arrays.sort(sorted);
-        int[] swapped = intCopy_arr(sorted);
+        int[] swapped = intsCopy(sorted);
         for (int j = 0; j < N; j++) 
             for (int k = j + 1; k < N; k++) {
-                if (Math.abs(rank(sorted, swapped[j]) - k) <= distance &&
-                    Math.abs(rank(sorted, swapped[k]) - j) <= distance) {
+                if (Math.abs(binarySearch(sorted, swapped[j]) - k) <= distance &&
+                    Math.abs(binarySearch(sorted, swapped[k]) - j) <= distance) {
                     int t = swapped[j];
                     swapped[j] = swapped[k];
                     swapped[k] = t;
@@ -44,7 +54,7 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param mu 均值 u
      */
-    public static double[] gaussian_size_mean(int N, double mu) {
+    public static double[] gaussian(int N, double mu) {
         double[] arr = new double[N];
         for (int i = 0; i < N; i++)
             // 平均值是 u, 那么产生的值最有可能是 u，产生其他值的概率随着大于或小于 u 变得越来越小
@@ -57,7 +67,7 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param lambda 单位时间内发生的次数
      */
-    public static double[] possion_size_lambda(int N, int lambda) {
+    public static double[] possion(int N, int lambda) {
         double[] arr = new double[N];
         for (int i = 0; i < N; i++)
             // 单位时间内发生某件事的频度是 lambda，那么下一个单位时间内会发生该事件的次数是？
@@ -70,7 +80,7 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param success 独立试验成功的概率
      */
-    public static double[] geometric_size_success(int N, double success) {
+    public static double[] geometric(int N, double success) {
         double[] arr = new double[N];
         for (int i = 0; i < N; i++)
             // 如果某件事成功的概率是 0.1, 那么做了多少次这件事才第一次成功 ?
@@ -83,7 +93,7 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param 概率集，加起来必须等于1
      */
-    public static double[] discrete_size_pros(int N, double...probabilities) {
+    public static double[] discrete(int N, double...probabilities) {
         if (probabilities == null) throw new IllegalArgumentException("argument array is null");
         double EPSILON = 1E-14;
         double sum = 0.0;
@@ -201,10 +211,15 @@ public class Text_Array {
      * @param N 元素上界，能取到
      * @throw 非法参数异常
      */
-    public static Integer[] Integer_rightBounds(int hi) {
-        if (hi <= 0)
+    public static Integer[] Integers(int size) {
+        if (size <= 0)
             throw new IllegalArgumentException("array size cannot be negative or zero!");
-        return Integer_bounds(0, hi);
+        if (size == Integer.MAX_VALUE)
+            throw new IllegalArgumentException("this size will result in overflow while generate random value");
+        Integer[] d = new Integer[size];
+        for (int i = 0; i < size; i++)
+            d[i] = StdRandom.uniform(-size, size + 1);
+        return d;
     }
     /*
      * 生成一个元素值从 0 到 1 浮点数随机分布的数组
@@ -212,7 +227,7 @@ public class Text_Array {
      * @param N 数组尺寸
      * @throw 非法参数异常
      */
-    public static Double[] DoubleRandom_size(int size) {
+    public static Double[] Doubles(int size) {
         if (size <= 0)
             throw new IllegalArgumentException("array size cannot be negative or zero!");
         Double[] d = new Double[size];
@@ -226,8 +241,8 @@ public class Text_Array {
      * @param N 数组尺寸
      * @throw 非法参数异常
      */
-    public static double[] doubleRandom_size(int size) {
-        return DoubleTodouble(DoubleRandom_size(size));
+    public static double[] doubles(int size) {
+        return DoubleTodouble(Doubles(size));
     }
     /*
      * 返回一个已经排序完毕元素类型为 int 的数组
@@ -235,10 +250,10 @@ public class Text_Array {
      * @param N 元素上界，能取到
      * @throw 非法参数异常
      */
-    public static int[] intSorted_size(int size) {
+    public static int[] sortedInts(int size) {
         if (size <= 0)
             throw new IllegalArgumentException("array size cannot be negative or zero!");
-        int[] arr = intRandom_size(size);
+        int[] arr = ints(size);
         Arrays.sort(arr);
         return arr;
     }
@@ -249,7 +264,7 @@ public class Text_Array {
      * @param key 值
      * @throw 非法参数异常
      */
-    public static int[] intAllSame_size_key(int size, int key) {
+    public static int[] allSameInts(int size, int key) {
         if (size <= 0)
             throw new IllegalArgumentException("array size cannot be negative or zero!");
         int[] arr = new int[size];
@@ -264,8 +279,8 @@ public class Text_Array {
      * @param hi 元素上界，能取到
      * @throw 非法参数异常
      */
-    public static int[] int_bounds(int lo, int hi) {
-        return IntegerToInt(Integer_bounds(lo, hi));
+    public static int[] ints(int lo, int hi) {
+        return IntegerToInt(Integers(lo, hi));
     }
     /*
      * 生成一个从 lo 到 hi 的自然增长序列的 Integer 数组
@@ -274,7 +289,7 @@ public class Text_Array {
      * @param hi 元素上界，能取到
      * @throw 非法参数异常
      */
-    public static Integer[] Integer_bounds(int lo, int hi) {
+    public static Integer[] IntegersRange(int lo, int hi) {
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
         int N = hi - lo + 1;
@@ -290,25 +305,25 @@ public class Text_Array {
      * @param hi 元素上界，能取到
      * @throw 非法参数异常
      */
-    public static Integer[] IntegerRandom_bounds(int lo, int hi) {
-        Integer[] arr = Integer_bounds(lo, hi);
+    public static Integer[] Integers(int lo, int hi) {
+        Integer[] arr = IntegersRange(lo, hi);
         shuffle(arr);
         return arr;
     }
-    /*
-     * 产生一个 元素类型为 Integer 的随机数组, 默认元素上下界为 [-100, 100)
-     * 
-     * @param N 数组尺寸
-     * @throw 非法参数异常
-     */
-    public static Integer[] IntegerRandom_size(int size) {
-        if (size <= 0)
-            throw new IllegalArgumentException("array size cannot be negative or zero!");
-        Integer[] arr = new Integer[size];
-        for (int i = 0; i < size; i++) 
-            arr[i] = new Integer(StdRandom.uniform(-size, size));
-        return arr;
-    }
+//    /*
+//     * 产生一个 元素类型为 Integer 的随机数组, 默认元素上下界为 [-100, 100)
+//     * 
+//     * @param N 数组尺寸
+//     * @throw 非法参数异常
+//     */
+//    public static Integer[] Integers(int size) {
+//        if (size <= 0)
+//            throw new IllegalArgumentException("array size cannot be negative or zero!");
+//        Integer[] arr = new Integer[size];
+//        for (int i = 0; i < size; i++) 
+//            arr[i] = new Integer(StdRandom.uniform(-size, size));
+//        return arr;
+//    }
     /*
      * 生成一个适合改进条件 a[mid] < a[mid + 1] 发挥作用的数组，适合程度仅次于完全排序就位的数组
      * 
@@ -333,24 +348,24 @@ public class Text_Array {
         return arr;
     }
     /*
-     * 产生一个 元素类型为 int 的随机数组, 默认元素上下界为 [-100, 100)
+     * 产生一个 元素类型为 int 的随机数组, 默认元素上下界为 [-size, size]
      * 
      * @param N 数组尺寸
      * @throw 非法参数异常
      */
-    public static int[] intRandom_size(int size) {
-        return IntegerToInt(IntegerRandom_size(size));
+    public static int[] ints(int size) {
+        return IntegerToInt(Integers(size));
     }
-    /*
-     * 产生一个取值范围是 [lo, hi] 的随机顺序的数组
-     * 
-     * @param lo 下界 可以取到
-     * @param hi 上界 可以取到
-     * @throw 非法参数异常
-     */
-    public static int[] intRandom_bounds(int lo, int hi) {
-        return IntegerToInt(IntegerRandom_bounds(lo, hi));
-    }
+//    /*
+//     * 产生一个取值范围是 [lo, hi] 的随机顺序的数组
+//     * 
+//     * @param lo 下界 可以取到
+//     * @param hi 上界 可以取到
+//     * @throw 非法参数异常
+//     */
+//    public static int[] ints(int lo, int hi) {
+//        return IntegerToInt(Integers(lo, hi));
+//    }
     /*
      * 产生一个 元素类型为 int 的随机数组
      * 
@@ -359,8 +374,8 @@ public class Text_Array {
      * @param hi 随机数上界，不能取到
      * @throw 非法参数异常
      */
-    public static int[] intRandom_size_bounds(int size, int lo, int hi) {
-        return IntegerToInt(IntegerRandom_size_bounds(size, lo, hi));
+    public static int[] ints(int size, int lo, int hi) {
+        return IntegerToInt(Integers(size, lo, hi));
     }
     /*
      * 产生一个 元素类型为 Integer 的随机数组
@@ -370,14 +385,17 @@ public class Text_Array {
      * @param hi 随机数上界，不能取到
      * @throw 非法参数异常
      */
-    public static Integer[] IntegerRandom_size_bounds(int size, int lo, int hi) {
+    public static Integer[] Integers(int size, int lo, int hi) {
         if (size < 0)
             throw new IllegalArgumentException("array size cannot be negative!");
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
+        if (hi == Integer.MAX_VALUE)
+            throw new IllegalArgumentException("this right bounds of " + hi + 
+                    " will result in overflow while generating random value!");
         Integer[] arr = new Integer[size];
         for (int i = 0; i < size; i++) 
-            arr[i] = new Integer(StdRandom.uniform(lo, hi));
+            arr[i] = new Integer(StdRandom.uniform(lo, hi + 1));
         return arr;
     }
     /*
@@ -388,7 +406,7 @@ public class Text_Array {
      * @return 拷贝后的新数组
      * @throw 非法参数异常
      */
-    public static Integer[] IntegerCopy_arr(Integer[] src) {
+    public static Integer[] IntegersCopy(Integer[] src) {
         if (src == null)
             throw new IllegalArgumentException("source array cannot be null!");
         Integer[] copy = new Integer[src.length];
@@ -403,7 +421,7 @@ public class Text_Array {
      * @return 拷贝后的新数组
      * @throw 非法参数异常
      */
-    public static double[] doubleCopy_arr(double[] src) {
+    public static double[] doublesCopy(double[] src) {
         if (src == null)
             throw new IllegalArgumentException("source array cannot be null!");
         double[] copy = new double[src.length];
@@ -418,7 +436,7 @@ public class Text_Array {
      * @return 拷贝后的新数组
      * @throw 非法参数异常
      */
-    public static Double[] DoubleCopy_arr(Double[] src) {
+    public static Double[] DoublesCopy(Double[] src) {
         if (src == null)
             throw new IllegalArgumentException("source array cannot be null!");
         Double[] copy = new Double[src.length];
@@ -433,7 +451,7 @@ public class Text_Array {
      * @return 拷贝后的新数组
      * @throw 非法参数异常
      */
-    public static int[] intCopy_arr(int[] src) {
+    public static int[] intsCopy(int[] src) {
         if (src == null)
             throw new IllegalArgumentException("source array cannot be null!");
         int[] copy = new int[src.length];
@@ -446,17 +464,17 @@ public class Text_Array {
      * 
      * @param size 数组尺寸
      */
-    public static Integer[] IntegerNoDupli_size(int size) {
+    public static Integer[] IntegersNoDupli(int size) {
         if (size < 0)
             throw new IllegalArgumentException("array size cannot be negative!");
-        if (size > Integer.MAX_VALUE / 10)
+        if (size > (Integer.MAX_VALUE - 1) / 10)
             throw new IllegalArgumentException("size is too large to generate a no duplicated array");
         Set<Integer> set = new HashSet<Integer>();
         Integer[] arr = new Integer[size];
         for (int i = 0; i < size; i++) {
-            int r = StdRandom.uniform(size * 10);
+            int r = StdRandom.uniform(size * 10 + 1);
             while (set.contains(r))
-                r = StdRandom.uniform(size * 10);
+                r = StdRandom.uniform(size * 10 + 1);
             arr[i] = r;
             set.add(r);
         }
@@ -467,8 +485,8 @@ public class Text_Array {
      * 
      * @param size 数组尺寸
      */
-    public static int[] intNoDupli_size(int size) {
-        return IntegerToInt(IntegerNoDupli_size(size));
+    public static int[] intsNoDupli(int size) {
+        return IntegerToInt(IntegersNoDupli(size));
     }
     /*
      * 产生一个 元素类型为 Integer 的无重复元素数组
@@ -477,17 +495,17 @@ public class Text_Array {
      * @param lo 随机数下界，可以取到
      * @param hi 随机数上界，不能取到
      */
-    public static Integer[] IntegerNoDupli_size_bounds(int size, int lo, int hi) {
+    public static Integer[] IntegersNoDupli(int size, int lo, int hi) {
         if (size < 0)
             throw new IllegalArgumentException("array size cannot be negative!");
-        if (size > (hi - lo))
+        if (size > (hi - lo + 1))
             throw new IllegalArgumentException(String.format("N cannot be greater than %d", hi - lo));
         Set<Integer> set = new HashSet<Integer>();
         Integer[] arr = new Integer[size];
         for (int i = 0; i < size; i++) {
-            int r = StdRandom.uniform(lo, hi);
+            int r = StdRandom.uniform(lo, hi + 1);
             while (set.contains(r))
-                r = StdRandom.uniform(lo, hi);
+                r = StdRandom.uniform(lo, hi + 1);
             arr[i] = r;
             set.add(r);
         }
@@ -500,8 +518,8 @@ public class Text_Array {
      * @param lo 随机数下界，可以取到
      * @param hi 随机数上界，不能取到
      */
-    public static int[] intNoDupli_size_bounds(int size, int lo, int hi) {
-        return IntegerToInt(IntegerNoDupli_size_bounds(size, lo, hi));
+    public static int[] intsNoDupli(int size, int lo, int hi) {
+        return IntegerToInt(IntegersNoDupli(size, lo, hi));
     }
     /*
      * 产生一个 元素类型为 Integer 的部分有序数组，会随机产生占数组尺寸 20% 的逆序对
@@ -510,8 +528,8 @@ public class Text_Array {
      * @param lo 随机数下界，可以取到
      * @param hi 随机数上界，不能取到
      */
-    public static Integer[] IntegerPartialOrder_size_bounds(int size, int lo, int hi) {
-        return IntegerPartialOrder_size_bounds_ratio(size, lo, hi, 0.2);
+    public static Integer[] IntegersPartialOrder(int size, int lo, int hi) {
+        return IntegersPartialOrder(size, lo, hi, 0.2);
     }
     /*
      * 产生一个 元素类型为 Integer 的部分有序数组，会随机产生指定比列的逆序对
@@ -520,12 +538,12 @@ public class Text_Array {
      * @param lo 随机数下界，可以取到
      * @param hi 随机数上界，不能取到
      */
-    public static Integer[] IntegerPartialOrder_size_bounds_ratio(int size, int lo, int hi, double scale) {
+    public static Integer[] IntegersPartialOrder(int size, int lo, int hi, double scale) {
         if (size < 2)
             throw new IllegalArgumentException("array size cannot less than 2!");
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
-        Integer[] arr = IntegerNoDupli_size_bounds(size, lo, hi);
+        Integer[] arr = IntegersNoDupli(size, lo, hi);
         Arrays.sort(arr);
         int reverse = (int)(size * scale);
         while (reverse-- > 0) {
@@ -545,7 +563,7 @@ public class Text_Array {
      * @param N 数组尺寸
      * @param ... 数组中需要填充的元素值
      */
-    public static int[] int_size_vrg(int size, int ...values) {
+    public static int[] intsVrg(int size, int ...values) {
         if (size <= 0 || values == null)
             throw new IllegalArgumentException();
         int count = values.length;
@@ -560,7 +578,7 @@ public class Text_Array {
      * @param eachAmount 每种元素填充的数量
      * @param ... 数组中需要填充的元素值
      */
-    public static int[] int_amount_vrg(int eachAmount, int ...values) {
+    public static int[] intsVrgWithEachAmount(int eachAmount, int ...values) {
         if (values == null || eachAmount <= 0)
             throw new IllegalArgumentException();
         int count = eachAmount * values.length;
@@ -602,11 +620,11 @@ public class Text_Array {
      * @param lo 元素下界，可以取到
      * @param hi 元素上界，可以取到
      */
-    public static Integer[] IntegerReverseOrder_bounds(int hi, int lo) {
+    public static Integer[] reverseIntegers(int hi, int lo) {
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot greater or equal than hi!");
         int N = hi - lo + 1;
-        Integer[] arr = Integer_bounds(lo, hi);
+        Integer[] arr = Integers(lo, hi);
         Arrays.sort(arr);
         int i = 0, j = N - 1;
         while (i <= j) {
@@ -624,11 +642,11 @@ public class Text_Array {
      * @param lo 元素下界，可以取到
      * @param hi 元素上界，可以取到
      */
-    public static int[] intReverseOrder_bounds(int hi, int lo) {
+    public static int[] reverseInts(int hi, int lo) {
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot greater or equal than hi!");
         int N = hi - lo + 1;
-        int[] arr = int_bounds(lo, hi);
+        int[] arr = ints(lo, hi);
         Arrays.sort(arr);
         int i = 0, j = N - 1;
         while (i <= j) {
@@ -693,5 +711,8 @@ public class Text_Array {
         for (int i = 0; i < a.length; i++)
             StdOut.printf("%-8d", a[i]);
         StdOut.println();
+    }
+    public static void main(String[] args) {
+        
     }
 }
