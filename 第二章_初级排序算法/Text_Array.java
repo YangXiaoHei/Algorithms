@@ -14,9 +14,6 @@ import edu.princeton.cs.algs4.*;
  * **********************************************************************
  */
 public class Text_Array {
-    /*
-     * 二分查找
-     */
     public static int binarySearch(int[] a, int key) {
         int lo = 0, hi = a.length - 1;
         while (lo <= hi) {
@@ -26,6 +23,26 @@ public class Text_Array {
             else    return mid;
         }
         return -1;
+    }
+    public static void shuffle(int[] a) {
+        if (a == null)
+            throw new NullPointerException();
+        for (int i = 0; i < a.length; i++) {
+            int r = i + StdRandom.uniform(a.length - i);
+            int t = a[i];
+            a[i] = a[r];
+            a[r] = t;
+        }
+    }
+    public static void shuffle(Integer[] a) {
+        if (a == null)
+            throw new NullPointerException();
+        for (int i = 0; i < a.length; i++) {
+            int r = i + StdRandom.uniform(a.length - i);
+            int t = a[i];
+            a[i] = a[r];
+            a[r] = t;
+        }
     }
     /*
      * 返回一个数组，其中的每个元素距离最终位置的距离不超过 N
@@ -222,65 +239,39 @@ public class Text_Array {
         return d;
     }
     /*
-     * 生成一个元素值从 0 到 1 浮点数随机分布的数组
-     * 
-     * @param N 数组尺寸
-     * @throw 非法参数异常
-     */
-    public static Double[] Doubles(int size) {
-        if (size <= 0)
-            throw new IllegalArgumentException("array size cannot be negative or zero!");
-        Double[] d = new Double[size];
-        for (int i = 0; i < size; i++)
-            d[i] = StdRandom.uniform();
-        return d;
-    }
-    /*
-     * 生成一个元素值从 0 到 1 浮点数随机分布的数组
-     * 
-     * @param N 数组尺寸
-     * @throw 非法参数异常
-     */
-    public static double[] doubles(int size) {
-        return DoubleTodouble(Doubles(size));
-    }
-    /*
-     * 返回一个已经排序完毕元素类型为 int 的数组
-     * 
-     * @param N 元素上界，能取到
-     * @throw 非法参数异常
-     */
-    public static int[] ascendInts(int size) {
-        return IntegerToInt(ascendIntegers(size));
-    }
-    public static int[] ascendInts(int lo, int hi) {
-        return IntegerToInt(ascendIntegers(lo, hi));
-    }
-    /*
-     * 返回一个个元素都相等的 int 数组
-     * 
-     * @param N 元素数量
-     * @param key 值
-     * @throw 非法参数异常
-     */
-    public static int[] allSameInts(int size, int key) {
-        if (size <= 0)
-            throw new IllegalArgumentException("array size cannot be negative or zero!");
-        int[] arr = new int[size];
-        Arrays.fill(arr, key);
-        return arr;
-    }
-    
-    /*
-     * 生成一个从 lo 到 hi 的自然增长序列的 int 数组
+     * 生成一个元素取值从 lo 到 hi 的乱序 Integer 数组
      * 
      * @param lo 元素下界，能取到
      * @param hi 元素上界，能取到
      * @throw 非法参数异常
      */
-    public static int[] ints(int lo, int hi) {
-        return IntegerToInt(Integers(lo, hi));
+    public static Integer[] Integers(int lo, int hi) {
+        Integer[] arr = ascendIntegers(lo, hi);
+        shuffle(arr);
+        return arr;
     }
+    /*
+     * 产生一个 元素类型为 Integer 的随机数组
+     * 
+     * @param N 数组尺寸
+     * @param lo 随机数下界，可以取到
+     * @param hi 随机数上界，不能取到
+     * @throw 非法参数异常
+     */
+    public static Integer[] Integers(int size, int lo, int hi) {
+        if (size < 0)
+            throw new IllegalArgumentException("array size cannot be negative!");
+        if (lo >= hi)
+            throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
+        if (hi == Integer.MAX_VALUE)
+            throw new IllegalArgumentException("this right bounds of " + hi + 
+                    " will result in overflow while generating random value!");
+        Integer[] arr = new Integer[size];
+        for (int i = 0; i < size; i++) 
+            arr[i] = new Integer(StdRandom.uniform(lo, hi + 1));
+        return arr;
+    }
+    
     public static Integer[] ascendIntegers(int size) {
         if (size <= 0)
             throw new IllegalArgumentException("array size cannot be negative or zero!");
@@ -304,104 +295,39 @@ public class Text_Array {
             arr[i] = lo++;
         return arr;
     }
-    /*
-     * 生成一个元素取值从 lo 到 hi 的乱序 Integer 数组
-     * 
-     * @param lo 元素下界，能取到
-     * @param hi 元素上界，能取到
-     * @throw 非法参数异常
-     */
-    public static Integer[] Integers(int lo, int hi) {
-        Integer[] arr = ascendIntegers(lo, hi);
-        shuffle(arr);
-        return arr;
-    }
-//    /*
-//     * 产生一个 元素类型为 Integer 的随机数组, 默认元素上下界为 [-100, 100)
-//     * 
-//     * @param N 数组尺寸
-//     * @throw 非法参数异常
-//     */
-//    public static Integer[] Integers(int size) {
-//        if (size <= 0)
-//            throw new IllegalArgumentException("array size cannot be negative or zero!");
-//        Integer[] arr = new Integer[size];
-//        for (int i = 0; i < size; i++) 
-//            arr[i] = new Integer(StdRandom.uniform(-size, size));
-//        return arr;
-//    }
-    /*
-     * 生成一个适合改进条件 a[mid] < a[mid + 1] 发挥作用的数组，适合程度仅次于完全排序就位的数组
-     * 
-     * @param N 数组尺寸，并不一定会用这个值，而是使用 满足 2 的幂次方的小于 N 的最大值
-     * 
-     * 生成的数组如下 [2 1 4 3 6 5 8 7 10 9 12 11 ....]
-     */
-    public static int[] forMergeSortTest(int N) {
-        if (N <= 0)
+    public static Integer[] descendIntegers(int size) {
+        if (size <= 0)
             throw new IllegalArgumentException("array size cannot be negative or zero!");
-        int k = (int)(Math.log(N) / Math.log(2));
-        N = (int)Math.pow(2, k);
-        int base = 2, beg = 2, i = 2;
-        int[] arr = new int[N];
-        int index = 0;
-        while (true) {
-            for (int m = 0; m < 2; m++) 
-                arr[index++] = beg--;
-            if (index == N) break;
-            beg = (i++) * base;
+        Integer[] arr = Integers(size);
+        Arrays.sort(arr);
+        int i = 0, j = arr.length - 1;
+        while (i <= j) {
+            Integer t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
+            i++; j--;
         }
         return arr;
     }
     /*
-     * 产生一个 元素类型为 int 的随机数组, 默认元素上下界为 [-size, size]
+     * 产生一个 元素类型为 Integer 的降序排列数组，元素从 hi 到 lo 递减
      * 
      * @param N 数组尺寸
-     * @throw 非法参数异常
+     * @param lo 元素下界，可以取到
+     * @param hi 元素上界，可以取到
      */
-    public static int[] ints(int size) {
-        return IntegerToInt(Integers(size));
-    }
-//    /*
-//     * 产生一个取值范围是 [lo, hi] 的随机顺序的数组
-//     * 
-//     * @param lo 下界 可以取到
-//     * @param hi 上界 可以取到
-//     * @throw 非法参数异常
-//     */
-//    public static int[] ints(int lo, int hi) {
-//        return IntegerToInt(Integers(lo, hi));
-//    }
-    /*
-     * 产生一个 元素类型为 int 的随机数组
-     * 
-     * @param N 数组尺寸
-     * @param lo 随机数下界，可以取到
-     * @param hi 随机数上界，不能取到
-     * @throw 非法参数异常
-     */
-    public static int[] ints(int size, int lo, int hi) {
-        return IntegerToInt(Integers(size, lo, hi));
-    }
-    /*
-     * 产生一个 元素类型为 Integer 的随机数组
-     * 
-     * @param N 数组尺寸
-     * @param lo 随机数下界，可以取到
-     * @param hi 随机数上界，不能取到
-     * @throw 非法参数异常
-     */
-    public static Integer[] Integers(int size, int lo, int hi) {
-        if (size < 0)
-            throw new IllegalArgumentException("array size cannot be negative!");
+    public static Integer[] descendIntegers(int hi, int lo) {
         if (lo >= hi)
-            throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
-        if (hi == Integer.MAX_VALUE)
-            throw new IllegalArgumentException("this right bounds of " + hi + 
-                    " will result in overflow while generating random value!");
-        Integer[] arr = new Integer[size];
-        for (int i = 0; i < size; i++) 
-            arr[i] = new Integer(StdRandom.uniform(lo, hi + 1));
+            throw new IllegalArgumentException("lo cannot greater or equal than hi!");
+        Integer[] arr = Integers(lo, hi);
+        Arrays.sort(arr);
+        int i = 0, j = arr.length - 1;
+        while (i <= j) {
+            Integer t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
+            i++; j--;
+        }
         return arr;
     }
     /*
@@ -418,51 +344,6 @@ public class Text_Array {
         Integer[] copy = new Integer[src.length];
         for (int i = 0; i < src.length; i++) 
             copy[i] = src[i].intValue();
-        return copy;
-    }
-    /*
-     * 通过已有的 double 数组拷贝一个新的 double 数组
-     * 
-     * @param src 待拷贝的源数组
-     * @return 拷贝后的新数组
-     * @throw 非法参数异常
-     */
-    public static double[] doublesCopy(double[] src) {
-        if (src == null)
-            throw new IllegalArgumentException("source array cannot be null!");
-        double[] copy = new double[src.length];
-        for (int i = 0; i < src.length; i++) 
-            copy[i] = src[i];
-        return copy;
-    }
-    /*
-     * 通过已有的 Double 数组拷贝一个新的 Double 数组
-     * 
-     * @param src 待拷贝的源数组
-     * @return 拷贝后的新数组
-     * @throw 非法参数异常
-     */
-    public static Double[] DoublesCopy(Double[] src) {
-        if (src == null)
-            throw new IllegalArgumentException("source array cannot be null!");
-        Double[] copy = new Double[src.length];
-        for (int i = 0; i < src.length; i++) 
-            copy[i] = src[i].doubleValue();
-        return copy;
-    }
-    /*
-     * 通过已有的 int 数组拷贝一个新的 int 数组
-     * 
-     * @param src 待拷贝的源数组
-     * @return 拷贝后的新数组
-     * @throw 非法参数异常
-     */
-    public static int[] intsCopy(int[] src) {
-        if (src == null)
-            throw new IllegalArgumentException("source array cannot be null!");
-        int[] copy = new int[src.length];
-        for (int i = 0; i < src.length; i++) 
-            copy[i] = src[i];
         return copy;
     }
     /*
@@ -487,14 +368,6 @@ public class Text_Array {
         return arr;
     }
     /*
-     * 产生一个 元素类型为 int 的无重复元素数组
-     * 
-     * @param size 数组尺寸
-     */
-    public static int[] intsNoDupli(int size) {
-        return IntegerToInt(IntegersNoDupli(size));
-    }
-    /*
      * 产生一个 元素类型为 Integer 的无重复元素数组
      * 
      * @param N 数组尺寸
@@ -505,7 +378,7 @@ public class Text_Array {
         if (size < 0)
             throw new IllegalArgumentException("array size cannot be negative!");
         if (size > (hi - lo + 1))
-            throw new IllegalArgumentException(String.format("N cannot be greater than %d", hi - lo));
+            throw new IllegalArgumentException(String.format("N cannot be greater than %d", hi - lo + 1));
         Set<Integer> set = new HashSet<Integer>();
         Integer[] arr = new Integer[size];
         for (int i = 0; i < size; i++) {
@@ -516,16 +389,6 @@ public class Text_Array {
             set.add(r);
         }
         return arr;
-    }
-    /*
-     * 产生一个 元素类型为 int 的无重复元素数组
-     * 
-     * @param N 数组尺寸
-     * @param lo 随机数下界，可以取到
-     * @param hi 随机数上界，不能取到
-     */
-    public static int[] intsNoDupli(int size, int lo, int hi) {
-        return IntegerToInt(IntegersNoDupli(size, lo, hi));
     }
     /*
      * 产生一个 元素类型为 Integer 的部分有序数组，会随机产生占数组尺寸 20% 的逆序对
@@ -564,6 +427,101 @@ public class Text_Array {
         return arr;
     }
     /*
+     * 生成一个从 lo 到 hi 的自然增长序列的 int 数组
+     * 
+     * @param lo 元素下界，能取到
+     * @param hi 元素上界，能取到
+     * @throw 非法参数异常
+     */
+    public static int[] ints(int lo, int hi) {
+        return IntegerToInt(Integers(lo, hi));
+    }
+    /*
+     * 产生一个 元素类型为 int 的随机数组, 默认元素上下界为 [-size, size]
+     * 
+     * @param N 数组尺寸
+     * @throw 非法参数异常
+     */
+    public static int[] ints(int size) {
+        return IntegerToInt(Integers(size));
+    }
+    /*
+     * 产生一个 元素类型为 int 的随机数组
+     * 
+     * @param N 数组尺寸
+     * @param lo 随机数下界，可以取到
+     * @param hi 随机数上界，不能取到
+     * @throw 非法参数异常
+     */
+    public static int[] ints(int size, int lo, int hi) {
+        return IntegerToInt(Integers(size, lo, hi));
+    }
+    /*
+     * 返回一个已经排序完毕元素类型为 int 的数组
+     * 
+     * @param N 元素上界，能取到
+     * @throw 非法参数异常
+     */
+    public static int[] ascendInts(int size) {
+        return IntegerToInt(ascendIntegers(size));
+    }
+    public static int[] ascendInts(int lo, int hi) {
+        return IntegerToInt(ascendIntegers(lo, hi));
+    }
+    public static int[] descendInts(int size) {
+        return IntegerToInt(descendIntegers(size));
+    }
+    public static int[] descendInts(int hi, int lo) {
+        return IntegerToInt(descendIntegers(hi, lo));
+    }
+    /*
+     * 返回一个个元素都相等的 int 数组
+     * 
+     * @param N 元素数量
+     * @param key 值
+     * @throw 非法参数异常
+     */
+    public static int[] allSameInts(int size, int key) {
+        if (size <= 0)
+            throw new IllegalArgumentException("array size cannot be negative or zero!");
+        int[] arr = new int[size];
+        Arrays.fill(arr, key);
+        return arr;
+    }
+    /*
+     * 通过已有的 int 数组拷贝一个新的 int 数组
+     * 
+     * @param src 待拷贝的源数组
+     * @return 拷贝后的新数组
+     * @throw 非法参数异常
+     */
+    public static int[] intsCopy(int[] src) {
+        if (src == null)
+            throw new IllegalArgumentException("source array cannot be null!");
+        int[] copy = new int[src.length];
+        for (int i = 0; i < src.length; i++) 
+            copy[i] = src[i];
+        return copy;
+    }
+    /*
+     * 产生一个 元素类型为 int 的无重复元素数组
+     * 
+     * @param size 数组尺寸
+     */
+    public static int[] intsNoDupli(int size) {
+        return IntegerToInt(IntegersNoDupli(size));
+    }
+    /*
+     * 产生一个 元素类型为 int 的无重复元素数组
+     * 
+     * @param N 数组尺寸
+     * @param lo 随机数下界，可以取到
+     * @param hi 随机数上界，不能取到
+     */
+    public static int[] intsNoDupli(int size, int lo, int hi) {
+        return IntegerToInt(IntegersNoDupli(size, lo, hi));
+    }
+    /*
      * 返回一个每个元素任意数量的 int 数组，数组中每个值可以由可变参数指定
      * 
      * @param N 数组尺寸
@@ -597,66 +555,85 @@ public class Text_Array {
         return arr;
     }
     /*
-     * 打乱一个数组
-     */
-    public static void shuffle(int[] a) {
-        if (a == null)
-            throw new NullPointerException();
-        for (int i = 0; i < a.length; i++) {
-            int r = i + StdRandom.uniform(a.length - i);
-            int t = a[i];
-            a[i] = a[r];
-            a[r] = t;
-        }
-    }
-    public static void shuffle(Integer[] a) {
-        if (a == null)
-            throw new NullPointerException();
-        for (int i = 0; i < a.length; i++) {
-            int r = i + StdRandom.uniform(a.length - i);
-            int t = a[i];
-            a[i] = a[r];
-            a[r] = t;
-        }
-    }
-    public static Integer[] descendIntegers(int size) {
-        return descendIntegers(-size, size);
-    }
-    public static int[] descendInts(int size) {
-        return IntegerToInt(descendIntegers(size));
-    }
-    /*
-     * 产生一个 元素类型为 Integer 的降序排列数组，元素从 hi 到 lo 递减
+     * 生成一个适合改进条件 a[mid] < a[mid + 1] 发挥作用的数组，适合程度仅次于完全排序就位的数组
      * 
-     * @param N 数组尺寸
-     * @param lo 元素下界，可以取到
-     * @param hi 元素上界，可以取到
+     * @param N 数组尺寸，并不一定会用这个值，而是使用 满足 2 的幂次方的小于 N 的最大值
+     * 
+     * 生成的数组如下 [2 1 4 3 6 5 8 7 10 9 12 11 ....]
      */
-    public static Integer[] descendIntegers(int hi, int lo) {
-        if (lo >= hi)
-            throw new IllegalArgumentException("lo cannot greater or equal than hi!");
-        Integer[] arr = Integers(lo, hi);
-        int N = arr.length - 1;
-        Arrays.sort(arr);
-        int i = 0, j = N - 1;
-        while (i <= j) {
-            Integer t = arr[i];
-            arr[i] = arr[j];
-            arr[j] = t;
-            i++; j--;
+    public static int[] forMergeSortTest(int N) {
+        if (N <= 0)
+            throw new IllegalArgumentException("array size cannot be negative or zero!");
+        int k = (int)(Math.log(N) / Math.log(2));
+        N = (int)Math.pow(2, k);
+        int base = 2, beg = 2, i = 2;
+        int[] arr = new int[N];
+        int index = 0;
+        while (true) {
+            for (int m = 0; m < 2; m++) 
+                arr[index++] = beg--;
+            if (index == N) break;
+            beg = (i++) * base;
         }
         return arr;
     }
     /*
-     * 产生一个 元素类型为 Integer 的逆序数组，元素从 hi 到 lo 递减
+     * 生成一个元素值从 0 到 1 浮点数随机分布的数组
      * 
      * @param N 数组尺寸
-     * @param lo 元素下界，可以取到
-     * @param hi 元素上界，可以取到
+     * @throw 非法参数异常
      */
-    public static int[] descendInts(int hi, int lo) {
-        return IntegerToInt(descendIntegers(hi, lo));
+    public static Double[] Doubles(int size) {
+        if (size <= 0)
+            throw new IllegalArgumentException("array size cannot be negative or zero!");
+        Double[] d = new Double[size];
+        for (int i = 0; i < size; i++)
+            d[i] = StdRandom.uniform();
+        return d;
     }
+    /*
+     * 通过已有的 Double 数组拷贝一个新的 Double 数组
+     * 
+     * @param src 待拷贝的源数组
+     * @return 拷贝后的新数组
+     * @throw 非法参数异常
+     */
+    public static Double[] DoublesCopy(Double[] src) {
+        if (src == null)
+            throw new IllegalArgumentException("source array cannot be null!");
+        Double[] copy = new Double[src.length];
+        for (int i = 0; i < src.length; i++) 
+            copy[i] = src[i].doubleValue();
+        return copy;
+    }
+    /*
+     * 生成一个元素值从 0 到 1 浮点数随机分布的数组
+     * 
+     * @param N 数组尺寸
+     * @throw 非法参数异常
+     */
+    public static double[] doubles(int size) {
+        return DoubleTodouble(Doubles(size));
+    }
+    /*
+     * 通过已有的 double 数组拷贝一个新的 double 数组
+     * 
+     * @param src 待拷贝的源数组
+     * @return 拷贝后的新数组
+     * @throw 非法参数异常
+     */
+    public static double[] doublesCopy(double[] src) {
+        if (src == null)
+            throw new IllegalArgumentException("source array cannot be null!");
+        double[] copy = new double[src.length];
+        for (int i = 0; i < src.length; i++) 
+            copy[i] = src[i];
+        return copy;
+    }
+  
+    
+    
+   
     /*
      * 带索引的打印一个 Comparable 数组
      * 
@@ -712,37 +689,98 @@ public class Text_Array {
             StdOut.printf("%-8d", a[i]);
         StdOut.println();
     }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /*
+     * Integers[] 的测试
+     * 
+     */
+    public static void IntegersTest() {
+        Integer[] arr1 = Integers(10);
+        print(arr1);
+        
+        arr1 = Integers(10, 20);
+        print(arr1);
+        
+        arr1 = Integers(10, -100, 100);
+        print(arr1);
+        
+        arr1 = ascendIntegers(10);
+        print(arr1);
+        
+        arr1 = ascendIntegers(-10, 10);
+        print(arr1);
+        
+        arr1 = descendIntegers(10);
+        print(arr1);
+        
+        arr1 = descendIntegers(10, 0);
+        print(arr1);
+        
+        arr1 = IntegersNoDupli(10);
+        print(arr1);
+        
+        arr1 = IntegersNoDupli(3, 1, 10);
+        print(arr1);
+        
+        arr1 = IntegersPartialOrder(10, 1, 10);
+        print(arr1);
+        
+        arr1 = IntegersPartialOrder(10, 1, 10, 0.8);
+        print(arr1);
+    }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /*
+     * int[] 的测试
+     */
+    public static void intsTest() {
+        int[] arr = ints(10);
+        print(arr);
+        
+        arr = ints(10, 20);
+        print(arr);
+        
+        arr = ints(15, 0, 5);
+        print(arr);
+        
+        arr = ascendInts(10);
+        print(arr);
+        
+        arr = ascendInts(10, 20);
+        print(arr);
+        
+        arr = descendInts(10);
+        print(arr);
+        
+        arr = allSameInts(10, 5);
+        print(arr);
+        
+        arr = intsNoDupli(10);
+        print(arr);
+        
+        arr = intsNoDupli(5, 0, 10);
+        print(arr);
+        
+        arr = intsVrg(10, 4, 8, 9);
+        print(arr);
+        
+        arr = intsVrgWithEachAmount(4, 1, 2, 3);
+        print(arr);
+        
+        arr = forMergeSortTest(10);
+        print(arr);
+    }
     public static void main(String[] args) {
-        
-        int[] intsRandomArr = ints(10);
-        print(intsRandomArr);
-        
-        int[] intsRandomBetween = ints(10, 20);
-        print(intsRandomBetween);
-        
-        
-//        Integer[] integerRandomArr = Integers(10);
-//        print(integerRandomArr);
-//        
-//        Integer[] ascendIntegers = ascendIntegers(10);
-//        print(ascendIntegers);
-//        
-//        ascendIntegers = ascendIntegers(10, 20);
-//        print(ascendIntegers);
-//        
-//        Integer[] descendIntegers = descendIntegers(20, 10);
-//        print(descendIntegers);
-        /*
-         * 生成一个自然增长的 int 数组
-//         */
-//        int[] ascendInts = ascendInts(10);
-//        print(ascendInts);
-//        /*
-//         * 生成一个指定取值域的 自然增长的 int 数组
-//         */
-//        ascendInts = ascendInts(100, 120);
-//        print(ascendInts);
-        
-        
     }
 }
