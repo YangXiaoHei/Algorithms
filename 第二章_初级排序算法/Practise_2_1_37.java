@@ -6,8 +6,8 @@ import edu.princeton.cs.algs4.*;
 
 public class Practise_2_1_37 {
     public static int[] sorted95PercentageAndOthersRandom(int N) {
-        int[] sorted = intSorted_size((int)(N * 0.95));
-        int[] random = intRandom_size((int)(N * 0.05));
+        int[] sorted = ascendInts((int)(N * 0.95));
+        int[] random = ints((int)(N * 0.05));
         int[] combine = new int[sorted.length + random.length];
         int i = 0;
         if (StdRandom.bernoulli()) {
@@ -23,7 +23,7 @@ public class Practise_2_1_37 {
         return whthinDistance(N, 10);
     }
     public static int[] sorted95PercentageAndOthersRandomOrder(int N) {
-        int[] sorted = intNoDupli_size(N);
+        int[] sorted = intsNoDupli(N);
         Arrays.sort(sorted);
         if ((N * 0.05) < 1) return sorted; 
         ArrayList<Integer> list = new ArrayList<Integer>();
@@ -59,7 +59,7 @@ public class Practise_2_1_37 {
         return timer.elapsedTime();
     }
     public static void main(String[] args) {
-        StdOut.printf("对照试验 : %.3f\n", shell(intRandom_size(80000)) * 100);
+        StdOut.printf("对照试验 : %.3f\n", shell(ints(80000)) * 100);
         StdOut.printf("95%%有序其余随机 : %.3f\n", shell(sorted95PercentageAndOthersRandom(80000)) * 100);
         StdOut.printf("距最终位置不超过10 : %.3f\n", shell(within10(80000)) * 100);
         StdOut.printf("5%%随机分布 : %.3f\n", shell(sorted95PercentageAndOthersRandomOrder(80000)) * 100);

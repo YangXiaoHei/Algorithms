@@ -24,8 +24,8 @@ public class Practise_2_1_19 {
         int[] arr = null, copy = null;
         while (true) {
             compares = 0;
-            arr = intRandom_bounds(1,100);
-            copy = intCopy_arr(arr);
+            arr = ints(1,100);
+            copy = intsCopy(arr);
             shell(arr);
             if (compares > 998)  break;
         }

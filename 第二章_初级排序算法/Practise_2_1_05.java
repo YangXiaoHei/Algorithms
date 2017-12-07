@@ -23,7 +23,7 @@ public class Practise_2_1_05 {
         return j > 0 && aj < aj1;
     }
     public static void main(String[] args) {
-        int[] arr = intSorted_size(10);
+        int[] arr = ascendInts(10);
         insertionSort(arr);
     }
     // output

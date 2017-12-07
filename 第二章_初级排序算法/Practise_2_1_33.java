@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.*;
 
 public class Practise_2_1_33 {
     public static double shell(int N) {
-        int[] a = intRandom_size_bounds(N, 1, N * 10);
+        int[] a = ints(N, 1, N * 10);
         Stopwatch timer = new Stopwatch();
         int h = 1;
         while (h < N / 3) h = 3 * h + 1;

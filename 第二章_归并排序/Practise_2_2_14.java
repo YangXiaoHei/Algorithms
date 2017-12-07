@@ -112,7 +112,7 @@ public class Practise_2_2_14 {
     }
     public static Queue randomQueue(int lo, int hi) {
         Queue queue = new Queue();
-        for (int i : intRandom_bounds(lo, hi))
+        for (int i : ints(lo, hi))
             queue.enqueue(i);  
         return queue;
     }

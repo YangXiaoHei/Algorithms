@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.*;
 
 public class Practise_2_1_36 {
     public static double shell(int[] a) {
-        a = intCopy_arr(a);
+        a = intsCopy(a);
         Stopwatch timer = new Stopwatch();
         int N = a.length, h = 1;
         while (h < N / 3) h = 3 * h + 1;
@@ -21,11 +21,11 @@ public class Practise_2_1_36 {
         return timer.elapsedTime();
     }
     public static int[] halfZeroHalfOne(int N) {
-        return int_amount_vrg(N / 2, 1, 0);
+        return intsVrgWithEachAmount(N / 2, 1, 0);
     }
     public static int[] halfZeroQuarterOneQuarterTwo(int N) {
-        int[] arr1 = int_amount_vrg(N / 4, 1, 2);
-        int[] arr2 = intAllSame_size_key(N / 2, 0);
+        int[] arr1 = intsVrgWithEachAmount(N / 4, 1, 2);
+        int[] arr2 = allSameInts(N / 2, 0);
         int[] combine = new int[arr1.length + arr2.length];
         int i = 0;
         while (i < arr1.length) { combine[i] = arr1[i]; i++; }
@@ -34,8 +34,8 @@ public class Practise_2_1_36 {
         return combine;
     }
     public static int[] halfZeroHalfRandom(int N) {
-        int[] arr1 = intAllSame_size_key(N / 2, 0);
-        int[] arr2 = intRandom_size_bounds(N / 2, 0, 10000);
+        int[] arr1 = allSameInts(N / 2, 0);
+        int[] arr2 = ints(N / 2, 0, 10000);
         int[] combine = new int[arr1.length + arr2.length];
         int i = 0;
         while (i < arr1.length) { combine[i] = arr1[i]; i++; }
@@ -44,7 +44,7 @@ public class Practise_2_1_36 {
         return combine;
     }
     public static void main(String[] args) {
-        StdOut.printf("对照试验 :\t\t %.3f\n", shell(intRandom_size_bounds(8000000, 0, 1000000)));
+        StdOut.printf("对照试验 :\t\t %.3f\n", shell(ints(8000000, 0, 1000000)));
         StdOut.printf("一半0 一半1 :\t\t %.3f\n", shell(halfZeroHalfOne(8000000)));
         StdOut.printf("一半0 1/4 1 1/4 2 :\t %.3f\n", shell(halfZeroQuarterOneQuarterTwo(8000000)));
         StdOut.printf("一半0 一半随机 :\t\t %.3f\n", shell(halfZeroHalfRandom(8000000)));

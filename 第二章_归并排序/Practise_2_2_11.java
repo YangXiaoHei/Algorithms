@@ -41,7 +41,7 @@ public class Practise_2_2_11 {
             else                        dst[k] = src[i++];
     }
     public static void main(String[] args) {
-        int[] arr = intRandom_size(10);
+        int[] arr = ints(10);
         merge(arr);
         print(arr);
     }

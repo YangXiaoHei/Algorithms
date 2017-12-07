@@ -27,8 +27,8 @@ public class Practise_2_1_25 {
         return timer.elapsedTime();
     }
     public static void main(String[] args) {
-        int[] arr = intRandom_bounds(1, 50000);
-        int[] copy = intCopy_arr(arr);
+        int[] arr = ints(1, 50000);
+        int[] copy = intsCopy(arr);
         StdOut.printf("不交换 : %f\n", insertion_A(arr));
         StdOut.printf("交换 : %f\n", insertion_B(copy));
     }

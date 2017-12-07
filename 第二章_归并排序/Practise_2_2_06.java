@@ -42,7 +42,7 @@ public class Practise_2_2_06 {
         StdDraw.setXscale(0, 512);
         StdDraw.setYscale(-1000, 28000);
         for (int i = 1; i < 512; i++) {
-            int[] arr = intRandom_size(i);
+            int[] arr = ints(i);
             merge(arr);
             StdDraw.setPenColor(Color.RED);
             StdDraw.point(i, 6 * i * Math.log(i) / Math.log(2)); // 红线理论值

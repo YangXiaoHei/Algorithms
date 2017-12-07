@@ -116,7 +116,7 @@ public class Practise_2_1_14 {
        }
     }
     public static void main(String[] args) {
-        int[] arr = int_amount_vrg(13, 1, 2, 3, 4);
+        int[] arr = intsVrgWithEachAmount(13, 1, 2, 3, 4);
         Queue queue = new Queue(arr);
         StdOut.println("================ 排序前 ================");
         queue.print();

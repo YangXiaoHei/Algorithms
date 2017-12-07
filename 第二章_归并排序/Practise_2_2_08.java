@@ -69,26 +69,26 @@ public class Practise_2_2_08 {
          * 我们可以用下面的例子证明
          */
         int N = 1024; // 这里尽量设置成 2 的幂次方，因为生成测试数组时我使用了 log(N) 的尺寸
-        int[] arr = intReverseOrder_bounds(N, 0);
-        int[] copy = intCopy_arr(arr);
+        int[] arr = descendInts(N, 0);
+        int[] copy = intsCopy(arr);
         int comparesA = merge_A(arr);
         int comparesB = merge_B(copy);
         StdOut.printf("最不适合改进条件下的比较次数 : A : %d  改进后 : %d\n", comparesA, comparesB);
         
         arr = forMergeSortTest(N);
-        copy = intCopy_arr(arr);
+        copy = intsCopy(arr);
         comparesA = merge_A(arr);
         comparesB = merge_B(copy);
         StdOut.printf("接近最适合改进条件下的比较次数 : A : %d  改进后 : %d\n", comparesA, comparesB);
         
-        arr = intRandom_size(N);
+        arr = ints(N);
         Arrays.sort(arr);
         comparesA = merge_A(arr);
         comparesB = merge_B(copy);
         StdOut.printf("最适合改进条件情况下的比较次数 : A : %d  改进后 : %d\n", comparesA, comparesB);
     
-        arr = intRandom_size(N);
-        copy = intCopy_arr(arr);
+        arr = ints(N);
+        copy = intsCopy(arr);
         comparesA = merge_A(arr);
         comparesB = merge_B(copy);
         StdOut.printf("平均情况下的比较次数 : A : %d  改进后 : %d\n", comparesA, comparesB);

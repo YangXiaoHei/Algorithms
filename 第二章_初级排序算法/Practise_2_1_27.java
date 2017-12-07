@@ -44,7 +44,7 @@ public class Practise_2_1_27 {
         for (int i = N, j = 0; j < T; j++, i++) {
             avrg = 0;
             for (int k = 0; k < loops; k++) {
-                int[] arr = intRandom_size_bounds((int)Math.pow(2, i), 0, i * 10);
+                int[] arr = ints((int)Math.pow(2, i), 0, i * 10);
                 timer = new Stopwatch();
                 
 //                selection(arr);

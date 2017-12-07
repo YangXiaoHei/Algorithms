@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.*;
 
 public class Practise_2_1_35 {
     public static double shell(double[] a) {
-        a = doubleCopy_arr(a);
+        a = doublesCopy(a);
         Stopwatch timer = new Stopwatch();
         int N = a.length, h = 1;
         while (h < N / 3) h = 3 * h + 1;
@@ -22,11 +22,11 @@ public class Practise_2_1_35 {
         return timer.elapsedTime();
     }
     public static void main(String[] args) {
-        StdOut.printf("对照试验 : %f\n", shell(doubleRandom_size(4000000)));
-        StdOut.printf("高斯分布 : %f\n", shell(gaussian_size_mean(4000000, 100)));
-        StdOut.printf("泊松分布 : %f\n", shell(possion_size_lambda(4000000, 100)));
-        StdOut.printf("几何分布 : %f\n", shell(geometric_size_success(4000000, 0.4)));
-        StdOut.printf("离散分布 : %f\n", shell(discrete_size_pros(4000000, 0.3, 0.3, 0.4)));
+        StdOut.printf("对照试验 : %f\n", shell(doubles(4000000)));
+        StdOut.printf("高斯分布 : %f\n", shell(gaussian(4000000, 100)));
+        StdOut.printf("泊松分布 : %f\n", shell(possion(4000000, 100)));
+        StdOut.printf("几何分布 : %f\n", shell(geometric(4000000, 0.4)));
+        StdOut.printf("离散分布 : %f\n", shell(discrete(4000000, 0.3, 0.3, 0.4)));
     }
     // output
     /*

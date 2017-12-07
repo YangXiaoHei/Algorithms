@@ -9,7 +9,7 @@ public class Practise_2_1_32 {
         double avrg = 0;
         int[] a = null;
         for (int loop = 0; loop < 3; loop++) {
-            a = intCopy_arr(arr);
+            a = intsCopy(arr);
             Stopwatch timer = new Stopwatch();
             int N = a.length;
             for (int i = 1; i < N; i++) {
@@ -26,7 +26,7 @@ public class Practise_2_1_32 {
         double avrg = 0;
         int[] a = null;
         for (int loop = 0; loop < 3; loop++) {
-            a = intCopy_arr(arr);
+            a = intsCopy(arr);
             Stopwatch timer = new Stopwatch();
             int N = a.length;
             for (int i = 0; i < N; i++) {
@@ -45,7 +45,7 @@ public class Practise_2_1_32 {
         double avrg = 0;
         int[] a = null;
         for (int loop = 0; loop < 3; loop++) {
-            a = intCopy_arr(arr);
+            a = intsCopy(arr);
             Stopwatch timer = new Stopwatch();
             int N = a.length, h = 1;
             while (h < N / 3) h = 3 * h + 1;
@@ -67,7 +67,7 @@ public class Practise_2_1_32 {
         StdDraw.setYscale(-1, 3);
         StdDraw.setPenRadius(.003);
         for (int i = N; i < 80000; i += 500) {
-            int[] a = intRandom_size_bounds(i, 0, i * 10);
+            int[] a = ints(i, 0, i * 10);
             for (int k = 0; k < 1; k++) {
                 StdDraw.setPenColor(Color.BLACK);
                 StdDraw.point(i, shell(a));

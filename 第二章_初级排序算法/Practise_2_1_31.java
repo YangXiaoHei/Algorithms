@@ -46,7 +46,7 @@ public class Practise_2_1_31 {
     public static void timeTrial(int T, int N, String algoName) {
         double pre = 0, cur = 0, preRatio = 0, avrg = 0;
         for (int i = N, j = 0; j < T; j++, i += i) {
-            int[] a = intRandom_size_bounds(i, 0, i * 10);
+            int[] a = ints(i, 0, i * 10);
             avrg = 0;
             for (int k = 0; k < 3; k++) {
                 if (algoName.equals("insertion"))

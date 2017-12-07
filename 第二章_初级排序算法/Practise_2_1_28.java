@@ -31,7 +31,7 @@ public class Practise_2_1_28 {
         for (int i = N, j = 0; j < T; j++, i += i) {
             avrg = 0;
             for (int k = 0; k < loops; k++) {
-                int[] arr = int_size_vrg(i, 1, 2);
+                int[] arr = intsVrg(i, 1, 2);
                 timer = new Stopwatch();
                 
                 selection(arr);

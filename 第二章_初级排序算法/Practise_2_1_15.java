@@ -45,9 +45,9 @@ public class Practise_2_1_15 {
     }
     public static void test() {
         for (int i = 100; i < 10000; i += 100) {
-            int[] arr = intRandom_size(i);
-            int[] copy1 = intCopy_arr(arr);
-            int[] copy2 = intCopy_arr(arr);
+            int[] arr = ints(i);
+            int[] copy1 = intsCopy(arr);
+            int[] copy2 = intsCopy(arr);
             selection(arr);
             insertion(copy1);
             shell(copy2);

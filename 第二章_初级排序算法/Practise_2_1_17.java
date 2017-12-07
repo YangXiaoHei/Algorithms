@@ -106,7 +106,7 @@ public class Practise_2_1_17 {
         draw(a, false, 0, 0);
     }
     public static void main(String[] args) {
-        Double[] a = DoubleRandom_size(50);
+        Double[] a = Doubles(50);
 //        insertion(a);
         shell(a);
 //        selection(a);

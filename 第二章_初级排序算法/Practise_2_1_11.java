@@ -23,7 +23,7 @@ public class Practise_2_1_11 {
         }
     }
     public static void main(String[] args) {
-        int[] arr = intRandom_size(30);
+        int[] arr = ints(30);
         print(arr);
         shell(arr);
         print(arr);

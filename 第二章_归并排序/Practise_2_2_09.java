@@ -69,8 +69,8 @@ public class Practise_2_2_09 {
         StdDraw.setXscale(0, 10000000);
         StdDraw.setYscale(-2, 4);
         for (int i = 1000; i < 10000000; i += 40000) {
-            int[] arr = intRandom_size(i);
-            int[] copy = intCopy_arr(arr);
+            int[] arr = ints(i);
+            int[] copy = intsCopy(arr);
             StdDraw.setPenColor(Color.BLACK);
             StdDraw.point(i, merge_A(arr));
             StdDraw.setPenColor(Color.RED);

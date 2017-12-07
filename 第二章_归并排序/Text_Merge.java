@@ -161,9 +161,9 @@ public class Text_Merge {
         StdDraw.setYscale(-1, 2);
         StdDraw.setPenRadius(.003);
         for (int i = 1000; i < limit; i += 4000) {
-            Double[] d = DoubleRandom_size(i);
-            Double[] copy = DoubleCopy_arr(d);
-            Double[] copy2 = DoubleCopy_arr(d);
+            Double[] d = Doubles(i);
+            Double[] copy = DoublesCopy(d);
+            Double[] copy2 = DoublesCopy(d);
             StdDraw.setPenColor(Color.RED);
             StdDraw.point(i, merge_A(copy2));
             StdDraw.setPenColor(Color.BLUE);
@@ -180,12 +180,12 @@ public class Text_Merge {
     }
     public static void main(String[] args) {
         int N = 51200000;
-        Double[] d = DoubleRandom_size(N);
-        Double[] copy = DoubleCopy_arr(d);
-        Double[] copy1 = DoubleCopy_arr(d);
-        Double[] copy2 = DoubleCopy_arr(d);
-        Double[] copy3 = DoubleCopy_arr(d);
-        Double[] copy4 = DoubleCopy_arr(d);
+        Double[] d = Doubles(N);
+        Double[] copy = DoublesCopy(d);
+        Double[] copy1 = DoublesCopy(d);
+        Double[] copy2 = DoublesCopy(d);
+        Double[] copy3 = DoublesCopy(d);
+        Double[] copy4 = DoublesCopy(d);
         StdOut.printf("========== 规模 : %d ==========\n", N);
         StdOut.printf("希尔排序 : %.3f\n", shell(copy4));
         StdOut.printf("归并排序 C : %.3f\n", merge_C(d));

@@ -37,7 +37,7 @@ public class Practise_2_2_12 {
         }
     }
     public static void main(String[] args) {
-        int[] a = intRandom_size(21);
+        int[] a = ints(21);
         divideIntoMSizeBlockSort(a, 7);
         print(a);
     }

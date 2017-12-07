@@ -29,7 +29,7 @@ public class Practise_2_2_10 {
             else                    a[k] = aux[i++];
     }
     public static void main(String[] args) {
-        int[] arr = intRandom_size(20);
+        int[] arr = ints(20);
         merge(arr);
         print(arr);
     }

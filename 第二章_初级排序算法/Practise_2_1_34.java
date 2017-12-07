@@ -18,22 +18,22 @@ public class Practise_2_1_34 {
         }
     }
     public static void main(String[] args) {
-        int[] sorted = intSorted_size(10);
+        int[] sorted = ascendInts(10);
         print(sorted);
         shell(sorted);
         print(sorted);
         
-        int[] reverse = intReverseOrder_bounds(10, 0);
+        int[] reverse = descendInts(10, 0);
         print(reverse);
         shell(reverse);
         print(reverse);
         
-        int[] allSame = intAllSame_size_key(10, 10);
+        int[] allSame = allSameInts(10, 10);
         print(allSame);
         shell(allSame);
         print(allSame);
         
-        int[] twoValue = int_size_vrg(10, 1, 2);
+        int[] twoValue = intsVrg(10, 1, 2);
         print(twoValue);
         shell(twoValue);
         print(twoValue);
@@ -43,7 +43,7 @@ public class Practise_2_1_34 {
         shell(zero);
         print(zero);
         
-        int[] one = intRandom_size(1);
+        int[] one = ints(1);
         print(one);
         shell(one);
         print(one);

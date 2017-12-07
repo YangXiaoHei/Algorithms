@@ -50,7 +50,7 @@ public class Practise_2_1_30 {
      * 不更改原数组的排序，只是为了获取耗时时长
      */
     public static double shell(int[] a, int t) {
-        a = intCopy_arr(a);
+        a = intsCopy(a);
         int[] incs = incs(t);
         int N = a.length;
         Stopwatch timer = new Stopwatch();
@@ -92,7 +92,7 @@ public class Practise_2_1_30 {
         return arr;
     }
     public static void main(String[] args) {
-        int[] a = intRandom_size_bounds(1000000, 1, 10000000);
+        int[] a = ints(1000000, 1, 10000000);
         Wrapper[] ws = wrapperSortedByTime(a);
         for (int i = 0; i < 3; i++) 
             StdOut.printf("t = %d averageTime : %.3f increments = %s\n", 

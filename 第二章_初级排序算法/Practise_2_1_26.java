@@ -35,7 +35,7 @@ public class Practise_2_1_26 {
         return timer.elapsedTime();
     }
     public static void main(String[] args) {
-        Integer[] arr = IntegerRandom_bounds(0, 4000000);
+        Integer[] arr = Integers(0, 4000000);
         int[] arr1 = IntegerToInt(arr);
         StdOut.printf("基本数据类型 : %f\n", shell(arr1));
         StdOut.printf("包装类 : %f\n", shell(arr));
