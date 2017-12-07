@@ -250,12 +250,11 @@ public class Text_Array {
      * @param N 元素上界，能取到
      * @throw 非法参数异常
      */
-    public static int[] sortedInts(int size) {
-        if (size <= 0)
-            throw new IllegalArgumentException("array size cannot be negative or zero!");
-        int[] arr = ints(size);
-        Arrays.sort(arr);
-        return arr;
+    public static int[] ascendInts(int size) {
+        return IntegerToInt(ascendIntegers(size));
+    }
+    public static int[] ascendInts(int lo, int hi) {
+        return IntegerToInt(ascendIntegers(lo, hi));
     }
     /*
      * 返回一个个元素都相等的 int 数组
@@ -282,6 +281,13 @@ public class Text_Array {
     public static int[] ints(int lo, int hi) {
         return IntegerToInt(Integers(lo, hi));
     }
+    public static Integer[] ascendIntegers(int size) {
+        if (size <= 0)
+            throw new IllegalArgumentException("array size cannot be negative or zero!");
+        Integer[] arr = Integers(size);
+        Arrays.sort(arr);
+        return arr;
+    }
     /*
      * 生成一个从 lo 到 hi 的自然增长序列的 Integer 数组
      * 
@@ -289,7 +295,7 @@ public class Text_Array {
      * @param hi 元素上界，能取到
      * @throw 非法参数异常
      */
-    public static Integer[] IntegersRange(int lo, int hi) {
+    public static Integer[] ascendIntegers(int lo, int hi) {
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot be greater or equal than hi!");
         int N = hi - lo + 1;
@@ -306,7 +312,7 @@ public class Text_Array {
      * @throw 非法参数异常
      */
     public static Integer[] Integers(int lo, int hi) {
-        Integer[] arr = IntegersRange(lo, hi);
+        Integer[] arr = ascendIntegers(lo, hi);
         shuffle(arr);
         return arr;
     }
@@ -613,18 +619,24 @@ public class Text_Array {
             a[r] = t;
         }
     }
+    public static Integer[] descendIntegers(int size) {
+        return descendIntegers(-size, size);
+    }
+    public static int[] descendInts(int size) {
+        return IntegerToInt(descendIntegers(size));
+    }
     /*
-     * 产生一个 元素类型为 Integer 的逆序数组，元素从 hi 到 lo 递减
+     * 产生一个 元素类型为 Integer 的降序排列数组，元素从 hi 到 lo 递减
      * 
      * @param N 数组尺寸
      * @param lo 元素下界，可以取到
      * @param hi 元素上界，可以取到
      */
-    public static Integer[] reverseIntegers(int hi, int lo) {
+    public static Integer[] descendIntegers(int hi, int lo) {
         if (lo >= hi)
             throw new IllegalArgumentException("lo cannot greater or equal than hi!");
-        int N = hi - lo + 1;
         Integer[] arr = Integers(lo, hi);
+        int N = arr.length - 1;
         Arrays.sort(arr);
         int i = 0, j = N - 1;
         while (i <= j) {
@@ -642,20 +654,8 @@ public class Text_Array {
      * @param lo 元素下界，可以取到
      * @param hi 元素上界，可以取到
      */
-    public static int[] reverseInts(int hi, int lo) {
-        if (lo >= hi)
-            throw new IllegalArgumentException("lo cannot greater or equal than hi!");
-        int N = hi - lo + 1;
-        int[] arr = ints(lo, hi);
-        Arrays.sort(arr);
-        int i = 0, j = N - 1;
-        while (i <= j) {
-            Integer t = arr[i];
-            arr[i] = arr[j];
-            arr[j] = t;
-            i++; j--;
-        }
-        return arr;
+    public static int[] descendInts(int hi, int lo) {
+        return IntegerToInt(descendIntegers(hi, lo));
     }
     /*
      * 带索引的打印一个 Comparable 数组
@@ -713,6 +713,36 @@ public class Text_Array {
         StdOut.println();
     }
     public static void main(String[] args) {
+        
+        int[] intsRandomArr = ints(10);
+        print(intsRandomArr);
+        
+        int[] intsRandomBetween = ints(10, 20);
+        print(intsRandomBetween);
+        
+        
+//        Integer[] integerRandomArr = Integers(10);
+//        print(integerRandomArr);
+//        
+//        Integer[] ascendIntegers = ascendIntegers(10);
+//        print(ascendIntegers);
+//        
+//        ascendIntegers = ascendIntegers(10, 20);
+//        print(ascendIntegers);
+//        
+//        Integer[] descendIntegers = descendIntegers(20, 10);
+//        print(descendIntegers);
+        /*
+         * 生成一个自然增长的 int 数组
+//         */
+//        int[] ascendInts = ascendInts(10);
+//        print(ascendInts);
+//        /*
+//         * 生成一个指定取值域的 自然增长的 int 数组
+//         */
+//        ascendInts = ascendInts(100, 120);
+//        print(ascendInts);
+        
         
     }
 }
