@@ -1,10 +1,11 @@
 package 第二章_归并排序;
 
 import edu.princeton.cs.algs4.*;
-import static 第二章_初级排序算法.Text_Array.*;
 
 public class Practise_2_2_15 {
-    static class Queue<T extends Comparable<T>> {
+    // 这里不能写成 <T extends Comparable<T>>，因为要用这个 Queue 装 Queue
+    // 总感觉这样很别扭，下面使用到 sort 时直接强转成 Comparable 类型了...
+    static class Queue<T> {
         class Node {
             T item;
             Node next, prev;
@@ -49,6 +50,7 @@ public class Practise_2_2_15 {
             ++size;
             tailer.insertBefore(item);
         }
+        int size() { return size; }
         boolean isEmpty() { return size == 0; }
         T peek() {
             if (isEmpty()) return null;
@@ -61,52 +63,66 @@ public class Practise_2_2_15 {
             return header.next.delete();
         }
         void print() {
+            if (isEmpty()) StdOut.println("empty");
             Node cur = header.next;
             StdOut.print(cur.item + " ");
             while ((cur = cur.next) != tailer)
                 StdOut.print(cur.item + " ");
             StdOut.println();
         }
+        @SuppressWarnings("unchecked")
         void sort() {
             Node cur = null, prev = null;
             while ((cur = inversion()) != null) {
                 prev = cur;
                 while ((prev = prev.prev) != header &&
-                        prev.item.compareTo(cur.item) > 0);
+                        ((Comparable<T>)prev.item).compareTo(cur.item) > 0);
                 prev.insertAfter(cur.delete());
             }
         }
+        @SuppressWarnings("unchecked")
         private Node inversion() {
             if (isEmpty()) 
                 throw new RuntimeException("empty queue not mean sorted!");
             if (size == 1) return null;
             Node cur = header.next, prev = header.next;
             while ((cur = cur.next) != tailer)
-                if (cur.item.compareTo(prev.item) < 0) return cur;
-                else                                   prev = cur;
+                if (((Comparable<T>)cur.item).compareTo(prev.item) < 0) 
+                    return cur;
+                else                                   
+                    prev = cur;
             return null;
         }
     }
-    @SuppressWarnings("unchecked")
-    public static Queue<Integer>[] queues(int N) {
-        Queue<Integer>[] qs = (Queue<Integer>[])new Queue[N];
-        for (int i = 0; i < N; i++) {
+    public static Queue<Queue<Integer>> queues(int N) { 
+        Queue<Queue<Integer>> queue = new Queue<Queue<Integer>>();
+        while (N-- > 0) {
             Queue<Integer> q = new Queue<Integer>();
-            q.enqueue(StdRandom.uniform(10));
-            qs[i] = q;
+            q.enqueue(StdRandom.uniform(100));
+            queue.enqueue(q);
         }
-        return qs;    
+        return queue;
     }
     public static <T extends Comparable<T>> Queue<T> merge(Queue<T> q1, Queue<T> q2) {
         Queue<T> q = new Queue<T>();
-        while (q1.isEmpty() || q2.isEmpty()) 
+        while (!q1.isEmpty() || !q2.isEmpty()) 
             if      (q1.isEmpty())                       q.enqueue(q2.dequeue());
             else if (q2.isEmpty())                       q.enqueue(q1.dequeue());
             else if (q1.peek().compareTo(q2.peek()) < 0) q.enqueue(q1.dequeue());
             else                                         q.enqueue(q2.dequeue());
         return q;
     }
-    public static void main(String[] args) {
-       
+    public static <T extends Comparable<T>> void mergeAll(Queue<Queue<T>> q) {
+        while (q.size() > 1)
+            q.enqueue(merge(q.dequeue(), q.dequeue()));
     }
+    public static void main(String[] args) {
+       Queue<Queue<Integer>> q = queues(30);
+       mergeAll(q);
+       q.dequeue().print();
+    }
+    // output
+    /*
+     * 0 8 12 17 21 24 31 33 41 45 45 47 47 47 51 61 66 70 73 74 75 75 75 79 81 81 82 82 85 94 
+     */
 }
