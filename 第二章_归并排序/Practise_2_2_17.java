@@ -74,8 +74,7 @@ public class Practise_2_2_17 {
         return mergeSort(head1, head2); 
     }
     public static <T extends Comparable<T>> Node<T> mergeSort(Node<T> list1, Node<T> list2) {
-        Node<T> header = new Node<T>();
-        Node<T> tmp = header;
+        Node<T> header = new Node<T>(), tmp = header;
         while (list1 != null || list2 != null) {
             if      (list1 == null)     { tmp = tmp.insertAfter(list2.item); list2 = list2.removeFirst(); }
             else if (list2 == null)     { tmp = tmp.insertAfter(list1.item); list1 = list1.removeFirst(); }
