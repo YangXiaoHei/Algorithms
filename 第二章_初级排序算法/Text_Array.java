@@ -630,10 +630,6 @@ public class Text_Array {
             copy[i] = src[i];
         return copy;
     }
-  
-    
-    
-   
     /*
      * 带索引的打印一个 Comparable 数组
      * 
@@ -643,10 +639,10 @@ public class Text_Array {
         if (a == null || a.length == 0) return;
         StdOut.println();
         for (int i = 0; i < a.length; i++)
-            StdOut.printf("%-5d", i);
+            StdOut.printf("%-7d", i);
         StdOut.println();
         for (int i = 0; i < a.length; i++)
-            StdOut.printf("%-5s", a[i].toString());
+            StdOut.printf("%-7s", a[i].toString());
         StdOut.println();
     }
     public static void print(Double[] a) {
