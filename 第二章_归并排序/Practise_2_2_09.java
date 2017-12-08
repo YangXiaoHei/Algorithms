@@ -80,4 +80,9 @@ public class Practise_2_2_09 {
     public static void main(String[] args) {
         draw();
     }
+    // output
+    /*
+     * execute to see graph drawing
+     */
+    
 }

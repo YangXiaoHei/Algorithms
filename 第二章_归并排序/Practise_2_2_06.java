@@ -56,6 +56,6 @@ public class Practise_2_2_06 {
     }
     // output
     /*
-     * execute to see draw...
+     * execute to see graph drawing
      */
 }
