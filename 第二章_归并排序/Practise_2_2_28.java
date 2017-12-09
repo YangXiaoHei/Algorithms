@@ -59,6 +59,43 @@ public class Practise_2_2_28 {
         }
     }
     public static void main(String[] args) {
+        int N = 1000;
+        int[] arr = ints(N);
+        int[] copy = intsCopy(arr);
+        StdOut.printf("规模 %d  自顶向下 : %.3f\n", N, merge_A(arr));
+        StdOut.printf("规模 %d  自底向上 : %.3f\n\n", N, merge_B(copy));
+        
+         N = 10000;
+        arr = ints(N);
+        copy = intsCopy(arr);
+        StdOut.printf("规模 %d  自顶向下 : %.3f\n", N, merge_A(arr));
+        StdOut.printf("规模 %d  自底向上 : %.3f\n\n", N, merge_B(copy));
+        
+         N = 100000;
+        arr = ints(N);
+        copy = intsCopy(arr);
+        StdOut.printf("规模 %d  自顶向下 : %.3f\n", N, merge_A(arr));
+        StdOut.printf("规模 %d  自底向上 : %.3f\n\n", N, merge_B(copy));
+        
+        N = 1000000;
+        arr = ints(N);
+        copy = intsCopy(arr);
+        StdOut.printf("规模 %d  自顶向下 : %.3f\n", N, merge_A(arr));
+        StdOut.printf("规模 %d  自底向上 : %.3f\n\n", N, merge_B(copy));
         draw();
     }
+    // output
+    /*
+     *  规模 1000  自顶向下 : 0.002
+        规模 1000  自底向上 : 0.001
+        
+        规模 10000  自顶向下 : 0.003
+        规模 10000  自底向上 : 0.002
+        
+        规模 100000  自顶向下 : 0.015
+        规模 100000  自底向上 : 0.016
+        
+        规模 1000000  自顶向下 : 0.214
+        规模 1000000  自底向上 : 0.182
+     */
 }
