@@ -28,6 +28,44 @@ public class Text_QuickImpro {
         quick_B(a, 0, a.length - 1);
         return timer.elapsedTime();
     }
+    /*
+     * 三取样切分加小数组切换的插入排序
+     */
+    public static double quick_C(int[] a) {
+        Stopwatch timer = new Stopwatch();
+        quick_C(a, 0, a.length - 1);
+        return timer.elapsedTime();
+    }
+    private static void quick_C(int[] a, int lo, int hi) {
+        if (hi - lo <= 2) {
+            insertion(a, lo, hi);
+            return;
+        }
+        int median = median(a, lo, hi);
+        int j = parition_C(a, lo, hi, median);
+        quick_C(a, lo, j - 1);
+        quick_C(a, j + 1, hi);
+    }
+    private static int median(int[] a, int lo, int hi) {
+        int mid = (lo + hi) / 2;
+        if (a[mid] < a[lo]) exch(a, mid, lo);
+        if (a[hi] < a[lo]) exch(a, hi, lo);
+        if (a[hi] < a[mid]) exch(a, hi, mid);
+        exch(a, hi, hi - 1);
+        return hi - 1;
+    }
+    private static int parition_C(int[] a, int lo, int hi, int pivot) {
+        int i = lo, j = hi - 1;
+        while (true) {
+            while (i < hi && a[++i] < pivot);
+            while (j > lo && a[--j] > pivot);
+            if (i >= j) break;
+            exch(a, i, j);
+        }
+        exch(a, i, hi - 1);
+        return i;
+    }
+    
     private static void quick_B(int[] a, int lo, int hi) {
         if (lo >= hi) return;
         int lt = lo, i = lo + 1, gt = hi;
@@ -84,7 +122,7 @@ public class Text_QuickImpro {
     public static void main(String[] args) {
         int[] a = ints(0, 5);
         print(a);
-        StdOut.printf("耗时 : %.3f\n", quick_B(a));
+        StdOut.printf("耗时 : %.3f\n", quick_C(a));
         print(a);
     }
 }
