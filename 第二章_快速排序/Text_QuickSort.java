@@ -1,61 +1,70 @@
 package 第二章_快速排序;
 
-import edu.princeton.cs.algs4.*;
 import static 第二章_初级排序算法.Text_Array.*;
+
+import edu.princeton.cs.algs4.StdOut;
 
 public class Text_QuickSort {
     public static void quick(int[] a) {
-        
         quick(a, 0, a.length - 1);
     }
     private static void quick(int[] a, int lo, int hi) {
-        if (lo >= hi) {
-            StdOut.printf("lo = %d hi = %d ---返回---\n", lo, hi);
-            return;
-        }
+        if (lo >= hi) return;
         int j = partition(a, lo, hi);
-        StdOut.printf("将进入第一层 {lo = %d hi = %d}\n", lo, j - 1);
         quick(a, lo, j - 1);
-        StdOut.printf("从 {lo = %d, hi = %d} 退出，将进入第二层 {lo = %d hi = %d}\n",lo, j - 1, j + 1, hi);
         quick(a, j + 1, hi);
     }
     private static int partition(int[] a, int lo, int hi) {
         int i = lo, j = hi + 1;
-        int v = a[lo];
         while (true) {
-            while (i < hi && a[++i] < v);
-            while (j > lo && v < a[--j]);
-            
-            if (i >= j) {
-                break;
-            } else {
-                print(a);
-                
-                int t = a[i];
-                a[i] = a[j];
-                a[j] = t;
-                
-                StdOut.printf("lo = %d 切分结果 : i = %d j = %d\n",lo, i, j);
-            }
+            while (i < hi && less(a[++i], a[lo]));
+            while (j > lo && less(a[lo], a[--j]));
+            if (i >= j) break;
+            exch(a, i, j);
         }
-        
-        print(a);
-        
-        int t = a[lo];
-        a[lo] = a[j];
-        a[j] = t;
-        
-        StdOut.printf("切分结束 j = %d\n", j);
-        StdOut.print("//////////////////////////////");
-        print(a);
-        StdOut.println("//////////////////////////////");
-        
+        exch(a, lo, j);
         return j;
     }
-    public static void main(String[] args) {
-        int[] a = ints(0, 10);
-        print(a);
+    private static int compares = 0;
+    private static boolean less(int a, int b) {
+        compares++;
+        return a < b;
+    }
+    private static void exch(int[] a, int i, int j) {
+        int t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+    }
+    public static void normalCase() {
+        compares = 0;
+        int N = 100;
+        int[] a = ints(0, N - 1);
         quick(a);
+        print(a);
+        StdOut.printf("比较次数 : %d 理论值 : %d\n", compares, (int)(2 * N * Math.log(N)));
+    }
+    public static void worstCase1() {
+        compares = 0;
+        int N = 100;
+        
+        int[] a = ascendInts(0, N - 1);
+        quick(a);
+        print(a);
+        
+        StdOut.printf("比较次数 : %d 理论值 : %d\n", compares, (N + 1) * N / 2);
+    }
+    public static void worstCase2() {
+        compares = 0;
+        int N = 100;
+        
+        int[] a = descendInts(N - 1, 0);
+        quick(a);
+        print(a);
+        
+        StdOut.printf("比较次数 : %d 理论值 : %d\n", compares, (N + 1) * N / 2);
+    }
+    public static void main(String[] args) {
+        normalCase();
     }
     // output
     /*
