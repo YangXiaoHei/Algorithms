@@ -65,7 +65,6 @@ public class Text_QuickImpro {
         exch(a, i, hi - 1);
         return i;
     }
-    
     private static void quick_B(int[] a, int lo, int hi) {
         if (lo >= hi) return;
         int lt = lo, i = lo + 1, gt = hi;
@@ -107,13 +106,9 @@ public class Text_QuickImpro {
             while (i < hi && a[++i] < a[lo]);
             while (j > lo && a[--j] > a[lo]);
             if (i >= j) break;
-            int t = a[i];
-            a[i] = a[j];
-            a[j] = t;
+            exch(a, i, j);
         }
-        int t = a[j];
-        a[j] = a[lo];
-        a[lo] = t;
+        exch(a, lo, j);
         return j;
     }
     private static void exch(int[] a, int i, int j) {
