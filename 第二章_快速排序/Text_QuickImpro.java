@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.*;
 
 public class Text_QuickImpro {
     /*
-     * 通常的快速排序
+     * 普通
      */
     public static double quick(int[] a) {
         Stopwatch timer = new Stopwatch();
@@ -13,7 +13,7 @@ public class Text_QuickImpro {
         return timer.elapsedTime();
     }
     /*
-     * 小数组切换插入排序的快速排序
+     * 切换插入排序
      */
     public static double quick_A(int[] a) {
         Stopwatch timer = new Stopwatch();
@@ -21,7 +21,7 @@ public class Text_QuickImpro {
         return timer.elapsedTime();
     }
     /*
-     * 三向切分快速排序
+     * 三向切分
      */
     public static double quick_B(int[] a) {
         Stopwatch timer = new Stopwatch();
@@ -29,7 +29,7 @@ public class Text_QuickImpro {
         return timer.elapsedTime();
     }
     /*
-     * 三取样切分加小数组切换的插入排序
+     * 三取样切分 & 切换插入排序
      */
     public static double quick_C(int[] a) {
         Stopwatch timer = new Stopwatch();
@@ -37,11 +37,13 @@ public class Text_QuickImpro {
         return timer.elapsedTime();
     }
     private static void quick_C(int[] a, int lo, int hi) {
-        if (hi - lo <= 2) {
+        if (hi - lo < 3) {
             insertion(a, lo, hi);
             return;
         }
         int median = median(a, lo, hi);
+        StdOut.println(median);
+        
         int j = parition_C(a, lo, hi, median);
         quick_C(a, lo, j - 1);
         quick_C(a, j + 1, hi);
@@ -51,14 +53,14 @@ public class Text_QuickImpro {
         if (a[mid] < a[lo]) exch(a, mid, lo);
         if (a[hi] < a[lo]) exch(a, hi, lo);
         if (a[hi] < a[mid]) exch(a, hi, mid);
-        exch(a, hi, hi - 1);
-        return hi - 1;
+        exch(a, mid, hi - 1);
+        return a[hi - 1];
     }
     private static int parition_C(int[] a, int lo, int hi, int pivot) {
         int i = lo, j = hi - 1;
         while (true) {
-            while (i < hi && a[++i] < pivot);
-            while (j > lo && a[--j] > pivot);
+            while (a[++i] < pivot);
+            while (a[--j] > pivot);
             if (i >= j) break;
             exch(a, i, j);
         }
@@ -95,7 +97,7 @@ public class Text_QuickImpro {
     private static void insertion(int[] a, int lo, int hi) {
         for (int i = lo; i <= hi; i++) {
             int t = a[i], j;
-            for (j = i - 1; j >= 0 && t < a[j]; j--)
+            for (j = i - 1; j >= lo && t < a[j]; j--)
                 a[j + 1] = a[j];
             a[j + 1] = t;
         }
@@ -115,9 +117,11 @@ public class Text_QuickImpro {
         int t = a[i]; a[i] = a[j]; a[j] = t;
     }
     public static void main(String[] args) {
-        int[] a = ints(0, 5);
+//        int[] a = ints(0, 10);
+        int[] a = new int[] {6 ,      10  ,    8    ,   1    ,   4    ,   5  ,     9     ,  7    ,   3     ,  0 ,      2  };
         print(a);
-        StdOut.printf("耗时 : %.3f\n", quick_C(a));
+        StdOut.println();
+        quick_C(a);
         print(a);
     }
 }
