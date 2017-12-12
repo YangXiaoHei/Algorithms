@@ -21,7 +21,7 @@ public class Text_QuickImpro {
         return timer.elapsedTime();
     }
     /*
-     * 三向切分
+     * 三向切分 & 切换插入排序
      */
     public static double quick_B(int[] a) {
         Stopwatch timer = new Stopwatch();
@@ -66,7 +66,10 @@ public class Text_QuickImpro {
         return i;
     }
     private static void quick_B(int[] a, int lo, int hi) {
-        if (lo >= hi) return;
+        if (hi - lo < 3) {
+            insertion(a, lo, hi);
+            return;
+        }
         int lt = lo, i = lo + 1, gt = hi;
         int v = a[lo];
         while (i <= gt) {
@@ -161,7 +164,54 @@ public class Text_QuickImpro {
                     i, quick_C(copy) / quick(a));
         }
     }
+    /*
+     *  规模 : 12800 三取样切分 / 三向切分 = 0.333
+        规模 : 25600 三取样切分 / 三向切分 = 0.500
+        规模 : 51200 三取样切分 / 三向切分 = 0.600
+        规模 : 102400 三取样切分 / 三向切分 = 0.625
+        规模 : 204800 三取样切分 / 三向切分 = 0.763
+        规模 : 409600 三取样切分 / 三向切分 = 0.909
+        规模 : 819200 三取样切分 / 三向切分 = 0.715
+        规模 : 1638400 三取样切分 / 三向切分 = 0.664
+        规模 : 3276800 三取样切分 / 三向切分 = 0.647
+        规模 : 6553600 三取样切分 / 三向切分 = 0.549
+        规模 : 13107200 三取样切分 / 三向切分 = 0.585
+        规模 : 26214400 三取样切分 / 三向切分 = 0.615
+        规模 : 52428800 三取样切分 / 三向切分 = 0.682
+     * 
+     * 
+     */
+    public static void sampleOfThreeVSQuick3Way() {
+        for (int i = 100, j = 0; j < 20; j++, i += i) {
+            int[] a = ints(i);
+            int[] copy = intsCopy(a);
+            StdOut.printf("规模 : %d 三取样切分 / 三向切分 = %.3f\n",
+                    i, quick_C(copy) / quick_B(a));
+        }
+    }
+    /*
+     *  规模 : 51200 三取样切分 / 三向切分 = 2.000
+        规模 : 102400 三取样切分 / 三向切分 = 4.000
+        规模 : 204800 三取样切分 / 三向切分 = 10.000
+        规模 : 409600 三取样切分 / 三向切分 = 13.000
+        规模 : 819200 三取样切分 / 三向切分 = 28.000
+        规模 : 1638400 三取样切分 / 三向切分 = 62.000
+        规模 : 3276800 三取样切分 / 三向切分 = 37.333
+        规模 : 6553600 三取样切分 / 三向切分 = 52.750
+        规模 : 13107200 三取样切分 / 三向切分 = 55.625
+        规模 : 26214400 三取样切分 / 三向切分 = 39.435
+        规模 : 52428800 三取样切分 / 三向切分 = 62.871
+     * 
+     */
+    public static void theWorstCaseComparasion() {
+        for (int i = 100, j = 0; j < 20; j++, i += i) {
+            int[] a = allSameInts(i, 0);
+            int[] copy = intsCopy(a);
+            StdOut.printf("规模 : %d 三取样切分 / 三向切分 = %.3f\n",
+                    i, quick_C(copy) / quick_B(a));
+        }
+    }
     public static void main(String[] args) {
-        sampleOfThreeVSNormalQuick();
+        theWorstCaseComparasion();
     }
 }
