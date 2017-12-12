@@ -212,6 +212,7 @@ public class Text_QuickImpro {
         }
     }
     public static void main(String[] args) {
-        theWorstCaseComparasion();
+        int[] arr = ints(0, 10);
+        print(arr);
     }
 }
