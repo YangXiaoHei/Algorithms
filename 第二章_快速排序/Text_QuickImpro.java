@@ -42,8 +42,6 @@ public class Text_QuickImpro {
             return;
         }
         int median = median(a, lo, hi);
-        StdOut.println(median);
-        
         int j = parition_C(a, lo, hi, median);
         quick_C(a, lo, j - 1);
         quick_C(a, j + 1, hi);
@@ -116,12 +114,54 @@ public class Text_QuickImpro {
     private static void exch(int[] a, int i, int j) {
         int t = a[i]; a[i] = a[j]; a[j] = t;
     }
+    /*
+     * 
+     *  规模 : 204800 耗时 : 0.029 倍率 : 2.1
+        规模 : 409600 耗时 : 0.063 倍率 : 2.2
+        规模 : 819200 耗时 : 0.119 倍率 : 1.9
+        规模 : 1638400 耗时 : 0.212 倍率 : 1.8
+        规模 : 3276800 耗时 : 0.401 倍率 : 1.9
+        规模 : 6553600 耗时 : 0.831 倍率 : 2.1
+        规模 : 13107200 耗时 : 1.801 倍率 : 2.2
+        规模 : 26214400 耗时 : 3.794 倍率 : 2.1
+        规模 : 52428800 耗时 : 8.028 倍率 : 2.1
+     * 
+     */
+    public static void sampleOfThreeDoublingRatioTest() {
+        double pre = 0, cur = 0;
+        for (int i = 100, j = 0; j < 20; j++, i += i) {
+            int[] ints = ints(i);
+            StdOut.printf("规模 : %d 耗时 : %.3f 倍率 : %.1f\n",
+                    i, (cur = quick_C(ints)), cur / pre);
+            pre = cur;
+        }
+    }
+    /*
+     *  规模 : 12800 三取样切分 / 普通 = 0.500
+        规模 : 25600 三取样切分 / 普通 = 0.667
+        规模 : 51200 三取样切分 / 普通 = 0.800
+        规模 : 102400 三取样切分 / 普通 = 0.824
+        规模 : 204800 三取样切分 / 普通 = 0.929
+        规模 : 409600 三取样切分 / 普通 = 0.955
+        规模 : 819200 三取样切分 / 普通 = 1.121
+        规模 : 1638400 三取样切分 / 普通 = 0.870
+        规模 : 3276800 三取样切分 / 普通 = 0.822
+        规模 : 6553600 三取样切分 / 普通 = 0.873
+        规模 : 13107200 三取样切分 / 普通 = 0.872
+        规模 : 26214400 三取样切分 / 普通 = 0.870
+        规模 : 52428800 三取样切分 / 普通 = 0.899
+     * 
+     * 
+     */
+    public static void sampleOfThreeVSNormalQuick() {
+        for (int i = 100, j = 0; j < 20; j++, i += i) {
+            int[] a = ints(i);
+            int[] copy = intsCopy(a);
+            StdOut.printf("规模 : %d 三取样切分 / 普通 = %.3f\n",
+                    i, quick_C(copy) / quick(a));
+        }
+    }
     public static void main(String[] args) {
-//        int[] a = ints(0, 10);
-        int[] a = new int[] {6 ,      10  ,    8    ,   1    ,   4    ,   5  ,     9     ,  7    ,   3     ,  0 ,      2  };
-        print(a);
-        StdOut.println();
-        quick_C(a);
-        print(a);
+        sampleOfThreeVSNormalQuick();
     }
 }
