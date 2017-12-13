@@ -106,28 +106,41 @@ public class Practise_1_4_10 {
 	    /*
 	     * in that way, we can guarantee O(logN) in the worst situation
 	     */
-		public static int rank(int key, int[] arr)  {
+		public static int minimumRank(int key, int[] arr)  {
 		    int lo = 0, hi = arr.length - 1, mid = 0;
 		    while (lo < hi) {
+		        /*
+		         * 试想，如果查找的元素不存在，比如查找 4，当前序列 ...3 5...
+		         * lo 指向 3, hi 指向 5, 如果不向上取整，那么 mid 指向 3,由于 3 小于
+		         * 待查找元素，因此 lo 指向 3, hi 指向 5，形成死循环
+		         */
 		        mid = (int)Math.ceil((lo + hi) / 2.0);
-		        if (key > arr[mid]) 
-		            lo = mid;
-		        else 
+		        if (arr[mid] >= key) 
 		            hi = mid - 1;
+		        else 
+		            lo = mid;
 		    }
-		    // hi = 0
+		    /*
+		     * 如果在这个判断分之就返回，说明命中元素在序列的首端或末端
+		     */
 		    if (arr[hi] == key) return hi; 
-		    // hi != 0
+		    /*
+		     * 如果执行到这里，说明即使有命中元素，命中元素只存在于排除首尾端的中间某个位置
+		     * 我们让 hi 递增，同时判断是否是末端，如果是，结合上述理解，那么命中元素不存在，返回 -1
+		     * 如果不是末端，说明如果有命中元素，那么命中元素在左侧除了首端的中间某个位置
+		     * 因为前面的判断分支已经让 hi 递增，所以直接判断 a[hi] 是否就是命中元素
+		     * 是返回当前的命中索引，不是的话，返回 -1
+		     */
 		    return ++hi == arr.length || arr[hi] != key ? -1 : hi;
 		}
 		public static int maximumRank(int key, int[] arr) {
             int lo = 0, hi = arr.length - 1, mid = 0;
             while (lo < hi) {
-                mid = (lo + hi) / 2;
-                if (arr[mid] > key)
-                    hi = mid;
-                else
+                mid = (lo + hi) >> 1;
+                if (arr[mid] <= key)
                     lo = mid + 1;
+                else
+                    hi = mid;
             }
             // lo = arr.length - 1
             if (arr[lo] == key) return lo;
@@ -152,7 +165,7 @@ public class Practise_1_4_10 {
 		public static void test(int key, int N) {
 			int[] arr = sourceArr(N);
 			printArray(arr);
-			StdOut.println("minimum index of " + key + " is " + rank(key, arr));
+			StdOut.println("minimum index of " + key + " is " + minimumRank(key, arr));
 		}
 	}
 	public static void main(String[] args)  {
