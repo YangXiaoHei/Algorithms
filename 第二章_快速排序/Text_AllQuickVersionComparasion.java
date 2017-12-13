@@ -65,6 +65,36 @@ public class Text_AllQuickVersionComparasion {
         quick_B(a, lo, lt); // 从相等元素的左右两端开始切分
         quick_B(a, gt, hi);
     }
+    public static double quick_C(int[] a) {
+        Stopwatch timer = new Stopwatch();
+        shuffle(a);
+        quick_C(a, 0, a.length - 1);
+        return timer.elapsedTime();
+    }
+    private static void quick_C(int[] a, int lo, int hi) {
+        if (hi - lo + 1 < 5) {
+            insertion(a, lo, hi);
+            return;
+        }
+        int mid = (lo + hi) >> 1;
+        if (a[mid] < a[lo]) exch(a, mid, lo);
+        if (a[hi] < a[lo])  exch(a, hi, lo);
+        if (a[mid] < a[hi]) exch(a, mid, hi);
+        exch(a, mid, hi - 1);
+        
+        int privot = a[hi - 1];
+        int i = lo, j = hi - 1;
+        while (true) {
+            while (a[++i] < privot);
+            while (a[--j] > privot);
+            if (i >= j) break;
+            exch(a, i, j);
+        }
+        exch(a, j, hi - 1);
+        
+        quick_C(a, lo, j - 1);
+        quick_C(a, j + 1, hi);
+    }
     private static void exch(int[] a, int i, int j) {
         int t = a[i]; a[i] = a[j]; a[j] = t;
     }
@@ -97,60 +127,78 @@ public class Text_AllQuickVersionComparasion {
         StdOut.println("=================  大量重复元素 ===================");
         int[] a = intsVrgWithEachAmount(10000000, 1, 2, 3, 4, 5);
         int[] copy = intsCopy(a);
+        int[] copy1 = intsCopy(a);
         StdOut.printf("最终版 : %.3f\n", quick_B(a));
         StdOut.printf("三向切分 : %.3f\n", quick_A(copy));
+        StdOut.printf("三取样切分 : %.3f\n", quick_C(copy1));
     }
     public static void randomOrderNoDupliSequence() {
         StdOut.println("=================  无重复元素序列 ===================");
         int[] a = ints(0, 10000000);
         int[] copy = intsCopy(a);
+        int[] copy1 = intsCopy(a);
         StdOut.printf("最终版 : %.3f\n", quick_B(a));
         StdOut.printf("三向切分 : %.3f\n", quick_A(copy));
+        StdOut.printf("三取样切分 : %.3f\n", quick_C(copy1));
     }
     public static void sortedSequence() {
         StdOut.println("=================  已排序序列 ===================");
         int[] a = ascendInts(0, 10000000);
         int[] copy = intsCopy(a);
+        int[] copy1 = intsCopy(a);
         StdOut.printf("最终版 : %.3f\n", quick_B(a));
         StdOut.printf("三向切分 : %.3f\n", quick_A(copy));
+        StdOut.printf("三取样切分 : %.3f\n", quick_C(copy1));
     }
     public static void reverseSequence() {
         StdOut.println("=================  逆序序列 ===================");
         int[] a = descendInts(10000000, 0);
         int[] copy = intsCopy(a);
+        int[] copy1 = intsCopy(a);
         StdOut.printf("最终版 : %.3f\n", quick_B(a));
         StdOut.printf("三向切分 : %.3f\n", quick_A(copy));
+        StdOut.printf("三取样切分 : %.3f\n", quick_C(copy1));
     }
     public static void allSameSequence() {
         StdOut.println("=================  全部元素相同 ===================");
         int[] a = allSameInts(10000000, 0);
         int[] copy = intsCopy(a);
+        int[] copy1 = intsCopy(a);
         StdOut.printf("最终版 : %.3f\n", quick_B(a));
         StdOut.printf("三向切分 : %.3f\n", quick_A(copy));
+        StdOut.printf("三取样切分 : %.3f\n", quick_C(copy1));
     }
     public static void main(String[] args) {
-        tooManyDupliRandomOrderSequence();
-        randomOrderNoDupliSequence();
-        sortedSequence();
-        reverseSequence();
-        allSameSequence();
+//        tooManyDupliRandomOrderSequence();
+//        randomOrderNoDupliSequence();
+//        sortedSequence();
+//        reverseSequence();
+//        allSameSequence();
+        int[] a = parseInts("1   9   5   2   4   3   6   10  8   7   0 ");
+        quick_B(a);
+        print(a);
     }
     // output
     /*
      *  =================  大量重复元素 ===================
-        最终版 : 1.276
-        三向切分 : 6.081
+        最终版 : 1.239
+        三向切分 : 5.740
+        三取样切分 : 9.371
         =================  无重复元素序列 ===================
-        最终版 : 2.203
-        三向切分 : 3.324
+        最终版 : 2.042
+        三向切分 : 3.266
+        三取样切分 : 3.187
         =================  已排序序列 ===================
-        最终版 : 0.537
-        三向切分 : 3.493
+        最终版 : 0.428
+        三向切分 : 3.280
+        三取样切分 : 3.141
         =================  逆序序列 ===================
-        最终版 : 0.509
-        三向切分 : 3.921
+        最终版 : 0.483
+        三向切分 : 3.568
+        三取样切分 : 2.995
         =================  全部元素相同 ===================
-        最终版 : 0.056
-        三向切分 : 0.820
+        最终版 : 0.068
+        三向切分 : 0.870
+        三取样切分 : 1.550
      */
 }
