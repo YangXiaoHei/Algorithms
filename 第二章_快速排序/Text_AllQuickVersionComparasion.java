@@ -14,7 +14,7 @@ public class Text_AllQuickVersionComparasion {
         return timer.elapsedTime();
     }
     private static void quick_A(int[] a, int lo, int hi) {
-        if (hi - lo + 1 < 3) {
+        if (hi - lo + 1 < 5) {
             insertion(a, lo, hi);
             return;
         }
@@ -37,11 +37,11 @@ public class Text_AllQuickVersionComparasion {
         return timer.elapsedTime();
     }
     private static void quick_B(int[] a, int lo, int hi) {
-        if (hi - lo + 1 < 3) {
+        if (hi - lo + 1 < 5) {
             insertion(a, lo, hi);
             return;
         }
-        int mid = (lo + hi) >> 1;
+        int mid = (lo + hi) >> 1; // 三取样切分
         if (a[mid] < a[lo]) exch(a, mid, lo);
         if (a[hi] < a[lo]) exch(a, hi, lo);
         if (a[mid] < a[hi]) exch(a, mid, hi);
@@ -62,7 +62,7 @@ public class Text_AllQuickVersionComparasion {
         while (k <= p) exch(a, k++, lt--);
         while (m >= q) exch(a, m--, gt++);
         
-        quick_B(a, lo, lt);
+        quick_B(a, lo, lt); // 从相等元素的左右两端开始切分
         quick_B(a, gt, hi);
     }
     private static void exch(int[] a, int i, int j) {
@@ -138,19 +138,19 @@ public class Text_AllQuickVersionComparasion {
     // output
     /*
      *  =================  大量重复元素 ===================
-        最终版 : 1.182
-        三向切分 : 6.073
+        最终版 : 1.276
+        三向切分 : 6.081
         =================  无重复元素序列 ===================
-        最终版 : 2.530
-        三向切分 : 4.281
+        最终版 : 2.203
+        三向切分 : 3.324
         =================  已排序序列 ===================
-        最终版 : 0.622
-        三向切分 : 4.487
+        最终版 : 0.537
+        三向切分 : 3.493
         =================  逆序序列 ===================
-        最终版 : 0.647
-        三向切分 : 4.291
+        最终版 : 0.509
+        三向切分 : 3.921
         =================  全部元素相同 ===================
-        最终版 : 0.061
-        三向切分 : 0.991
+        最终版 : 0.056
+        三向切分 : 0.820
      */
 }
