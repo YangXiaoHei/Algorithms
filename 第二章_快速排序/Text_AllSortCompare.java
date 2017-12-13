@@ -26,7 +26,7 @@ public class Text_AllSortCompare {
         return timer.elapsedTime();
     }
     private static void quick(int[] a, int lo, int hi) {
-        if (hi - lo + 1 < 5) {
+        if (hi - lo + 1 < 7) {
             insertion(a, lo, hi);
             return;
         }
@@ -54,7 +54,7 @@ public class Text_AllSortCompare {
         quick(a, gt, hi);
     }
     private static void merge(int[] src, int[] dst, int lo, int hi) {
-        if (hi - lo + 1 < 5) {
+        if (hi - lo + 1 < 7) {
             insertion(dst, lo, hi);
             return;
         }
@@ -102,10 +102,48 @@ public class Text_AllSortCompare {
     
     public static void main(String[] args) {
         int[] a = ints(0, 10000000);
+//        int[] a = allSameInts(10000000, 0);
+//        int[] a = descendInts(10000000, 0);
+//        int[] a = ascendInts(0, 10000000);
+//        int[] a = intsVrg(10000000, 1, 2, 3, 4, 5, 6, 7, 8);
         int[] copy = intsCopy(a);
         int[] copy1 = intsCopy(a);
         StdOut.printf("希尔排序 ：%.3f\n", shell(a));
         StdOut.printf("归并排序 ：%.3f\n", merge(copy));
         StdOut.printf("快速排序 ：%.3f\n", quick(copy1));
     }
+    // output
+    /*
+     *  随机不重复元素
+     *  
+     *  希尔排序 ：6.694
+        归并排序 ：3.287
+        快速排序 ：2.131
+        
+        全部元素都相同
+         
+        希尔排序 ：0.261
+        归并排序 ：1.348
+        快速排序 ：0.087
+        
+        逆序数组
+        
+        希尔排序 ：0.881
+        归并排序 ：1.231
+        快速排序 ：0.615
+
+        已排序的数组
+        
+        希尔排序 ：0.132
+        归并排序 ：0.520
+        快速排序 ：0.565
+        
+        大量重复元素的数组
+        
+        希尔排序 ：1.157
+        归并排序 ：1.774
+        快速排序 ：0.413
+
+
+     */
 }
