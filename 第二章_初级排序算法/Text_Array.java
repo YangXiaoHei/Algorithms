@@ -127,6 +127,13 @@ public class Text_Array {
             arr[i] = StdRandom.discrete(probabilities);
         return arr;
     }
+    public static int[] parseIntByEmptySpace(String s) {
+        String[] sArr = s.split("\\s+");
+        int[] arr = new int[sArr.length];
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = Integer.parseInt(sArr[i]);
+        return arr;
+    }
     /*
      * 从字符串中解析出 int 数组
      * 
@@ -679,10 +686,10 @@ public class Text_Array {
         if (a == null || a.length == 0) return;
         StdOut.println();
         for (int i = 0; i < a.length; i++)
-            StdOut.printf("%-8d", i);
+            StdOut.printf("%-4d", i);
         StdOut.println();
         for (int i = 0; i < a.length; i++)
-            StdOut.printf("%-8d", a[i]);
+            StdOut.printf("%-4d", a[i]);
         StdOut.println();
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
