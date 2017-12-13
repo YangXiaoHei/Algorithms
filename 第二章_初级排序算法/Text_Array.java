@@ -127,7 +127,7 @@ public class Text_Array {
             arr[i] = StdRandom.discrete(probabilities);
         return arr;
     }
-    public static int[] parseIntByEmptySpace(String s) {
+    public static int[] parseInts(String s) {
         String[] sArr = s.split("\\s+");
         int[] arr = new int[sArr.length];
         for (int i = 0; i < arr.length; i++)
@@ -140,7 +140,7 @@ public class Text_Array {
      * @param s 形如 "1,2,3,4,5,6,6" 的字符串，由 Arrays.toString(new int[]{1,2,3,4,5,6,6}) 产生
      * 
      */
-    public static int[] parseIntFromString(String s) {
+    public static int[] parseIntsString(String s) {
         String[] sArr = s.split(",\\s*");
         int[] arr = new int[sArr.length];
         for (int i = 0; i < arr.length; i++)
@@ -153,7 +153,7 @@ public class Text_Array {
      * @param s 形如 "1.0,2.0,3.0,4.0,5.0,6.0" 的字符串，由 Arrays.toString(new double[]{1.0,2.0,3.0,4.0,5.0,6.0}) 产生
      * 
      */
-    public static Double[] parseDoubleFromString(String s) {
+    public static Double[] parseDoublesString(String s) {
         String[] sArr = s.split(",\\s*");
         Double[] arr = new Double[sArr.length];
         for (int i = 0; i < arr.length; i++)
