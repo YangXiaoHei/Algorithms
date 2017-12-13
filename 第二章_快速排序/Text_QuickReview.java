@@ -55,7 +55,7 @@ public class Text_QuickReview {
           int i = lo - 1, p = lo - 1 , j = hi, q = hi;
           while (true) {
             while (a[++i] < v);
-            while (j > lo && a[--j] > v);
+            while (a[--j] > v);
             if (i >= j) break;
             
             if (log) {
@@ -112,7 +112,7 @@ public class Text_QuickReview {
     }
     public static void correctTest() {
         while (true) {
-            int[] a = intsVrgWithEachAmount(10, 1, 2, 3, 4, 5);
+            int[] a = intsVrgWithEachAmount(100, 1, 2, 3, 4, 5);
             int[] copy = intsCopy(a);
             quick(a);
             if (!isSorted(a)) {
@@ -123,9 +123,10 @@ public class Text_QuickReview {
         }
     }
     public static void main(String[] args) {
-        log = true;
-        int[] a = parseInts("3   3   3   1   4   2   5   5   1   5   2   1   3   5   1   2   2   4   4   4  ");  
+        log = false;
+        int[] a = parseInts("3   5   3   4   2   2   2   1   4   4   1   5   5   1   3  ");  
         quick(a);
+        assert isSorted(a);
     }
     // output
     /*
