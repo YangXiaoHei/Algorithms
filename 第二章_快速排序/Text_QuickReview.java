@@ -1,6 +1,9 @@
 package 第二章_快速排序;
 
 import static 第二章_初级排序算法.Text_Array.*;
+
+import java.util.Arrays;
+
 import edu.princeton.cs.algs4.*;
 
 public class Text_QuickReview {
@@ -12,9 +15,9 @@ public class Text_QuickReview {
     private static void exch(int[] a, int i, int j) {
         int t = a[i]; a[i] = a[j]; a[j] = t;
     }
-//    private static void compare_exchange(int[] a, int i, int j) {
-//        if (a[i] > a[j]) exch(a, i, j);
-//    }
+    private static void compare_exchange(int[] a, int i, int j) {
+        if (a[i] > a[j]) exch(a, i, j);
+    }
     private static void insertion(int[] a, int lo, int hi) {
         for (int i = lo; i <= hi; i++) {
             int t = a[i], j;
@@ -28,10 +31,11 @@ public class Text_QuickReview {
             if (a[i] < a[i - 1]) return false;
         return true;
     }
+    private static boolean log = false;
     static int M = 3;
     public static void quick(int[] a, int lo, int hi) {
         
-            if (hi - lo + 1 <= 3) {
+            if (hi - lo  < 3) {
                 insertion(a, lo, hi);
                 return;
             }
@@ -41,10 +45,12 @@ public class Text_QuickReview {
             if (a[hi] < a[lo])  exch(a, hi, lo);
             if (a[mid] < a[hi]) exch(a, mid, hi);
             
-            StdOut.printf("三分取样后 : %d %d %d", lo, mid, hi);
-            print(a);
-            StdOut.println();
-        
+            if (log) {
+                StdOut.printf("三分取样后 : %d %d %d", lo, mid, hi);
+                print(a);
+                StdOut.println();
+            }
+            
           int v = a[hi];
           int i = lo - 1, p = lo - 1 , j = hi, q = hi;
           while (true) {
@@ -52,54 +58,74 @@ public class Text_QuickReview {
             while (j > lo && a[--j] > v);
             if (i >= j) break;
             
-            StdOut.print("=======================");
-            print(a);
-            StdOut.printf("交换 %d %d", i, j);
+            if (log) {
+                StdOut.print("=======================");
+                print(a);
+                StdOut.printf("交换 %d %d", i, j);
+            }
             exch(a, i, j);
-            print(a);
-            StdOut.print("=======================\n");
             
-            if (a[i] == v) { exch(a, ++p, i); StdOut.printf("左边 p = %d i = %d\n", p, i); }
-            if (a[j] == v) { exch(a, --q, j); StdOut.printf("右边 q = %d j = %d\n", p, j); }
+            if (log) {
+                print(a);
+                StdOut.print("=======================\n");
+            }
+            
+            if (a[i] == v) { exch(a, ++p, i); if (log) { StdOut.printf("左边 p = %d i = %d\n", p, i); }}
+            if (a[j] == v) { exch(a, --q, j); if (log) { StdOut.printf("右边 q = %d j = %d\n", p, j); }}
           
           }
-          StdOut.print("++++++++++++++++++++++++++");
-          print(a);
-          StdOut.printf("把 %d 移动到合适位置 %d", hi, i);
+            if (log) {
+              StdOut.print("++++++++++++++++++++++++++");
+              print(a);
+              StdOut.printf("把 %d 移动到合适位置 %d", hi, i);
+            }
+            
           exch(a, i, hi);
-          print(a);
-          StdOut.print("++++++++++++++++++++++++++\n");
           
+          if (log) {
+              print(a);
+              StdOut.print("++++++++++++++++++++++++++\n");
+            }
           
           j = i - 1;
           i = i + 1;
           
-          StdOut.printf("当前边界 lo = %d hi = %d\n", lo, hi);
-          StdOut.printf("将把重复元素移到数组中间 j = %d i = %d p = %d q = %d", j, i, p, q);
-          print(a);
-          StdOut.println();
+          if (log) {
+              StdOut.printf("当前边界 lo = %d hi = %d\n", lo, hi);
+              StdOut.printf("移动元素前 : j = %d i = %d", j, i);
+              print(a);
+              StdOut.println();
+          }
           
-          int k = lo;
+          int k = lo, m = hi - 1;;
           while (k <= p) exch(a, k++, j--);
+          while (m >= q) exch(a, m--, i++);
           
-          j -= p - k + 1;
-          
-          k = hi - 1;
-          while (k >= q) exch(a, k--, i++);
-          
-          i += k - q + 1;
+          if (log) {
+              StdOut.printf("移动元素后 : j = %d i = %d", j, i);
+              print(a);
+              StdOut.println();
+          }
           
           quick(a, lo, j);
           quick(a, i, hi);
     }
-    public static void main(String[] args) {
+    public static void correctTest() {
         while (true) {
-            int[] a = intsVrgWithEachAmount(4, 1, 2, 3, 4, 5);
+            int[] a = intsVrgWithEachAmount(10, 1, 2, 3, 4, 5);
+            int[] copy = intsCopy(a);
             quick(a);
-            print(a);
-            assert isSorted(a);
-            break;
+            if (!isSorted(a)) {
+                print(copy);
+                assert isSorted(copy);
+                break;
+            }
         }
+    }
+    public static void main(String[] args) {
+        log = true;
+        int[] a = parseInts("3   3   3   1   4   2   5   5   1   5   2   1   3   5   1   2   2   4   4   4  ");  
+        quick(a);
     }
     // output
     /*
@@ -153,9 +179,13 @@ public class Text_QuickReview {
         4   4   3   1   3   2   3   2   1   2   2   1   3   1   4   5   5   5   4   5   
         ++++++++++++++++++++++++++
         当前边界 lo = 0 hi = 19
-        将把重复元素移到数组中间 j = 13 i = 15 p = 1 q = 18
+        移动元素前 : j = 13 i = 15
         0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
         4   4   3   1   3   2   3   2   1   2   2   1   3   1   4   5   5   5   4   5   
+        
+        移动元素后 : j = 11 i = 16
+        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
+        1   3   3   1   3   2   3   2   1   2   2   1   4   4   4   4   5   5   5   5   
         
         三分取样后 : 0 5 11
         0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
@@ -186,9 +216,13 @@ public class Text_QuickReview {
         1   1   1   3   3   2   3   2   2   2   1   3   4   4   4   4   5   5   5   5   
         ++++++++++++++++++++++++++
         当前边界 lo = 0 hi = 11
-        将把重复元素移到数组中间 j = 1 i = 3 p = 1 q = 10
+        移动元素前 : j = 1 i = 3
         0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
         1   1   1   3   3   2   3   2   2   2   1   3   4   4   4   4   5   5   5   5   
+        
+        移动元素后 : j = -1 i = 4
+        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
+        1   1   1   1   3   2   3   2   2   2   3   3   4   4   4   4   5   5   5   5   
         
         三分取样后 : 4 7 11
         0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
@@ -219,9 +253,13 @@ public class Text_QuickReview {
         1   1   1   1   3   2   2   2   2   3   3   3   4   4   4   4   5   5   5   5   
         ++++++++++++++++++++++++++
         当前边界 lo = 4 hi = 11
-        将把重复元素移到数组中间 j = 8 i = 10 p = 4 q = 9
+        移动元素前 : j = 8 i = 10
         0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
         1   1   1   1   3   2   2   2   2   3   3   3   4   4   4   4   5   5   5   5   
+        
+        移动元素后 : j = 7 i = 12
+        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
+        1   1   1   1   2   2   2   2   3   3   3   3   4   4   4   4   5   5   5   5   
         
         三分取样后 : 4 5 7
         0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
@@ -244,7 +282,11 @@ public class Text_QuickReview {
         1   1   1   1   2   2   2   2   3   3   3   3   4   4   4   4   5   5   5   5   
         ++++++++++++++++++++++++++
         当前边界 lo = 4 hi = 7
-        将把重复元素移到数组中间 j = 4 i = 6 p = 4 q = 6
+        移动元素前 : j = 4 i = 6
+        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
+        1   1   1   1   2   2   2   2   3   3   3   3   4   4   4   4   5   5   5   5   
+        
+        移动元素后 : j = 3 i = 7
         0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
         1   1   1   1   2   2   2   2   3   3   3   3   4   4   4   4   5   5   5   5   
         
@@ -269,12 +311,12 @@ public class Text_QuickReview {
         1   1   1   1   2   2   2   2   3   3   3   3   4   4   4   4   5   5   5   5   
         ++++++++++++++++++++++++++
         当前边界 lo = 16 hi = 19
-        将把重复元素移到数组中间 j = 16 i = 18 p = 16 q = 18
+        移动元素前 : j = 16 i = 18
         0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
         1   1   1   1   2   2   2   2   3   3   3   3   4   4   4   4   5   5   5   5   
         
-        
+        移动元素后 : j = 15 i = 19
         0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  
-        1   1   1   1   2   2   2   2   3   3   3   3   4   4   4   4   5   5   5   5       
+        1   1   1   1   2   2   2   2   3   3   3   3   4   4   4   4   5   5   5   5        
      */
 }
