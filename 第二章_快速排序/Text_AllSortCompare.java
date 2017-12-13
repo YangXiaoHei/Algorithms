@@ -3,7 +3,14 @@ package 第二章_快速排序;
 import edu.princeton.cs.algs4.*;
 import static 第二章_初级排序算法.Text_Array.*;
 
+import java.util.Arrays;
+
 public class Text_AllSortCompare {
+    public static double JDK(int[] a) {
+        Stopwatch timer = new Stopwatch();
+        Arrays.sort(a);
+        return timer.elapsedTime();
+    }
     public static double insertion(int[] a) {
         Stopwatch timer = new Stopwatch();
         insertion(a, 0, a.length - 1);
@@ -101,42 +108,50 @@ public class Text_AllSortCompare {
     }
     
     public static void main(String[] args) {
-        int[] a = ints(0, 10000000);
+//        int[] a = ints(0, 10000000);
 //        int[] a = allSameInts(10000000, 0);
 //        int[] a = descendInts(10000000, 0);
 //        int[] a = ascendInts(0, 10000000);
-//        int[] a = intsVrg(10000000, 1, 2, 3, 4, 5, 6, 7, 8);
+        int[] a = intsVrg(10000000, 1, 2, 3, 4, 5, 6, 7, 8);
         int[] copy = intsCopy(a);
         int[] copy1 = intsCopy(a);
+        int[] copy2 = intsCopy(a);
         StdOut.printf("希尔排序 ：%.3f\n", shell(a));
         StdOut.printf("归并排序 ：%.3f\n", merge(copy));
         StdOut.printf("快速排序 ：%.3f\n", quick(copy1));
+        StdOut.printf("JDK ：%.3f\n", JDK(copy2));
     }
     // output
     /*
      *  随机不重复元素
      *  
-     *  希尔排序 ：6.694
-        归并排序 ：3.287
-        快速排序 ：2.131
+     *  希尔排序 ：5.732
+        归并排序 ：2.925
+        快速排序 ：2.008
+        JDK ：1.706
+
         
         全部元素都相同
          
-        希尔排序 ：0.261
-        归并排序 ：1.348
-        快速排序 ：0.087
+        希尔排序 ：0.229
+        归并排序 ：0.983
+        快速排序 ：0.135
+        JDK ：0.021
         
         逆序数组
         
-        希尔排序 ：0.881
-        归并排序 ：1.231
-        快速排序 ：0.615
+        希尔排序 ：0.979
+        归并排序 ：1.149
+        快速排序 ：0.573
+        JDK ：0.058
 
         已排序的数组
         
-        希尔排序 ：0.132
-        归并排序 ：0.520
-        快速排序 ：0.565
+        希尔排序 ：0.156
+        归并排序 ：0.415
+        快速排序 ：0.489
+        JDK ：0.025
+
         
         大量重复元素的数组
         
