@@ -7,11 +7,15 @@ import edu.princeton.cs.algs4.StdOut;
 public class Practise_2_3_03 {
     private static int exchanges;
     private static int max;
+    private static int maxIndex;
+    public static void searchMax(int[] a) {
+        max = a[0]; maxIndex = 0;
+        for (int i = 1; i < a.length; i++)
+            if (a[i] > max) { max = a[i]; maxIndex = i; }
+    }
     public static void quick (int[] a) {
         exchanges = 0;
-        max = a[0];
-        for (int i = 1; i < a.length; i++)
-            if (a[i] > max) max = a[i];
+        searchMax(a);
         quick(a, 0, a.length - 1);
     }
     private static void quick(int[] a, int lo, int hi) {
@@ -35,6 +39,7 @@ public class Practise_2_3_03 {
         if (a[i] == max || a[j] == max) exchanges++;
         int t = a[i]; a[i] = a[j]; a[j] = t;
     }
+    
     public static void main(String[] args) {
         /*
          * 假设现在有一个降序序列
@@ -61,30 +66,40 @@ public class Practise_2_3_03 {
          * 
          * 总共 6 次
          * 
-         * 下面是随机无重复序列的实验
+         * 对于随机无重复序列的实验
          */
         while (true) {
             int[] a = ints(0, 10);
             int[] copy = intsCopy(a);
             quick(a);
             assert isSorted(a);
-            if (exchanges >= 5) {
+            if (exchanges > 4) {
                 print(copy);
                 StdOut.printf("最大元素 %d 的交换次数为 : %d\n", max, exchanges);
                 break;
             }
         }
-        /*
-         * 我们可以发现，最大元素 10 的交换次数最多是 5 次
-         * 
-         * 
-         * 
-         * 
-         */
     }
     // output
     /*
      * 
+     *  最大元素最多会被交换 floor(N/2) 次
+     * 
+     * 
+     *  0   1   2   3   4   5   
+        1   5   3   0   2   4   
+        最大元素 5 的交换次数为 : 3
+     * 
+     *  0   1   2   3   4   5   6   7   8   9   
+        1   9   3   0   5   2   7   4   6   8   
+        最大元素 9 的交换次数为 : 5
+     * 
+     * 
+        0   1   2   3   4   5   6   7   8   9   10  11  12  13  
+        1   13  4   2   0   6   3   9   5   11  8   7   10  12  
+        最大元素 13 的交换次数为 : 6
+      
+     
         0   1   2   3   4   5   6   7   8   9   10  
         2   9   10  4   1   6   3   8   5   7   0   
         最大元素 10 的交换次数为 : 5
@@ -93,6 +108,11 @@ public class Practise_2_3_03 {
         0   1   2   3   4   5   6   7   8   9   10  
         1   10  3   0   5   2   7   4   6   9   8   
         最大元素 10 的交换次数为 : 5
+        
+        
+        0   1   2   3   4   5   6   7   8   
+        1   8   3   0   6   7   2   4   5   
+        最大元素 8 的交换次数为 : 4  
 
 
      */
