@@ -11,6 +11,21 @@ public class Text_AllSortCompare {
         Arrays.sort(a);
         return timer.elapsedTime();
     }
+    public static double pigeonHole(int[] a) {
+        Stopwatch timer = new Stopwatch();
+        int max = a[0], min = a[0];
+        for (int i = 1; i < a.length; i++)  // 同时找到最大最小值，以便减小空间复杂度
+            if      (a[i] > max) max = a[i];
+            else if (a[i] < min) min = a[i];
+        int k = 0, N = max - min + 1; 
+        int[] count = new int[N];
+        for (int i = 0; i < a.length; i++)
+            count[a[i] - min]++;
+        for (int i = 0; i < N; i++)
+            for (int j = 1; j <= count[i]; j++)
+                a[k++] = i + min;
+        return timer.elapsedTime();
+    }
     public static double insertion(int[] a) {
         Stopwatch timer = new Stopwatch();
         insertion(a, 0, a.length - 1);
@@ -38,24 +53,24 @@ public class Text_AllSortCompare {
             return;
         }
         int mid = (lo + hi) >> 1;
-        if (a[mid] < a[lo]) exch(a, lo, mid);
-        if (a[hi] < a[lo]) exch(a, lo, hi);
-        if (a[mid] < a[hi]) exch(a, mid, hi);
+        if (a[mid] < a[lo]) /* exch (a, mid, lo); */ { int t = a[mid]; a[mid] = a[lo]; a[lo] = t; }
+        if (a[hi] < a[lo])  /* exch (a, hi, lo); */  { int t = a[hi]; a[hi] = a[lo]; a[lo] = t; }
+        if (a[mid] < a[hi]) /* exch (a, mid, hi); */ { int t = a[mid]; a[mid] = a[hi]; a[hi] = t; }
         
         int i = lo - 1, p = lo - 1, j = hi, q = hi, v = a[hi];
         while (true) {
             while (a[++i] < v);
             while (a[--j] > v);
             if (i >= j) break;
-            exch(a, i, j);
-            if (a[i] == v) exch(a, i, ++p);
-            if (a[j] == v) exch(a, j, --q);
+            /* exch(a, i, j); */ { int t = a[i]; a[i] = a[j]; a[j] = t; }
+            if (a[i] == v) /* exch(a, i, ++p); */ { ++p; int t = a[p]; a[p] = a[i]; a[i] = t; }
+            if (a[j] == v) /* exch(a, j, --q); */ { --q; int t = a[q]; a[q] = a[j]; a[j] = t; }
         }
-        exch(a, hi, i);
+        /* exch(a, hi, i); */ { int t = a[hi]; a[hi] = a[i]; a[i] = t; }
         
         int lt = i - 1, gt = i + 1, k = lo, m = hi - 1;
-        while (k <= p) exch(a, k++, lt--);
-        while (m >= q) exch(a, m--, gt++);
+        while (k <= p) /* exch(a, k++, lt--); */ {  int t = a[k]; a[k] = a[lt]; a[lt] = t; k++; lt--; }
+        while (m >= q) /* exch(a, m--, gt++); */ {  int t = a[m]; a[m] = a[gt]; a[gt] = t; m--; gt++; }
         
         quick(a, lo, lt);
         quick(a, gt, hi);
@@ -116,49 +131,55 @@ public class Text_AllSortCompare {
         int[] copy = intsCopy(a);
         int[] copy1 = intsCopy(a);
         int[] copy2 = intsCopy(a);
-        StdOut.printf("希尔排序 ：%.3f\n", shell(a));
-        StdOut.printf("归并排序 ：%.3f\n", merge(copy));
-        StdOut.printf("快速排序 ：%.3f\n", quick(copy1));
+        int[] copy3 = intsCopy(a);
+        StdOut.printf("希尔排序 ：\t%.3f\n", shell(a));
+        StdOut.printf("归并排序 ：\t%.3f\n", merge(copy));
+        StdOut.printf("快速排序 ：\t%.3f\n", quick(copy1));
+        StdOut.printf("鸽巢排序 ：\t%.3f\n", pigeonHole(copy3));
         StdOut.printf("JDK ：%.3f\n", JDK(copy2));
     }
     // output
     /*
      *  随机不重复元素
      *  
-     *  希尔排序 ：5.732
-        归并排序 ：2.925
-        快速排序 ：2.008
-        JDK ：1.706
+     *  希尔排序 ：6.906
+        归并排序 ：3.162
+        快速排序 ：2.288
+        鸽巢排序 ：0.551
+        JDK ：2.069
 
-        
         全部元素都相同
          
-        希尔排序 ：0.229
-        归并排序 ：0.983
-        快速排序 ：0.135
-        JDK ：0.021
-        
+        希尔排序 ：  0.214
+        归并排序 ：  1.050
+        快速排序 ：  0.079
+        鸽巢排序 ：  0.066
+        JDK ：0.052
+
+
         逆序数组
         
-        希尔排序 ：0.979
-        归并排序 ：1.149
-        快速排序 ：0.573
-        JDK ：0.058
+        希尔排序 ：  1.023
+        归并排序 ：  1.135
+        快速排序 ：  0.605
+        鸽巢排序 ：  0.242
+        JDK ：0.128
 
         已排序的数组
         
-        希尔排序 ：0.156
-        归并排序 ：0.415
-        快速排序 ：0.489
-        JDK ：0.025
+        希尔排序 ：  0.227
+        归并排序 ：  0.545
+        快速排序 ：  0.657
+        鸽巢排序 ：  0.185
+        JDK ：0.045
 
-        
         大量重复元素的数组
         
-        希尔排序 ：1.157
-        归并排序 ：1.774
-        快速排序 ：0.413
-
+        希尔排序 ：1.293
+        归并排序 ：1.630
+        快速排序 ：0.371
+        鸽巢排序 ：0.117
+        JDK ：0.395
 
      */
 }
