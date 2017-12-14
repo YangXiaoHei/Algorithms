@@ -118,9 +118,9 @@ public class Text_AllSortCompare {
             a[j + 1] = t;
         }
     }
-    private static void exch(int[] a, int i, int j) {
-        int t = a[i]; a[i] = a[j]; a[j] = t;
-    }
+//    private static void exch(int[] a, int i, int j) {
+//        int t = a[i]; a[i] = a[j]; a[j] = t;
+//    }
     
     public static void main(String[] args) {
 //        int[] a = ints(0, 10000000);
@@ -156,7 +156,6 @@ public class Text_AllSortCompare {
         鸽巢排序 ：  0.066
         JDK ：0.052
 
-
         逆序数组
         
         希尔排序 ：  1.023
@@ -175,11 +174,12 @@ public class Text_AllSortCompare {
 
         大量重复元素的数组
         
-        希尔排序 ：1.293
-        归并排序 ：1.630
-        快速排序 ：0.371
-        鸽巢排序 ：0.117
-        JDK ：0.395
+        希尔排序 ：  1.107
+        归并排序 ：  1.616
+        快速排序 ：  0.384
+        鸽巢排序 ：  0.075
+        JDK ：0.290
+
 
      */
 }
