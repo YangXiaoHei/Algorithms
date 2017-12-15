@@ -51,8 +51,6 @@ public class Practise_2_3_03 {
     public static void main(String[] args) {
         infiniteLoopSearch();
     }
-    
-    
     // output
     /*
      *  单向扫描
