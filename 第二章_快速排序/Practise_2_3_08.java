@@ -33,9 +33,16 @@ public class Practise_2_3_08 {
         int t = a[i]; a[i] = a[j]; a[j] = t;
     }
     public static void main(String[] args) {
-        int[] a = allSameInts(5, 1);
+        int N = 100;
+        int[] a = allSameInts(N, 1);
         quick(a);
-        StdOut.printf("规模 : %d 比较次数 : %d\n", 5, compares);
-        
+        StdOut.printf("规模 : %d 比较次数 : %d 理论值 : %.0f\n", 
+                N, compares, 
+                N * (Math.log(N) / Math.log(2)));
     }
+    // output
+    /*
+     * 规模 : 100 比较次数 : 564 理论值 : 664
+
+     */
 }
