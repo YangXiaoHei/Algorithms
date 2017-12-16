@@ -51,12 +51,12 @@ public class Practise_2_3_19 {
             }
             return;
         }
-        int e3 = (lo + hi) >>> 1;
-        int seventh = (len >> 3) + (len >> 6) + 1;
-        int e2 = e3 - seventh;
-        int e1 = e2 - seventh;
-        int e4 = e3 + seventh;
-        int e5 = e4 + seventh;
+        int e3 = (lo + hi) >> 1;
+        int fifth = len >> 2;
+        int e1 = lo;
+        int e2 = e3 - fifth;
+        int e4 = e3 + fifth;
+        int e5 = hi;
         
         if (a[e2] < a[e1]) { int t = a[e2]; a[e2] = a[e1]; a[e1] = t; }
         if (a[e3] < a[e2]) { int t = a[e3]; a[e3] = a[e2]; a[e2] = t; 
