@@ -1,9 +1,6 @@
 package 第二章_快速排序;
 
 import static 第二章_初级排序算法.Text_Array.*;
-
-import java.awt.Color;
-import java.util.*;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_2_3_19 {
@@ -91,7 +88,7 @@ public class Practise_2_3_19 {
         quick5(a, i + 1, hi);
     }
     public static void main(String[] args) {
-        int[] a = ints(0, 8000000);
+        int[] a = ints(0, 4000000);
         int[] copy = intsCopy(a);
         StdOut.printf("3取样切分 : %.3f\n", quick3(a));
         StdOut.printf("5取样切分 : %.3f\n", quick5(copy));
@@ -100,7 +97,7 @@ public class Practise_2_3_19 {
     }
     // output
     /*
-     *  3取样切分 : 2.124
-        5取样切分 : 2.293
+     *  3取样切分 : 0.800
+        5取样切分 : 0.818
      */
 }
