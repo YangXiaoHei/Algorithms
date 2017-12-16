@@ -139,6 +139,13 @@ public class Text_Array {
             arr[i] = Integer.parseInt(sArr[i]);
         return arr;
     }
+    public static char[] parseChar(String s) {
+        String[] ss = s.split("\\s+");
+        char[] c = new char[ss.length];
+        for (int i = 0; i < c.length; i++)
+            c[i] = ss[i].charAt(0);
+        return c;
+    }
     /*
      * 从字符串中解析出 int 数组
      * 
@@ -695,6 +702,16 @@ public class Text_Array {
         StdOut.println();
         for (int i = 0; i < a.length; i++)
             StdOut.printf("%-4d", a[i]);
+        StdOut.println();
+    }
+    public static void print(char[] a) {
+        if (a == null || a.length == 0) return;
+        StdOut.println();
+        for (int i = 0; i < a.length; i++)
+            StdOut.printf("%-4d", i);
+        StdOut.println();
+        for (int i = 0; i < a.length; i++)
+            StdOut.printf("%-4c", a[i]);
         StdOut.println();
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
