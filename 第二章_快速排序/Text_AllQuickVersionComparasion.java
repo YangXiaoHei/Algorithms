@@ -169,14 +169,11 @@ public class Text_AllQuickVersionComparasion {
         StdOut.printf("三取样切分 : %.3f\n", quick_C(copy1));
     }
     public static void main(String[] args) {
-//        tooManyDupliRandomOrderSequence();
-//        randomOrderNoDupliSequence();
-//        sortedSequence();
-//        reverseSequence();
-//        allSameSequence();
-        int[] a = parseInts("1   9   5   2   4   3   6   10  8   7   0 ");
-        quick_B(a);
-        print(a);
+        tooManyDupliRandomOrderSequence();
+        randomOrderNoDupliSequence();
+        sortedSequence();
+        reverseSequence();
+        allSameSequence();
     }
     // output
     /*
