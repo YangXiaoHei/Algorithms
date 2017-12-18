@@ -48,24 +48,27 @@ public class Practise_2_1_07 {
         }    
     }
     public static void main(String[] args) {
-        int[] arr = descendInts(40000, 0);
+        int[] arr = descendInts(10, 0);
+        int[] copy = intsCopy(arr);
         double t1, t2;
+        
+        print(arr);
+        print(copy);
         
         Stopwatch timer = new Stopwatch();
         insertion(arr);
         t1 = timer.elapsedTime();
         
         timer = new Stopwatch();
-        selection(arr);
+        selection(copy);
         t2 = timer.elapsedTime();
         
         StdOut.printf("插入排序用时 : %.3f\n选择排序用时 : %.3f\n", t1, t2);
     }
     // output
     /*
-     *  插入排序用时 : 1.279
-        选择排序用时 : 0.273
-     * 
+     *  插入排序用时 : 8.688
+        选择排序用时 : 1.795
      * 
      */
 }
