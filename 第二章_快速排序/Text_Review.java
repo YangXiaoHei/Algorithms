@@ -52,10 +52,17 @@ public class Text_Review {
         return true;
     }
     public static void main(String[] args) {
-        int[] a = ints(0, 10);
-        quick(a);
-        print(a);
-        assert isSorted(a);
-        StdOut.println("排序成功!");
+//        int[] a = ints(0, 10);
+//        quick(a);
+//        print(a);
+//        assert isSorted(a);
+//        StdOut.println("排序成功!");
+        int i, b = 0, k = 0;
+        for (i = 1; i <= 5; i++) {
+            b = i % 2;
+            while (b-- >= 0) 
+                k++;
+        }
+        StdOut.printf("%d %d", k, b);
     }
 }
