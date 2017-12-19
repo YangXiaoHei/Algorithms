@@ -48,13 +48,10 @@ public class Practise_2_1_07 {
         }    
     }
     public static void main(String[] args) {
-        int[] arr = descendInts(10, 0);
+        int[] arr = descendInts(100000, 0);
         int[] copy = intsCopy(arr);
         double t1, t2;
-        
-        print(arr);
-        print(copy);
-        
+     
         Stopwatch timer = new Stopwatch();
         insertion(arr);
         t1 = timer.elapsedTime();
