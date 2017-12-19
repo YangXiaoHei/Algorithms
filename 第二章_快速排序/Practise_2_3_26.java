@@ -33,7 +33,13 @@ public class Practise_2_3_26 {
         quick(a, lo, j + 1, M, map);
     }
     public static void draw(int N, int M) {
+        
+        // 0 ~ N - 1 的无重复随机值，从直方图可以看出，划分及其不均匀
         int[] a = ints(0, N - 1);
+        
+        // 全部值都相同的数组，可以看出，这种数组让快速排序的划分更加均匀
+//        int[] a = allSameInts(N - 1, 1);
+        
         Map<Integer, Integer> map = quick(a, M);
         
         // 供确认绘制的直方图是否正确
@@ -47,8 +53,8 @@ public class Practise_2_3_26 {
             if (i > maxSize) maxSize = i;
         for (int i : counts)
             if (i > maxCount) maxCount = i;
-        StdDraw.setXscale(-1, maxSize + 1);
-        StdDraw.setYscale(-2, maxCount + 1);
+        StdDraw.setXscale(-1, maxSize + maxSize * 0.1);
+        StdDraw.setYscale(-1, maxCount + maxCount * 0.1);
         
         // 绘制直方图
         for (int i = 0; i <= maxSize; i++) {
