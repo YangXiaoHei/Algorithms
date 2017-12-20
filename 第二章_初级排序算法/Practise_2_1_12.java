@@ -14,13 +14,12 @@ public class Practise_2_1_12 {
         while (h >= 1) {
             compares = 0;
             for (int i = h; i < N; i++) {
-                Double t = a[i];
-                int j;
+                Double t = a[i]; int j;
                 for (j = i - h; j >= 0 && less(t, a[j]); j -= h)
                     a[j + h] = a[j];
                 a[j + h] = t;
             }
-            StdOut.printf("h = %6d \t %10.0f\n",h, compares * 1.0 / N);
+            StdOut.printf("h = %6d \t %d\n",h, compares / N);
             h /= 3; 
         }
         StdOut.println();
