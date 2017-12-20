@@ -21,7 +21,6 @@ public class Practise_2_1_12 {
                 a[j + h] = t;
             }
             StdOut.printf("h = %6d \t %10.0f\n",h, compares * 1.0 / N);
-           
             h /= 3; 
         }
         StdOut.println();
