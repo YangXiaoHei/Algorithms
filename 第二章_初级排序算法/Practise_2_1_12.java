@@ -10,15 +10,18 @@ public class Practise_2_1_12 {
        Stopwatch timer = new Stopwatch();
         int N = a.length, h = 1;
         while (h < N / 3) h = 3 * h + 1;
+        StdOut.printf("=========== 规模 : %d ============\n", N);
         while (h >= 1) {
-            for (int i = h; i < N; i++) 
-                for (int j = i; j >= h && less(a[j], a[j - 1]); j--) {
-                    Double t = a[j];
-                    a[j] = a[j - 1];
-                    a[j - 1] = t;
-                }
-            StdOut.printf("h = %d\tcompare/size = %d\n",h, compares / N);
             compares = 0;
+            for (int i = h; i < N; i++) {
+                Double t = a[i];
+                int j;
+                for (j = i - h; j >= 0 && less(t, a[j]); j -= h)
+                    a[j + h] = a[j];
+                a[j + h] = t;
+            }
+            StdOut.printf("h = %6d \t %10.0f\n",h, compares * 1.0 / N);
+           
             h /= 3; 
         }
         StdOut.println();
@@ -29,47 +32,89 @@ public class Practise_2_1_12 {
         return v.compareTo(w) < 0;
     }
     public static void main(String[] args) {
-        for (int i = 2; i < 10; i++) 
-            shell(Doubles((int)Math.pow(10, i)));
+        for (int i = 2; i < 8; i++) {
+            Double[] d = Doubles((int)Math.pow(10, i));
+            shell(d);
+            assert isSorted(d);
+        }
     }
     // output
     /*
-     *  h = 40  compare/size = 9
-        h = 13  compare/size = 10
-        h = 4   compare/size = 5
-        h = 1   compare/size = 1
+     *  =========== 规模 : 100 ============
+        h =     40            1
+        h =     13            2
+        h =      4            2
+        h =      1            3
         
         
-        h = 364 compare/size = 105
-        h = 121 compare/size = 95
-        h = 40  compare/size = 39
-        h = 13  compare/size = 17
-        h = 4   compare/size = 6
-        h = 1   compare/size = 2
+        =========== 规模 : 1000 ============
+        h =    364            1
+        h =    121            2
+        h =     40            2
+        h =     13            3
+        h =      4            3
+        h =      1            3
         
         
-        h = 9841    compare/size = 0
-        h = 3280    compare/size = 1135
-        h = 1093    compare/size = 855
-        h = 364     compare/size = 335
-        h = 121     compare/size = 121
-        h = 40      compare/size = 41
-        h = 13      compare/size = 13
-        h = 4       compare/size = 7
-        h = 1       compare/size = 3
+        =========== 规模 : 10000 ============
+        h =   9841            0
+        h =   3280            1
+        h =   1093            2
+        h =    364            2
+        h =    121            3
+        h =     40            4
+        h =     13            5
+        h =      4            4
+        h =      1            3
         
         
-        h = 88573   compare/size = 323
-        h = 29524   compare/size = 12111
-        h = 9841    compare/size = 7926
-        h = 3280    compare/size = 3061
-        h = 1093    compare/size = 1047
-        h = 364     compare/size = 353
-        h = 121     compare/size = 129  
-        h = 40      compare/size = 44
-        h = 13      compare/size = 14
-        h = 4       compare/size = 6
-        h = 1       compare/size = 2
+        =========== 规模 : 100000 ============
+        h =  88573            0
+        h =  29524            1
+        h =   9841            2
+        h =   3280            2
+        h =   1093            3
+        h =    364            4
+        h =    121            5
+        h =     40            7
+        h =     13           10
+        h =      4            4
+        h =      1            3
+        
+        
+        =========== 规模 : 1000000 ============
+        h = 797161            0
+        h = 265720            1
+        h =  88573            2
+        h =  29524            2
+        h =   9841            3
+        h =   3280            4
+        h =   1093            5
+        h =    364            7
+        h =    121           11
+        h =     40           14
+        h =     13            9
+        h =      4            5
+        h =      1            3
+        
+        
+        =========== 规模 : 10000000 ============
+        h = 7174453               0
+        h = 2391484               1
+        h = 797161            2
+        h = 265720            3
+        h =  88573            3
+        h =  29524            4
+        h =   9841            5
+        h =   3280            7
+        h =   1093           10
+        h =    364           15
+        h =    121           20
+        h =     40           24
+        h =     13           12
+        h =      4            5
+        h =      1            3
+
 
      */
 }   
