@@ -19,6 +19,11 @@ public class Text_Array {
             if (a[i] < a[i - 1]) return false;
         return true;
     }
+    public static boolean isSorted(double[] a) {
+        for (int i = 1; i < a.length; i++)
+            if (a[i] < a[i - 1]) return false;
+        return true;
+    }
     public static int binarySearch(int[] a, int key) {
         int lo = 0, hi = a.length - 1;
         while (lo <= hi) {
