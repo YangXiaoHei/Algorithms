@@ -1,92 +1,74 @@
 package 第二章_优先队列;
 
 import edu.princeton.cs.algs4.*;
+import java.util.*;
 
 public class Text_MaxPQ <T extends Comparable<T>> {
-    private T[] pq;
-    private int size = 0;
+    private T[] keys;
+    private int size;
     @SuppressWarnings("unchecked")
     public Text_MaxPQ(int N) {
-        pq = (T[])new Comparable[N + 1];
+        keys = (T[])new Comparable[N + 1];
     }
+    public boolean isFull() { return size == keys.length - 1; }
     public boolean isEmpty() { return size == 0; }
-    public void insert(T v) {
-        pq[++size] = v;
-        swim(size); // 上浮
+    public void insert(T key) {
+        if (isFull())
+            throw new IllegalArgumentException("priority queue overflow");
+        keys[++size] = key;
+        swim(size);
     }
     public T delMax() {
-        T max = pq[1]; // 根结点是最大的值
-        exch(1, size--); // 交换根结点和叶子节点
-        pq[size + 1] = null; // 删除叶子节点
-        sink(1); // 下沉
+        if (isEmpty())
+            throw new NoSuchElementException("priority queue underflow");
+        T max = keys[1];
+        exch(1, size--);
+        sink(1);
+        assert keys[size + 1] == max;
+        keys[size + 1] = null;
         return max;
     }
-    private boolean less(int i, int j) {
-        return pq[i].compareTo(pq[j]) < 0;
-    }
-    private void exch(int i, int j) {
-        T t = pq[i]; pq[i] = pq[j]; pq[j] = t;
-    }
     private void swim(int k) {
-        while (k > 1 && less(k / 2, k)) {
-            exch(k / 2, k);
-            k /= 2;
+        while (k > 1 && less(k >>> 1, k)) {
+            exch(k >>> 1, k);
+            k >>>= 1;
         }
     }
     private void sink(int k) {
-        while (2 * k <= size) {
-            int j = 2 * k;
+        while ((k << 1) <= size) {
+            int j = k << 1;
             if (j < size && less(j, j + 1)) j++;
             if (!less(k, j)) break;
             exch(k, j);
             k = j;
         }
     }
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= size; i++)
-            sb.append(pq[i] + " ");
-        sb.append("\n");
-        return sb.toString();
+    private void exch(int i, int j) {
+        T t = keys[i]; keys[i] = keys[j]; keys[j] = t;
+    }
+    private boolean less(int i, int j) {
+        return keys[i].compareTo(keys[j]) < 0;
     }
     public static void main(String[] args) {
-        Text_MaxPQ<Integer> pq = new Text_MaxPQ<Integer>(100);
-        for (int i = 0; i < 30; i++)
-            pq.insert(StdRandom.uniform(1000));
+        Text_MaxPQ<Integer> pq = new Text_MaxPQ<Integer>(10);
+        for (int i = 0; i < 10; i++)
+            pq.insert(StdRandom.uniform(100));
         while (!pq.isEmpty())
             StdOut.println(pq.delMax());
     }
+}
     //output
     /*
-     *  981
-        962
-        936
-        933
-        890
-        870
-        850
-        827
-        817
-        806
-        792
-        683
-        609
-        524
-        507
-        496
-        493
-        420
-        404
-        400
-        359
-        346
-        337
-        305
-        246
-        211
-        168
+     *  97
+        94
         77
-        62
-        44
+        76
+        73
+        68
+        66
+        48
+        32
+        3
+
      */
-}
+
