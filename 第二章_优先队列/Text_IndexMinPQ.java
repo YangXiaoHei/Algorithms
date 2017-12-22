@@ -9,6 +9,7 @@ public class Text_IndexMinPQ <Key extends Comparable<Key>> implements Iterable<K
     private int[] qp;
     private Key[] keys;
     private int size;
+    @SuppressWarnings("unchecked")
     public Text_IndexMinPQ(int N) {
         pq = new int[N + 1];
         qp = new int[N + 1];
