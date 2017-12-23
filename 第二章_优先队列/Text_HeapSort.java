@@ -72,4 +72,9 @@ public class Text_HeapSort {
         assert isSorted(a);
         assert isSorted(copy);
     }
+    // output
+    /*
+     *  堆排序 : 2.608
+        快速排序 : 1.042
+     */
 }
