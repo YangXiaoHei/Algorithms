@@ -60,6 +60,9 @@ public class Text_MultiMerge {
             return keys[i].compareTo(keys[j]) > 0;
         }
     }
+    /*
+     * 开始归并...就很简单，一股脑插进堆里，顺序就已经调整好了，再依次取出来
+     */
     public static String[] merge(String[][] sArr) {
         MinPQ<String> pq = new MinPQ<String>();
         int count = 0;
