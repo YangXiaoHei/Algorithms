@@ -3,11 +3,12 @@ package 第二章_优先队列;
 import java.util.*;
 import edu.princeton.cs.algs4.StdOut;
 
-public class Text_IndexMaxPQ <Key extends Comparable<Key>> {
+public class Text_IndexMaxPQ <Key extends Comparable<Key>> implements Iterable<Key> {
     private int[] pq;
     private int[] qp;
     private Key[] keys;
     private int size;
+    @SuppressWarnings("unchecked")
     public Text_IndexMaxPQ(int N) {
         pq = new int[N + 1];
         qp = new int[N + 1];
@@ -19,6 +20,23 @@ public class Text_IndexMaxPQ <Key extends Comparable<Key>> {
     public boolean isFull() { return size == keys.length; }
     public boolean isEmpty() { return size == 0; }
     public int size() { return size; }
+    public void change(int k, Key key) {
+        if (k >= size)
+            throw new IllegalArgumentException("index out of array's bounds");
+        keys[k] = key;
+        swim(qp[k]);
+        sink(qp[k]);
+    }
+    public void delete(int k) {
+        int index = qp[k];
+        exch(index, size--);
+        swim(index);
+        sink(index);
+        assert pq[size + 1] == k;
+        keys[k] = null;
+        pq[size + 1] = -1;
+        qp[k] = -1;
+    }
     public void insert(Key key) {
         ++size;
         keys[size - 1] = key;
@@ -68,25 +86,56 @@ public class Text_IndexMaxPQ <Key extends Comparable<Key>> {
     }
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < keys.length; i++)
             sb.append(keys[i] + " ");
         sb.append("\n");
         sb.append("pq : ");
-        for (int i = 0; i <= size; i++)
+        for (int i = 0; i < pq.length; i++)
             sb.append(pq[i] + " ");
         sb.append("\n");
         sb.append("qp : ");
-        for (int i = 0; i <= size; i++)
+        for (int i = 0; i < qp.length; i++)
             sb.append(qp[i] + " ");
         sb.append("\n");
         return sb.toString();
+    }
+    public Iterator<Key> iterator() {
+        return new Iterator<Key>() {
+            private Text_IndexMaxPQ<Key> copy = new Text_IndexMaxPQ<Key>(keys.length);
+            {
+                for (int i = 0; i < size; i++)
+                    copy.insert(keys[pq[i + 1]]);
+            }
+            public boolean hasNext() { return !copy.isEmpty(); }
+            public Key next() {
+                Key max = copy.keys[copy.pq[1]];
+                copy.delMax();
+                return max;
+            }
+        };
     }
     public static void main(String[] args) {
         String[] s = { "F", "E", "I", "C", "G", "B", "H", "J", "D", "A" };
         Text_IndexMaxPQ<String> pq = new Text_IndexMaxPQ<String>(s.length);
         for (String ss : s)
             pq.insert(ss);
-        while (!pq.isEmpty())
-            StdOut.println(s[pq.delMax()]);
+        pq.delete(0);
+        pq.delete(1);
+        pq.delete(2);
+        pq.delete(3);
+        pq.change(4, "Y");
+        pq.change(5, "Z");
+        for (String ss : pq)
+            StdOut.println(ss);
     }
+    // output
+    /*
+     *  Z
+        Y
+        J
+        H
+        D
+        A
+
+     */
 }
