@@ -1,7 +1,6 @@
 package 第二章_优先队列;
 
 import java.util.*;
-
 import edu.princeton.cs.algs4.StdOut;
 
 public class Text_IndexMinPQ <Key extends Comparable<Key>> implements Iterable<Key> {
