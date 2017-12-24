@@ -113,7 +113,7 @@ public class Practise_2_4_11 {
             Key max = keys[1];
             Key t = keys[size]; keys[size] = keys[1]; keys[1] = t;
             int k = 1; --size;
-            while ((k << 1) <= size) {
+            while ((k << 1) <= size) { // 优化除法指令的耗时
                 int j = k << 1;
                 if (j < size && keys[j].compareTo(keys[j + 1]) < 0) j++;
                 if (keys[k].compareTo(keys[j]) >= 0) break;
@@ -128,7 +128,7 @@ public class Practise_2_4_11 {
         Stopwatch timer = new Stopwatch();
         for (int i = 0; i < elems.length; i++)
             pq.insert(elems[i]);
-        int delCount = 5;
+        int delCount = 5;  // 在我电脑上，这里稍微改大一丢丢，堆实现都会比无序数组快...难道是因为我的一些小优化吗？？
         while (delCount-- > 0)
             pq.delMax();
         return timer.elapsedTime();
@@ -143,4 +143,10 @@ public class Practise_2_4_11 {
         StdOut.printf("堆 : %.3f\n", test(h, elems));
         StdOut.printf("有序数组 : %.3f\n", test(oa, elems));
     }
+    // output
+    /*
+     *  无序数组 : 0.074
+        堆 : 0.083
+        有序数组 : 太久了...不想等
+     */
 }
