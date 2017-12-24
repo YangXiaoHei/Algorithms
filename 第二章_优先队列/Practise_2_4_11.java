@@ -124,7 +124,26 @@ public class Practise_2_4_11 {
             return max;
         }
     }
-    public static double test(PQInterface<Integer> pq, Integer[] elems) {
+    /*
+     * 2.4.12
+     */
+    public static double test2(PQInterface<Integer> pq, Integer[] elems) {
+        for (int i = 0; i < elems.length; i++)
+            pq.insert(elems[i]);
+        int lo = 10, hi = 210;
+        Integer[] arr = Integers(lo, hi);
+        Stopwatch timer = new Stopwatch();
+        for (int i = 0; i < arr.length - (hi - lo + 1); i++)
+            pq.insert(arr[i]);
+        int delCount = (int)(elems.length * 0.8);
+        while (delCount-- > 0)
+            pq.delMax();
+        return timer.elapsedTime();
+    }
+    /*
+     * 2.4.11
+     */
+    public static double test1(PQInterface<Integer> pq, Integer[] elems) {
         Stopwatch timer = new Stopwatch();
         for (int i = 0; i < elems.length; i++)
             pq.insert(elems[i]);
@@ -134,19 +153,43 @@ public class Practise_2_4_11 {
         return timer.elapsedTime();
     }
     public static void main(String[] args) {
-        int N = 1000000;
-        Integer[] elems = Integers(0, N - 1);
-        UnorderedArr<Integer> ua = new UnorderedArr<Integer>(N);
-        OrderedArr<Integer> oa = new OrderedArr<Integer>(N);
-        Heap<Integer> h = new Heap<Integer>(N);
-        StdOut.printf("无序数组 : %.3f\n", test(ua, elems));
-        StdOut.printf("堆 : %.3f\n", test(h, elems));
-        StdOut.printf("有序数组 : %.3f\n", test(oa, elems));
+        /*
+         * 2.4.11
+         */
+//        int N = 1000000;
+//        Integer[] elems = Integers(0, N - 1);
+//        UnorderedArr<Integer> ua = new UnorderedArr<Integer>(N);
+//        OrderedArr<Integer> oa = new OrderedArr<Integer>(N);
+//        Heap<Integer> h = new Heap<Integer>(N);
+//        StdOut.printf("无序数组 : %.3f\n", test1(ua, elems));
+//        StdOut.printf("堆 : %.3f\n", test1(h, elems));
+//        StdOut.printf("有序数组 : %.3f\n", test1(oa, elems));
+        
+        
+        /*
+         * 
+         * 2.4.12
+         */
+        int N2 = 40000;
+        Integer[] elems2 = Integers(0, N2 - 1);
+        UnorderedArr<Integer> ua2 = new UnorderedArr<Integer>(N2);
+        OrderedArr<Integer> oa2 = new OrderedArr<Integer>(N2);
+        Heap<Integer> h2 = new Heap<Integer>(N2);
+        StdOut.printf("无序数组 : %.3f\n", test2(ua2, elems2));
+        StdOut.printf("堆 : %.3f\n", test2(h2, elems2));
+        StdOut.printf("有序数组 : %.3f\n", test2(oa2, elems2));
     }
     // output
     /*
+     *  测试1
      *  无序数组 : 0.074
         堆 : 0.083
         有序数组 : 太久了...不想等
+        
+        测试2 
+        无序数组 : 4.183
+        堆 : 0.037
+        有序数组 : 0.002
+
      */
 }
