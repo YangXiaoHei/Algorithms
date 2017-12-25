@@ -1,9 +1,7 @@
 package 第二章_优先队列;
 
 import static 第二章_初级排序算法.Text_Array.*;
-
 import java.util.Arrays;
-
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_2_4_15 {
