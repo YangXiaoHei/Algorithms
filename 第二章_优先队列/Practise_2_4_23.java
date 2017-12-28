@@ -25,26 +25,25 @@ public class Practise_2_4_23 {
     }
     /*
      * 下沉法建立d叉堆
+     * 
+     * 优化了索引计算，比先前提交的快了几十倍...
      */
     public static void createHeapBySink(int[] a, int d) {
         int N = a.length;
         for (int i = (N - 2) / d + 1; i > 0; i--) {
-            int maxIndex = i - 1, max = a[i - 1];
-            while ((d * (i - 1) + 2) <= N) {
-                for (int j = 1; j <= d; j++) {
-                    int c = d * (i - 1) + j + 1;
-                    if (c > N) break;
-                    if (a[c - 1] > max) {
-                        max = a[c - 1];
-                        maxIndex = c - 1;
+            int k = i, p, count = d, maxIndex, max;
+            while ((p = d * (k - 1) + 2) <= N) {
+                maxIndex = p - 1; max = a[p - 1]; count = d;
+                while (--count > 0) {
+                    if (++p > N) break;
+                    if (a[p - 1] > max) {
+                        max = a[p - 1];
+                        maxIndex = p - 1;
                     }
                 }
-                if (maxIndex + 1 == i) break;
-                int t = a[maxIndex]; 
-                a[maxIndex] = a[i - 1]; 
-                a[i - 1] = t;
-                i = maxIndex + 1;
-                max = a[maxIndex];
+                if (a[k - 1] >= a[maxIndex]) break;
+                int t = a[k - 1]; a[k - 1] = a[maxIndex]; a[maxIndex] = t;
+                k = maxIndex + 1;
             }
         }
     }
@@ -64,63 +63,105 @@ public class Practise_2_4_23 {
             }
         }
     }
+    /*
+     * d叉堆的下沉操作
+     */
     public static void sink(int[] a, int i, int size, int d) {
-        int maxIndex = i - 1, max = a[i - 1];
-        while (d * (i - 1) + 2 <= size) {
-            for (int j = 1; j <= d; j++) {
-                int c = d * (i - 1) + j + 1;
-                if (c > size) break;
-                if (a[c - 1] > max) {
-                    max = a[c - 1];
-                    maxIndex = c - 1;
+        int p, count, max, maxIndex, k = i;
+        while ((p = d * (k - 1) + 2) <= size) {
+            max = a[p - 1]; maxIndex = p - 1; count = d;
+            while (--count > 0) {
+                if (++p > size) break;
+                if (a[p - 1] > max) {
+                    max = a[p - 1];
+                    maxIndex = p - 1;
                 }
             }
-            if (maxIndex + 1 == i) break;
-            int t = a[maxIndex]; 
-            a[maxIndex] = a[i - 1]; 
-            a[i - 1] = t;
-            i = maxIndex + 1;
-            max = a[maxIndex];
+            if (a[k - 1] >= a[maxIndex]) break;
+            int t = a[k - 1]; a[k - 1] = a[maxIndex]; a[maxIndex] = t;
+            k = maxIndex + 1;
         }
     }
+    /*
+     * d叉堆排序
+     */
     public static double multiwayHeapSort(int[] a, int d) {
         Stopwatch timer = new Stopwatch();
-        createHeapBySink(a, d);
+        // createHeapBySink(a, d);
         int N = a.length;
+        for (int i = (N - 2) / d + 1; i > 0; i--) {
+            int k = i, p, count = d, maxIndex, max;
+            while ((p = d * (k - 1) + 2) <= N) {
+                maxIndex = p - 1; max = a[p - 1]; count = d;
+                while (--count > 0) {
+                    if (++p > N) break;
+                    if (a[p - 1] > max) {
+                        max = a[p - 1];
+                        maxIndex = p - 1;
+                    }
+                }
+                if (a[k - 1] >= a[maxIndex]) break;
+                int t = a[k - 1]; a[k - 1] = a[maxIndex]; a[maxIndex] = t;
+                k = maxIndex + 1;
+            }
+        }
         while (N > 1) {
-            int t = a[0];
-            a[0] = a[N - 1];
-            a[N - 1] = t;
-            sink(a, 1, --N, d);
+            // exch(a, 1, N)
+            int t = a[0]; a[0] = a[N - 1]; a[N - 1] = t;
+            --N;
+            // sink(a, 1, --N, d)
+            int p, count, max, maxIndex, k = 1;
+            while ((p = d * (k - 1) + 2) <= N) {
+                max = a[p - 1]; maxIndex = p - 1; count = d;
+                while (--count > 0) {
+                    if (++p > N) break;
+                    if (a[p - 1] > max) {
+                        max = a[p - 1];
+                        maxIndex = p - 1;
+                    }
+                }
+                if (a[k - 1] >= a[maxIndex]) break;
+                t = a[k - 1]; a[k - 1] = a[maxIndex]; a[maxIndex] = t;
+                k = maxIndex + 1;
+            }
         }
         return timer.elapsedTime();
     }
+    /*
+     * 在 d叉堆 中找出排序性能最好的分支数
+     */
     public static void test1() {
-        int N = 200000;
+        int N = 10000000;
         int[] a = ints(0, N - 1);
-        int[] copy1 = intsCopy(a);
-        StdOut.printf("规模 : %d %d叉树排序耗时 : %.3f\n",N, 2, Text_HeapSort.heap(copy1));
-        assert isSorted(copy1);
-        for (int i = 2, j = 0; j < 20; i += i, j++) {
-            int[] copy = intsCopy(a);
-            StdOut.printf("规模 : %d %d叉树排序耗时 : %.3f\n",N, i, multiwayHeapSort(copy,  i));
+        int[] copy = intsCopy(a);
+        StdOut.printf("规模 : %d 教材的二叉堆排序耗时 : %.3f\n",
+                N, Text_HeapSort.heap(copy));
+        assert isSorted(copy);
+        for (int i = 2, j = 0; j < 17; i ++, j++) {
+            copy = intsCopy(a);
+            StdOut.printf("规模 : %d 复杂索引计算的【%d叉堆】排序耗时 : %.3f\n",
+                    N, i, multiwayHeapSort(copy,  i));
             assert isSorted(copy);
         }
     }
+    /*
+     * 对于教材的二叉堆建立和 d叉堆令 d = 2 的二叉堆建立的性能
+     */
     public static void test2() {
-        int[] a = ints(0, 100000);
+        int[] a = ints(0, 10000000);
         int[] copy = intsCopy(a);
-        Stopwatch timer1 = new Stopwatch();
-        createBinaryHeapBySink(a);
-        double t1 = timer1.elapsedTime();
-        timer1 = new Stopwatch();
-        createHeapBySink(copy, 2);
-        double t2 = timer1.elapsedTime();
-        StdOut.printf("用 方法1 建立二叉堆用时 : %.3f\n", t1);
-        StdOut.printf("用 方法2 建立二叉堆用时 : %.3f\n", t2);
+        Stopwatch timer = new Stopwatch();
+        createHeapBySink(a, 2);
+        double t1 = timer.elapsedTime();
+        timer = new Stopwatch();
+        createBinaryHeapBySink(copy);
+        double t2 = timer.elapsedTime();
+        StdOut.printf("方法 1 : %.3f\n", t1);
+        StdOut.printf("方法 2 : %.3f\n", t2);
+        assert equal(a, copy);
     }
     public static void main(String[] args) {
-        test2();
+        test1();
     }
     // output
     /*

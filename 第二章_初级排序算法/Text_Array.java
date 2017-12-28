@@ -14,6 +14,12 @@ import edu.princeton.cs.algs4.*;
  * **********************************************************************
  */
 public class Text_Array {
+    public static boolean equal(int[] a, int[] b) {
+        if (a.length != b.length) return false;
+        for (int i = 0; i < a.length; i++)
+            if (a[i] != b[i]) return false;
+        return true;
+    }
     public static boolean isSorted(int[] a) {
         for (int i = 1; i < a.length; i++)
             if (a[i] < a[i - 1]) return false;
