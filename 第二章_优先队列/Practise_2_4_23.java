@@ -48,6 +48,22 @@ public class Practise_2_4_23 {
             }
         }
     }
+    /*
+     * 下沉法建立二叉堆
+     */
+    public static void createBinaryHeapBySink(int[] a) {
+        int N = a.length;
+        for (int i = N >> 1; i > 0; i--) {
+            int k = i;
+            while ((k << 1) <= N) {
+                int j = k << 1;
+                if (j < N && a[j - 1] < a[j]) j++;
+                if (a[k - 1] >= a[j - 1]) break;
+                int t = a[k - 1]; a[k - 1] = a[j - 1]; a[j - 1] = t;
+                k = j;
+            }
+        }
+    }
     public static void sink(int[] a, int i, int size, int d) {
         int maxIndex = i - 1, max = a[i - 1];
         while (d * (i - 1) + 2 <= size) {
@@ -79,13 +95,47 @@ public class Practise_2_4_23 {
         }
         return timer.elapsedTime();
     }
-    public static void main(String[] args) {
+    public static void test1() {
         int N = 200000;
         int[] a = ints(0, N - 1);
+        int[] copy1 = intsCopy(a);
+        StdOut.printf("规模 : %d %d叉树排序耗时 : %.3f\n",N, 2, Text_HeapSort.heap(copy1));
+        assert isSorted(copy1);
         for (int i = 2, j = 0; j < 20; i += i, j++) {
             int[] copy = intsCopy(a);
             StdOut.printf("规模 : %d %d叉树排序耗时 : %.3f\n",N, i, multiwayHeapSort(copy,  i));
             assert isSorted(copy);
         }
     }
+    public static void test2() {
+        int[] a = ints(0, 100000);
+        int[] copy = intsCopy(a);
+        Stopwatch timer1 = new Stopwatch();
+        createBinaryHeapBySink(a);
+        double t1 = timer1.elapsedTime();
+        timer1 = new Stopwatch();
+        createHeapBySink(copy, 2);
+        double t2 = timer1.elapsedTime();
+        StdOut.printf("用 方法1 建立二叉堆用时 : %.3f\n", t1);
+        StdOut.printf("用 方法2 建立二叉堆用时 : %.3f\n", t2);
+    }
+    public static void main(String[] args) {
+        test2();
+    }
+    // output
+    /*
+     *  规模 : 200000 2叉树排序耗时 : 35.666
+        规模 : 200000 4叉树排序耗时 : 11.861
+        规模 : 200000 8叉树排序耗时 : 4.877
+        规模 : 200000 16叉树排序耗时 : 2.034
+        规模 : 200000 32叉树排序耗时 : 0.990
+        规模 : 200000 64叉树排序耗时 : 0.503
+        规模 : 200000 128叉树排序耗时 : 0.316
+        规模 : 200000 256叉树排序耗时 : 0.248
+        规模 : 200000 512叉树排序耗时 : 0.279
+        规模 : 200000 1024叉树排序耗时 : 0.443
+        规模 : 200000 2048叉树排序耗时 : 0.823
+        规模 : 200000 4096叉树排序耗时 : 1.581
+        规模 : 200000 8192叉树排序耗时 : 2.999
+     */
 }
