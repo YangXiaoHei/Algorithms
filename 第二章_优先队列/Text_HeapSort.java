@@ -42,18 +42,17 @@ public class Text_HeapSort {
     public static double heap(int[] a) {
         Stopwatch timer = new Stopwatch();
         int N = a.length;
-        for (int k = N >>> 1; k >= 1; k--) 
-            sink(a, k, N);
+        for (int i = N >>> 1; i > 0; i--) 
+            sink(a, i, N);
         while (N > 1) {
             int t = a[0];
             a[0] = a[N - 1];
             a[N - 1] = t;
-            --N;
-            sink(a, 1, N);
+            sink(a, 1, --N);
         }
         return timer.elapsedTime();
     }
-    private static void sink(int[] a, int k, int n) {
+    private static final void sink(int[] a, int k, int n) {
         while ((k << 1) <= n) {
             int j = k << 1;
             if (j < n && a[j - 1] < a[j]) j++;
@@ -65,7 +64,7 @@ public class Text_HeapSort {
         }
     }
     public static void main(String[] args) {
-        int[] a = ints(0, 10000000);
+        int[] a = ints(0, 4000000);
         int[] copy = intsCopy(a);
         StdOut.printf("堆排序 : %.3f\n",heap(a));
         StdOut.printf("快速排序 : %.3f\n",quick(copy));

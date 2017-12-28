@@ -87,7 +87,7 @@ public class Practise_2_4_23 {
      */
     public static double multiwayHeapSort(int[] a, int d) {
         Stopwatch timer = new Stopwatch();
-        // createHeapBySink(a, d);
+//         createHeapBySink(a, d);
         // createHeapBySwim(a, d);
         int N = a.length;
         for (int i = (N - 2) / d + 1; i > 0; i--) {
@@ -109,8 +109,8 @@ public class Practise_2_4_23 {
         while (N > 1) {
             // exch(a, 1, N)
             int t = a[0]; a[0] = a[N - 1]; a[N - 1] = t;
+//          sink(a, 1, --N, d);
             --N;
-            // sink(a, 1, --N, d)
             int p, count, max, maxIndex, k = 1;
             while ((p = d * (k - 1) + 2) <= N) {
                 max = a[p - 1]; maxIndex = p - 1; count = d;
@@ -161,8 +161,36 @@ public class Practise_2_4_23 {
         StdOut.printf("方法 2 : %.3f\n", t2);
         assert equal(a, copy);
     }
+    /*
+     * 6叉堆排序和二叉堆排序比较
+     * 
+     *  五叉堆排序耗时 ：2.497
+        六叉堆排序耗时 ：3.203
+        七叉堆排序耗时 ：3.295
+        二叉堆排序耗时 ：2.705
+
+        五叉堆排序耗时 ：2.414
+        六叉堆排序耗时 ：2.267
+        七叉堆排序耗时 ：3.206
+        二叉堆排序耗时 ：2.681
+
+     */
+    public static void test3() {
+        int[] a = ints(0, 10000000);
+        int[] copy = intsCopy(a);
+        int[] copy1 = intsCopy(a);
+        int[] copy2 = intsCopy(a);
+        StdOut.printf("五叉堆排序耗时 ：%.3f\n", multiwayHeapSort(a, 5));
+        StdOut.printf("六叉堆排序耗时 ：%.3f\n", multiwayHeapSort(copy1, 6));
+        StdOut.printf("七叉堆排序耗时 ：%.3f\n", multiwayHeapSort(copy2, 7));
+        StdOut.printf("二叉堆排序耗时 ：%.3f\n", Text_HeapSort.heap(copy));
+        assert isSorted(a);
+        assert isSorted(copy);
+        assert isSorted(copy1);
+        assert isSorted(copy2);
+    }
     public static void main(String[] args) {
-        test1();
+        test3();
     }
     // output
     /*
