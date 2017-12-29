@@ -5,6 +5,24 @@ import edu.princeton.cs.algs4.StdOut;
 import static 第二章_初级排序算法.Text_Array.*;
 
 public class Practise_2_4_25 {
+    static class CubeSum implements Comparable<CubeSum> {
+        private final int sum;
+        private final int i;
+        private final int j;
+        public CubeSum(int i, int j) {
+            this.sum = i * i * i + j * j * j;
+            this.i = i;
+            this.j = j;
+        }
+        public int compareTo(CubeSum that) {
+            if (this.sum < that.sum) return -1;
+            if (this.sum > that.sum) return +1;
+            return 0;
+        }
+        public String toString() {
+            return sum + " = " + i + "^3" + " + " + j + "^3";
+        }
+    }
     static class MinPQ<Key extends Comparable<Key>> {
         private class Node {
             Node parent, left, right;
@@ -96,35 +114,87 @@ public class Practise_2_4_25 {
         }
     }
     public static void main(String[] args) {
-        Integer[] a = Integers(0, 20);
-        MinPQ<Integer> pq = new MinPQ<Integer>();
-        for (Integer i : a) pq.insert(i);
-        while (!pq.isEmpty())
-            StdOut.println(pq.delMin());
+        int N = 10;
+        MinPQ<CubeSum> pq = new MinPQ<CubeSum>();
+        for (int i = 0; i <= N; i++) {
+            pq.insert(new CubeSum(i, i));
+        }
+
+        while (!pq.isEmpty()) {
+            CubeSum s = pq.delMin();
+            StdOut.println(s);
+            if (s.j < N)
+                pq.insert(new CubeSum(s.i, s.j + 1));
+        }
     }
     // output
     /*
-     *  0
-        1
-        2
-        3
-        4
-        5
-        6
-        7
-        8
-        9
-        10
-        11
-        12
-        13
-        14
-        15
-        16
-        17
-        18
-        19
-        20
+     *  0 = 0^3 + 0^3
+        1 = 0^3 + 1^3
+        2 = 1^3 + 1^3
+        8 = 0^3 + 2^3
+        9 = 1^3 + 2^3
+        16 = 2^3 + 2^3
+        27 = 0^3 + 3^3
+        28 = 1^3 + 3^3
+        35 = 2^3 + 3^3
+        54 = 3^3 + 3^3
+        64 = 0^3 + 4^3
+        65 = 1^3 + 4^3
+        72 = 2^3 + 4^3
+        91 = 3^3 + 4^3
+        125 = 0^3 + 5^3
+        126 = 1^3 + 5^3
+        128 = 4^3 + 4^3
+        133 = 2^3 + 5^3
+        152 = 3^3 + 5^3
+        189 = 4^3 + 5^3
+        216 = 0^3 + 6^3
+        217 = 1^3 + 6^3
+        224 = 2^3 + 6^3
+        243 = 3^3 + 6^3
+        250 = 5^3 + 5^3
+        280 = 4^3 + 6^3
+        341 = 5^3 + 6^3
+        343 = 0^3 + 7^3
+        344 = 1^3 + 7^3
+        351 = 2^3 + 7^3
+        370 = 3^3 + 7^3
+        407 = 4^3 + 7^3
+        432 = 6^3 + 6^3
+        468 = 5^3 + 7^3
+        512 = 0^3 + 8^3
+        513 = 1^3 + 8^3
+        520 = 2^3 + 8^3
+        539 = 3^3 + 8^3
+        559 = 6^3 + 7^3
+        576 = 4^3 + 8^3
+        637 = 5^3 + 8^3
+        686 = 7^3 + 7^3
+        728 = 6^3 + 8^3
+        729 = 0^3 + 9^3
+        730 = 1^3 + 9^3
+        737 = 2^3 + 9^3
+        756 = 3^3 + 9^3
+        793 = 4^3 + 9^3
+        854 = 5^3 + 9^3
+        855 = 7^3 + 8^3
+        945 = 6^3 + 9^3
+        1000 = 0^3 + 10^3
+        1001 = 1^3 + 10^3
+        1008 = 2^3 + 10^3
+        1024 = 8^3 + 8^3
+        1027 = 3^3 + 10^3
+        1064 = 4^3 + 10^3
+        1072 = 7^3 + 9^3
+        1125 = 5^3 + 10^3
+        1216 = 6^3 + 10^3
+        1241 = 8^3 + 9^3
+        1343 = 7^3 + 10^3
+        1458 = 9^3 + 9^3
+        1512 = 8^3 + 10^3
+        1729 = 9^3 + 10^3
+        2000 = 10^3 + 10^3
 
      */
 }
