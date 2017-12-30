@@ -2,7 +2,6 @@ package 第二章_优先队列;
 
 import java.util.*;
 import edu.princeton.cs.algs4.StdOut;
-import static 第二章_初级排序算法.Text_Array.*;
 
 public class Practise_2_4_25 {
     static class CubeSum implements Comparable<CubeSum> {
@@ -119,7 +118,6 @@ public class Practise_2_4_25 {
         for (int i = 0; i <= N; i++) {
             pq.insert(new CubeSum(i, i));
         }
-
         while (!pq.isEmpty()) {
             CubeSum s = pq.delMin();
             StdOut.println(s);
