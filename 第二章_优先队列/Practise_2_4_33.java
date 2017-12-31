@@ -33,8 +33,6 @@ public class Practise_2_4_33 {
             }
             pq[k] = size - 1;
             qp[pq[k]] = k;
-            StdOut.printf("插入 : %d\n", key);
-            StdOut.println(this);
         }
         public Key min() { return keys[pq[1]]; }
         public boolean contains(int k) { return qp[k] != -1; }
@@ -42,6 +40,7 @@ public class Practise_2_4_33 {
             if (size == 0)
                 throw new NoSuchElementException("priority queue underflow");
             Key min = keys[pq[1]];
+            int minIndex = pq[1];
             pq[1] = pq[size--];
             int top = pq[1];
             int k = 1;
@@ -55,6 +54,7 @@ public class Practise_2_4_33 {
             }
             pq[k] = top;
             qp[pq[k]] = k;
+            qp[minIndex] = -1;
             return min;
         }
         public String toString() {
@@ -76,12 +76,14 @@ public class Practise_2_4_33 {
     }
     public static void main(String[] args) {
         int N = 30;
-        int[] a = ints(0, N - 1);
-        IndexMinPQ<Integer> pq = new IndexMinPQ<Integer>(N);
-        for (int i : a) pq.insert(i);
+        String[] a =  Text_Alphabet.random(N);
+        IndexMinPQ<String> pq = new IndexMinPQ<String>(N);
+        for (String i : a) pq.insert(i);
         StdOut.println(pq);
-        while (!pq.isEmpty())
+        StdOut.println("\n");
+        while (!pq.isEmpty()) {
             StdOut.println(pq.delMin());
+        }
     }
     // output
     /*
