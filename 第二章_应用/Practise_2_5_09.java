@@ -67,16 +67,16 @@ public class Practise_2_5_09 {
             return String.format("[%s  \t%d]", s, dealAmount);
         }
     }
-    public static void quick(DJIA[] a, Comparator<DJIA> c) {
+    public static void quick(Object[] a, Comparator c) {
         quick(a, c, 0, a.length - 1);
     }
-    private static void exch(DJIA[] a, int i, int j) {
-        DJIA t = a[i]; a[i] = a[j]; a[j] = t;
+    private static void exch(Object[] a, int i, int j) {
+        Object t = a[i]; a[i] = a[j]; a[j] = t;
     }
-    private static void quick(DJIA[] a, Comparator<DJIA> c, int lo, int hi) {
+    private static void quick(Object[] a, Comparator c, int lo, int hi) {
         if (hi - lo + 1 < 5) {
             for (int i = lo; i <= hi; i++) {
-                DJIA t = a[i];
+                Object t = a[i];
                 int j;
                 for (j = i - 1; j >= lo && c.compare(t, a[j]) < 0; j--)
                     a[j + 1] = a[j];
@@ -88,7 +88,7 @@ public class Practise_2_5_09 {
         if (c.compare(a[mid], a[lo]) < 0) exch(a, lo, mid);
         if (c.compare(a[hi], a[lo]) < 0) exch(a, lo, hi);
         if (c.compare(a[mid], a[hi]) < 0) exch(a, mid, hi);
-        DJIA v = a[hi]; int i = lo - 1, j = hi, p = lo - 1, q = hi;
+        Object v = a[hi]; int i = lo - 1, j = hi, p = lo - 1, q = hi;
         while (true) {
             while (c.compare(a[++i], v) < 0);
             while (c.compare(a[--j], v) > 0);
