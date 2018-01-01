@@ -25,6 +25,11 @@ public class Text_Array {
             if (a[i] < a[i - 1]) return false;
         return true;
     }
+    public static boolean isSorted(Integer[] a) {
+        for (int i = 1; i < a.length; i++)
+            if (a[i] < a[i - 1]) return false;
+        return true;
+    }
     public static boolean isSorted(double[] a) {
         for (int i = 1; i < a.length; i++)
             if (a[i] < a[i - 1]) return false;
@@ -151,6 +156,13 @@ public class Text_Array {
     public static int[] parseInts(String s) {
         String[] sArr = s.split("\\s+");
         int[] arr = new int[sArr.length];
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = Integer.parseInt(sArr[i]);
+        return arr;
+    }
+    public static Integer[] parseIntegers(String s) {
+        String[] sArr = s.split("\\s+");
+        Integer[] arr = new Integer[sArr.length];
         for (int i = 0; i < arr.length; i++)
             arr[i] = Integer.parseInt(sArr[i]);
         return arr;
