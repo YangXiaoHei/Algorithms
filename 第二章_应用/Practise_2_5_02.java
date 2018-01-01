@@ -12,7 +12,7 @@ public class Practise_2_5_02 {
             for (int i = lo; i <= hi; i++) {
                 String t = s[i];
                 int j;
-                for (j = i - 1; j >= 0 && less(t, s[j]); j--) 
+                for (j = i - 1; j >= lo && less(t, s[j]); j--) 
                     s[j + 1] = s[j];
                 s[j + 1] = t;
             }
