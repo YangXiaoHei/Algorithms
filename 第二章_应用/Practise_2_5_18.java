@@ -1,9 +1,7 @@
 package 第二章_应用;
 
 import java.util.*;
-
 import edu.princeton.cs.algs4.StdOut;
-
 import static 第二章_初级排序算法.Text_Array.*;
 
 public class Practise_2_5_18 {
@@ -38,8 +36,8 @@ public class Practise_2_5_18 {
             }; 
         }
     }
-    public static void quick(Object[] a, Comparator c) {
-        quick(a, c, 0, a.length - 1);
+    public static void quick(Object[] a) {
+        quick(a, Wrapper.sortKey(), 0, a.length - 1);
     }
     private static void exch(Object[] a, int i, int j) {
         Object t = a[i]; a[i] = a[j]; a[j] = t;
@@ -99,31 +97,33 @@ public class Practise_2_5_18 {
         if (c.compare(a[lo], key) == 0) return lo;
         return -1;
     }
-    public static void stablize(Object[] a, Comparator sortKey, Comparator sortIndex) {
+    public static void stablize(Wrapper[] a) {
         for (int i = 1; i < a.length; i++) 
-            if (sortKey.compare(a[i - 1], a[i]) > 0)
+            if (Wrapper.sortKey().compare(a[i - 1], a[i]) > 0)
                 throw new IllegalArgumentException("the array is not ordered with main key");
         int left, right;
         for (int i = 0; i < a.length; i++) {
-            if ((left  = binarySearch_LB(a, a[i], sortKey)) != 
-                (right = binarySearch_RB(a, a[i], sortKey))) {
-                quick(a, sortIndex, left, right);
+            if ((left  = binarySearch_LB(a, a[i], Wrapper.sortKey())) != 
+                (right = binarySearch_RB(a, a[i], Wrapper.sortKey()))) {
+                quick(a, Wrapper.sortIndex(), left, right);
             }
         }
     }
     public static void main(String[] args) {
-        Integer[] a = intToInteger(intsVrg(20, 1, 3, 5, 7));
-        Wrapper[] ws = Wrapper.ws(a);
+        
+        // 包装类数组
+        Wrapper[] ws = Wrapper.ws(intToInteger(intsVrg(30, 1, 3, 5, 7)));
         
         // 使用主键排序
-        quick(ws, Wrapper.sortKey());
+        quick(ws);
         
         StdOut.println("对主键的不稳定排序结果 : ");
         for (Wrapper w : ws)
             StdOut.println(w);
         
         // 强制稳定
-        stablize(ws, Wrapper.sortKey(), Wrapper.sortIndex());
+        stablize(ws);
+        
         StdOut.println("\n强制让排序结果稳定后 : ");
         for (Wrapper w : ws)
             StdOut.println(w);
@@ -132,46 +132,66 @@ public class Practise_2_5_18 {
     /*
      *  对主键的不稳定排序结果 : 
         { 1, 12 }
-        { 1, 5 }
+        { 1, 11 }
+        { 1, 28 }
+        { 1, 24 }
+        { 1, 6 }
+        { 1, 25 }
         { 1, 17 }
-        { 1, 7 }
-        { 1, 19 }
+        { 1, 16 }
+        { 1, 2 }
+        { 1, 27 }
+        { 1, 14 }
+        { 3, 15 }
+        { 3, 21 }
         { 3, 8 }
-        { 3, 10 }
-        { 3, 18 }
-        { 3, 9 }
-        { 3, 2 }
-        { 3, 6 }
+        { 3, 3 }
+        { 3, 19 }
+        { 5, 22 }
+        { 5, 26 }
         { 5, 0 }
-        { 5, 14 }
-        { 5, 1 }
-        { 5, 11 }
-        { 7, 3 }
+        { 5, 7 }
+        { 5, 10 }
+        { 7, 29 }
+        { 7, 20 }
+        { 7, 5 }
+        { 7, 1 }
+        { 7, 9 }
+        { 7, 23 }
         { 7, 4 }
-        { 7, 16 }
-        { 7, 15 }
         { 7, 13 }
+        { 7, 18 }
         
         强制让排序结果稳定后 : 
-        { 1, 5 }
-        { 1, 7 }
+        { 1, 2 }
+        { 1, 6 }
+        { 1, 11 }
         { 1, 12 }
+        { 1, 14 }
+        { 1, 16 }
         { 1, 17 }
-        { 1, 19 }
-        { 3, 2 }
-        { 3, 6 }
+        { 1, 24 }
+        { 1, 25 }
+        { 1, 27 }
+        { 1, 28 }
+        { 3, 3 }
         { 3, 8 }
-        { 3, 9 }
-        { 3, 10 }
-        { 3, 18 }
+        { 3, 15 }
+        { 3, 19 }
+        { 3, 21 }
         { 5, 0 }
-        { 5, 1 }
-        { 5, 11 }
-        { 5, 14 }
-        { 7, 3 }
+        { 5, 7 }
+        { 5, 10 }
+        { 5, 22 }
+        { 5, 26 }
+        { 7, 1 }
         { 7, 4 }
+        { 7, 5 }
+        { 7, 9 }
         { 7, 13 }
-        { 7, 15 }
-        { 7, 16 }
+        { 7, 18 }
+        { 7, 20 }
+        { 7, 23 }
+        { 7, 29 }
      */
 }
