@@ -17,7 +17,7 @@ public class Practise_2_5_12 {
             while (N-- > 0) t[i++] = new Task(StdRandom.uniform(10, 10000));
             return t;
         }
-        public static Comparator<Task> cmp() {
+        public static Comparator<Task> accordingTime() {
             return new Comparator<Task>() {
                 public int compare(Task a, Task b) {
                     return a.time < b.time ? -1 : a.time > b.time ? 1 : 0;
@@ -86,10 +86,10 @@ public class Practise_2_5_12 {
     }
     public static void main(String[] args) {
         int M = 20;
-        MinPQ<Task> pq = new MinPQ<Task>(Task.cmp());
-        for (Task k : Task.random(1000))
+        MinPQ<Task> pq = new MinPQ<Task>(Task.accordingTime());
+        for (Task k : Task.random(1000)) 
             pq.insert(k);
-        while (M-- > 0)
+        while (M-- > 0) // 从 N 个任务中调度耗时最短的前 M 个优先执行
             StdOut.println(pq.delMin());
     }
     // output
