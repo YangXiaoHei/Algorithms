@@ -232,6 +232,15 @@ public class Text_Array {
             arr[i] = ((Integer)oarr[i]).intValue();
         return arr;
     }
+    public static Integer[] intToInteger(int[] oarr) {
+        if (oarr == null)
+            throw new NullPointerException();
+        int N = oarr.length;
+        Integer[] arr = new Integer[N];
+        for (int i = 0; i < N; i++)
+            arr[i] = oarr[i];
+        return arr;
+    }
     /*
      * 把 Object[] 转成 long[]，必须要是被类型擦除的 Long[] 才行，否则抛出非法参数异常
      * 
