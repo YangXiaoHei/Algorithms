@@ -2,7 +2,6 @@ package 第二章_应用;
 
 import static 第二章_初级排序算法.Text_Array.*;
 import edu.princeton.cs.algs4.StdOut;
-import java.util.*;
 
 public class Practise_2_5_19 {
     public static long count(int[] a) {
