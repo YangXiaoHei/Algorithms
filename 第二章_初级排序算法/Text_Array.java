@@ -633,6 +633,16 @@ public class Text_Array {
         }
         return arr;
     }
+    public static Double[] Doubles(int size, double lo, double hi) {
+        if (size <= 0)
+            throw new IllegalArgumentException("array size cannot be negative or zero!");
+        if (lo >= hi)
+            throw new IllegalArgumentException("lo cannot greater or equal than hi");
+        Double[] d = new Double[size];
+        for (int i = 0; i < size; i++)
+            d[i] = StdRandom.uniform(lo, hi);
+        return d;
+    }
     /*
      * 生成一个元素值从 0 到 1 浮点数随机分布的数组
      * 
