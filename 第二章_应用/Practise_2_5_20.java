@@ -1,8 +1,7 @@
 package 第二章_应用;
 
 import java.util.*;
-
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.*;
 
 public class Practise_2_5_20 {
     static class Task {
