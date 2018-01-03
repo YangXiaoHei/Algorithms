@@ -5,17 +5,6 @@ import java.util.*;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_2_5_31 {
-    public static int LB(int[] a, int key) {
-        int lo = 0, hi = a.length - 1;
-        while (lo < hi) {
-            int mid = (int)Math.ceil((lo + hi) / 2.0);
-            lo = a[mid] <  key ? mid : lo;
-            hi = a[mid] >= key ? mid - 1 : hi;
-        }
-        if (a[lo] == key) return lo;
-        if (++lo == a.length) return -1;
-        return a[lo] == key ? lo : -1;
-    }
     public static int RB(int[] a, int key) {
         int lo = 0, hi = a.length - 1;
         while (lo < hi) {
