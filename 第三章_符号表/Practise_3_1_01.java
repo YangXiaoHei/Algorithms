@@ -25,6 +25,25 @@ public class Practise_3_1_01 {
         private Node header = new Node();
         private int size;
         public void put(K key, V value) {
+            if (key == null) return;
+            /*
+             * 先遍历一遍，看 key 是否已经被包含，如果找到了，并且 value 不是空，就更新
+             * 如果 value 是空，那么就删除该符号
+             */
+            for (Node x = header.next, y = header; x != null; x = x.next, y = y.next) {
+                if (x.key.equals(key)) {
+                    if (value != null) {
+                        x.value = value;
+                     } else {
+                         x.value = null;
+                         y.next = y.next.next;
+                         --size;
+                     }
+                    return;
+                }
+            }
+            // 如果执行到这里 value 还为 null 直接返回
+            if (value == null) return;
             ++size;
             header.next = new Node(key, value, header.next);
         }
