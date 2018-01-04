@@ -11,11 +11,11 @@ public class Practise_2_5_26 {
             this.x = x;
             this.y = y;
         }
-        public static Point[] randomPoint(int N) {
+        public static Point[] randomPoint(int N, double xl, double xr, double yb, double yu) {
             Point[] p = new Point[N];
             for (int i = 0; i < N; i++)
-                p[i] = new Point(StdRandom.uniform(0, 200),
-                                 StdRandom.uniform(0, 200));
+                p[i] = new Point(StdRandom.uniform(xl, xr),
+                                 StdRandom.uniform(yb, yu));
             return p;
         }
         public double angleTo(Point p) {
@@ -47,27 +47,27 @@ public class Practise_2_5_26 {
                 }
             };
         }
-        public static Point nearest(Point[] ps) {
+        public static Point nearest(Point[] ps, Point stdCenter) {
             int lo = 0, hi = ps.length - 1, k = 0;
             while (lo <= hi) {
-                int j = parition(ps, lo, hi);
+                int j = parition(ps, lo, hi, stdCenter);
                 if      (j > k) hi = j - 1;
                 else if (j < k) lo = j + 1;
                 else    return ps[j];
             }
             throw new RuntimeException("unkonw error!");
         }
-        private static boolean less(Point p, Point q) {
-            return Point.sortDisToCenter(new Point(100, 100)).compare(p, q) < 0;
+        private static boolean less(Point p, Point q, Point stdCenter) {
+            return Point.sortDisToCenter(stdCenter).compare(p, q) < 0;
         }
         private static void exch(Point[] ps, int i, int j) {
             Point t = ps[i]; ps[i] = ps[j]; ps[j] = t;
         }
-        private static int parition(Point[] ps, int lo, int hi) {
+        private static int parition(Point[] ps, int lo, int hi, Point stdCenter) {
             Point v = ps[lo]; int i = lo, j = hi + 1;
             while (true) {
-                while (i < hi && less(ps[++i], v));
-                while (less(v, ps[--j]));
+                while (i < hi && less(ps[++i], v, stdCenter));
+                while (less(v, ps[--j], stdCenter));
                 if (i >= j) break;
                 exch(ps, i, j);
             }
@@ -79,9 +79,10 @@ public class Practise_2_5_26 {
         
         // 将 N 个点铺满画布 
         int N = 1000;
-        Point[] p = Point.randomPoint(N);
-        StdDraw.setXscale(0, 200);
-        StdDraw.setYscale(0, 200);
+        double XL = 0, XR = 200, YB = 0, YU = 200; 
+        Point[] p = Point.randomPoint(N, XL, XR, YB, YU);
+        StdDraw.setXscale(XL, XR);
+        StdDraw.setYscale(YB, YU);
         for (Point pp : p) 
             StdDraw.point(pp.x, pp.y);
         
@@ -89,7 +90,7 @@ public class Practise_2_5_26 {
         StdDraw.setPenRadius(0.01);
         
         // 找到最接近中心的点并绘制
-        Point center = Point.nearest(p);
+        Point center = Point.nearest(p, new Point((XL + XR) / 2.0, (YB + YU) / 2.0));
         StdDraw.point(center.x, center.y);
         
         // 设置多边形的边数
