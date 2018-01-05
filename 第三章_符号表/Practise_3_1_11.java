@@ -1,7 +1,6 @@
 package 第三章_符号表;
 
 import java.util.*;
-
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_3_1_11 {
@@ -185,6 +184,120 @@ public class Practise_3_1_11 {
             StdOut.printf("key = %s value = %s\n", key, st.get(key));
         StdOut.println("\n\n");
     }
+    // output
+    /* 
+     * 1⃣️{0  A}
+        {2  B}
+        {4  C}
+        {6  D}
+        {8  E}
+        {10  F}
+        {12  G}
+        {14  H}
+        {16  I}
+        {18  J}
+        {20  K}
+        {22  L}
+        {24  M}
+        {26  N}
+        {28  O}
+        {30  P}
+        {32  Q}
+        {34  R}
+        {36  S}
+        {38  T}
+        {40  U}
+        
+        2⃣️{4  C}
+        {6  D}
+        {8  E}
+        {10  F}
+        {12  G}
+        {14  H}
+        {16  I}
+        {18  J}
+        {20  K}
+        {22  L}
+        {24  M}
+        {26  N}
+        {28  O}
+        {30  P}
+        {32  Q}
+        {34  R}
+        
+        3⃣️{4  C}
+        {6  D}
+        {8  E}
+        {10  F}
+        {12  G}
+        {14  H}
+        {22  L}
+        {24  M}
+        {26  N}
+        {28  O}
+        {30  P}
+        {32  Q}
+        {34  R}
+        
+        4⃣️4  C
+        10  F
+        14  H
+        24  M
+        28  O
+        5⃣️小于键值 28 的数量为 : 9
+        小于键值 30 的数量为 : 10
+        小于键值 15 的数量为 : 6
+        小于键值 5 的数量为 : 1
+        小于键值 8 的数量为 : 2
+        小于键值 10 的数量为 : 3
+        小于键值 4 的数量为 : 0
+        6⃣️
+        key = 4 value = C
+        key = 6 value = D
+        key = 8 value = E
+        key = 10 value = F
+        key = 12 value = G
+        key = 14 value = H
+        key = 22 value = L
+        key = 24 value = M
+        key = 26 value = N
+        key = 28 value = O
+        key = 30 value = P
+        key = 32 value = Q
+        key = 34 value = R
+        
+        
+        
+        key = 6 value = D
+        key = 8 value = E
+        key = 10 value = F
+        key = 12 value = G
+        key = 14 value = H
+        key = 22 value = L
+        key = 24 value = M
+        key = 26 value = N
+        key = 28 value = O
+        key = 30 value = P
+        key = 32 value = Q
+        
+        
+        
+        key = 12 value = G
+        key = 14 value = H
+        key = 22 value = L
+        key = 24 value = M
+        key = 26 value = N
+        key = 28 value = O
+        key = 30 value = P
+        
+        
+        
+        key = 6 value = D
+        key = 8 value = E
+        key = 10 value = F
+        key = 12 value = G
+        key = 22 value = L
+     */
     public static void main(String[] args) {
         test();
         /*
