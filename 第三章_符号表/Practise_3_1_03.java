@@ -130,8 +130,7 @@ public class Practise_3_1_03 {
             Node x = header.next;
             while (k-- > 0 && x != null) 
                 x = x.next;
-            if (x == null) return null;
-            return x.key;
+            return x == null ? null : x.key;
         }
         public void deleteMin() { delete(min); }
         public void deleteMax() { delete(max); }
@@ -185,24 +184,25 @@ public class Practise_3_1_03 {
         st.put(28, "O");
         st.put(30, "P");
         st.put(8, "E");
-        StdOut.println(st);
+        StdOut.println("1⃣️" + st);
         st.deleteMax();
         st.deleteMax();
         st.deleteMax();  // 删除三次最大值
         st.deleteMin();
         st.deleteMin();  // 删除两次最小值
-        StdOut.println(st);
+        StdOut.println("2⃣️" + st);
         st.delete(20);
         st.delete(18);
         st.delete(16);  // 连续删除三个元素
         st.delete(17);
         st.delete(15);  // 删除不存在的键值
-        StdOut.println(st);
+        StdOut.println("3⃣️" + st);
+        StdOut.println("4⃣️" + st.select(0) + "  " + st.get(st.select(0)));
         StdOut.println(st.select(3) + "  " + st.get(st.select(3))); // select 和 get 测试
         StdOut.println(st.select(5) + "  " + st.get(st.select(5)));
         StdOut.println(st.select(7) + "  " + st.get(st.select(7)));
         StdOut.println(st.select(9) + "  " + st.get(st.select(9)));
-        StdOut.println("小于键值 28 的数量为 : " + st.rank(28)); // rank 测试
+        StdOut.println("5⃣️" + "小于键值 28 的数量为 : " + st.rank(28)); // rank 测试
         StdOut.println("小于键值 30 的数量为 : " + st.rank(30));
         StdOut.println("小于键值 15 的数量为 : " + st.rank(15));
         StdOut.println("小于键值 5 的数量为 : " + st.rank(5));
@@ -210,6 +210,7 @@ public class Practise_3_1_03 {
         StdOut.println("小于键值 10 的数量为 : " + st.rank(10));
         StdOut.println("小于键值 4 的数量为 : " + st.rank(4));
         // 迭代器测试
+        StdOut.println("6⃣️");
         for (Integer key : st.keys())
             StdOut.printf("key = %s value = %s\n", key, st.get(key));
         StdOut.println("\n\n");
@@ -227,7 +228,7 @@ public class Practise_3_1_03 {
     }
     // output
     /*
-     *  最大值 : 40  最小值 : 0  尺寸 : 21
+     *  1⃣️最大值 : 40  最小值 : 0  尺寸 : 21
         {0  A}
         {2  B}
         {4  C}
@@ -250,7 +251,7 @@ public class Practise_3_1_03 {
         {38  T}
         {40  U}
         
-        最大值 : 34  最小值 : 4  尺寸 : 16
+        2⃣️最大值 : 34  最小值 : 4  尺寸 : 16
         {4  C}
         {6  D}
         {8  E}
@@ -268,7 +269,7 @@ public class Practise_3_1_03 {
         {32  Q}
         {34  R}
         
-        最大值 : 34  最小值 : 4  尺寸 : 13
+        3⃣️最大值 : 34  最小值 : 4  尺寸 : 13
         {4  C}
         {6  D}
         {8  E}
@@ -283,17 +284,19 @@ public class Practise_3_1_03 {
         {32  Q}
         {34  R}
         
+        4⃣️4  C
         10  F
         14  H
         24  M
         28  O
-        小于键值 28 的数量为 : 9
+        5⃣️小于键值 28 的数量为 : 9
         小于键值 30 的数量为 : 10
         小于键值 15 的数量为 : 6
         小于键值 5 的数量为 : 1
         小于键值 8 的数量为 : 2
         小于键值 10 的数量为 : 3
         小于键值 4 的数量为 : 0
+        6⃣️
         key = 4 value = C
         key = 6 value = D
         key = 8 value = E
@@ -335,6 +338,8 @@ public class Practise_3_1_03 {
         key = 8 value = E
         key = 10 value = F
         key = 12 value = G
+
+
 
 
      */
