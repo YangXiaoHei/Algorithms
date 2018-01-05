@@ -303,13 +303,20 @@ public class Practise_3_1_11 {
         /*
          * E A S Y Q U E S T I O N
          * 
+         * E        0次
+         * A E      1次
+         * A E S    2次
+         * A E S Y        2次
+         * A E Q S Y       2次
+         * A E Q S U Y     3次
+         * A E Q S U Y       3次
+         * A E Q S U Y       3次
+         * A E Q S T U Y     3次
+         * A E I Q S T U Y   3次
+         * A E I O Q S T U Y    3次  
+         * A E I N O Q S T U Y   4次
          * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
+         * 总共比较了 1 + 2 * 3 + 3 * 6 + 4 = 1 + 6 + 18 + 4 = 29次
          */
     }
 }
