@@ -136,7 +136,7 @@ public class Practise_3_1_03 {
         public void deleteMax() { delete(max); }
         public int size(K lo, K hi) {
             if (lo.compareTo(hi) > 0 || isEmpty()) return 0;
-            return rank(hi) - rank(lo) + 1;
+            return rank(hi) - rank(lo);
         }
         public Iterable<K> keys(K lo, K hi) {
             if (lo.compareTo(hi) > 0 || isEmpty()) return null;
