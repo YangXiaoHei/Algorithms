@@ -1,7 +1,6 @@
 package 第三章_符号表;
 
-import edu.princeton.cs.algs4.StdOut;
-
+import edu.princeton.cs.algs4.*;
 import java.util.*;
 
 public class Practise_3_1_15 {
@@ -34,16 +33,17 @@ public class Practise_3_1_15 {
             }
             return lo;
         }
-        public void put(K k, V v) {
-            if (k == null) return;
+        public double put(K k, V v) {
+            Stopwatch timer = new Stopwatch();
+            if (k == null) return timer.elapsedTime();
             if (v == null) {
-                // 删除
-                return;
+                delete(k);
+                return timer.elapsedTime();
             }
             int lo = rank(k);
             if (lo < size && keys[lo].compareTo(k) == 0) {
                 values[lo] = v;
-                return;
+                return timer.elapsedTime();
             }
             if (size == keys.length)
                 resize(size << 1);
@@ -54,12 +54,15 @@ public class Practise_3_1_15 {
             ++size;
             keys[lo] = k;
             values[lo] = v;
+            return timer.elapsedTime();
         }
-        public V get(K k) {
-            if (k == null) return null;
+        public double get(K k) {
+            Stopwatch timer = new Stopwatch();
+            if (k == null) return timer.elapsedTime();
             int lo = rank(k);
-            if (lo >= size || keys[lo].compareTo(k) != 0) return null;
-            return values[lo];
+            if (lo >= size || keys[lo].compareTo(k) != 0) return timer.elapsedTime();
+            V rel = values[lo];
+            return timer.elapsedTime();
         }
         public void delete(K k) {
             if (k == null) return;
@@ -106,184 +109,37 @@ public class Practise_3_1_15 {
             return sb.toString();
         }
     }
+    public static boolean[] op(int N, int successTimes) {
+        boolean[] ops = new boolean[N];
+        Arrays.fill(ops, false);
+        for (int i = 0; i < successTimes; i++)
+            ops[i] = true;
+        for (int i = 0; i < N; i++) {
+            int r = i + StdRandom.uniform(N - i);
+            boolean t = ops[r];
+            ops[r] = ops[i];
+            ops[i] = t;
+        }
+        return ops;
+    }
     public static void main(String[] args) {
         BinarySearchST<Integer, String> st = new BinarySearchST<Integer, String>();
-        st.put(14, "H");
-        st.put(4, "C");
-        st.put(34, "R");
-        st.put(32, "Q");
-        st.put(6, "D");
-        st.put(2, "B");
-        st.put(10, "F");
-        st.put(22, "L");
-        st.put(0, "A");
-        st.put(16, "I");
-        st.put(40, "U");
-        st.put(18, "J");
-        st.put(20, "K");
-        st.put(12, "G");
-        st.put(38, "T");
-        st.put(24, "M");
-        st.put(36, "S");
-        st.put(26, "N");
-        st.put(28, "O");
-        st.put(30, "P");
-        st.put(8, "E");
-        StdOut.println("1⃣️" + st);
-        st.deleteMax();
-        st.deleteMax();
-        st.deleteMax();  // 删除三次最大值
-        st.deleteMin();
-        st.deleteMin();  // 删除两次最小值
-        StdOut.println("2⃣️" + st);
-        st.delete(20);
-        
-        st.delete(18);
-        
-        st.delete(16);  // 连续删除三个元素
-        st.delete(17);
-        
-        st.delete(15);  // 删除不存在的键值
-        StdOut.println("3⃣️" + st);
-        StdOut.println("4⃣️" + st.select(0) + "  " + st.get(st.select(0)));
-        StdOut.println(st.select(3) + "  " + st.get(st.select(3))); // select 和 get 测试
-        StdOut.println(st.select(5) + "  " + st.get(st.select(5)));
-        StdOut.println(st.select(7) + "  " + st.get(st.select(7)));
-        StdOut.println(st.select(9) + "  " + st.get(st.select(9)));
-        StdOut.println("5⃣️" + "小于键值 28 的数量为 : " + st.rank(28)); // rank 测试
-        StdOut.println("小于键值 30 的数量为 : " + st.rank(30));
-        StdOut.println("小于键值 15 的数量为 : " + st.rank(15));
-        StdOut.println("小于键值 5 的数量为 : " + st.rank(5));
-        StdOut.println("小于键值 8 的数量为 : " + st.rank(8));
-        StdOut.println("小于键值 10 的数量为 : " + st.rank(10));
-        StdOut.println("小于键值 4 的数量为 : " + st.rank(4));
-        // 迭代器测试
-        StdOut.println("6⃣️");
-        for (Integer key : st.keys())
-            StdOut.printf("key = %s value = %s\n", key, st.get(key));
-        StdOut.println("\n\n");
-        for (Integer key : st.keys(5, 31))
-            StdOut.printf("key = %s value = %s\n", key, st.get(key));
-        StdOut.println("\n\n");
-        for (Integer key : st.keys(11, 29))
-            StdOut.printf("key = %s value = %s\n", key, st.get(key));
-        StdOut.println("\n\n");
-        st.delete(14);
-        st.delete(26);
-        for (Integer key : st.keys(5, 18))
-            StdOut.printf("key = %s value = %s\n", key, st.get(key));
-        StdOut.println("\n\n");
+        int putCount = 10000;
+        int getCount = putCount * 1000;
+        double putTime = 0, getTime = 0;
+        boolean[] ops = op(putCount + getCount, putCount);
+        for (int i = 0; i <  ops.length; i++)
+            if (ops[i])
+                putTime += st.put(StdRandom.uniform(1, 100000000), "A");
+            else
+                getTime += st.get(StdRandom.uniform(1, 100000000));
+        StdOut.printf("put 操作耗时 : %.3f get 操作耗时 : %.3f put / Total = %.3f\n",
+                putTime, getTime, putTime / (getTime + putTime));
     }
     // output
     /*
-     * 1⃣️{0  A}
-        {2  B}
-        {4  C}
-        {6  D}
-        {8  E}
-        {10  F}
-        {12  G}
-        {14  H}
-        {16  I}
-        {18  J}
-        {20  K}
-        {22  L}
-        {24  M}
-        {26  N}
-        {28  O}
-        {30  P}
-        {32  Q}
-        {34  R}
-        {36  S}
-        {38  T}
-        {40  U}
-        
-        2⃣️{4  C}
-        {6  D}
-        {8  E}
-        {10  F}
-        {12  G}
-        {14  H}
-        {16  I}
-        {18  J}
-        {20  K}
-        {22  L}
-        {24  M}
-        {26  N}
-        {28  O}
-        {30  P}
-        {32  Q}
-        {34  R}
-        
-        3⃣️{4  C}
-        {6  D}
-        {8  E}
-        {10  F}
-        {12  G}
-        {14  H}
-        {22  L}
-        {24  M}
-        {26  N}
-        {28  O}
-        {30  P}
-        {32  Q}
-        {34  R}
-        
-        4⃣️4  C
-        10  F
-        14  H
-        24  M
-        28  O
-        5⃣️小于键值 28 的数量为 : 9
-        小于键值 30 的数量为 : 10
-        小于键值 15 的数量为 : 6
-        小于键值 5 的数量为 : 1
-        小于键值 8 的数量为 : 2
-        小于键值 10 的数量为 : 3
-        小于键值 4 的数量为 : 0
-        6⃣️
-        key = 4 value = C
-        key = 6 value = D
-        key = 8 value = E
-        key = 10 value = F
-        key = 12 value = G
-        key = 14 value = H
-        key = 22 value = L
-        key = 24 value = M
-        key = 26 value = N
-        key = 28 value = O
-        key = 30 value = P
-        key = 32 value = Q
-        key = 34 value = R
-        
-        
-        
-        key = 6 value = D
-        key = 8 value = E
-        key = 10 value = F
-        key = 12 value = G
-        key = 14 value = H
-        key = 22 value = L
-        key = 24 value = M
-        key = 26 value = N
-        key = 28 value = O
-        key = 30 value = P
-        
-        
-        
-        key = 12 value = G
-        key = 14 value = H
-        key = 22 value = L
-        key = 24 value = M
-        key = 26 value = N
-        key = 28 value = O
-        
-        
-        
-        key = 6 value = D
-        key = 8 value = E
-        key = 10 value = F
-        key = 12 value = G
+     * put 操作耗时 : 0.084 get 操作耗时 : 1.343 put / get = 0.063
+
 
      */
 }
