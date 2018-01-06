@@ -138,8 +138,7 @@ public class Practise_3_1_15 {
     }
     // output
     /*
-     * put 操作耗时 : 0.084 get 操作耗时 : 1.343 put / get = 0.063
-
-
+     * put 操作耗时 : 0.055 get 操作耗时 : 1.359 put / Total = 0.039
+     * 
      */
 }
