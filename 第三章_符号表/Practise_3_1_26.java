@@ -61,6 +61,20 @@ public class Practise_3_1_26 {
                 values[cache.index] = v;
                 return;
             }
+            /*
+             * 如果 k 比符号表中所有键都大，那么直接插入到末尾
+             */
+            if (max() != null && k.compareTo(max()) > 0) {
+                if (size == keys.length)
+                    resize(size << 1);
+                keys[size] = k;
+                values[size] = v;
+                cache.k = k; // 更新缓存
+                cache.v = v;
+                cache.index = size; 
+                ++size;
+                return;
+            }
             int lo = rank(k); // 如果找到，那么缓存已经被更新
             if (lo < size && keys[lo].compareTo(k) == 0) {
                 cache.v = v;
