@@ -72,8 +72,8 @@ public class Practise_3_1_11 {
                 values[i - 1] = values[i];
             }
             --size;
-            keys[size + 1] = null;
-            values[size + 1] = null;
+            keys[size] = null;
+            values[size] = null;
             if (size > 0 && size == keys.length >> 2)
                 resize(keys.length >> 1);
         }
