@@ -99,8 +99,7 @@ public class Practise_3_1_12 {
             if (lo >= size || entrys[lo].key.compareTo(k) != 0) return;
             for (int i = lo + 1; i < size; i++)
                 entrys[i - 1] = entrys[i];
-            entrys[size - 1] = null;
-            --size;
+            entrys[--size] = null;
             if (size > 0 && size == entrys.length >> 2)
                 resize(entrys.length >> 1);
         }
