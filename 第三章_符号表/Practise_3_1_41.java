@@ -31,7 +31,7 @@ public class Practise_3_1_41 {
     public static void main(String[] args) {
 //        int N = 3000000; // 会让插值大概率比二分快 1 倍
         int N = 60000000; // 会让插值大概率比二分快 2 倍
-        int[] a = ints(N, 0, 10000000);
+        int[] a = ints(N, 0, N * 2);
         int key = StdRandom.uniform(N);
         double t1 = interpolation(a, key);
         double t2 = binary(a, key);
