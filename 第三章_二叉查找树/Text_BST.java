@@ -102,6 +102,63 @@ public class Text_BST <K extends Comparable<K>, V> {
         else    return size(n.left);
     }
     /*
+     * 删除最小键
+     */
+    public void deleteMin() { root = deleteMin(root); }
+    private Node deleteMin(Node x) {
+        if (x.left == null) return x.right;
+        x.left = deleteMin(x.left);
+        x.size = size(x.left) + size(x.right) + 1;
+        return x;
+    }
+    /*
+     * 删除最大键
+     */
+    public void deleteMax() { root = deleteMax(root); }
+    private Node deleteMax(Node x) {
+        if (x.right == null) return x.left;
+        x.right = deleteMax(x.right);
+        x.size = 1 + size(x.left) + size(x.right) + 1;
+        return x;
+    } 
+    /*
+     * 删除给定结点
+     */
+    public void delete(K k) { root = delete(root, k); }
+    private Node delete(Node n, K k) {
+        if (n == null) return null;
+        int cmp = k.compareTo(n.key);
+        if      (cmp < 0) n.left = delete(n.left, k);
+        else if (cmp > 0) n.right = delete(n.right, k);
+        else {
+            if (n.right == null) return n.left;
+            if (n.left == null) return n.right;
+            Node t = n;
+            n = min(t.right);
+            n.right = deleteMin(t.right);
+            n.left = t.left;
+        }
+        n.size = 1 + size(n.left) + size(n.right);
+        return n;
+    }
+    /*
+     * 获取可供遍历的键
+     */
+    public Iterable<K> keys() { return keys(min(), max()); }
+    public Iterable<K> keys(K lo, K hi) {
+        LinkedList<K> list = new LinkedList<K>();
+        keys(root, list, lo, hi);
+        return list;
+    }
+    private void keys(Node x, LinkedList<K> list, K lo, K hi) {
+        if (x == null) return;
+        int cmplo = lo.compareTo(x.key);
+        int cmphi = x.key.compareTo(hi);
+        if (cmplo < 0) keys(x.left, list, lo, hi);
+        if (cmplo <= 0 && cmphi <= 0) list.add(x.key);
+        if (cmphi < 0) keys(x.right, list, lo, hi);
+    }
+    /*
      * 先序遍历
      */
     public void travPre(Visit<K, V> visit) { travPre(root, visit); }
@@ -195,10 +252,22 @@ public class Text_BST <K extends Comparable<K>, V> {
         StdOut.printf("rank(G) = %d\n", bst.rank("G"));
         StdOut.printf("rank(I) = %d\n", bst.rank("I"));
         StdOut.printf("rank(J) = %d\n", bst.rank("J"));
+        bst.delete("E");
+        StdOut.println(bst);
+        bst.delete("M");
+        StdOut.println(bst);
+        bst.delete("L");
+        bst.delete("P");
+        StdOut.println(bst);
+        for (String key : bst.keys("C", "S")) 
+            StdOut.printf("{ %s  %s }\n", key, bst.get(key));
+        StdOut.println("\n\n");
+        for (String key : bst.keys())
+            StdOut.printf("{ %s  %s }\n", key, bst.get(key));
     }
     // output
     /*
-     *  {   A   8    size =   2 }
+     *  {   A   8   size =   2 }
         {   C   4   size =   1 }
         {   E  12   size =   8 }
         {   H   5   size =   4 }
@@ -232,5 +301,47 @@ public class Text_BST <K extends Comparable<K>, V> {
         rank(G) = 3
         rank(I) = 4
         rank(J) = 4
+        {   A   8   size =   2 }
+        {   C   4   size =   1 }
+        {   H   5   size =   7 }
+        {   L  11   size =   1 }
+        {   M   9   size =   3 }
+        {   P  10   size =   1 }
+        {   R   3   size =   4 }
+        {   S   0   size =   9 }
+        {   X   7   size =   1 }
+        尺寸 = 9
+        
+        {   A   8   size =   2 }
+        {   C   4   size =   1 }
+        {   H   5   size =   6 }
+        {   L  11   size =   1 }
+        {   P  10   size =   2 }
+        {   R   3   size =   3 }
+        {   S   0   size =   8 }
+        {   X   7   size =   1 }
+        尺寸 = 8
+        
+        {   A   8   size =   2 }
+        {   C   4   size =   1 }
+        {   H   5   size =   4 }
+        {   R   3   size =   1 }
+        {   S   0   size =   6 }
+        {   X   7   size =   1 }
+        尺寸 = 6
+        
+        { C  4 }
+        { H  5 }
+        { R  3 }
+        { S  0 }
+        
+        
+        
+        { A  8 }
+        { C  4 }
+        { H  5 }
+        { R  3 }
+        { S  0 }
+        { X  7 }
      */
 }
