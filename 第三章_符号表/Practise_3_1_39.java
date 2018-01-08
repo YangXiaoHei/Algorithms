@@ -133,7 +133,7 @@ public class Practise_3_1_39 {
         SequentialSearchST<String, Integer> st = new SequentialSearchST<String, Integer>();
         BinarySearchST<String, Integer> st1 = new BinarySearchST<String, Integer>();
         double t1 = 0, t2 = 0;
-        StdDraw.setXscale(0, 60000);
+        StdDraw.setXscale(0, 100000);
         StdDraw.setYscale(0, 100);
         for (String w : words) {
             StdDraw.setPenColor(Color.red);
