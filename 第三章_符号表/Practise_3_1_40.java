@@ -22,18 +22,18 @@ public class Practise_3_1_40 {
         return System.nanoTime() - start;
     }
     public static void main(String[] args) {
-        for (int i = 100000, j = 0; j < 10000; j++, i += 10000) {
-            int[] a = ascendInts(0, i - 1);
-            int key = i - 1;
+//            int N = 350000; 快1000倍
+            int N = 60000000; // 暂时没有找到快 10000 倍的 N，在此之前已经 Java Heap space limit 异常了..
+            int[] a = ascendInts(0, N - 1);
+            int key = N - 1;
             double t1 = binarySearch(a, key);
             double t2 = sequentialSearch(a, key);
+            StdOut.println(t2 / t1);
             if (t2 / t1 > 1000) {
-                StdOut.printf("二分查找比顺序查找快 1000 倍的 N = %d  t2/t1 = %.3f\n", i, t2 / t1);
+                StdOut.printf("二分查找比顺序查找快 1000 倍的 N = %d  t2/t1 = %.3f\n", N, t2 / t1);
             }
             if (t2 / t1 > 10000) {
-                StdOut.printf("二分查找比顺序查找快 10000 倍的 N = %d\n", i);
-                break;
+                StdOut.printf("二分查找比顺序查找快 10000 倍的 N = %d\n", N);
             }
-        }
     }
 }
