@@ -61,7 +61,21 @@ public class Practise_3_2_07 {
         bst.put(5, 0);
         bst.put(7, 0);
         StdOut.println(bst);
-        StdOut.println(bst.internalPathLength());
-        StdOut.println(bst.avgCompares());
+        StdOut.println("二叉树内部路径长度 : " + bst.internalPathLength());
+        StdOut.println("随机命中查找平均所需比较次数 : " + bst.avgCompares());
     }
+    // output
+    /*
+     *  {   1    0  size =   1 height =   0 }
+        {   2    0  size =   3 height =   1 }
+        {   3    0  size =   1 height =   0 }
+        {   4    0  size =   7 height =   2 }
+        {   5    0  size =   1 height =   0 }
+        {   6    0  size =   3 height =   1 }
+        {   7    0  size =   1 height =   0 }
+        
+        二叉树内部路径长度 : 10
+        随机命中查找平均所需比较次数 : 2
+
+     */
 }
