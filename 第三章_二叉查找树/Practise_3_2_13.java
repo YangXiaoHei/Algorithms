@@ -79,7 +79,7 @@ public class Practise_3_2_13 {
          * 非递归的 select
          */
         public K select(int k) {
-            if (k < 0 || k > size()) throw new IllegalArgumentException();
+            if (k < 0 || k >= size()) throw new IllegalArgumentException();
             return select(root, k).k;
         }
         private Node select(Node n, int k) {
