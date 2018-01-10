@@ -1,9 +1,7 @@
 package 第三章_二叉查找树;
 
-import static 第二章_优先队列.Text_Alphabet.random;
-
+import static 第二章_优先队列.Text_Alphabet.*;
 import edu.princeton.cs.algs4.StdOut;
-import 第三章_二叉查找树.Practise_3_2_10.BST;
 
 public class Practise_3_2_13 {
     static class BST<K extends Comparable<K>, V> {
@@ -37,6 +35,100 @@ public class Practise_3_2_13 {
             depth += ipl(n.right, cur + 1);
             return depth;
         }
+        /*
+         * 非递归 min
+         */
+        public K min() { 
+            if (isEmpty()) return null;
+            return min(root).k;
+        }
+        private Node min(Node n) {
+            while (n.left != null) n = n.left;
+            return n;
+        }
+        /*
+         * 非递归 max
+         */
+        public K max() {
+            if (isEmpty()) return null;
+            return max(root).k;
+        }
+        private Node max(Node n) {
+            while (n.right != null) n = n.right;
+            return n;
+        }
+        /*
+         * 非递归的 floor
+         */
+        public K floor(K k) {
+            if (k == null) throw new IllegalArgumentException();
+            Node t = floor(root, k);
+            return t == null ? null : t.k;
+        }
+        private Node floor(Node n, K k) {
+            Node tmp = null;
+            while (n != null) {
+                int cmp = k.compareTo(n.k);
+                if (cmp == 0) return n;
+                if (cmp < 0) n = n.left;
+                else       { tmp = n; n = n.right; }
+            }
+            return tmp;
+        }
+        /*
+         * 非递归的 select
+         */
+        public K select(int k) {
+            if (k < 0 || k > size()) throw new IllegalArgumentException();
+            return select(root, k).k;
+        }
+        private Node select(Node n, int k) {
+            while (n != null) {
+                int ls = size(n.left);
+                if      (k < ls) n = n.left;
+                else if (k > ls) { n = n.right; k -= (ls + 1); }
+                else    return n;
+            }
+            return null;
+        }
+        /*
+         * 非递归的 rank
+         */
+        public int rank(K k) { 
+            if (isEmpty() || k == null) throw new IllegalArgumentException();
+            return rank(root, k); 
+        }
+        private int rank(Node n, K k) {
+            int count = 0;
+            while (n != null) {
+                int cmp = k.compareTo(n.k);
+                if (cmp == 0) return count + size(n.left);
+                if (cmp <  0) n = n.left;
+                else        { count += size(n.left) + 1; n = n.right;  }
+            }
+            return count;
+        }
+        /*
+         * 非递归的ceiling
+         */
+        public K ceiling(K k) {
+            if (k == null) throw new IllegalArgumentException();
+            Node t = ceiling(root, k);
+            return t == null ? null : t.k;
+        }
+        private Node ceiling(Node n, K k) {
+            Node tmp = null;
+            while (n != null) {
+                int cmp = k.compareTo(n.k);
+                if (cmp == 0) return n;
+                if (cmp > 0) n = n.right;
+                else       { tmp = n; n = n.left; }
+            }
+            return tmp;
+        }
+        /*
+         * 非递归 get
+         */
         public V get(K k) {
             if (k == null) throw new IllegalArgumentException();
             if (isEmpty()) return null;
@@ -47,12 +139,15 @@ public class Practise_3_2_13 {
             hot = null;
             while (n != null) {
                 int cmp = k.compareTo(n.k);
-                if (cmp == 0) break;
+                if (cmp == 0) return n;
                 hot = n;
                 n = cmp < 0 ? n.left : n.right;
             }
-            return n;
+            return null;
         }
+        /*
+         * 非递归 put
+         */
         public void put(K k, V v) {
             if (k == null) throw new IllegalArgumentException();
             if (isEmpty()) {
@@ -88,11 +183,87 @@ public class Practise_3_2_13 {
     }
     public static void main(String[] args) {
         String[] alps = random(30);
-        for (int i = 0; i < alps.length; i++)
-            StdOut.println(alps[i]);
         BST<String, Integer> bst = new BST<String, Integer>();
         for (int i = 0; i < alps.length; i++)
             bst.put(alps[i], i);
         StdOut.println(bst);
+        
+        StdOut.printf("最小 : {%s  %s}\n", bst.min(), bst.get(bst.min()));
+        StdOut.printf("最大 : {%s  %s}\n", bst.max(), bst.get(bst.max()));
+        
+        StdOut.println();
+        
+        StdOut.printf("floor : %s\n", bst.floor("E"));
+        StdOut.printf("floor : %s\n", bst.floor("F"));
+        StdOut.printf("floor : %s\n", bst.floor("G"));
+        StdOut.printf("floor : %s\n", bst.floor("Y"));
+        
+        StdOut.println();
+        
+        StdOut.printf("ceiling : %s\n", bst.ceiling("A"));
+        StdOut.printf("ceiling : %s\n", bst.ceiling("H"));
+        StdOut.printf("ceiling : %s\n", bst.ceiling("I"));
+        StdOut.printf("ceiling : %s\n", bst.ceiling("U"));
+        
+        StdOut.println();
+        
+        StdOut.printf("select : %s\n", bst.select(1));
+        StdOut.printf("select : %s\n", bst.select(8));
+        StdOut.printf("select : %s\n", bst.select(10));
+        StdOut.printf("select : %s\n", bst.select(13));
+        
+        StdOut.println();
+        
+        StdOut.printf("rank : %d\n", bst.rank("A"));
+        StdOut.printf("rank : %d\n", bst.rank("O"));
+        StdOut.printf("rank : %d\n", bst.rank("T"));
+        StdOut.printf("rank : %d\n", bst.rank("U"));
     }
+    // output
+    /*
+     *  {    B    28 size =    1 }
+        {    G    15 size =   10 }
+        {    H     4 size =    1 }
+        {    I     9 size =    8 }
+        {    J    23 size =    4 }
+        {    K    26 size =    1 }
+        {    M    29 size =    2 }
+        {    O    17 size =    3 }
+        {    P     7 size =    5 }
+        {    Q    11 size =    6 }
+        {    R     0 size =   16 }
+        {    T    22 size =    2 }
+        {    U    24 size =    1 }
+        {    W     3 size =    5 }
+        {    X    18 size =    2 }
+        {    Y    14 size =    1 }
+        树高 : 8
+        树规模 : 16
+        内部路径长度 : 52
+        随机命中查找平均所需比较次数 : 3
+        
+        最小 : {B  28}
+        最大 : {Y  14}
+        
+        floor : B
+        floor : B
+        floor : G
+        floor : Y
+        
+        ceiling : B
+        ceiling : H
+        ceiling : I
+        ceiling : U
+        
+        select : G
+        select : P
+        select : R
+        select : W
+        
+        rank : 0
+        rank : 7
+        rank : 11
+        rank : 12
+
+     */
 }
