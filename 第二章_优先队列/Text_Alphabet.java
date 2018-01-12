@@ -2,6 +2,7 @@ package 第二章_优先队列;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import java.util.*;
 
 public class Text_Alphabet {
     private static String[] alphabet = new String[26];
@@ -14,6 +15,19 @@ public class Text_Alphabet {
         for (int i = 0; i < count; i++)
             s[i] = alphabet[StdRandom.uniform(alphabet.length)];
         return s;
+    }
+    public static String[] randomNoDupli(int count) {
+        if (count > 26) throw new IllegalArgumentException();
+        Set<String> set = new HashSet<String>();
+        String[] ss = new String[count]; int i = 0;
+        while (i < count) {
+            String s = String.format("%c", 'A' + StdRandom.uniform(26));
+            while (set.contains(s)) 
+                s = String.format("%c", 'A' + StdRandom.uniform(26));
+            ss[i++] = s;
+            set.add(s);
+        }
+        return ss;
     }
     public static String[] allRandom() {
         String[] s = new String[26];
