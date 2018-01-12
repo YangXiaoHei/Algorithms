@@ -20,7 +20,7 @@ public class Practise_3_2_29 {
                                                                             Node r = new Node(8, 15);    // h = 1
             
         
-                                       r.ilc(4, 7);                                                                             r.irc(12, 7);   // h = 2
+                                        r.ilc(4, 7);                                                                             r.irc(12, 7);   // h = 2
 
 
 
