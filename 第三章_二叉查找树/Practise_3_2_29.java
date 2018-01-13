@@ -15,6 +15,13 @@ public class Practise_3_2_29 {
             StdOut.println(n.k);
             travInOrder(n.r);
         }
+        static boolean isBinaryTree(Node n) { return n.size == totalNodes(n); }
+        static int totalNodes(Node n) {
+            if (n.l == null && n.r == null) return 1;
+            if (n.l == null) return 1 + totalNodes(n.r);
+            if (n.r == null) return 1 + totalNodes(n.l);
+            return  totalNodes(n.l) + totalNodes(n.r) + 1;
+        }
     }
     public static Node createTree() {
                                                                             Node r = new Node(8, 15);    // h = 1
@@ -32,7 +39,7 @@ public class Practise_3_2_29 {
       return r;
     }
     public static void main(String[] args) {
-       Node treeRoot = createTree();
-       Node.travInOrder(treeRoot);  
+       Node root = createTree();
+       StdOut.println(Node.isBinaryTree(root));
     }
 }
