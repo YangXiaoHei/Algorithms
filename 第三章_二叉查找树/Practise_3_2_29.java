@@ -4,23 +4,22 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_3_2_29 {
     static class Node {
-        int k; int size;
+        Integer k; int size;
         Node l, r, parent;
-        Node (int kk, int sz) { k = kk;  size = sz; }
-        Node ilc(int k, int size) { return l = new Node(k, size); }
-        Node irc(int k, int size) { return r = new Node(k, size); }
+        Node (Integer kk, int sz) { k = kk;  size = sz; }
+        Node ilc(Integer k, int size) { return l = new Node(k, size); }
+        Node irc(Integer k, int size) { return r = new Node(k, size); }
+        public static int size(Node n) { return n == null ? 0 : n.size; }
         static void travInOrder(Node n) {
             if (n == null) return;
             travInOrder(n.l);
             StdOut.println(n.k);
             travInOrder(n.r);
         }
-        static boolean isBinaryTree(Node n) { return n.size == totalNodes(n); }
-        static int totalNodes(Node n) {
-            if (n.l == null && n.r == null) return 1;
-            if (n.l == null) return 1 + totalNodes(n.r);
-            if (n.r == null) return 1 + totalNodes(n.l);
-            return  totalNodes(n.l) + totalNodes(n.r) + 1;
+        static boolean isBinaryTree(Node n) {
+            if (n == null) return true;
+            if (n.size != 1 + size(n.l) + size(n.r)) return false;
+            return isBinaryTree(n.l) && isBinaryTree(n.r);
         }
     }
     public static Node createTree() {
