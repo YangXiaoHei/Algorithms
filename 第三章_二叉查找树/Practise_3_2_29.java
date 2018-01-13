@@ -41,4 +41,9 @@ public class Practise_3_2_29 {
        Node root = createTree();
        StdOut.println(Node.isBinaryTree(root));
     }
+    // output
+    /*
+     * true
+
+     */
 }
