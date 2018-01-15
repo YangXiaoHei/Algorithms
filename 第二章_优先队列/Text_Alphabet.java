@@ -33,7 +33,7 @@ public class Text_Alphabet {
         String[] s = new String[26];
         System.arraycopy(alphabet, 0, s, 0, 26);
         for (int i = 0; i < 25; i++) {
-            int r = StdRandom.uniform(i, 26 - i);
+            int r = i + StdRandom.uniform(0, 26 - i);
             String t = s[r];
             s[r] = s[i];
             s[i] = t;
