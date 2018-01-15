@@ -118,12 +118,8 @@ public class Practise_3_2_34 {
             }
             return n;
         }
-        public K max() { 
-            return max(root).k;
-        }
-        public K min() {
-            return min(root).k;
-        }
+        public K max() { return max(root).k; }
+        public K min() { return min(root).k; }
         public Node min(Node n) {
             while (n.left != null) n = n.left;
             return n;
