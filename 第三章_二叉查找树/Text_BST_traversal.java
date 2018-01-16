@@ -189,8 +189,8 @@ public class Text_BST_traversal {
          * 以下遍历方法，均会返回一个按照结点遍历顺序拼接而成的字符串
          * 
          * 先序遍历
-         * public String travPre_R()     // 递归版
-         * public String travPre_I1()    // 迭代版
+         * public String travPre_R()    // 递归版
+         * public String travPre_I()    // 迭代版
          * 
          * 中序遍历
          * public String travIn_R()     // 递归版
