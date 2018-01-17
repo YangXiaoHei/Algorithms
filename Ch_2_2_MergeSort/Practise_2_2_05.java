@@ -1,4 +1,4 @@
-package Ch_2_2_MergeSort;
+package Ch_2_2_Mergesort;
 
 public class Practise_2_2_05 {
     public static void main(String[] args) {

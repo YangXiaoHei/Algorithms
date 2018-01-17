@@ -1,4 +1,4 @@
-package Ch_2_2_MergeSort;
+package Ch_2_2_Mergesort;
 
 import static Ch_2_1_Elementary_Sorts.Text_Array.*;
 

@@ -1,4 +1,4 @@
-package Ch_2_2_MergeSort;
+package Ch_2_2_Mergesort;
 
 import edu.princeton.cs.algs4.*;
 
