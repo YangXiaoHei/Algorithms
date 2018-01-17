@@ -1,6 +1,7 @@
 package 第一章_算法分析;
 
-import static 第二章_初级排序算法.Text_Array.*;
+import static Ch_2_1_Elementary_Sorts.Text_Array.*;
+
 import edu.princeton.cs.algs4.*;
 
 public class Text_MinOrMaxIndex {

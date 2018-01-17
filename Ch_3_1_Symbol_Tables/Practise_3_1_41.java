@@ -1,6 +1,7 @@
 package Ch_3_1_Symbol_Tables;
 
-import static 第二章_初级排序算法.Text_Array.*;
+import static Ch_2_1_Elementary_Sorts.Text_Array.*;
+
 import edu.princeton.cs.algs4.*;
 
 public class Practise_3_1_41 {

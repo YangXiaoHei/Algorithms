@@ -1,0 +1,10 @@
+package Ch_2_1_Elementary_Sorts;
+
+public class Practise_2_1_18 {
+    public static void main(String[] args) {
+        /*
+         * 请看 Practise_2_1_17
+         * 
+         */
+    }
+}

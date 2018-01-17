@@ -1,8 +1,9 @@
 package Ch_3_1_Symbol_Tables;
 
+import static Ch_2_1_Elementary_Sorts.Text_Array.*;
+
 import java.util.*;
 import edu.princeton.cs.algs4.*;
-import static 第二章_初级排序算法.Text_Array.*;
 
 public class Practise_3_1_37 {
     static class ST<K extends Comparable<K>, V> {
