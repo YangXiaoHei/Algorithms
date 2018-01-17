@@ -1,9 +1,7 @@
 package Ch_2_4_Priority_Queues;
 
-import static Ch_2_1_Elementary_Sorts.__Array.*;
-
+import static Tool.ArrayGenerator.*;
 import java.util.*;
-
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_2_4_29 {

@@ -1,7 +1,6 @@
 package Ch_3_1_Symbol_Tables;
 
-import static Ch_2_1_Elementary_Sorts.__Array.*;
-
+import static Tool.ArrayGenerator.*;
 import java.util.*;
 import edu.princeton.cs.algs4.*;
 

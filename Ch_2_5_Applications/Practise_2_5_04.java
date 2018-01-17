@@ -1,7 +1,6 @@
 package Ch_2_5_Applications;
 
-import static Ch_2_4_Priority_Queues.__Alphabet.*;
-
+import static Tool.ArrayGenerator.Alphbets.*;
 import java.util.Arrays;
 import edu.princeton.cs.algs4.*;
 

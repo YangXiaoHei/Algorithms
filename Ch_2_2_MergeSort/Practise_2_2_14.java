@@ -1,9 +1,7 @@
 package Ch_2_2_Mergesort;
 
 import edu.princeton.cs.algs4.StdOut;
-
-import static Ch_2_1_Elementary_Sorts.__Array.*;
-
+import static Tool.ArrayGenerator.*;
 import java.util.concurrent.TimeUnit;
 
 public class Practise_2_2_14 {

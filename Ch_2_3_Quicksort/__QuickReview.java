@@ -1,9 +1,7 @@
 package Ch_2_3_Quicksort;
 
-import static Ch_2_1_Elementary_Sorts.__Array.*;
-
+import static Tool.ArrayGenerator.*;
 import java.util.Arrays;
-
 import edu.princeton.cs.algs4.*;
 
 public class __QuickReview {

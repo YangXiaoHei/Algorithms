@@ -1,7 +1,6 @@
 package Ch_2_4_Priority_Queues;
 
-import static Ch_2_4_Priority_Queues.__Alphabet.*;
-
+import static Tool.ArrayGenerator.Alphbets.*;
 import edu.princeton.cs.algs4.StdOut;
 
 public class __MultiMerge {
@@ -84,13 +83,13 @@ public class __MultiMerge {
         String[] s = random(10);
         String[] s1 = random(5);
         String[] s2 = random(6);
-        printLetter(s);
-        printLetter(s1);
-        printLetter(s2);
+        print(s);
+        print(s1);
+        print(s2);
         String[][] ss = {s, s1, s2};
         String[] merged = merge(ss);
         StdOut.println("归并后 :");
-        printLetter(merged);
+        print(merged);
     }
     // output
     /*

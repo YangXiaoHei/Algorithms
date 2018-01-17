@@ -1,7 +1,10 @@
-package Ch_2_1_Elementary_Sorts;
+package Tool;
 
-import java.util.*;
-import edu.princeton.cs.algs4.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
 
 /*
  * **********************************************************************
@@ -13,7 +16,61 @@ import edu.princeton.cs.algs4.*;
  * 4, 对于需要生成无重复随机值的函数，元素取值域为 [0, size * 10]
  * **********************************************************************
  */
-public class __Array {
+public class ArrayGenerator {
+    /*
+     * 字母数组发生器
+     */
+    public static class Alphbets {
+        private static String[] alphabet = new String[26];
+        static {
+            for (int i = 1; i <= 26; i++)
+                alphabet[i - 1] = String.format("%c", 'A' + i - 1);
+        }
+        public static String[] random(int count) {
+            String[] s = new String[count];
+            for (int i = 0; i < count; i++)
+                s[i] = alphabet[StdRandom.uniform(alphabet.length)];
+            return s;
+        }
+        public static String[] randomNoDupli(int count) {
+            if (count > 26) throw new IllegalArgumentException();
+            Set<String> set = new HashSet<String>();
+            String[] ss = new String[count]; int i = 0;
+            while (i < count) {
+                String s = String.format("%c", 'A' + StdRandom.uniform(26));
+                while (set.contains(s)) 
+                    s = String.format("%c", 'A' + StdRandom.uniform(26));
+                ss[i++] = s;
+                set.add(s);
+            }
+            return ss;
+        }
+        public static String[] allRandom() {
+            String[] s = new String[26];
+            System.arraycopy(alphabet, 0, s, 0, 26);
+            for (int i = 0; i < 25; i++) {
+                int r = i + StdRandom.uniform(0, 26 - i);
+                String t = s[r];
+                s[r] = s[i];
+                s[i] = t;
+            }
+            return s;
+        }
+        public static String[] allOrdered() {
+            String[] s = new String[26];
+            System.arraycopy(alphabet, 0, s, 0, 26);
+            return s;
+        }
+        public static void print(String[] s) {
+            for (int i = 0; i < s.length; i++)
+                StdOut.printf("%4d", i);
+            StdOut.println();
+            for (int i = 0; i < s.length; i++)
+                StdOut.printf("%4s", s[i]);
+            StdOut.println("\n");
+        }
+    }
+    
     public static boolean equal(int[] a, int[] b) {
         if (a.length != b.length) return false;
         for (int i = 0; i < a.length; i++)

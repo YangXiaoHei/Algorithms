@@ -1,7 +1,6 @@
 package Ch_3_2_Binary_Search_Trees;
 
-import static Ch_2_4_Priority_Queues.__Alphabet.*;
-
+import static Tool.ArrayGenerator.Alphbets.*;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_3_2_13 {

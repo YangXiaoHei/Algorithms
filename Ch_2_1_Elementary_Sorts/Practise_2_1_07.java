@@ -1,7 +1,6 @@
 package Ch_2_1_Elementary_Sorts;
 
-import static Ch_2_1_Elementary_Sorts.__Array.*;
-
+import static Tool.ArrayGenerator.*;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_2_1_07 {

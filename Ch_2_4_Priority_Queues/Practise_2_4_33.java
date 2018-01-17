@@ -1,9 +1,7 @@
 package Ch_2_4_Priority_Queues;
 
-import static Ch_2_1_Elementary_Sorts.__Array.*;
-
+import static Tool.ArrayGenerator.Alphbets.*;
 import java.util.*;
-
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_2_4_33 {
@@ -76,7 +74,7 @@ public class Practise_2_4_33 {
     }
     public static void main(String[] args) {
         int N = 30;
-        String[] a =  __Alphabet.random(N);
+        String[] a = random(N);
         IndexMinPQ<String> pq = new IndexMinPQ<String>(N);
         for (String i : a) pq.insert(i);
         StdOut.println(pq);

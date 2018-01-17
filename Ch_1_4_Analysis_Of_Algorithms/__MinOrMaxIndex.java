@@ -1,10 +1,9 @@
 package Ch_1_4_Analysis_Of_Algorithms;
 
-import static Ch_2_1_Elementary_Sorts.__Array.*;
-
+import static Tool.ArrayGenerator.*;
 import edu.princeton.cs.algs4.*;
 
-public class Text_MinOrMaxIndex {
+public class __MinOrMaxIndex {
     public static int maxRank_logN(int[] a, int key) {
         int lo = 0, hi = a.length - 1;
         while (lo < hi) {

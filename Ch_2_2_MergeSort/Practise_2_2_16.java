@@ -1,6 +1,6 @@
 package Ch_2_2_Mergesort;
 
-import static Ch_2_1_Elementary_Sorts.__Array.*;
+import static Tool.ArrayGenerator.*;
 
 public class Practise_2_2_16 {
     private static int[] aux;
