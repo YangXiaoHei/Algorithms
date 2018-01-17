@@ -114,7 +114,7 @@ public class __AllQuickVersionComparasion {
     public static void correctTest() {
         while (true) {
             int[] a = intsVrgWithEachAmount(3, 1, 2, 3, 4, 5);
-            int[] copy = intsCopy(a);
+            int[] copy = copy(a);
             quick_B(a);
             if (!isSorted(a)) {
                 print(copy);
@@ -126,8 +126,8 @@ public class __AllQuickVersionComparasion {
     public static void tooManyDupliRandomOrderSequence() {
         StdOut.println("=================  大量重复元素 ===================");
         int[] a = intsVrgWithEachAmount(10000000, 1, 2, 3, 4, 5);
-        int[] copy = intsCopy(a);
-        int[] copy1 = intsCopy(a);
+        int[] copy = copy(a);
+        int[] copy1 = copy(a);
         StdOut.printf("最终版 : %.3f\n", quick_B(a));
         StdOut.printf("三向切分 : %.3f\n", quick_A(copy));
         StdOut.printf("三取样切分 : %.3f\n", quick_C(copy1));
@@ -135,8 +135,8 @@ public class __AllQuickVersionComparasion {
     public static void randomOrderNoDupliSequence() {
         StdOut.println("=================  无重复元素序列 ===================");
         int[] a = ints(0, 10000000);
-        int[] copy = intsCopy(a);
-        int[] copy1 = intsCopy(a);
+        int[] copy = copy(a);
+        int[] copy1 = copy(a);
         StdOut.printf("最终版 : %.3f\n", quick_B(a));
         StdOut.printf("三向切分 : %.3f\n", quick_A(copy));
         StdOut.printf("三取样切分 : %.3f\n", quick_C(copy1));
@@ -144,8 +144,8 @@ public class __AllQuickVersionComparasion {
     public static void sortedSequence() {
         StdOut.println("=================  已排序序列 ===================");
         int[] a = ascendInts(0, 10000000);
-        int[] copy = intsCopy(a);
-        int[] copy1 = intsCopy(a);
+        int[] copy = copy(a);
+        int[] copy1 = copy(a);
         StdOut.printf("最终版 : %.3f\n", quick_B(a));
         StdOut.printf("三向切分 : %.3f\n", quick_A(copy));
         StdOut.printf("三取样切分 : %.3f\n", quick_C(copy1));
@@ -153,8 +153,8 @@ public class __AllQuickVersionComparasion {
     public static void reverseSequence() {
         StdOut.println("=================  逆序序列 ===================");
         int[] a = descendInts(10000000, 0);
-        int[] copy = intsCopy(a);
-        int[] copy1 = intsCopy(a);
+        int[] copy = copy(a);
+        int[] copy1 = copy(a);
         StdOut.printf("最终版 : %.3f\n", quick_B(a));
         StdOut.printf("三向切分 : %.3f\n", quick_A(copy));
         StdOut.printf("三取样切分 : %.3f\n", quick_C(copy1));
@@ -162,8 +162,8 @@ public class __AllQuickVersionComparasion {
     public static void allSameSequence() {
         StdOut.println("=================  全部元素相同 ===================");
         int[] a = allSameInts(10000000, 0);
-        int[] copy = intsCopy(a);
-        int[] copy1 = intsCopy(a);
+        int[] copy = copy(a);
+        int[] copy1 = copy(a);
         StdOut.printf("最终版 : %.3f\n", quick_B(a));
         StdOut.printf("三向切分 : %.3f\n", quick_A(copy));
         StdOut.printf("三取样切分 : %.3f\n", quick_C(copy1));

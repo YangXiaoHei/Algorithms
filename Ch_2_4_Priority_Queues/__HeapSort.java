@@ -65,7 +65,7 @@ public class __HeapSort {
     }
     public static void main(String[] args) {
         int[] a = ints(0, 4000000);
-        int[] copy = intsCopy(a);
+        int[] copy = copy(a);
         StdOut.printf("堆排序 : %.3f\n",heap(a));
         StdOut.printf("快速排序 : %.3f\n",quick(copy));
         assert isSorted(a);

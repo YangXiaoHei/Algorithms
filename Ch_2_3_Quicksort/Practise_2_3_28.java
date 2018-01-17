@@ -40,7 +40,7 @@ public class Practise_2_3_28 {
             int[] a = ints(0, sz - 1);
             for (int i = 0, M = Ms[i]; i < Ms.length; i++) {
                 M = Ms[i]; 
-                int[] copy = intsCopy(a);
+                int[] copy = copy(a);
                 StdOut.printf("规模 : %d M = %d 递归平均深度 : %d\n",sz, M, quick(copy, M));
                 assert isSorted(copy);
             }

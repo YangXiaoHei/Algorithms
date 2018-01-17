@@ -53,7 +53,7 @@ public class __Insertion {
         Stopwatch timer = null;
         for (int i = 0; i < T; i++) {
             Integer[] arr = Integers(N);
-            Integer[] copy = IntegersCopy(arr);
+            Integer[] copy = copy(arr);
             
             timer = new Stopwatch();
             sort(arr);

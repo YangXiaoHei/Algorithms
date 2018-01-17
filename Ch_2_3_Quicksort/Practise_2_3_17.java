@@ -49,7 +49,7 @@ public class Practise_2_3_17 {
     }
     public static void main(String[] args) {
         int[] a = ints(0, 10000000);
-        int[] copy = intsCopy(a);
+        int[] copy = copy(a);
         StdOut.printf("去掉边界判断 ： %.3f\n", quick(a));
         StdOut.printf("教材的代码 ： %.3f\n", quickNormal(copy));
         assert isSorted(a);

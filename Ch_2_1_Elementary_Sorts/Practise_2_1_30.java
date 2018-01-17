@@ -50,7 +50,7 @@ public class Practise_2_1_30 {
      * 不更改原数组的排序，只是为了获取耗时时长
      */
     public static double shell(int[] a, int t) {
-        a = intsCopy(a);
+        a = copy(a);
         int[] incs = incs(t);
         int N = a.length;
         Stopwatch timer = new Stopwatch();

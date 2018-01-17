@@ -126,10 +126,10 @@ public class __AllSortCompare {
 //        int[] a = descendInts(10000000, 0);
 //        int[] a = ascendInts(0, 10000000);
         int[] a = intsVrg(10000000, 1, 2, 3, 4, 5, 6, 7, 8);
-        int[] copy = intsCopy(a);
-        int[] copy1 = intsCopy(a);
-        int[] copy2 = intsCopy(a);
-        int[] copy3 = intsCopy(a);
+        int[] copy = copy(a);
+        int[] copy1 = copy(a);
+        int[] copy2 = copy(a);
+        int[] copy3 = copy(a);
         StdOut.printf("希尔排序 ：\t%.3f\n", shell(a));
         StdOut.printf("归并排序 ：\t%.3f\n", merge(copy));
         StdOut.printf("快速排序 ：\t%.3f\n", quick(copy1));

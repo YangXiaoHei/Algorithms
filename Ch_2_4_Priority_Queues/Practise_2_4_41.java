@@ -91,8 +91,8 @@ public class Practise_2_4_41 {
     public static void main(String[] args) {
         int N = 1000000;
         int[] a = ints(0, N - 1);
-        int[] copy = intsCopy(a);
-        int[] copy1 = intsCopy(a);
+        int[] copy = copy(a);
+        int[] copy1 = copy(a);
         
         StdOut.printf("二叉堆比较次数 : %d\n", standard(a));
         StdOut.printf("三叉堆比较次数 : %d\n", multiwayHeap(copy1, 3));

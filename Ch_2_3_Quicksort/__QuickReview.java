@@ -111,7 +111,7 @@ public class __QuickReview {
     public static void correctTest() {
         while (true) {
             int[] a = intsVrgWithEachAmount(100, 1, 2, 3, 4, 5);
-            int[] copy = intsCopy(a);
+            int[] copy = copy(a);
             quick(a);
             if (!isSorted(a)) {
                 print(copy);

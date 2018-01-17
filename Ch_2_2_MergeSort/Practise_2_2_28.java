@@ -49,7 +49,7 @@ public class Practise_2_2_28 {
         StdDraw.setYscale(0, 2);
         for (int i = 1000; i < 10000000; i += 16000) {
             int[] arr = ints(i);
-            int[] copy = intsCopy(arr);
+            int[] copy = copy(arr);
             StdDraw.setPenColor(Color.red);
             StdDraw.point(i, merge_A(arr));
             StdDraw.setPenColor(Color.BLACK);
@@ -59,25 +59,25 @@ public class Practise_2_2_28 {
     public static void main(String[] args) {
         int N = 1000;
         int[] arr = ints(N);
-        int[] copy = intsCopy(arr);
+        int[] copy = copy(arr);
         StdOut.printf("规模 %d  自顶向下 : %.3f\n", N, merge_A(arr));
         StdOut.printf("规模 %d  自底向上 : %.3f\n\n", N, merge_B(copy));
         
          N = 10000;
         arr = ints(N);
-        copy = intsCopy(arr);
+        copy = copy(arr);
         StdOut.printf("规模 %d  自顶向下 : %.3f\n", N, merge_A(arr));
         StdOut.printf("规模 %d  自底向上 : %.3f\n\n", N, merge_B(copy));
         
          N = 100000;
         arr = ints(N);
-        copy = intsCopy(arr);
+        copy = copy(arr);
         StdOut.printf("规模 %d  自顶向下 : %.3f\n", N, merge_A(arr));
         StdOut.printf("规模 %d  自底向上 : %.3f\n\n", N, merge_B(copy));
         
         N = 1000000;
         arr = ints(N);
-        copy = intsCopy(arr);
+        copy = copy(arr);
         StdOut.printf("规模 %d  自顶向下 : %.3f\n", N, merge_A(arr));
         StdOut.printf("规模 %d  自底向上 : %.3f\n\n", N, merge_B(copy));
         draw();

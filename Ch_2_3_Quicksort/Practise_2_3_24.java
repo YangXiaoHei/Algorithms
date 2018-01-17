@@ -108,8 +108,8 @@ public class Practise_2_3_24 {
 //        int[] a = allSameInts(4000000, 1);
         int[] a = intsVrg(4000000, 1, 2, 3, 4);
 //        int[] a = ascendInts(0, 4000000);
-        int[] copy = intsCopy(a);
-        int[] copy1 = intsCopy(a);
+        int[] copy = copy(a);
+        int[] copy1 = copy(a);
         StdOut.printf("取样排序 : %.3f\n", quick(a));
         StdOut.printf("普通快排 : %.3f\n", _quick(copy));
         StdOut.printf("优化快排 : %.3f\n", __quick(copy1));

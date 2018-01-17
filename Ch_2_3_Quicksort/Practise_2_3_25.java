@@ -40,7 +40,7 @@ public class Practise_2_3_25 {
         for (int i = 1000, j = 0; j < 4; j++, i *= 10) {
             int[] b = ints(0, i - 1);
             for (int M = 5; M <= 30; M++) {
-                int[] a = intsCopy(b); 
+                int[] a = copy(b); 
                 StdOut.printf("规模 : %d 耗时 : %.3f M = %d\n", i, quick(a, M), M);
                 assert isSorted(a);
             }
@@ -58,7 +58,7 @@ public class Practise_2_3_25 {
         for (int M = 1; M <= 100; M++) {
             double avrg = 0;
             for (int T = 1; T <= 10; T++) {
-                int[] b = intsCopy(a);
+                int[] b = copy(a);
                 avrg += quick(b, M);
             }
             avrg /= 20;

@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 public class Practise_2_2_19 {
     private static int[] aux;
     public static int merge(int[] a) {
-        a = intsCopy(a);
+        a = copy(a);
         aux = new int[a.length];
         return merge(a, 0, a.length - 1);
     }
@@ -32,7 +32,7 @@ public class Practise_2_2_19 {
         return inversions;
     }
     public static int brute(int[] a) {
-        a = intsCopy(a);
+        a = copy(a);
         int inversions = 0;
         for (int i = 0; i < a.length; i++)
             for (int j = i + 1; j < a.length; j++)

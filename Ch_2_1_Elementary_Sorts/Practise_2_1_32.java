@@ -9,7 +9,7 @@ public class Practise_2_1_32 {
         double avrg = 0;
         int[] a = null;
         for (int loop = 0; loop < 3; loop++) {
-            a = intsCopy(arr);
+            a = copy(arr);
             Stopwatch timer = new Stopwatch();
             int N = a.length;
             for (int i = 1; i < N; i++) {
@@ -26,7 +26,7 @@ public class Practise_2_1_32 {
         double avrg = 0;
         int[] a = null;
         for (int loop = 0; loop < 3; loop++) {
-            a = intsCopy(arr);
+            a = copy(arr);
             Stopwatch timer = new Stopwatch();
             int N = a.length;
             for (int i = 0; i < N; i++) {
@@ -45,7 +45,7 @@ public class Practise_2_1_32 {
         double avrg = 0;
         int[] a = null;
         for (int loop = 0; loop < 3; loop++) {
-            a = intsCopy(arr);
+            a = copy(arr);
             Stopwatch timer = new Stopwatch();
             int N = a.length, h = 1;
             while (h < N / 3) h = 3 * h + 1;

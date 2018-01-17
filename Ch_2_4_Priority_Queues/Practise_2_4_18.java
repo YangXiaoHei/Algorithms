@@ -59,11 +59,11 @@ public class Practise_2_4_18 {
             for (int i : a)
                 pq.insert(i);
             
-            int[] copy = intsCopy(pq.keys);
+            int[] copy = copy(pq.keys);
             pq.insert(2000);
-            int[] copy1 = intsCopy(pq.keys);
+            int[] copy1 = copy(pq.keys);
             int max = pq.delMax();
-            int[] copy2 = intsCopy(pq.keys);
+            int[] copy2 = copy(pq.keys);
             
             if (!equal(copy, copy2)) {
                 StdOut.println("\n插入之前");

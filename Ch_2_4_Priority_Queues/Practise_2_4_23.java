@@ -134,12 +134,12 @@ public class Practise_2_4_23 {
     public static void test1() {
         int N = 10000000;
         int[] a = ints(0, N - 1);
-        int[] copy = intsCopy(a);
+        int[] copy = copy(a);
         StdOut.printf("规模 : %d 教材的二叉堆排序耗时 : %.3f\n",
                 N, __HeapSort.heap(copy));
         assert isSorted(copy);
         for (int i = 2; i < 20; i++) {
-            copy = intsCopy(a);
+            copy = copy(a);
             StdOut.printf("规模 : %d 复杂索引计算的【%d叉堆】排序耗时 : %.3f\n",
                     N, i, multiwayHeapSort(copy,  i));
             assert isSorted(copy);
@@ -150,7 +150,7 @@ public class Practise_2_4_23 {
      */
     public static void test2() {
         int[] a = ints(0, 10000000);
-        int[] copy = intsCopy(a);
+        int[] copy = copy(a);
         Stopwatch timer = new Stopwatch();
         createHeapBySink(a, 2);
         double t1 = timer.elapsedTime();
@@ -177,9 +177,9 @@ public class Practise_2_4_23 {
      */
     public static void test3() {
         int[] a = ints(0, 10000000);
-        int[] copy = intsCopy(a);
-        int[] copy1 = intsCopy(a);
-        int[] copy2 = intsCopy(a);
+        int[] copy = copy(a);
+        int[] copy1 = copy(a);
+        int[] copy2 = copy(a);
         StdOut.printf("五叉堆排序耗时 ：%.3f\n", multiwayHeapSort(a, 5));
         StdOut.printf("六叉堆排序耗时 ：%.3f\n", multiwayHeapSort(copy1, 6));
         StdOut.printf("七叉堆排序耗时 ：%.3f\n", multiwayHeapSort(copy2, 7));

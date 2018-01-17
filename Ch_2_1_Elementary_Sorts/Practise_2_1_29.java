@@ -33,7 +33,7 @@ public class Practise_2_1_29 {
     public static void main(String[] args) {
         for (int i = 0; i < 5; i++) {
             int[] arr = ints(16000000, 1, 100000000);
-            int[] copy = intsCopy(arr);
+            int[] copy = copy(arr);
             StdOut.printf("序列 A : %.3f\n", shell_A(arr));
             StdOut.printf("序列 B : %.3f\n", shell_B(copy));
             StdOut.println();

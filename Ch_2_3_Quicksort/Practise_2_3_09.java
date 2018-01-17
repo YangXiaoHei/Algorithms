@@ -43,7 +43,7 @@ public class Practise_2_3_09 {
   }
   public static void main(String[] args) {
       int[] a = intsVrg(10, 1, 2);
-      int[] copy = intsCopy(a);
+      int[] copy = copy(a);
       
       print(a);
       int i = parition_selectMaxAsPivot(a, 0, a.length - 1);

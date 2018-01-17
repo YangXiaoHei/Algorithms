@@ -66,18 +66,18 @@ public class Practise_2_2_23 {
     }
     public static void comparasion_A() {
         int[] arr = ints(20000000);
-        int[] copy = intsCopy(arr);
+        int[] copy = copy(arr);
         StdOut.printf("普通 : %.3f\n", merge_A(arr));
         StdOut.printf("改进 : %.3f\n", merge_B(copy, 8)); 
         StdOut.println("\n");
     }
     public static void comparasion_B() {
         int[] arr = ints(20000000);
-        int[] copy = intsCopy(arr);
-        int[] copy1 = intsCopy(arr);
-        int[] copy2 = intsCopy(arr);
-        int[] copy3 = intsCopy(arr);
-        int[] copy4 = intsCopy(arr);
+        int[] copy = copy(arr);
+        int[] copy1 = copy(arr);
+        int[] copy2 = copy(arr);
+        int[] copy3 = copy(arr);
+        int[] copy4 = copy(arr);
         StdOut.printf("改进 : %.3f\n", merge_B(arr, 4)); 
         StdOut.printf("改进 : %.3f\n", merge_B(copy, 5)); 
         StdOut.printf("改进 : %.3f\n", merge_B(copy1, 6));

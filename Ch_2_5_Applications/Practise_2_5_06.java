@@ -51,7 +51,7 @@ public class Practise_2_5_06 {
     }
     public static void main(String[] args) {
         int[] a = ints(30, 0, 100);
-        int[] copy = intsCopy(a);
+        int[] copy = copy(a);
         print(a);
         int k = 9;
         StdOut.printf("第 %d 大的数是 %d\n", k, select(a, k));

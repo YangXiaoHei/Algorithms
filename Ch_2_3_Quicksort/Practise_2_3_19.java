@@ -89,7 +89,7 @@ public class Practise_2_3_19 {
     }
     public static void main(String[] args) {
         int[] a = ints(0, 4000000);
-        int[] copy = intsCopy(a);
+        int[] copy = copy(a);
         StdOut.printf("3取样切分 : %.3f\n", quick3(a));
         StdOut.printf("5取样切分 : %.3f\n", quick5(copy));
         assert isSorted(copy);

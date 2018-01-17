@@ -72,8 +72,8 @@ public class Practise_2_3_22 {
 //        int[] a = allSameInts(10000000, 0);
 //        int[] a = intsVrg(10000000, 1, 2, 3, 4);
         int[] a = ints(0, 4000000);
-        int[] copy = intsCopy(a);
-        int[] copy1 = intsCopy(a);
+        int[] copy = copy(a);
+        int[] copy1 = copy(a);
         StdOut.printf("普通快排 : %.3f\n", __quick(copy1));
         StdOut.printf("快速三向切分 : %.3f\n", quick(a));
         StdOut.printf("普通三向切分 : %.3f\n", _quick(copy));

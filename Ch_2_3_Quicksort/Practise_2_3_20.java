@@ -74,7 +74,7 @@ public class Practise_2_3_20 {
    }
    public static void main(String[] args) {
        int[] a = ints(0, 10000000);
-       int[] copy = intsCopy(a);
+       int[] copy = copy(a);
        StdOut.printf("非递归 耗时 ：%.3f\n", quick(a));
        StdOut.printf("递归 耗时 : %.3f\n", _quick(copy));
        assert isSorted(a);

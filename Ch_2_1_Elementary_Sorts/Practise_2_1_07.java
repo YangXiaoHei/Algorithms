@@ -49,7 +49,7 @@ public class Practise_2_1_07 {
     }
     public static void main(String[] args) {
         int[] arr = descendInts(100000, 0);
-        int[] copy = intsCopy(arr);
+        int[] copy = copy(arr);
         double t1, t2;
      
         Stopwatch timer = new Stopwatch();

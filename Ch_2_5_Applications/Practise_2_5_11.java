@@ -190,11 +190,11 @@ public class Practise_2_5_11 {
     }
     public static void main(String[] args) {
         int[] forQuick = allSameInts(7, 1);
-        int[] forInsertion = intsCopy(forQuick);
-        int[] forSelection = intsCopy(forQuick);
-        int[] forShell = intsCopy(forQuick);
-        int[] forMerge = intsCopy(forQuick);
-        int[] forHeap = intsCopy(forQuick);
+        int[] forInsertion = copy(forQuick);
+        int[] forSelection = copy(forQuick);
+        int[] forShell = copy(forQuick);
+        int[] forMerge = copy(forQuick);
+        int[] forHeap = copy(forQuick);
         
         int[] quickP = quick(forQuick);
         int[] insertionP = insertion(forInsertion);

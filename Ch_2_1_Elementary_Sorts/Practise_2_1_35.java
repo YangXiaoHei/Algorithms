@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.*;
 
 public class Practise_2_1_35 {
     public static double shell(double[] a) {
-        a = doublesCopy(a);
+        a = copy(a);
         Stopwatch timer = new Stopwatch();
         int N = a.length, h = 1;
         while (h < N / 3) h = 3 * h + 1;

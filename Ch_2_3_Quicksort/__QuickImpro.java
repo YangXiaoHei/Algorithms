@@ -159,7 +159,7 @@ public class __QuickImpro {
     public static void sampleOfThreeVSNormalQuick() {
         for (int i = 100, j = 0; j < 20; j++, i += i) {
             int[] a = ints(i);
-            int[] copy = intsCopy(a);
+            int[] copy = copy(a);
             StdOut.printf("规模 : %d 三取样切分 / 普通 = %.3f\n",
                     i, quick_C(copy) / quick(a));
         }
@@ -184,7 +184,7 @@ public class __QuickImpro {
     public static void sampleOfThreeVSQuick3Way() {
         for (int i = 100, j = 0; j < 20; j++, i += i) {
             int[] a = ints(i);
-            int[] copy = intsCopy(a);
+            int[] copy = copy(a);
             StdOut.printf("规模 : %d 三取样切分 / 三向切分 = %.3f\n",
                     i, quick_C(copy) / quick_B(a));
         }
@@ -206,7 +206,7 @@ public class __QuickImpro {
     public static void theWorstCaseComparasion() {
         for (int i = 100, j = 0; j < 20; j++, i += i) {
             int[] a = allSameInts(i, 0);
-            int[] copy = intsCopy(a);
+            int[] copy = copy(a);
             StdOut.printf("规模 : %d 三取样切分 / 三向切分 = %.3f\n",
                     i, quick_C(copy) / quick_B(a));
         }

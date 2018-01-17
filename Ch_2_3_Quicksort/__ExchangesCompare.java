@@ -66,9 +66,9 @@ public class __ExchangesCompare {
     }
     public static void main(String[] args) {
         int[] a = ints(0, 100);
-        int[] copy = intsCopy(a);
-        int[] copy1 = intsCopy(a);
-        int[] copy2 = intsCopy(a);
+        int[] copy = copy(a);
+        int[] copy1 = copy(a);
+        int[] copy2 = copy(a);
         StdOut.printf("选择 : %d\n", selection(a));
         StdOut.printf("插入 : %d\n", insertion(copy));
         StdOut.printf("希尔 : %d\n", shell(copy1));

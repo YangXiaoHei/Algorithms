@@ -48,7 +48,7 @@ public class Practise_2_3_27 {
     }
     public static void main(String[] args) {
         int[] a = ints(0, 1000000);
-        int[] copy = intsCopy(a);
+        int[] copy = copy(a);
         StdOut.printf("忽略小数组 : %.3f\n", quick(a, 20 /* 20 的小数组直接忽略掉 */));
         StdOut.printf("普通快排 : %.3f\n", _quick(copy));
         assert isSorted(copy);

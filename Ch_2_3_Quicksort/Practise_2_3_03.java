@@ -36,7 +36,7 @@ public class Practise_2_3_03 {
     public static void infiniteLoopSearch() {
         while (true) {
             int[] a = ints(0, 5); // 生成一个元素取值在 [0, 5] 无重复的随机打乱序列
-            int[] copy = intsCopy(a); 
+            int[] copy = copy(a); 
             exchanges = 0;
             searchMax(a);
             quick(a);

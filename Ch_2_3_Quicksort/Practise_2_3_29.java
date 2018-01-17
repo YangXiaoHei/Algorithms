@@ -75,8 +75,8 @@ public class Practise_2_3_29 {
 //            int[] a = descendInts(sz - 1, 0); // 降序排列元素
             for (int i = 0, M = Ms[i]; i < Ms.length; i++) {
                 M = Ms[i]; 
-                int[] copy = intsCopy(a);
-                int[] copy1 = intsCopy(a);
+                int[] copy = copy(a);
+                int[] copy1 = copy(a);
                 StdOut.printf("规模 : %d M = %d 随机切分 : %.3f  随机化 : %.3f\n",
                         sz, M, quick(copy, M), _quick(copy1, M));
                 assert isSorted(copy);

@@ -99,21 +99,21 @@ public class Practise_2_3_30 {
     }
     public static void gaussianTest() {
         double[] a = gaussian(1000000, 10000);
-        double[] copy = doublesCopy(a);
+        double[] copy = copy(a);
         StdOut.printf("高斯分布  :  随机化 : %.3f  随机切分 : %.3f\n", _quick(a), quick(copy));
         assert isSorted(a);
         assert isSorted(copy);
     }
     public static void possionTest() {
         double[] a = possion(1000000, 100);
-        double[] copy = doublesCopy(a);
+        double[] copy = copy(a);
         StdOut.printf("泊松分布  :  随机化 : %.3f  随机切分 : %.3f\n", _quick(a), quick(copy));
         assert isSorted(a);
         assert isSorted(copy);
     }
     public static void geometricTest() {
         double[] a = geometric(1000000, 0.8);
-        double[] copy = doublesCopy(a);
+        double[] copy = copy(a);
         StdOut.printf("几何分布  :  随机化 : %.3f  随机切分 : %.3f\n", _quick(a), quick(copy));
         assert isSorted(a);
         assert isSorted(copy);
@@ -121,32 +121,28 @@ public class Practise_2_3_30 {
     public static void discreteTets() { 
                                        /*  0.078 */  /*  0.1 */  /* 0.022 */   /* 0.4 */
         double[] a = discrete(1000000, 0.032, 0.046, 0.01, 0.09,    0.022,     0.3, 0.1, 0.2, 0.055, 0.045, 0.1);
-        double[] copy = doublesCopy(a);
+        double[] copy = copy(a);
         StdOut.printf("离散分布  :  随机化 : %.3f  随机切分 : %.3f\n", _quick(a), quick(copy));
         assert isSorted(a);
         assert isSorted(copy);
     }
-//    public static int[] halfZeroHalfOne(int N)
-//    public static int[] halfZeroQuarterOneQuarterTwo(int N)
-//    public static int[] halfZeroHalfRandom(int N)
-    
     public static void halfZeroHalfOneTest() {
         int[] a = halfZeroHalfOne(1000000);
-        int[] copy = intsCopy(a);
+        int[] copy = copy(a);
         StdOut.printf("一半0一半1  :  随机化 : %.3f  随机切分 : %.3f\n", _quick(a), quick(copy));
         assert isSorted(a);
         assert isSorted(copy);
     }
     public static void halfZeroQuarterOneQuarterTwoTest() {
         int[] a = halfZeroQuarterOneQuarterTwo(1000000);
-        int[] copy = intsCopy(a);
+        int[] copy = copy(a);
         StdOut.printf("一半01/411/42  :  随机化 : %.3f  随机切分 : %.3f\n", _quick(a), quick(copy));
         assert isSorted(a);
         assert isSorted(copy);
     }
     public static void halfZeroHalfRandomTest() {
         int[] a = halfZeroHalfRandom(1000000);
-        int[] copy = intsCopy(a);
+        int[] copy = copy(a);
         StdOut.printf("一半0一半随机  :  随机化 : %.3f  随机切分 : %.3f\n", _quick(a), quick(copy));
         assert isSorted(a);
         assert isSorted(copy);

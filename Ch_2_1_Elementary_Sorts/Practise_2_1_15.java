@@ -46,8 +46,8 @@ public class Practise_2_1_15 {
     public static void test() {
         for (int i = 100; i < 10000; i += 100) {
             int[] arr = ints(i);
-            int[] copy1 = intsCopy(arr);
-            int[] copy2 = intsCopy(arr);
+            int[] copy1 = copy(arr);
+            int[] copy2 = copy(arr);
             selection(arr);
             insertion(copy1);
             shell(copy2);

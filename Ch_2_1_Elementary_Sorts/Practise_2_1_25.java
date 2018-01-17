@@ -28,7 +28,7 @@ public class Practise_2_1_25 {
     }
     public static void main(String[] args) {
         int[] arr = ints(1, 50000);
-        int[] copy = intsCopy(arr);
+        int[] copy = copy(arr);
         StdOut.printf("不交换 : %f\n", insertion_A(arr));
         StdOut.printf("交换 : %f\n", insertion_B(copy));
     }

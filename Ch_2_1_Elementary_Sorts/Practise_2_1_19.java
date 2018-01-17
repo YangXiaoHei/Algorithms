@@ -28,7 +28,7 @@ public class Practise_2_1_19 {
           compares = 0;
           arr = ints(1,10);
           arr = new int[] {8,  2,    10,   4,  7,   3,  9,    5,  6,  1, };
-          copy = intsCopy(arr);
+          copy = copy(arr);
           shell(arr);
           if (compares > 36)  {
               for (int i = 0; i < 10; i++)
@@ -45,7 +45,7 @@ public class Practise_2_1_19 {
         while (true) {
             compares = 0;
             arr = ints(1,10);
-            copy = intsCopy(arr);
+            copy = copy(arr);
             shell(arr);
             if (compares > 36) break;
         }

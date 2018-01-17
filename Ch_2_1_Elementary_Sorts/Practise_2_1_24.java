@@ -38,7 +38,7 @@ public class Practise_2_1_24 {
     }
     public static void main(String[] args) {
         int[] arr = ints(1, 100000);
-        int[] copy1 = intsCopy(arr);
+        int[] copy1 = copy(arr);
         StdOut.printf("哨兵法 : %f\n", insertion_A(arr));
         StdOut.printf("普通法 : %f\n", insertion_B(copy1));
     }

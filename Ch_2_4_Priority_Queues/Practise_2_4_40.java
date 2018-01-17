@@ -85,7 +85,7 @@ public class Practise_2_4_40 {
     }
     public static void main(String[] args) {
         int[] a = ints(0, 10000000);
-        int[] copy = intsCopy(a);
+        int[] copy = copy(a);
         StdOut.printf("先沉后浮比较次数 : %d\n", floyd(a));
         StdOut.printf("两次下沉比较次数 : %d\n", standard(copy));
         assert isSorted(a);
