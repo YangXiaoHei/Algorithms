@@ -199,7 +199,7 @@ public class Practise_1_5_16 {
         StdDraw.setPenRadius(.003);
         StdDraw.setXscale(0, pairCount);
         StdDraw.setYscale(-N * 2, N * 2);
-        Text_Generator gen = new Text_RandomPairGenerator(N);
+        __Generator gen = new __RandomPairGenerator(N);
         for (int i = 0; i < pairCount; i++) {
             int[] pair = gen.nextPair();
             uf.union(pair[0], pair[1]);

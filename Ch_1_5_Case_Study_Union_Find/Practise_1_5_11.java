@@ -88,7 +88,7 @@ public class Practise_1_5_11 {
 	}
 	public static void main(String[] args) {
 		int N = 10000;
-		Text_Generator gen = new Text_RandomPairGenerator(N);
+		__Generator gen = new __RandomPairGenerator(N);
 		QuickFind qf = new QuickFind(N);
 		WeightedQuickFind wqf = new WeightedQuickFind(N);
 		for (int i = 0; i < N; i++) {

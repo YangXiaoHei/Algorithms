@@ -1,6 +1,6 @@
 package Ch_2_2_Mergesort;
 
-import static Ch_2_1_Elementary_Sorts.Text_Array.*;
+import static Ch_2_1_Elementary_Sorts.__Array.*;
 
 public class Practise_2_2_12 {
     public static void divideIntoMSizeBlockSort(int[] a, int M) {

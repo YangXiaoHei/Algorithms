@@ -45,7 +45,7 @@ public class Practise_1_5_21 {
         }
         static int count(int N, int M) {
             int count = 0;
-            Text_Generator gen = new Text_RandomPairGenerator(N);
+            __Generator gen = new __RandomPairGenerator(N);
             WeightedQuickUnion wqu = new WeightedQuickUnion(N);
             for (int i = 0; i < M; i++) {
                 while (!wqu.allConnected()) {

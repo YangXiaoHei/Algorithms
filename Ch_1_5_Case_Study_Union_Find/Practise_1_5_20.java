@@ -79,7 +79,7 @@ public class Practise_1_5_20 {
         ListWeightedQuickUnion lwqu = new ListWeightedQuickUnion();
         for (int i = 0; i < N; i++)
             lwqu.newSite(i);
-        Text_Generator gen = new Text_RandomPairGenerator(N);
+        __Generator gen = new __RandomPairGenerator(N);
         for (int i = 0; i < pairCount; i++) {
             int[] pair = gen.nextPair();
             if (lwqu.connected(pair[0], pair[1])) {

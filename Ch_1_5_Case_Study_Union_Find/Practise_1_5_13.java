@@ -84,7 +84,7 @@ public class Practise_1_5_13 {
 	 */
 	public static void main(String[] args) {
 		int N = 100000000, pairCount = 100000000;
-		Text_Generator gen = new Text_RandomPairGenerator(N);
+		__Generator gen = new __RandomPairGenerator(N);
 		CompressedWeightedQuickUnion cqu = new CompressedWeightedQuickUnion(N);
 	    Stopwatch timer = new Stopwatch();
         for (int i = 0; i < pairCount; i++) {

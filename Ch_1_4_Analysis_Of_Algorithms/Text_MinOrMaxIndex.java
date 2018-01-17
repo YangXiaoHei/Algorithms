@@ -1,6 +1,6 @@
 package Ch_1_4_Analysis_Of_Algorithms;
 
-import static Ch_2_1_Elementary_Sorts.Text_Array.*;
+import static Ch_2_1_Elementary_Sorts.__Array.*;
 
 import edu.princeton.cs.algs4.*;
 

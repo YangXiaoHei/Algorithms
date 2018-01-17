@@ -18,7 +18,7 @@ public class Practise_1_5_26 {
         StdDraw.setYscale(-N, N * 2);
         StdDraw.setPenRadius(.003);
         UF uf = (UF)type.getDeclaredConstructor(int.class).newInstance(N);
-        Text_Generator gen = new Text_RandomPairGenerator(N);
+        __Generator gen = new __RandomPairGenerator(N);
         int i = 0;
         while (!uf.allConnected()) {
             int[] pair = gen.nextPair();

@@ -3,7 +3,7 @@ package Ch_3_2_Binary_Search_Trees;
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
-import static Ch_2_4_Priority_Queues.Text_Alphabet.*;
+import static Ch_2_4_Priority_Queues.__Alphabet.*;
 
 import java.util.*;
 

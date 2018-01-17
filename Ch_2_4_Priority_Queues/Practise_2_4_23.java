@@ -1,6 +1,6 @@
 package Ch_2_4_Priority_Queues;
 
-import static Ch_2_1_Elementary_Sorts.Text_Array.*;
+import static Ch_2_1_Elementary_Sorts.__Array.*;
 
 import edu.princeton.cs.algs4.*;
 
@@ -137,7 +137,7 @@ public class Practise_2_4_23 {
         int[] a = ints(0, N - 1);
         int[] copy = intsCopy(a);
         StdOut.printf("规模 : %d 教材的二叉堆排序耗时 : %.3f\n",
-                N, Text_HeapSort.heap(copy));
+                N, __HeapSort.heap(copy));
         assert isSorted(copy);
         for (int i = 2; i < 20; i++) {
             copy = intsCopy(a);
@@ -184,7 +184,7 @@ public class Practise_2_4_23 {
         StdOut.printf("五叉堆排序耗时 ：%.3f\n", multiwayHeapSort(a, 5));
         StdOut.printf("六叉堆排序耗时 ：%.3f\n", multiwayHeapSort(copy1, 6));
         StdOut.printf("七叉堆排序耗时 ：%.3f\n", multiwayHeapSort(copy2, 7));
-        StdOut.printf("二叉堆排序耗时 ：%.3f\n", Text_HeapSort.heap(copy));
+        StdOut.printf("二叉堆排序耗时 ：%.3f\n", __HeapSort.heap(copy));
         assert isSorted(a);
         assert isSorted(copy);
         assert isSorted(copy1);

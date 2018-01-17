@@ -2,7 +2,7 @@ package Ch_2_1_Elementary_Sorts;
 
 import edu.princeton.cs.algs4.*;
 
-import static Ch_2_1_Elementary_Sorts.Text_Array.*;
+import static Ch_2_1_Elementary_Sorts.__Array.*;
 
 import java.util.*;
 

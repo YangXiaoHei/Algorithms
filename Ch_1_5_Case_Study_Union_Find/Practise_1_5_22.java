@@ -32,7 +32,7 @@ public class Practise_1_5_22 {
         // 规模扩大
         for (int i = begN, j = 0; j < T; i += i, j++) {
             UF uf = (UF)type.getDeclaredConstructor(int.class).newInstance(i);
-            Text_Generator gen = new Text_RandomPairGenerator(i);
+            __Generator gen = new __RandomPairGenerator(i);
             cur = 0; 
             int testCount = 10; // 多次测验，取平均值
             for (int k = 0; k < testCount; k++) { 

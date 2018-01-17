@@ -69,7 +69,7 @@ public class Practise_1_5_12 {
 	public static void main(String[] args) {
 		int N = 40;
 		CompressedQuickUnion cqu = new CompressedQuickUnion(N);
-		Text_Generator gen = new Text_RandomPairGenerator(N);
+		__Generator gen = new __RandomPairGenerator(N);
 		ArrayList<Object> container = new ArrayList<Object>();
 		for (int i = 0; i < N; i++) {
 			int[] pair = gen.nextPair();

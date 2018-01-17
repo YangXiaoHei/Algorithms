@@ -15,7 +15,7 @@ public class Practise_1_5_23 {
             QU qu = new QU(i);
             list.clear();
             qfTime = 0; quTime = 0;
-            Text_Generator gen = new Text_RandomPairGenerator(i);
+            __Generator gen = new __RandomPairGenerator(i);
             while (!qu.allConnected()) {
                 int[] pair = gen.nextPair();
                 list.add(pair);

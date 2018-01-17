@@ -21,7 +21,7 @@ public class Practise_1_5_24 {
             list.clear();
             
             // 随机连接生成器
-            Text_Generator gen = new Text_RandomPairGenerator(i);
+            __Generator gen = new __RandomPairGenerator(i);
             
             // 生成一组可以使并查集完全连通的连接集
             while (!wqu.allConnected()) {

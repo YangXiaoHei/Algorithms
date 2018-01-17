@@ -47,7 +47,7 @@ public class Practise_1_5_17 {
         }
         static int count(int N) {
             int count = 0;
-            Text_Generator gen = new Text_RandomPairGenerator(N);
+            __Generator gen = new __RandomPairGenerator(N);
             CompressedWeightedQuickUnion cwqu = new CompressedWeightedQuickUnion(N);
             while (!cwqu.allConnected()) {
                 count++;

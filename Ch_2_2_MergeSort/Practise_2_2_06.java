@@ -1,6 +1,6 @@
 package Ch_2_2_Mergesort;
 
-import static Ch_2_1_Elementary_Sorts.Text_Array.*;
+import static Ch_2_1_Elementary_Sorts.__Array.*;
 
 import java.awt.Color;
 import edu.princeton.cs.algs4.*;

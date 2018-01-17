@@ -83,7 +83,7 @@ public class Practise_1_5_07 {
 	public static void main(String[] args) {
 		StdOut.println("quick-union\n");
 		QuickUnionUF qu = new QuickUnionUF(10);
-		Text_Generator gen = new Text_RandomPairGenerator(10);
+		__Generator gen = new __RandomPairGenerator(10);
 		for (int i = 0; i < 20; i++) {
 			int[] pair = gen.nextPair();
  			StdOut.printf("连接 %d %d\n", pair[0], pair[1]);

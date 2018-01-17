@@ -1,6 +1,6 @@
 package Ch_2_4_Priority_Queues;
 
-import static Ch_2_1_Elementary_Sorts.Text_Array.*;
+import static Ch_2_1_Elementary_Sorts.__Array.*;
 
 import java.util.*;
 
@@ -76,7 +76,7 @@ public class Practise_2_4_33 {
     }
     public static void main(String[] args) {
         int N = 30;
-        String[] a =  Text_Alphabet.random(N);
+        String[] a =  __Alphabet.random(N);
         IndexMinPQ<String> pq = new IndexMinPQ<String>(N);
         for (String i : a) pq.insert(i);
         StdOut.println(pq);

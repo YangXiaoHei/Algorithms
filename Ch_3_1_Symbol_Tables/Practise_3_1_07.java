@@ -1,6 +1,6 @@
 package Ch_3_1_Symbol_Tables;
 
-import static Ch_2_1_Elementary_Sorts.Text_Array.*;
+import static Ch_2_1_Elementary_Sorts.__Array.*;
 
 import edu.princeton.cs.algs4.*;
 

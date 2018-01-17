@@ -1,6 +1,6 @@
 package Ch_2_5_Applications;
 
-import static Ch_2_4_Priority_Queues.Text_Alphabet.*;
+import static Ch_2_4_Priority_Queues.__Alphabet.*;
 
 import java.util.*;
 import edu.princeton.cs.algs4.StdOut;
