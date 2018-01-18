@@ -303,6 +303,7 @@ public class __RBTree<K extends Comparable<K>, V> {
      * 先序遍历迭代版
      */
     public String travPre_I() {
+        if (isEmpty()) return "Empty Tree";
         StringBuilder sb = new StringBuilder();
         travPre_I(root, sb);
         return "==========  先序遍历  ===========\n" + sb.toString();
@@ -326,6 +327,7 @@ public class __RBTree<K extends Comparable<K>, V> {
      * 中序遍历迭代版
      */
     public String travIn_R() {
+        if (isEmpty()) return "Empty Tree";
         StringBuilder sb = new StringBuilder();
         travIn_R(root, sb);
         return  "==========  中序遍历  ===========\n" + sb.toString();
@@ -360,6 +362,7 @@ public class __RBTree<K extends Comparable<K>, V> {
      * 后序遍历迭代版
      */
     public String travPost_I() {
+        if (isEmpty()) return "Empty Tree";
         StringBuilder sb = new StringBuilder();
         travPost_I(root, sb);
         return  "==========  后序遍历  ===========\n" + sb.toString();
@@ -388,6 +391,7 @@ public class __RBTree<K extends Comparable<K>, V> {
      * 层级遍历
      */
     public String travLevel() {
+        if (isEmpty()) return "Empty Tree";
         StringBuilder sb = new StringBuilder();
         travLevel(root, sb);
         return  "==========  层级遍历  ===========\n" + sb.toString();
@@ -417,27 +421,14 @@ public class __RBTree<K extends Comparable<K>, V> {
     }
     public static void main(String[] args) {
         __RBTree<String, Integer> rbt = new __RBTree<>();
-        rbt.put("A", 2);
-        rbt.put("C", 2);
-        rbt.put("E", 2);
-        rbt.put("H", 2);
-        rbt.put("L", 2);
-        rbt.put("M", 2);
-        rbt.put("P", 2);
-        rbt.put("R", 2);
-        rbt.put("S", 2);
-        rbt.put("X", 2);
-        rbt.delete("H");
-        rbt.delete("R");
-        rbt.delete("P");
-        rbt.delete("L");
-        rbt.delete("X");
-        rbt.delete("C");
-        rbt.delete("S");
-//        String[] keys = objectToString(((LinkedList<String>)rbt.keys()).toArray());
-//        String random = keys[StdRandom.uniform(keys.length)];
-//        StdOut.printf("删除 %s \n", random);
-//        rbt.delete(random);
+//        String[] keys = randomNoDupli(20);
+        String[] keys = parseAlphbets("P  G  W  C  Y  R  F  J  A  N  U  O  L  I  E  S  K  X  D  Q");
+        print(keys);
+        for (String key : keys) {
+            rbt.put(key, 2);
+            if (key.equals("R"))
+                StdOut.println(rbt.travLevel());
+        }
         StdOut.println(rbt.travLevel());
     }
 }
