@@ -3,7 +3,13 @@ package Ch_3_3_Balanced_Search_Trees;
 import edu.princeton.cs.algs4.*;
 import java.util.*;
 
+/*
+ * 红黑树
+ */
 public class __RBTree<K extends Comparable<K>, V> {
+    /*
+     * 用于层次遍历的辅助队列
+     */
     static class Queue<T> {
         private class Node {
             T item;
@@ -39,8 +45,10 @@ public class __RBTree<K extends Comparable<K>, V> {
             --size;
             return header.next.delete();
         }
-        
     }
+    /*
+     * 用于迭代版各种遍历的辅助栈
+     */
     static class Stack<T> {
         private class Node {
             T item;
@@ -70,7 +78,17 @@ public class __RBTree<K extends Comparable<K>, V> {
         Node left, right, parent;
         boolean color;
         Node (K kk, V vv, boolean c) { k = kk; v = vv; size = 1; color = c; }
-        public String toString() { return String.format("%-4s 父 : %-4s\n", k, parent == null ? null : parent.k); }
+        public String toString() { 
+            return String.format("%s %-4s 高度 : %d sz : %d \n", 
+                    color ? "红" : "黑", // 结点颜色
+                    k,  // 结点键值
+//                    parent == null ? null : parent.k, // 父结点键值
+                    height(this), // 该结点高度
+                    size
+//                    parent != null &&  // 该结点是父结点的左孩子或者右孩子
+//                    parent.left == this ? "左" : parent != null ? "右" : ""
+                        ); 
+        }
     }
     private Node root;
     private final boolean isRed(Node n) { return n == null ? false : n.color; }
@@ -101,6 +119,105 @@ public class __RBTree<K extends Comparable<K>, V> {
         h.left.color = !h.left.color;
         h.right.color = !h.right.color;
     }
+    public boolean isEmpty() { return root == null; }
+    public int height() { return height(root); }
+    private int height(Node n) {
+        if (n == null) return -1;
+        return 1 + Math.max(height(n.left), height(n.right));
+    }
+    
+    
+    /*
+     * 删除最大值
+     */
+    public void deleteMax() {
+        if (isEmpty()) throw new NoSuchElementException("BST underflow");
+
+        if (!isRed(root.left) && !isRed(root.right))
+            root.color = RED;
+
+        root = deleteMax(root);
+        if (!isEmpty()) root.color = BLACK;
+    }
+    private Node deleteMax(Node h) { 
+        if (isRed(h.left))
+            h = rotateRight(h);
+
+        if (h.right == null)
+            return null;
+
+        if (!isRed(h.right) && !isRed(h.right.left))
+            h = moveRedRight(h);
+
+        h.right = deleteMax(h.right);
+        return balance(h);
+    }
+    private Node moveRedRight(Node h) {
+        flipColors(h);
+        if (isRed(h.left.left)) { 
+            h = rotateRight(h);
+            flipColors(h);
+        }
+        return h;
+    }
+    
+    
+    
+    
+    /*
+     *  删除最小值
+     */
+    public void deleteMin() {
+        if (isEmpty()) throw new NoSuchElementException("BST underflow");
+
+        if (!isRed(root.left) && !isRed(root.right))
+            root.color = RED;
+
+        root = deleteMin(root);
+        if (!isEmpty()) root.color = BLACK;
+    }
+
+    private Node deleteMin(Node h) { 
+        if (h.left == null)
+            return null;
+
+        if (!isRed(h.left) && !isRed(h.left.left))
+            h = moveRedLeft(h);
+
+        h.left = deleteMin(h.left);
+        return balance(h);
+    }
+    
+    private Node moveRedLeft(Node h) {
+        flipColors(h);
+        if (isRed(h.right.left)) { 
+            h.right = rotateRight(h.right);
+            h = rotateLeft(h);
+            flipColors(h);
+        }
+        return h;
+    }
+    private Node balance(Node h) {
+        
+        if (isRed(h.right))                      h = rotateLeft(h);
+        if (isRed(h.left) && isRed(h.left.left)) h = rotateRight(h);
+        if (isRed(h.left) && isRed(h.right))     flipColors(h);
+
+        h.size = size(h.left) + size(h.right) + 1;
+        return h;
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public void put(K k, V v) {
         if (k == null) throw new IllegalArgumentException();
         if (v == null) {
@@ -121,8 +238,8 @@ public class __RBTree<K extends Comparable<K>, V> {
         if (isRed(n.left) && isRed(n.left.left)) n = rotateRight(n);
         if (isRed(n.left) && isRed(n.right))     flipColors(n);
         n.size = 1 + size(n.left) + size(n.right);
-        if (n.left != null) n.left.parent = n;
-        if (n.right != null) n.right.parent = n;
+//        if (n.left != null) n.left.parent = n;
+//        if (n.right != null) n.right.parent = n;
         return n;
     }
     /*
@@ -239,10 +356,14 @@ public class __RBTree<K extends Comparable<K>, V> {
         rbt.put("M", 2);
         rbt.put("P", 2);
         rbt.put("L", 2);
-        StdOut.println(rbt.size());
-        StdOut.println(rbt.travPre_I());
-        StdOut.println(rbt.travIn_I());
-        StdOut.println(rbt.travPost_I());
+        rbt.deleteMin();
+        rbt.deleteMax();
+        rbt.deleteMin();
+        rbt.deleteMax();
+        rbt.deleteMin();
+        rbt.deleteMax();
+        rbt.deleteMax();
+        StdOut.println(rbt.travIn_R());
         StdOut.println(rbt.travLevel());
     }
 }
