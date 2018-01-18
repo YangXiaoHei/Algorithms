@@ -27,6 +27,15 @@ public class ArrayGenerator {
             for (int i = 1; i <= 26; i++)
                 alphabet[i - 1] = String.format("%c", 'A' + i - 1);
         }
+        public static String[] objectToString(Object[] obj) {
+            if (obj == null) throw new IllegalArgumentException();
+            for (Object o : obj) 
+                if (!(o instanceof String)) throw new IllegalArgumentException("cast failed");
+            String[] ss = new String[obj.length];
+            for (int i = 0; i < obj.length; i++)
+                ss[i] = (String)obj[i];
+            return ss;
+        }
         /*
          * 生成指定数目的随机字母
          */
