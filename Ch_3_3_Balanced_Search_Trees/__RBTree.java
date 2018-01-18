@@ -2,6 +2,7 @@ package Ch_3_3_Balanced_Search_Trees;
 
 import edu.princeton.cs.algs4.*;
 import java.util.*;
+import static Tool.ArrayGenerator.Alphbets.*;
 
 /*
  * 红黑树
@@ -146,7 +147,7 @@ public class __RBTree<K extends Comparable<K>, V> {
         if (h.right == null)
             return null;
 
-        if (!isRed(h.right) && !isRed(h.right.left))
+        if (!isRed(h.right) && !isRed(h.right.left)) 
             h = moveRedRight(h);
 
         h.right = deleteMax(h.right);
@@ -206,14 +207,71 @@ public class __RBTree<K extends Comparable<K>, V> {
         h.size = size(h.left) + size(h.right) + 1;
         return h;
     }
+    
+    /*
+     * 最小值
+     */
+    public K min() {
+        if (isEmpty()) throw new NoSuchElementException();
+        return min(root).k;
+    }
+    private Node min(Node n) {
+        while (n.left != null) n = n.left;
+        return n;
+    }
+    public K max() {
+        if (isEmpty()) throw new NoSuchElementException();
+        return max(root).k;
+    }
+    private Node max(Node n) {
+        while (n.right != null) n = n.right;
+        return n;
+    }
 
-    
-    
-    
-    
-    
-    
-    
+    /*
+     * 删除结点操作
+     */
+    public void delete(K key) { 
+        if (key == null) throw new IllegalArgumentException("argument to delete() is null");
+//        if (!contains(key)) return;
+
+        if (!isRed(root.left) && !isRed(root.right))
+            root.color = RED;
+
+        root = delete(root, key);
+        if (!isEmpty()) root.color = BLACK;
+    }
+
+    private Node delete(Node h, K key) { 
+        
+        if (key.compareTo(h.k) < 0)  {
+            
+            if (!isRed(h.left) && !isRed(h.left.left))
+                h = moveRedLeft(h);
+            
+            h.left = delete(h.left, key);
+            
+        } else {
+            if (isRed(h.left))
+                h = rotateRight(h);
+            
+            if (key.compareTo(h.k) == 0 && (h.right == null))
+                return null;
+            
+            if (!isRed(h.right) && !isRed(h.right.left))
+                h = moveRedRight(h);
+            
+            if (key.compareTo(h.k) == 0) {
+                Node x = min(h.right);
+                h.k = x.k;
+                h.v = x.v;
+                h.right = deleteMin(h.right);
+            } else {
+                h.right = delete(h.right, key);
+            }
+        }
+        return balance(h);
+    }
     
     
     
@@ -344,6 +402,20 @@ public class __RBTree<K extends Comparable<K>, V> {
             if (n.right != null) queue.enqueue(n.right);
         }
     }
+    public Iterable<K> keys() { return keys(min(), max()); }
+    public Iterable<K> keys(K lo, K hi) {
+        LinkedList<K> list = new LinkedList<>();
+        keys(root, list, lo, hi);
+        return list;
+    }
+    private void keys(Node n, LinkedList<K> list, K lo, K hi) {
+        if (n == null) return;
+        int cmplo = lo.compareTo(n.k);
+        int cmphi = n.k.compareTo(hi);
+        if (cmplo < 0) keys(n.left, list, lo, hi);
+        if (cmplo <= 0 && cmphi <= 0) list.add(n.k);
+        if (cmphi < 0) keys(n.right, list, lo, hi);
+    }
     public static void main(String[] args) {
         __RBTree<String, Integer> rbt = new __RBTree<>();
         rbt.put("S", 2);
@@ -356,14 +428,16 @@ public class __RBTree<K extends Comparable<K>, V> {
         rbt.put("M", 2);
         rbt.put("P", 2);
         rbt.put("L", 2);
-        rbt.deleteMin();
-        rbt.deleteMax();
-        rbt.deleteMin();
-        rbt.deleteMax();
-        rbt.deleteMin();
-        rbt.deleteMax();
-        rbt.deleteMax();
-        StdOut.println(rbt.travIn_R());
+        rbt.delete("S");
+        rbt.delete("A");
+        rbt.delete("P");
+        rbt.delete("L");
+        rbt.delete("C");
+        rbt.delete("R");
+        String[] keys = objectToString(((LinkedList<String>)rbt.keys()).toArray());
+        String random = keys[StdRandom.uniform(keys.length)];
+        StdOut.printf("删除 %s \n", random);
+        rbt.delete(random);
         StdOut.println(rbt.travLevel());
     }
 }
