@@ -27,6 +27,13 @@ public class ArrayGenerator {
             for (int i = 1; i <= 26; i++)
                 alphabet[i - 1] = String.format("%c", 'A' + i - 1);
         }
+        public static String[] parseAlphbets(String s) {
+            String[] ss = s.split(",|\\s+");
+            return ss;
+        }
+        /*
+         * 将 object[] 转成 String[]
+         */
         public static String[] objectToString(Object[] obj) {
             if (obj == null) throw new IllegalArgumentException();
             for (Object o : obj) 
@@ -88,10 +95,10 @@ public class ArrayGenerator {
          */
         public static void print(String[] s) {
             for (int i = 0; i < s.length; i++)
-                StdOut.printf("%4d", i);
+                StdOut.printf("%3d", i);
             StdOut.println();
             for (int i = 0; i < s.length; i++)
-                StdOut.printf("%4s", s[i]);
+                StdOut.printf("%3s", s[i]);
             StdOut.println("\n");
         }
     }
