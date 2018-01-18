@@ -275,7 +275,6 @@ public class __RBTree<K extends Comparable<K>, V> {
     
     
     
-    
     public void put(K k, V v) {
         if (k == null) throw new IllegalArgumentException();
         if (v == null) {
@@ -418,26 +417,27 @@ public class __RBTree<K extends Comparable<K>, V> {
     }
     public static void main(String[] args) {
         __RBTree<String, Integer> rbt = new __RBTree<>();
-        rbt.put("S", 2);
-        rbt.put("E", 2);
         rbt.put("A", 2);
-        rbt.put("R", 2);
         rbt.put("C", 2);
+        rbt.put("E", 2);
         rbt.put("H", 2);
-        rbt.put("X", 2);
+        rbt.put("L", 2);
         rbt.put("M", 2);
         rbt.put("P", 2);
-        rbt.put("L", 2);
-        rbt.delete("S");
-        rbt.delete("A");
+        rbt.put("R", 2);
+        rbt.put("S", 2);
+        rbt.put("X", 2);
+        rbt.delete("H");
+        rbt.delete("R");
         rbt.delete("P");
         rbt.delete("L");
+        rbt.delete("X");
         rbt.delete("C");
-        rbt.delete("R");
-        String[] keys = objectToString(((LinkedList<String>)rbt.keys()).toArray());
-        String random = keys[StdRandom.uniform(keys.length)];
-        StdOut.printf("删除 %s \n", random);
-        rbt.delete(random);
+        rbt.delete("S");
+//        String[] keys = objectToString(((LinkedList<String>)rbt.keys()).toArray());
+//        String random = keys[StdRandom.uniform(keys.length)];
+//        StdOut.printf("删除 %s \n", random);
+//        rbt.delete(random);
         StdOut.println(rbt.travLevel());
     }
 }
