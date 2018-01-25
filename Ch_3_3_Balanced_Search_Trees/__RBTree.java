@@ -23,6 +23,15 @@ public class __RBTree<K extends Comparable<K>, V> {
         if (n == null) return -1;
         return 1 + Math.max(height(n.left), height(n.right));
     }
+    public int avgCompares() { return ipl() / size(); }
+    public int ipl() { return ipl(root, 0); }
+    private int ipl(Node n, int depth) {
+        if (n == null) return 0;
+        int curLevel = depth;
+        depth += ipl(n.left, curLevel + 1);
+        depth += ipl(n.right, curLevel + 1);
+        return depth;
+    }
     /*
      * 插入键值对
      */
@@ -305,8 +314,10 @@ public class __RBTree<K extends Comparable<K>, V> {
         // 构造一棵红黑树
         __RBTree<String, Integer> rbtree = new __RBTree<>();
         for (String key : s) rbtree.put(key, 1);
+        StdOut.printf("平均比较次数 : %d\n", rbtree.avgCompares());
         StdOut.println(rbtree.travLevel());
         
+       
         // 逐个删除结点
         while (!rbtree.isEmpty()) {
             String[] keys = objectToString(((Queue<String>)rbtree.keys()).toArray());
