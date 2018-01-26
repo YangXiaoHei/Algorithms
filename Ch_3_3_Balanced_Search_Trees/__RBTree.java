@@ -23,8 +23,14 @@ public class __RBTree<K extends Comparable<K>, V> {
         if (n == null) return -1;
         return 1 + Math.max(height(n.left), height(n.right));
     }
+    /*
+     * 平均比较次数
+     */
     public int avgCompares() { return ipl() / size(); }
     public int ipl() { return ipl(root, 0); }
+    /*
+     * 内部路径长度
+     */
     private int ipl(Node n, int depth) {
         if (n == null) return 0;
         int curLevel = depth;
