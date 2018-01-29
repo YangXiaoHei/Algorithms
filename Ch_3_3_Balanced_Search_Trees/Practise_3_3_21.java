@@ -353,7 +353,5 @@ public class Practise_3_3_21 {
         StdOut.printf("大于 Z 的最小键 : %5s\n", rb.ceiling("Z"));
         StdOut.printf("大于 I 的最小键 : %5s\n", rb.ceiling("I"));
         StdOut.printf("大于 K 的最小键 : %5s\n", rb.ceiling("K"));
-        
-        
     }
 }
