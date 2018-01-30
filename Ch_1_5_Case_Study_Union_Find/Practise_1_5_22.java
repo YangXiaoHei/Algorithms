@@ -1,6 +1,8 @@
 package Ch_1_5_Case_Study_Union_Find;
 
 import java.lang.reflect.*;
+
+import Tool.ArrayGenerator.RandomPair;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_5_22 {
@@ -32,7 +34,7 @@ public class Practise_1_5_22 {
         // 规模扩大
         for (int i = begN, j = 0; j < T; i += i, j++) {
             UF uf = (UF)type.getDeclaredConstructor(int.class).newInstance(i);
-            __Generator gen = new __RandomPairGenerator(i);
+            RandomPair gen = new RandomPair(i);
             cur = 0; 
             int testCount = 10; // 多次测验，取平均值
             for (int k = 0; k < testCount; k++) { 

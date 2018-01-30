@@ -1,6 +1,8 @@
 package Ch_1_5_Case_Study_Union_Find;
 
 import java.util.*;
+
+import Tool.ArrayGenerator.RandomPair;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_5_24 {
@@ -21,7 +23,7 @@ public class Practise_1_5_24 {
             list.clear();
             
             // 随机连接生成器
-            __Generator gen = new __RandomPairGenerator(i);
+            RandomPair gen = new RandomPair(i);
             
             // 生成一组可以使并查集完全连通的连接集
             while (!wqu.allConnected()) {

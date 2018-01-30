@@ -3,6 +3,8 @@ package Ch_1_5_Case_Study_Union_Find;
 import edu.princeton.cs.algs4.*;
 import java.util.*;
 
+import Tool.ArrayGenerator.RandomPair;
+
 public class Practise_1_5_23 {
     /*
      * 测试框架
@@ -15,7 +17,7 @@ public class Practise_1_5_23 {
             QU qu = new QU(i);
             list.clear();
             qfTime = 0; quTime = 0;
-            __Generator gen = new __RandomPairGenerator(i);
+            RandomPair gen = new RandomPair(i);
             while (!qu.allConnected()) {
                 int[] pair = gen.nextPair();
                 list.add(pair);

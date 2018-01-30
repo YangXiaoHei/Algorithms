@@ -3,6 +3,8 @@ package Ch_1_5_Case_Study_Union_Find;
 import edu.princeton.cs.algs4.*;
 import java.util.*;
 
+import Tool.ArrayGenerator.RandomPair;
+
 public class Practise_1_5_12 {
 	static class CompressedQuickUnion {
 		private int[] id;
@@ -69,7 +71,7 @@ public class Practise_1_5_12 {
 	public static void main(String[] args) {
 		int N = 40;
 		CompressedQuickUnion cqu = new CompressedQuickUnion(N);
-		__Generator gen = new __RandomPairGenerator(N);
+		RandomPair gen = new RandomPair(N);
 		ArrayList<Object> container = new ArrayList<Object>();
 		for (int i = 0; i < N; i++) {
 			int[] pair = gen.nextPair();

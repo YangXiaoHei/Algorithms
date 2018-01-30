@@ -1,6 +1,8 @@
 package Ch_1_5_Case_Study_Union_Find;
 
 import java.util.*;
+
+import Tool.ArrayGenerator.RandomPair;
 import edu.princeton.cs.algs4.*;
 public class Practise_1_5_13 {
 	static class CompressedWeightedQuickUnion {
@@ -84,7 +86,7 @@ public class Practise_1_5_13 {
 	 */
 	public static void main(String[] args) {
 		int N = 100000000, pairCount = 100000000;
-		__Generator gen = new __RandomPairGenerator(N);
+		RandomPair gen = new RandomPair(N);
 		CompressedWeightedQuickUnion cqu = new CompressedWeightedQuickUnion(N);
 	    Stopwatch timer = new Stopwatch();
         for (int i = 0; i < pairCount; i++) {

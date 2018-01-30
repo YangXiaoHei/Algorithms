@@ -1,5 +1,6 @@
 package Ch_1_5_Case_Study_Union_Find;
 
+import Tool.ArrayGenerator.RandomPair;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_5_17 {
@@ -47,7 +48,7 @@ public class Practise_1_5_17 {
         }
         static int count(int N) {
             int count = 0;
-            __Generator gen = new __RandomPairGenerator(N);
+            RandomPair gen = new RandomPair(N);
             CompressedWeightedQuickUnion cwqu = new CompressedWeightedQuickUnion(N);
             while (!cwqu.allConnected()) {
                 count++;

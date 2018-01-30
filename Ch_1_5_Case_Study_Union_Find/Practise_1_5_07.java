@@ -1,5 +1,6 @@
 package Ch_1_5_Case_Study_Union_Find;
 
+import Tool.ArrayGenerator.RandomPair;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_5_07 {
@@ -83,7 +84,7 @@ public class Practise_1_5_07 {
 	public static void main(String[] args) {
 		StdOut.println("quick-union\n");
 		QuickUnionUF qu = new QuickUnionUF(10);
-		__Generator gen = new __RandomPairGenerator(10);
+		RandomPair gen = new RandomPair(10);
 		for (int i = 0; i < 20; i++) {
 			int[] pair = gen.nextPair();
  			StdOut.printf("连接 %d %d\n", pair[0], pair[1]);

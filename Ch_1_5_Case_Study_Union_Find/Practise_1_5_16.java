@@ -1,6 +1,8 @@
 package Ch_1_5_Case_Study_Union_Find;
 
 import java.awt.Color;
+
+import Tool.ArrayGenerator.RandomPair;
 import edu.princeton.cs.algs4.*;
 
 public class Practise_1_5_16 {
@@ -199,7 +201,7 @@ public class Practise_1_5_16 {
         StdDraw.setPenRadius(.003);
         StdDraw.setXscale(0, pairCount);
         StdDraw.setYscale(-N * 2, N * 2);
-        __Generator gen = new __RandomPairGenerator(N);
+        RandomPair gen = new RandomPair(N);
         for (int i = 0; i < pairCount; i++) {
             int[] pair = gen.nextPair();
             uf.union(pair[0], pair[1]);

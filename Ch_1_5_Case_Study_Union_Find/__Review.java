@@ -1,6 +1,7 @@
 package Ch_1_5_Case_Study_Union_Find;
 
 import edu.princeton.cs.algs4.StdOut;
+import static Tool.ArrayGenerator.RandomPair;
 
 public class __Review {
     /*
@@ -70,7 +71,7 @@ public class __Review {
     }
     public static void main(String[] args) {
         int N = 10000000, count = 10000000;
-        __RandomPairGenerator gen = new __RandomPairGenerator(N);
+        RandomPair gen = new RandomPair(N);
         CWQU cwqu = new CWQU(N);
         for (int i = 0; i < count; i++) {
             int[] pair = gen.nextPair();

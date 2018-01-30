@@ -1,5 +1,6 @@
 package Ch_1_5_Case_Study_Union_Find;
 
+import Tool.ArrayGenerator.RandomPair;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_1_5_11 {
@@ -88,7 +89,7 @@ public class Practise_1_5_11 {
 	}
 	public static void main(String[] args) {
 		int N = 10000;
-		__Generator gen = new __RandomPairGenerator(N);
+		RandomPair gen = new RandomPair(N);
 		QuickFind qf = new QuickFind(N);
 		WeightedQuickFind wqf = new WeightedQuickFind(N);
 		for (int i = 0; i < N; i++) {
