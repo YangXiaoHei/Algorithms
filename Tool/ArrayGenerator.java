@@ -18,6 +18,17 @@ import edu.princeton.cs.algs4.StdRandom;
  * **********************************************************************
  */
 public class ArrayGenerator {
+    public static class RandomPair {
+        private int N;
+        public RandomPair(int N) { this.N = N; }
+        public int[] nextPair() {
+            int p = StdRandom.uniform(N);
+            int q = StdRandom.uniform(N);
+            while (q == p)
+                q = StdRandom.uniform(N);
+            return new int[] { p, q };
+        }
+    }
     /*
      * 字母数组发生器
      */
