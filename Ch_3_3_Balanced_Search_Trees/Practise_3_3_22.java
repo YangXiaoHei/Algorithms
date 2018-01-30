@@ -121,6 +121,11 @@ public class Practise_3_3_22 {
         }
     }
     public static void main(String[] args) {
+        /*
+         * 某个序列分别构造的 BST 和 RBTree 图像如下
+         * 
+         * https://github.com/YangXiaoHei/Algorithms_4/blob/master/FlowChart/Ch_3_3_Practise_3_3_22.png
+         */
         while (true) {
             Integer[] a = IntegersNoDupli(10, 0, 20);
             RBTree<Integer, Integer> rb = new RBTree<>();
@@ -130,6 +135,7 @@ public class Practise_3_3_22 {
             if (bs.height() < rb.height()) {
                 print(a);
                 StdOut.printf("红黑树高度 : %d\n", rb.height());
+                StdOut.println(rb);
                 StdOut.printf("二叉查找树高度 : %d\n", bs.height());
                 break;
             }
@@ -137,10 +143,23 @@ public class Practise_3_3_22 {
     }
     // output
     /*
-     *  0      1      2      3      4      5      6      7      8      9      
-        8      5      15     4      0      12     13     11     18     16     
+     *  
+        0      1      2      3      4      5      6      7      8      9      
+        11     12     19     20     4      14     8      1      3      0      
         红黑树高度 : 4
+           12    黑   10
+            8    黑    6
+           19    黑    3
+            3    红    4
+           11    黑    1
+           14    黑    1
+           20    黑    1
+            1    黑    2
+            4    黑    1
+            0    红    1
+        
         二叉查找树高度 : 3
+
 
      */
 }
