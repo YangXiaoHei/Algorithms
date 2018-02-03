@@ -1,7 +1,7 @@
 package Ch_3_3_Hash_Tables;
 
 import static Tool.ArrayGenerator.Alphbets.*;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.*;
 
 public class __SequentialSearchST <K, V> {
     private class Node {
@@ -37,6 +37,8 @@ public class __SequentialSearchST <K, V> {
     }
     private int size;
     private Node cache = null;
+    public int size() { return size; }
+    public boolean isEmpty() { return header.next == tailer; }
     public void put(K k, V v) {
         if (k == null) throw new IllegalArgumentException();
         if (v == null) {
@@ -67,9 +69,16 @@ public class __SequentialSearchST <K, V> {
     public void delete(K k) {
         if (k == null) throw new IllegalArgumentException();
         Node x = search(k);
-        if (x != null && k.equals(x.key))
-            x.delete();
+        if (x != null && k.equals(x.key)) {
+            x.delete(); --size;
+        }
         if (cache == x) cache = null;
+    }
+    public Iterable<K> keys() {
+        Queue<K> q = new Queue<>();
+        for (Node x = header.next; x != tailer; x = x.next)
+            q.enqueue(x.key);
+        return q;
     }
     public boolean contain(K k) { return get(k) != null; }
     private Node search(K k) {
