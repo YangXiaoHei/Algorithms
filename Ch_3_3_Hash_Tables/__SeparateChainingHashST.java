@@ -11,6 +11,8 @@ public class __SeparateChainingHashST <K, V> {
     @SuppressWarnings("unchecked")
     public __SeparateChainingHashST(int c) {
         st = new __SequentialSearchST[c];
+        for (int i = 0; i < c; i++) 
+            st[i] = new __SequentialSearchST<K, V>();
         capacity = c;
     }
     public __SeparateChainingHashST() {
