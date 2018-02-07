@@ -64,18 +64,10 @@ public class __SeparateChainingHashST <K, V> {
         st.put("lijie", 25);
         st.put("pengshasha", 26);
         st.put("zhanghaiyue", 28);
-        st.put("zhangyafang", 30);
-        st.put("shali", 31);
-        st.put("baobao", 32);
-        st.put("hanhan", 35);
-        st.put("hanson", 46);
         st.put("lili", 48);
         StdOut.println(st.get("yanghan"));
         StdOut.println(st.get("pengshasha"));
         StdOut.println(st.get("zhanghaiyue"));
-        StdOut.println(st.get("hanson"));
-        StdOut.println(st.get("lili"));
-        StdOut.println(st.get("baobao"));
         
     }
 }
