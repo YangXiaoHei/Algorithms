@@ -57,17 +57,15 @@ public class __SeparateChainingHashST <K, V> {
             resize(capacity >> 1);
     }
     public static void main(String[] args) {
-        
         __SeparateChainingHashST<String, Integer> st = 
                 new __SeparateChainingHashST<>();
         st.put("yanghan", 24);
         st.put("lijie", 25);
         st.put("pengshasha", 26);
         st.put("zhanghaiyue", 28);
-        st.put("lili", 48);
+//        st.put("lili", 48);
         StdOut.println(st.get("yanghan"));
         StdOut.println(st.get("pengshasha"));
         StdOut.println(st.get("zhanghaiyue"));
-        
     }
 }
