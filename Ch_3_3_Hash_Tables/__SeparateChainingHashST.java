@@ -61,7 +61,7 @@ public class __SeparateChainingHashST <K, V> {
                 new __SeparateChainingHashST<>();
         st.put("yanghan", 24);
         st.put("lijie", 25);
-        st.put("pengshasha", 26);
+//        st.put("pengshasha", 26);
         st.put("zhanghaiyue", 28);
 //        st.put("lili", 48);
         StdOut.println(st.get("yanghan"));
