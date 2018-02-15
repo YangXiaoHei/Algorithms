@@ -60,7 +60,7 @@ public class __SeparateChainingHashST <K, V> {
         __SeparateChainingHashST<String, Integer> st = 
                 new __SeparateChainingHashST<>();
         st.put("yanghan", 24);
-        st.put("lijie", 25);
+//        st.put("lijie", 25);
 //        st.put("pengshasha", 26);
 //        st.put("zhanghaiyue", 28);
 //        st.put("lili", 48);
