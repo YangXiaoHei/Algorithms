@@ -30,6 +30,7 @@ public class __SeparateChainingHashST <K, V> {
         st = t;
     }
     private int hash(K key) {
+        
         return (key.hashCode() & 0x7FFFFFFF) % capacity;
     }
     public void put(K k, V v) {
@@ -66,6 +67,6 @@ public class __SeparateChainingHashST <K, V> {
 //        st.put("lili", 48);
 //        StdOut.println(st.get("yanghan"));
 //        StdOut.println(st.get("pengshasha"));
-        StdOut.println(st.get("zhanghaiyue"));
+//        StdOut.println(st.get("zhanghaiyue"));
     }
 }
