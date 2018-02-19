@@ -50,7 +50,7 @@ public class __SeparateChainingHashST <K, V> {
         return st[i].get(k);
     }
     public void delete(K k) {
-        if (k == null) throw new IllegalArgumentException();
+//        if (k == null) throw new IllegalArgumentException();
         int i = hash(k);
         if (st[i].contain(k)) --size;
         st[i].delete(k);
