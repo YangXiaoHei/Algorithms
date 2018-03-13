@@ -1,10 +1,8 @@
 package Review;
 
 import static Tool.ArrayGenerator.*;
-import java.util.*;
 
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
 public class Practise_2_1_04 {
@@ -28,10 +26,10 @@ public class Practise_2_1_04 {
     public static double insertion_B(int[] a) {
         Stopwatch timer = new Stopwatch();
         for (int i = 0; i < a.length; i++) {
-            int t = a[i], j;
-            for (j = i - 1; j >= 0 && t < a[j]; j--)
+            int v = a[i], j;
+            for (j = i - 1; j >= 0 && v < a[j]; j--)
                 a[j + 1] = a[j];
-            a[j + 1] = t;
+            a[j + 1] = v;
         }
         return timer.elapsedTime();
     }
@@ -46,28 +44,59 @@ public class Practise_2_1_04 {
                 int t = a[i];
                 a[i] = a[i - 1];
                 a[i - 1] = t;
-                ++exchs;
+                exchs++;
             }
         }
         if (exchs == 0) return timer.elapsedTime();
         for (int i = 2; i < a.length; i++) {
-            int v = a[i];
-            int j = i;
+            int v = a[i], j = i;
             while (v < a[j - 1]) {
                 a[j] = a[j - 1];
-                j--;
+               j--;
             }
             a[j] = v;
         }
         return timer.elapsedTime();
     }
-    public static void main(String[] args) {
-        int[] a = descendInts(80000, 0);
+    public static void timeTrial() {
+        int[] a = descendInts(20000, 0);
         int[] cp1 = copy(a);
         int[] cp2 = copy(a);
         StdOut.printf("A : %.3f\n", insertion_A(a));
         StdOut.printf("B : %.3f\n", insertion_B(cp1));
         StdOut.printf("C : %.3f\n", insertion_C(cp2));
+        assert isSorted(a);
+        assert isSorted(cp1);
+        assert isSorted(cp2);
+    }
+    public static void main(String[] args) {
+        timeTrial();
+        /*
+         * E A S Y Q U E S T I O N
+         * 
+         * A E S Y Q U E S T I O N
+         * 
+         * A E S Y Q U E S T I O N
+         * 
+         * A E S Y Q U E S T I O N
+         * 
+         * A E Q S Y U E S T I O N
+         * 
+         * A E Q S U Y E S T I O N
+         * 
+         * A E E Q S U Y S T I O N
+         * 
+         * A E E Q S S U Y T I O N
+         * 
+         * A E E Q S S T U Y I O N
+         * 
+         * A E E I Q S S T U Y O N
+         * 
+         * A E E I O Q S S T U Y N 
+         * 
+         * A E E I N O Q S S T U Y
+         * 
+         */
     }
     // output
     /*
