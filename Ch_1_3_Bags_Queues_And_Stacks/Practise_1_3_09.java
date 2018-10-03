@@ -18,12 +18,20 @@ public class Practise_1_3_09 {
 	public static String transform(String str) {
 		 LinkedListStack<String> complete = new LinkedListStack<String>();
 		 LinkedListStack<String> optr = new LinkedListStack<String>();
+		 Boolean continuous = false;
 		 for(String s : str.split("")) {
-			 if (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/"))
+			 if (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/")) {
 				 optr.push(s);
-			 else if (s.charAt(0) >= '0' && s.charAt(0) <= '9') 
-				 complete.push(s);
-			 else if (s.equals("(") || s.equals(")")) {
+				 continuous = false;
+			 } else if (s.charAt(0) >= '0' && s.charAt(0) <= '9') {
+			     if (continuous) {
+			         complete.push(complete.pop() + s);
+			     } else {
+			         complete.push(s);
+			         continuous = true;
+			     }
+			 } else if (s.equals("(") || s.equals(")")) {
+			     continuous = false;
 				 String op2 = complete.pop(),
 						op1 = complete.pop(),
 						opt = optr.pop();
@@ -34,6 +42,7 @@ public class Practise_1_3_09 {
 	 }
 
    public static void main(String[] args) {
-       StdOut.println(transform("1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) )"));
+       StdOut.println(transform("11 + 23 ) * 33 - 44 ) * 65 - 6 ) ) )"));
+       StdOut.println(transform("11+23)*33-44)*65-6)))"));
    }
 }
