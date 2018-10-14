@@ -9,9 +9,11 @@ void test(void) {
 
     setbuf(stdout, NULL);
 
+    /* 测试 createGraph API */
     struct G *g = createGraph(13);
 
-    addEdge(g, 0, 1);
+    /* 测试 addEdge API */
+    addEdge(g, 0, 1);  
     addEdge(g, 0, 2);
     addEdge(g, 0, 6);
     addEdge(g, 0, 5);
@@ -25,29 +27,35 @@ void test(void) {
     addEdge(g, 9, 12);
     addEdge(g, 11, 12);
 
-    mark(g, 3);
+    /* 测试 mark API */
+    mark(g, 3);   
     mark(g, 5);
     mark(g, 8);
     mark(g, 3);
     mark(g, 9);
     mark(g, 12);
 
-    printf("%s", toString(g));
+    /* 测试 toString API */
+    printf("%s", toString(g));  
 
+    /* 测试 marked 和 getVertexCount API */
     for (int i = 0; i < getVertexCount(g); i++)
         if (marked(g, i))
             printf("%d marked!\n", i);
 
-    unmark(g, 3);
+    /* 测试 unmark API */    
+    unmark(g, 3);   
     unmark(g, 8);
     unmark(g, 9);
 
     printf("%s", toString(g));
 
+    /* 测试 clearAllMarked API */   
     clearAllMarked(g);
 
     printf("%s", toString(g));
 
+    /* 测试 DFS API */   
     DFS(g, 0, display);
     clearAllMarked(g);
 
@@ -60,10 +68,12 @@ void test(void) {
     DFS(g, 11, display);
     clearAllMarked(g);
 
+    /* 测试 path */
     for (int i = 0; i < getVertexCount(g); i++) 
         for (int j = 0; j < getVertexCount(g); j++)
             printf("from %d to %d: %s",i, j, path(g, i, j));
 
+    /* 测试 destroyGraph */
     destroyGraph(&g);
 }
 
