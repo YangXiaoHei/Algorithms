@@ -1,6 +1,7 @@
 package Ch_4_1_Undirected_Graphs;
 
 import edu.princeton.cs.algs4.StdOut;
+import java.util.*;
 
 public class __Queue<T> implements Iterable<T> {
     private T[] items = (T[])new Object[1];
@@ -44,6 +45,20 @@ public class __Queue<T> implements Iterable<T> {
         StdOut.println(this);
         return item;
     }
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            int cur = head;
+            public boolean hasNext() {
+                return cur != tail;
+            }
+            public T next() {
+                T item = items[cur];
+                if (++cur == items.length)
+                    cur = 0;
+                return item;
+            }
+        };
+    }
     public boolean isEmpty() { return size == 0; }
     public String toString() {
         if (isEmpty()) return "[empty]";
@@ -66,8 +81,8 @@ public class __Queue<T> implements Iterable<T> {
         int i = -1;
         while (i++ < 10)
             q.enqueue(i);
-         while (!q.isEmpty())
-             q.dequeue();
+        for (int w : q)
+            StdOut.println(w);
     }
     
 }
