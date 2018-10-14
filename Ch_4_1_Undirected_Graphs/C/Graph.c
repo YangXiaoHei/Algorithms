@@ -121,7 +121,20 @@ err_1:
 }
 
 int hasEdge(struct G *graph, int v, int w) {
-    /* TODO */
+    if (!graph || v < 0 || w < 0 || v >= graph->vertex_count || w >= graph->vertex_count)
+        return 0;
+    
+    int isV = graph->adjs[v].size < graph->adjs[w].size;
+    struct adj_vertex_t *cur = isV ? graph->adjs[v].head : graph->adjs[w].head;
+    
+    for (; cur; cur = cur->next)
+        if (isV) {
+            if (cur->v == w)
+                return 1;
+        } else {
+            if (cur->v == v)
+                return 1;
+        }
     return 0;
 }
 
@@ -249,10 +262,12 @@ int addEdge(struct G *graph, int v, int w) {
     newnode_1->v = w;
     newnode_1->next = g->adjs[v].head;
     g->adjs[v].head = newnode_1;
+    g->adjs[v].size++;
 
     newnode_2->v = v;
     newnode_2->next = g->adjs[w].head;
     g->adjs[w].head = newnode_2;
+    g->adjs[w].size++;
 
     g->edge_count++;
 
