@@ -1,9 +1,7 @@
 package Ch_4_1_Undirected_Graphs;
 
 import java.util.*;
-
-import Ch_4_1_Undirected_Graphs.___Graph_AdjacencyMatrixImp.AdjacencyMatrixImp;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.*;
 
 public class ___Graph_AdjacencyList {
     static class Bag<T> implements Iterable<T> {
