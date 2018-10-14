@@ -27,6 +27,8 @@ int destroyGraph(struct G **graph);
 
 void adj(struct G *graph, int v, iterator it);
 
+const char *path(struct G *graph, int from, int to);
+
 void mark(struct G *graph, int v);
 
 void unmark(struct G *graph, int v);

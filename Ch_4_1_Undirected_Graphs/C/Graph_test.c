@@ -7,6 +7,8 @@ void display(int v) {
 
 void test(void) {
 
+    setbuf(stdout, NULL);
+
     struct G *g = createGraph(13);
 
     addEdge(g, 0, 1);
@@ -57,6 +59,10 @@ void test(void) {
 
     DFS(g, 11, display);
     clearAllMarked(g);
+
+    for (int i = 0; i < getVertexCount(g); i++) 
+        for (int j = 0; j < getVertexCount(g); j++)
+            printf("from %d to %d: %s",i, j, path(g, i, j));
 
     destroyGraph(&g);
 }
