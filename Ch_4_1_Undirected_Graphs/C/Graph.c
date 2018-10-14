@@ -122,7 +122,7 @@ err_1:
 
 int hasEdge(struct G *graph, int v, int w) {
     /* TODO */
-    return 1;
+    return 0;
 }
 
 struct G* dupGraph(struct G *graph) {
@@ -229,6 +229,14 @@ int addEdge(struct G *graph, int v, int w) {
     struct G *g = graph;
     struct adj_vertex_t *newnode_1, *newnode_2;
     struct adj_vertex_t *tmp;
+
+    /* 禁止自环 */
+    if (v == w)
+        return 0;
+
+    /* 禁止平行边 */
+    if (hasEdge(graph, v, w))
+        return 0;
 
     if ((newnode_1 = malloc(sizeof(struct adj_vertex_t))) == NULL)
         return -1;
