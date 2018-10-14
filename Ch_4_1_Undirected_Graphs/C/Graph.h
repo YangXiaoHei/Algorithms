@@ -16,10 +16,10 @@ struct G {
     struct adj *adjs;
     int vertex_count;
     int edge_count;
-    char *marked;
+    char *marked;  /* 压缩过的域，1 bit 表示一个顶点 */
 };
 
-typedef int(*iterator)(int v);
+typedef void(*iterator)(int v);
 
 struct G* createGraph(int vertex_count);
 
@@ -28,6 +28,10 @@ int destroyGraph(struct G **graph);
 void adj(struct G *graph, int v, iterator it);
 
 void mark(struct G *graph, int v);
+
+void unmark(struct G *graph, int v);
+
+void clearAllMarked(struct G *graph);
 
 int marked(struct G *graph, int v);
 

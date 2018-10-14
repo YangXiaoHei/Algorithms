@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <math.h>
 #include "Graph.h"
@@ -6,15 +7,31 @@
 static char _internal_buffer[1 << 20];
 
 void mark(struct G *graph, int v) {
+    if (!graph || v < 0 || v >= graph->vertex_count)
+        return;
     char *buf = graph->marked;
     buf += (v / 8);
     *buf |= (1 << (v % 8));
 }
 
 int marked(struct G *graph, int v) {
+    if (!graph || v < 0 || v >= graph->vertex_count)
+        return 0;
     char *buf = graph->marked;
     buf += (v / 8);
     return (*buf >> (v % 8)) & 1;
+}
+
+void unmark(struct G *graph, int v) {
+    if (!graph || v < 0 || v >= graph->vertex_count)
+        return;
+    char *buf = graph->marked;
+    buf += (v / 8);
+    *buf &= ~(1 << (v % 8));
+}
+
+void clearAllMarked(struct G *graph) {
+    bzero(graph->marked, ceil(graph->vertex_count / 8.0));
 }
 
 struct G* createGraph(int vertex_count) {
@@ -135,7 +152,9 @@ static void _DFS(struct G *g, int v, iterator it) {
 void DFS(struct G *graph, int v, iterator it) {
     if (!graph || v < 0 || v >= graph->vertex_count)
         return;
+    printf("\n*********** DFS from %d *************\n", v);
     _DFS(graph, v, it);
+    printf("\n*************************************\n");
 }
 
 const char *toString(struct G *graph) {
