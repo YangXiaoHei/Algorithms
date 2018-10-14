@@ -4,7 +4,7 @@ import java.util.*;
 
 import edu.princeton.cs.algs4.StdOut;
 
-public class ___Graph_multiImplementation {
+public class ___Graph_AdjacencyMatrixImp {
     public interface Graph {
         public abstract String toString();
         public abstract int V();
@@ -46,6 +46,9 @@ public class ___Graph_multiImplementation {
         return n / 2;
     }
     
+    /*
+     * 图的邻接矩阵实现
+     */
     static class AdjacencyMatrixImp implements Graph {
         public int[] vertex;
         public boolean[][] edge;
@@ -85,11 +88,8 @@ public class ___Graph_multiImplementation {
             sb.append("\n");
             for (int i = 0; i < V(); i++) {
                 sb.append(String.format("%-4d", i));
-                for (int j = 0; j < V(); j++) {
-                    sb.append(edge[i][j] ?
-                            String.format("%-4s", "X") :
-                            String.format("%-4s", "0"));
-                }
+                for (int j = 0; j < V(); j++) 
+                    sb.append(String.format("%-4s", edge[i][j] ? "X" : "0"));
                 sb.append("\n");
             }
             sb.append("\n");
@@ -125,6 +125,7 @@ public class ___Graph_multiImplementation {
         G.addEdge(3, 5);
         G.addEdge(3, 4);
         G.addEdge(5, 4);
+        G.addEdge(4, 6);
         G.addEdge(7, 8);
         G.addEdge(9, 10);
         G.addEdge(9, 11);
@@ -132,7 +133,7 @@ public class ___Graph_multiImplementation {
         G.addEdge(11, 12);
         StdOut.println(G);
         
-        for (int w : G.adj(11))
+        for (int w : G.adj(6))
             StdOut.println(w);
         
     }
