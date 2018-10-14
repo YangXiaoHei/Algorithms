@@ -73,6 +73,14 @@ void test(void) {
         for (int j = 0; j < getVertexCount(g); j++)
             printf("from %d to %d: %s",i, j, path(g, i, j));
 
+    /* 测试 hasEdge */
+    for (int i = 0; i < getVertexCount(g); i++)
+        for (int j = 0; j < getVertexCount(g); j++)
+            if (hasEdge(g, i, j))
+                printf("%d connect %d\n", i, j);
+
+    struct G *copyG = dupGraph(g);
+
     /* 测试 destroyGraph */
     destroyGraph(&g);
 }

@@ -120,6 +120,16 @@ err_1:
     return NULL;
 }
 
+int hasEdge(struct G *graph, int v, int w) {
+    /* TODO */
+    return 1;
+}
+
+struct G* dupGraph(struct G *graph) {
+    /* TODO */
+    return NULL;
+}
+
 int destroyGraph(struct G **graph) {
     if (!graph)
         return 0;

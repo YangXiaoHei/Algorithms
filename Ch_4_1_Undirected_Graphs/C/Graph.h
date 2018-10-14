@@ -23,6 +23,10 @@ typedef void(*iterator)(int v);
 
 struct G* createGraph(int vertex_count);
 
+int hasEdge(struct G *graph, int v, int w);
+
+struct G* dupGraph(struct G *graph);
+
 int destroyGraph(struct G **graph);
 
 void adj(struct G *graph, int v, iterator it);
