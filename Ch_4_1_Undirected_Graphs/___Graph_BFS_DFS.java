@@ -46,7 +46,21 @@ public class ___Graph_BFS_DFS {
                 _DFS(G, w, marked);
     }
     public static void BFS(Graph G, int v) {
-        
+        boolean marked[] = new boolean[G.V()];
+        _BFS(G, v, marked);
+    }
+    public static void _BFS(Graph G, int s, boolean[] marked) {
+        __Queue<Integer> q = new __Queue<>();
+        q.enqueue(s);
+        while (!q.isEmpty()) {
+            int v = q.dequeue();
+            for (int w : G.adj(v)) {
+                if (!marked[w]) {
+                    marked[w] = true;
+                    q.enqueue(w);
+                }
+            }
+        }
     }
     public static void main(String[] args) {
         Graph G = new Graph(13);
