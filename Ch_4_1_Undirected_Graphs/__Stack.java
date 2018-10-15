@@ -18,6 +18,10 @@ public class __Stack<T> implements Iterable<T> {
         first = new Node(item, first);
         size++;
     }
+    public void clear() {
+        while (!isEmpty())
+            pop();
+    }
     public boolean isEmpty() { return size == 0; }
     public T pop() {
         if (isEmpty())
