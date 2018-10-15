@@ -150,6 +150,26 @@ public class Practise_4_1_10 {
                     S.pop();
             }
         }
+        public static int DFSFindNode(Graph G, int s) {
+            __Stack<Integer> S = new __Stack<>();
+            G.mark(s);
+            S.push(s);
+            while (!S.isEmpty()) {
+                s = S.peek();
+                boolean allMarked = true;
+                for (int w : G.adj(s)) {
+                    if (!G.marked(w)) {
+                        G.mark(w);
+                        S.push(w);
+                        allMarked = false;
+                        break;
+                    }
+                }
+                if (allMarked)
+                    return s;
+            }
+            throw new RuntimeException("should not reach here");
+        }
     }
     public static void main(String[] args) {
         /*
@@ -174,7 +194,11 @@ public class Practise_4_1_10 {
         g.addEdge(3, 10);
         g.addEdge(8, 1);
         g.addEdge(4, 1);
-        StdOut.println(g);
-        g.DFS(g, 0);
+        StdOut.println(g.DFSFindNode(g, 0));
     }
+    /*
+     * output
+     * 
+     * 10
+     */
 }
