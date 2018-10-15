@@ -30,7 +30,7 @@ public class __Queue<T> implements Iterable<T> {
         if (tail == items.length)
             tail = 0;
         size++;
-        StdOut.println(this);
+//        StdOut.println(this);
     }
     public T dequeue() {
         if (isEmpty())
@@ -42,7 +42,7 @@ public class __Queue<T> implements Iterable<T> {
             head = 0;
         if (size > 0 && size == (items.length >> 2))
             resize(items.length >> 1);
-        StdOut.println(this);
+//        StdOut.println(this);
         return item;
     }
     public Iterator<T> iterator() {

@@ -52,6 +52,7 @@ public class ___Graph_BFS_DFS {
     public static void _BFS(Graph G, int s, boolean[] marked) {
         __Queue<Integer> q = new __Queue<>();
         q.enqueue(s);
+        marked[s] = true;
         while (!q.isEmpty()) {
             int v = q.dequeue();
             for (int w : G.adj(v)) {
