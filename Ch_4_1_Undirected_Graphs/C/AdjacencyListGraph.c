@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
-#include "Graph.h"
+#include "AdjacencyListGraph.h"
 
 static char _internal_buffer[1 << 20];
 static char _internal_path_buffer[1 << 10];

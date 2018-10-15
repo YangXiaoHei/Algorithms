@@ -1,7 +1,7 @@
 #! /bin/bash
 
-cc Graph_test.c Graph.c -o test_Graph
+cc AdjacencyListGraph_test.c AdjacencyListGraph.c -o test
 if [ $? -eq 0 ]
 then
-    ./test_Graph
+    ./test
 fi

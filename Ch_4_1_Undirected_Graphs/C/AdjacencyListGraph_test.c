@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "Graph.h"
+#include "AdjacencyListGraph.h"
 
 void display(int v) {
     printf("%d ", v);
