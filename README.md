@@ -16,3 +16,4 @@
 	* [`4.1.2`](https://github.com/YangXiaoHei/Algorithms/blob/master/Ch_4_1_Undirected_Graphs/images/Practise_4_1_02.png)
 	* [`4.1.9`](https://github.com/YangXiaoHei/Algorithms/blob/master/Ch_4_1_Undirected_Graphs/images/Practise_4_1_09.png)
 	* [`4.1.11`](https://github.com/YangXiaoHei/Algorithms/blob/master/Ch_4_1_Undirected_Graphs/images/Practise_4_1_11.png)
+	* [`4.1.14.a`](https://github.com/YangXiaoHei/Algorithms/blob/master/Ch_4_1_Undirected_Graphs/images/Practise_4_1_14.1.png)
