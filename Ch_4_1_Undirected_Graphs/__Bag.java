@@ -25,6 +25,13 @@ public class __Bag<T> implements Iterable<T> {
             tail = n;
         }
     }
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (T i : this)
+            sb.append(i + " ");
+        return sb.toString();
+        
+    }
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             Node cur = head;

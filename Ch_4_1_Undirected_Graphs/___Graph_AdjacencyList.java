@@ -95,4 +95,24 @@ public class ___Graph_AdjacencyList {
         for (int w : G.adj(11))
             StdOut.println(w);
     }
+    /*
+     * output
+     * 
+     *  0: 1 2 6 5 
+        1: 0 
+        2: 0 
+        3: 5 4 
+        4: 3 5 6 
+        5: 0 3 4 
+        6: 0 4 
+        7: 8 
+        8: 7 
+        9: 10 11 12 
+        10: 9 
+        11: 9 12 
+        12: 9 11 
+        
+        9
+        12
+     */
 }

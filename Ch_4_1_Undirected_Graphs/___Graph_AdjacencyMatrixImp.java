@@ -132,9 +132,31 @@ public class ___Graph_AdjacencyMatrixImp {
         G.addEdge(9, 12);
         G.addEdge(11, 12);
         StdOut.println(G);
-        
+       
         for (int w : G.adj(6))
             StdOut.println(w);
-        
     }
+    /*
+     * output
+     * 
+     * vertex: 0 1 2 3 4 5 6 7 8 9 10 11 12 
+        edge: 
+            0   1   2   3   4   5   6   7   8   9   10  11  12  
+        0   0   X   X   0   0   X   X   0   0   0   0   0   0   
+        1   X   0   0   0   0   0   0   0   0   0   0   0   0   
+        2   X   0   0   0   0   0   0   0   0   0   0   0   0   
+        3   0   0   0   0   X   X   0   0   0   0   0   0   0   
+        4   0   0   0   X   0   X   X   0   0   0   0   0   0   
+        5   X   0   0   X   X   0   0   0   0   0   0   0   0   
+        6   X   0   0   0   X   0   0   0   0   0   0   0   0   
+        7   0   0   0   0   0   0   0   0   X   0   0   0   0   
+        8   0   0   0   0   0   0   0   X   0   0   0   0   0   
+        9   0   0   0   0   0   0   0   0   0   0   X   X   X   
+        10  0   0   0   0   0   0   0   0   0   X   0   0   0   
+        11  0   0   0   0   0   0   0   0   0   X   0   0   X   
+        12  0   0   0   0   0   0   0   0   0   X   0   X   0   
+        
+        0
+        4
+     */
 }
