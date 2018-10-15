@@ -4,7 +4,7 @@ import java.util.*;
 
 import edu.princeton.cs.algs4.StdOut;
 
-public class ___Graph_AdjacencyMatrixImp {
+public class ___Graph_AdjacencyMatrix {
     public interface Graph {
         public abstract String toString();
         public abstract int V();

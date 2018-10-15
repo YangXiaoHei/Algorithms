@@ -24,7 +24,14 @@ public class __Stack<T> implements Iterable<T> {
             throw new RuntimeException("empty");
         T toPop = first.item;
         first = first.next;
+        size--;
         return toPop;
+    }
+    public int size() { return size; }
+    public T peek() {
+        if (isEmpty())
+            throw new RuntimeException("empty");
+        return first.item;
     }
     public Iterator<T> iterator() {
         return new Iterator<T>() {
@@ -44,7 +51,7 @@ public class __Stack<T> implements Iterable<T> {
         int i = 0;
         while (i < 10)
             stack.push(i++);
-        for (int w : stack)
-            StdOut.println(w);
+        while (!stack.isEmpty())
+            StdOut.println(stack.pop());
     }
 }

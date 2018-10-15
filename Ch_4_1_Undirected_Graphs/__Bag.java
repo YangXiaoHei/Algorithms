@@ -14,6 +14,8 @@ public class __Bag<T> implements Iterable<T> {
     }
     private Node tail;
     private Node head;
+    int size;
+    public int size() { return size; }
     public void add(T item) {
         Node n = new Node(item, null);
         if (head == null)
@@ -24,6 +26,7 @@ public class __Bag<T> implements Iterable<T> {
             tail.next = n;
             tail = n;
         }
+        size++;
     }
     public String toString() {
         StringBuilder sb = new StringBuilder();
