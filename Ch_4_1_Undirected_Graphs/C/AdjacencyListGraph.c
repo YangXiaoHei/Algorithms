@@ -138,8 +138,60 @@ int hasEdge(struct G *graph, int v, int w) {
     return 0;
 }
 
-struct G* dupGraph(struct G *graph) {
-    /* TODO */
+struct G* dupGraph(struct G *oldG) {
+   
+   struct adj_vertex_t *newnode;
+   struct adj_vertex_t *old, *cur;
+   struct G *newG;
+   int i;
+
+   /* 为新的图结构分配内存 */
+   if ((newG = malloc(sizeof(struct G))) == NULL)
+       return NULL;
+
+   newG->vertex_count = oldG->vertex_count;
+   newG->edge_count = oldG->edge_count;
+
+   /* 为新图的邻接表头部分配内存 */
+   if ((newG->adjs = malloc(sizeof(struct adj) * newG->vertex_count)) == NULL)
+       goto err;
+
+   /* 为新图用于深搜和广搜的压缩过的数组 marked 分配内存 */
+   int nbytes = ceil(newG->vertex_count / 8.0);
+   if ((newG->marked = malloc(sizeof(char) * nbytes)) == NULL)
+        goto err_1;
+    memcpy(newG->marked, oldG->marked, nbytes);
+
+   /* 为每个顶点的邻接点分配内存 */
+   for (i = 0; i < newG->vertex_count; i++) {
+
+        if ((newG->adjs[i].size = oldG->adjs[i].size) == 0)
+            continue;
+        
+        for (old = oldG->adjs[i].head, cur = NULL; old; old = old->next) {
+
+            if ((newnode = malloc(sizeof(struct adj_vertex_t))) == NULL) {
+                printf("malloc error!");  /* 不好处理...直接退出吧 */
+                exit(1);
+            } 
+            newnode->v = old->v;
+            newnode->next = NULL;
+
+            if (cur == NULL) {
+                newG->adjs[i].head = newnode;
+                cur = newnode;
+            } else {
+                cur->next = newnode;
+                cur = cur->next;
+            }
+        }
+   }
+   return newG;
+
+err_1:
+    free(newG->adjs);
+err:
+    free(newG);
     return NULL;
 }
 

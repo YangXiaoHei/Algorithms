@@ -68,18 +68,20 @@ void test(void) {
     DFS(g, 11, display);
     clearAllMarked(g);
 
-    /* 测试 path */
+    /* 测试 path API */
     for (int i = 0; i < getVertexCount(g); i++) 
         for (int j = 0; j < getVertexCount(g); j++)
             printf("from %d to %d: %s",i, j, path(g, i, j));
 
-    /* 测试 hasEdge */
+    /* 测试 hasEdge API */
     for (int i = 0; i < getVertexCount(g); i++)
         for (int j = 0; j < getVertexCount(g); j++)
             if (hasEdge(g, i, j))
                 printf("%d connect %d\n", i, j);
 
+    /* 测试 dupGraph API */
     struct G *copyG = dupGraph(g);
+    printf("\n//////////////// dupGraph /////////////////\n%s", toString(copyG));
 
     /* 测试 destroyGraph */
     destroyGraph(&g);
