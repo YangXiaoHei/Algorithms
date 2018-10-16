@@ -16,7 +16,8 @@ struct _internal_stack {
     int size;
 };
 
-static struct _internal_stack *_createStack() {
+static struct _internal_stack *_createStack() 
+{
     struct _internal_stack *stack;
     if ((stack = malloc(sizeof(struct _internal_stack))) == NULL)
         return NULL;
@@ -25,7 +26,8 @@ static struct _internal_stack *_createStack() {
     return stack;
 }
 
-static void _push(struct _internal_stack *stack, int value) {
+static void _push(struct _internal_stack *stack, int value) 
+{
     struct _internal_node_t *newnode;
     if ((newnode = malloc(sizeof(struct _internal_node_t))) == NULL)
         return;
@@ -35,11 +37,13 @@ static void _push(struct _internal_stack *stack, int value) {
     stack->size++;
 }
 
-static int _size(struct _internal_stack *stack) {
+static int _size(struct _internal_stack *stack) 
+{
     return stack->size;
 }
 
-static int _pop(struct _internal_stack *stack) {
+static int _pop(struct _internal_stack *stack) 
+{
     int value = stack->head->value;
     struct _internal_node_t *tmp = stack->head;
     stack->head = stack->head->next;
@@ -48,7 +52,8 @@ static int _pop(struct _internal_stack *stack) {
     return value;
 }
 
-static void _destroyStack(struct _internal_stack **stack) {
+static void _destroyStack(struct _internal_stack **stack) 
+{
     struct _internal_stack *S = *stack;
     struct _internal_node_t *tmp;
     while(S->size--) {
@@ -60,7 +65,8 @@ static void _destroyStack(struct _internal_stack **stack) {
     *stack = NULL;
 }
 
-void mark(struct G *graph, int v) {
+void mark(struct G *graph, int v) 
+{
     if (!graph || v < 0 || v >= graph->vertex_count)
         return;
     char *buf = graph->marked;
@@ -88,7 +94,8 @@ void clearAllMarked(struct G *graph) {
     bzero(graph->marked, ceil(graph->vertex_count / 8.0));
 }
 
-struct G* createGraph(int vertex_count) {
+struct G* createGraph(int vertex_count) 
+{
     struct G *g = NULL;
     int nbytes = 0;
 
@@ -120,7 +127,8 @@ err_1:
     return NULL;
 }
 
-int hasEdge(struct G *graph, int v, int w) {
+int hasEdge(struct G *graph, int v, int w) 
+{
     if (!graph || v < 0 || w < 0 || v >= graph->vertex_count || w >= graph->vertex_count)
         return 0;
     
@@ -138,8 +146,8 @@ int hasEdge(struct G *graph, int v, int w) {
     return 0;
 }
 
-struct G* dupGraph(struct G *oldG) {
-   
+struct G* dupGraph(struct G *oldG) 
+{
    struct adj_vertex_t *newnode;
    struct adj_vertex_t *old, *cur;
    struct G *newG;
@@ -195,7 +203,8 @@ err:
     return NULL;
 }
 
-int destroyGraph(struct G **graph) {
+int destroyGraph(struct G **graph) 
+{
     if (!graph)
         return 0;
 
@@ -230,7 +239,8 @@ void adj(struct G *graph, int v, iterator it) {
         if (it) (*it)(cur->v);
 }
 
-static void _DFSRecord(struct G *g, int v, int *records) {
+static void _DFSRecord(struct G *g, int v, int *records) 
+{
     mark(g, v);
     struct adj_vertex_t *cur;
     for (cur = g->adjs[v].head; cur; cur = cur->next)
@@ -240,14 +250,16 @@ static void _DFSRecord(struct G *g, int v, int *records) {
         }
 }
 
-static int findRoot(int *records, int from) {
+static int findRoot(int *records, int from) 
+{
     int root = from;
     while (records[root] != root)
         root = records[root];
     return root;
 } 
 
-const char *path(struct G *graph, int from, int to) {
+const char *path(struct G *graph, int from, int to) 
+{
     if (!graph || from < 0 || to < 0 || from >= graph->vertex_count || to >= graph->vertex_count)
         return NULL;
 
@@ -287,7 +299,8 @@ const char *path(struct G *graph, int from, int to) {
     return _internal_path_buffer;
 }
 
-int addEdge(struct G *graph, int v, int w) {
+int addEdge(struct G *graph, int v, int w) 
+{
     if (!graph || v < 0 || w < 0 || v >= graph->vertex_count || w >= graph->vertex_count)
         return -1;
 
@@ -326,17 +339,20 @@ int addEdge(struct G *graph, int v, int w) {
     return 0;
 }
 
-int getEdgeCount(struct G *graph) {
+int getEdgeCount(struct G *graph) 
+{
     if (!graph) return -1;
     return graph->edge_count;
 }
 
-int getVertexCount(struct G *graph) {
+int getVertexCount(struct G *graph) 
+{
     if (!graph) return -1;
     return graph->vertex_count;
 }
 
-static void _DFS(struct G *g, int v, iterator it) {
+static void _DFS(struct G *g, int v, iterator it) 
+{
     mark(g, v);
     if (it) (*it)(v);
     struct adj_vertex_t *cur;
@@ -345,7 +361,8 @@ static void _DFS(struct G *g, int v, iterator it) {
             _DFS(g, cur->v, it);
 }
 
-void DFS(struct G *graph, int v, iterator it) {
+void DFS(struct G *graph, int v, iterator it) 
+{
     if (!graph || v < 0 || v >= graph->vertex_count)
         return;
     printf("\n*********** DFS from %d *************\n", v);
@@ -353,34 +370,36 @@ void DFS(struct G *graph, int v, iterator it) {
     printf("\n*************************************\n");
 }
 
-const char *toString(struct G *graph) {
-    ssize_t len = 0;
+const char *toString(struct G *graph) 
+{
+#define APPEND(_format_, ...) (len += snprintf(_internal_buffer + len, sizeof(_internal_buffer) - len, _format_, ##__VA_ARGS__))
+#define APPEND_BEGIN ssize_t len = 0
+#define APPEND_END _internal_buffer[len] = 0
+    APPEND_BEGIN;
     int i;
     struct G *g = graph;
     struct adj_vertex_t *cur;
     int nbytes = ceil(graph->vertex_count / 8.0);
 
-#define SNPRINTF(_format_, ...) (len += snprintf(_internal_buffer + len, sizeof(_internal_buffer) - len, _format_, ##__VA_ARGS__))
-    SNPRINTF("\n**************************\n");
+    APPEND("\n**************************\n");
     for (int i = 0; i < g->vertex_count; i++)
-        SNPRINTF("%-4d", i);
-    SNPRINTF("\n");
+        APPEND("%-4d", i);
+    APPEND("\n");
     char *buf = g->marked;
     for (int j = 0; j < g->vertex_count; j++) {
         buf = g->marked + (j / 8);
-        SNPRINTF("%-4d", (*buf >> (j % 8)) & 1);
+        APPEND("%-4d", (*buf >> (j % 8)) & 1);
     }
-    SNPRINTF("\n-------------------------\n");
+    APPEND("\n-------------------------\n");
     for (int i = 0; i < g->vertex_count; i++) {
-        SNPRINTF("%d :", i);
+        APPEND("%d :", i);
         for (cur = g->adjs[i].head; cur; cur = cur->next) 
-            SNPRINTF("%d ", cur->v);
-        SNPRINTF("\n");
+            APPEND("%d ", cur->v);
+        APPEND("\n");
     }
-    SNPRINTF("**************************\n");
-#undef SNPRINTF
-
-    _internal_buffer[len] = 0;
+    APPEND("**************************\n");
+    APPEND_END;
     return _internal_buffer;
+#undef APPEND
 }
 
