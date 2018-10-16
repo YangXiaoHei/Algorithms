@@ -1,7 +1,6 @@
 package Ch_4_1_Undirected_Graphs;
 
 import java.util.*;
-
 import edu.princeton.cs.algs4.StdOut;
 
 public class Practise_4_1_14 {
@@ -137,4 +136,57 @@ public class Practise_4_1_14 {
         analyseEdgeArray(from, edgeTo1);
         analyseEdgeArray(from, edgeTo2);
     }
+    /*
+     * output 
+     * 
+     *  0: 5 11 10 1 7 
+        1: 9 0 
+        2: 7 8 12 
+        3: 12 9 
+        4: 5 
+        5: 0 6 4 
+        6: 11 5 12 
+        7: 2 9 12 0 
+        8: 2 
+        9: 1 7 3 
+        10: 0 
+        11: 6 0 
+        12: 6 3 2 7 
+        
+        ---------------------------
+        // 使用栈
+        from 0 to 0 : 0
+        from 0 to 1 : 0 -> 1
+        from 0 to 2 : 0 -> 7 -> 2
+        from 0 to 3 : 0 -> 7 -> 12 -> 3
+        from 0 to 4 : 0 -> 5 -> 4
+        from 0 to 5 : 0 -> 5
+        from 0 to 6 : 0 -> 7 -> 12 -> 6 👈
+        from 0 to 7 : 0 -> 7
+        from 0 to 8 : 0 -> 7 -> 2 -> 8
+        from 0 to 9 : 0 -> 7 -> 9
+        from 0 to 10 : 0 -> 10
+        from 0 to 11 : 0 -> 11
+        from 0 to 12 : 0 -> 7 -> 12
+        
+        ---------------------------
+        
+        ---------------------------
+        // 使用队列
+        from 0 to 0 : 0
+        from 0 to 1 : 0 -> 1
+        from 0 to 2 : 0 -> 7 -> 2
+        from 0 to 3 : 0 -> 1 -> 9 -> 3
+        from 0 to 4 : 0 -> 5 -> 4
+        from 0 to 5 : 0 -> 5
+        from 0 to 6 : 0 -> 5 -> 6  👈
+        from 0 to 7 : 0 -> 7
+        from 0 to 8 : 0 -> 7 -> 2 -> 8
+        from 0 to 9 : 0 -> 1 -> 9
+        from 0 to 10 : 0 -> 10
+        from 0 to 11 : 0 -> 11
+        from 0 to 12 : 0 -> 7 -> 12
+        
+        ---------------------------
+     */
 }
