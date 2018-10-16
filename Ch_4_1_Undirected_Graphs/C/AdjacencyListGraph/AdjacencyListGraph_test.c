@@ -92,7 +92,6 @@ void test(void) {
     const char *file = "./graph_file";
     struct G *fileG = createGraphWithFile(file);
     printf("%s", toString(fileG));
-
 }
 
 int main(int argc, char const *argv[]) {
