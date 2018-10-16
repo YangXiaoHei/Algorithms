@@ -192,10 +192,6 @@ struct G* createGraphWithFile(const char *file_name)
     g->edge_count = 0;
 
     while (fgets(buf, sizeof(buf), fp) != NULL) {
-
-        // for (int i = 0; i < strlen(buf); i++)
-        //     printf("%c", buf[i]);
-
         int vertex = strtoll(buf, NULL, 10);
         if ((p = strchr(buf, ':')) == NULL) {
             printf("invalid file content!\n");
