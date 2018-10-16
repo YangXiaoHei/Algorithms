@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "AdjacencyListGraph.h"
+#include <inttypes.h>
 
 void display(int v) {
     printf("%d ", v);
@@ -85,6 +86,13 @@ void test(void) {
 
     /* 测试 destroyGraph */
     destroyGraph(&g);
+    destroyGraph(&copyG);
+
+    printf("\n//////////////// createGraphWithFile /////////////////\n");
+    const char *file = "./graph_file";
+    struct G *fileG = createGraphWithFile(file);
+    printf("%s", toString(fileG));
+
 }
 
 int main(int argc, char const *argv[]) {

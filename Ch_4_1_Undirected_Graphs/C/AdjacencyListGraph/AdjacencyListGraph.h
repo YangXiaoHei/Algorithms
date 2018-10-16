@@ -27,6 +27,8 @@ int hasEdge(struct G *graph, int v, int w);
 
 struct G* dupGraph(struct G *graph);
 
+struct G* createGraphWithFile(const char *file_name);
+
 int destroyGraph(struct G **graph);
 
 void adj(struct G *graph, int v, iterator it);

@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
+#include <inttypes.h>
 #include "AdjacencyListGraph.h"
 
 static char _internal_buffer[1 << 20];
@@ -144,6 +145,91 @@ int hasEdge(struct G *graph, int v, int w)
                 return 1;
         }
     return 0;
+}
+
+struct G* createGraphWithFile(const char *file_name) 
+{
+    FILE *fp;
+    char buf[128] = { 0 };
+    int vertex_count;
+    char *vp, *wp, *p;
+    int v, w;
+    struct adj_vertex_t *last;
+    struct G *g;
+    int nbytes = 0;
+    struct adj_vertex_t *newnode;
+
+    if ((fp = fopen(file_name, "r")) == NULL) {
+        printf("fopen error with %s\n", file_name);
+        return NULL;
+    }
+    
+    if (fgets(buf, 5, fp) == NULL) {
+        printf("get vertex_count fail!\n");
+        return NULL;
+    }
+    if ((vertex_count = strtoll(buf, NULL, 10)) <= 0) {
+        printf("what a fuck?!\n");
+        return NULL;
+    }
+
+    if ((g = malloc(sizeof(struct G))) == NULL)
+        goto err_1;
+
+    if ((g->adjs = malloc(sizeof(struct adj) * vertex_count)) == NULL)
+        goto err_2;
+
+    nbytes = ceil(vertex_count / 8.0);
+    if ((g->marked = malloc(sizeof(char) * nbytes)) == NULL)
+        goto err_3; 
+
+    for (int i = 0; i < vertex_count; i++) {
+        g->adjs[i].size = 0;
+        g->adjs[i].head = NULL;
+    }
+
+    g->vertex_count = vertex_count;
+    g->edge_count = 0;
+
+    while (fgets(buf, sizeof(buf), fp) != NULL) {
+
+        // for (int i = 0; i < strlen(buf); i++)
+        //     printf("%c", buf[i]);
+
+        int vertex = strtoll(buf, NULL, 10);
+        if ((p = strchr(buf, ':')) == NULL) {
+            printf("invalid file content!\n");
+            exit(1);
+        }
+        while (*p != 0 && *p != '\n' && (*p < '0' || *p > '9')) p++;
+        while (*p != 0 && *p != '\n') {
+            if ((newnode = malloc(sizeof(struct adj_vertex_t))) == NULL) {
+                printf("malloc error!");
+                exit(1);
+            }
+            newnode->v = strtoll(p, NULL, 10);
+            newnode->next = NULL;
+            if (g->adjs[vertex].head == NULL) 
+                g->adjs[vertex].head = newnode;
+            else {
+                last = g->adjs[vertex].head;
+                while (last->next != NULL)
+                    last = last->next;
+                last->next = newnode;
+            }
+            g->adjs[vertex].size++;
+            while (*p >= '0' && *p <= '9') p++;  /* 把数字过掉 */
+            while (*p != 0 && *p != '\n' && (*p < '0' || *p > '9')) p++;
+        }
+    }
+    return g;
+
+err_3:
+    free(g->adjs);
+err_2:
+    free(g);
+err_1:
+    return NULL;
 }
 
 struct G* dupGraph(struct G *oldG) 
@@ -392,7 +478,7 @@ const char *toString(struct G *graph)
     }
     APPEND("\n-------------------------\n");
     for (int i = 0; i < g->vertex_count; i++) {
-        APPEND("%d :", i);
+        APPEND("%d [%d 个] :", i, g->adjs[i].size);
         for (cur = g->adjs[i].head; cur; cur = cur->next) 
             APPEND("%d ", cur->v);
         APPEND("\n");
