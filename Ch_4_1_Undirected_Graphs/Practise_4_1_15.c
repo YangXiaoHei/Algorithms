@@ -110,7 +110,7 @@ void addEdge(struct G *g, int v, int w)
     if (!g || v < 0 || w < 0 || 
         v >= g->vertex_count || 
         w >= g->vertex_count) return;
-        
+
     setExist(g, v, w);
     setExist(g, w, v);
     g->edge_count++;
@@ -148,7 +148,7 @@ int adjs(struct G *g, int v)
         it++;
     g->iterator = (it != G_IT_END && it < n) ? it : G_IT_END;
 
-    return g->iterator++;
+    return g->iterator;
 }
 
 const char *toString(struct G *g)
@@ -156,23 +156,23 @@ const char *toString(struct G *g)
 #define APPEND_BEGIN ssize_t len = 0
 #define APPEND(_format_, ...) (len += snprintf(__internal_buffer + len, sizeof(__internal_buffer) - len, _format_, ##__VA_ARGS__))
 #define APPEND_END (__internal_buffer[len] = 0)
-
-    int i, j;
+    int i;
     APPEND_BEGIN;
+
     if (!g) return NULL;
 
     APPEND("vertex: ");
-    for (i = 0; i < g->vertex_count; i++)
+    for (int i = 0; i < g->vertex_count; i++)
         APPEND("%-3d", i);
     APPEND("\n");
     APPEND("edge: \n");
     APPEND("%-3c", ' ');
-    for (i = 0; i < g->vertex_count; i++)
+    for (int i = 0; i < g->vertex_count; i++)
         APPEND("%-3d", i);
     APPEND("\n");
-    for (i = 0; i < g->vertex_count; i++) {
+    for (int i = 0; i < g->vertex_count; i++) {
         APPEND("%-3d", i);
-        for (j = 0; j < g->vertex_count; j++) 
+        for (int j = 0; j < g->vertex_count; j++) 
             APPEND("%-3c", isExist(g, i, j) ? 'X' : 'O');
         APPEND("\n");
     }
@@ -205,11 +205,11 @@ int main(int argc, char const *argv[])
 
     printf("%s", toString(g));
 
-    for (int i = 0; i < getVertexCount(g); i++, resetIterator(g)) 
-        for (int v = adjs(g, i); v != G_IT_END; v = adjs(g, i))
-            printf("%d 邻居 : %d\n", i, v); 
-
-    destroyGraph(&g);
+    for (int i = 0; i < getVertexCount(g); i++) {
+        resetIterator(g);
+        for (int v = 0; v != G_IT_END; v = adjs(g, i))
+            printf("%d 的邻居 : %d\n", i, v);
+    }
 
     return 0;
 }
