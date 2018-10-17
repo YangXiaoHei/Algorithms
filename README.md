@@ -17,3 +17,4 @@
 	* [`4.1.9`](https://github.com/YangXiaoHei/Algorithms/blob/master/Ch_4_1_Undirected_Graphs/images/Practise_4_1_09.png)
 	* [`4.1.11`](https://github.com/YangXiaoHei/Algorithms/blob/master/Ch_4_1_Undirected_Graphs/images/Practise_4_1_11.png)
 	* [`4.1.14.a`](https://github.com/YangXiaoHei/Algorithms/blob/master/Ch_4_1_Undirected_Graphs/images/Practise_4_1_14.1.png) | [`4.1.14.b`](https://github.com/YangXiaoHei/Algorithms/blob/master/Ch_4_1_Undirected_Graphs/images/Practise_4_1_14.2.png) 对比两图可以发现，用栈来实现的广搜无法达到预期目的，因为栈总是 “贪心”，在还没有处理完本轮加入的所有邻居前就又向自己内部加入新节点。由于栈先进后出的性质，加入新节点后，只能从离起点更远的地方再向前迈向征程，整个过程好比喝醉酒兜圈子，但毕竟地球是圆的，尽管摇摇晃晃，南辕北辙，但最终又能回到起点。
+	*  [`4.1.18`](https://github.com/YangXiaoHei/Algorithms/blob/master/Ch_4_1_Undirected_Graphs/images/Practise_4_1_18.png)

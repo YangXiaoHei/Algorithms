@@ -124,6 +124,7 @@ public class Practise_4_1_10 {
         g.addEdge(3, 10);
         g.addEdge(8, 1);
         g.addEdge(4, 1);
+        StdOut.println(g);
         StdOut.println(g.DFSFindNode(g, 0));
     }
     /*
