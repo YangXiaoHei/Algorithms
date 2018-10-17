@@ -59,11 +59,15 @@ public class Practise_4_1_21 {
             return sb.toString();
         }
     }
-    public static void BaconKevin(SymbolGraph SG, String s) {
+    /* 从 BaconKevin 到 $s 的距离 */
+    public static int[] BaconKevin(SymbolGraph SG, String s, boolean printPath) {
         boolean[] marked = new boolean[SG.G.V()];
         int edgeTo[] = new int[SG.G.V()];
+        int disTo[] = new int[SG.G.V()];
         for (int i = 0; i < SG.G.V(); i++)
             edgeTo[i] = i;
+        
+        if (s == null) s = "Kidman, Nicole";
         
         /* BFS */
         __Queue<Integer> Q = new __Queue<>();
@@ -76,26 +80,38 @@ public class Practise_4_1_21 {
             for (int w : SG.G.adjs(v))
                 if (!marked[w]) {
                     edgeTo[w] = v;
+                    disTo[w] = disTo[v] + 1;
                     marked[w] = true;
                     Q.enqueue(w);
                 }
         }
         
-        /* 收集路径 */
-        __Stack<String> S = new __Stack<>();
-        for (int i = to; i != from; i = edgeTo[i])  
-            S.push(SG.name(i));
-        S.push(SG.name(from));
+        /* ⚠️⚠️⚠️⚠️ 排除掉不与 Bacon, Kevin 连通的演员 ⚠️⚠️⚠️⚠️⚠️ */
+        for (int i = 0; i < disTo.length; i++) {
+            if (disTo[i] == 0) {
+                if (SG.G.findRoot(i, edgeTo) != from)
+                    disTo[i] = -1;
+            }
+        }
         
-        /* 打印结果 */
-        StdOut.println(s);
-        while (!S.isEmpty()) 
-            StdOut.println("  " + S.pop());
+        if (printPath) {
+            
+            /* 收集路径 */
+            __Stack<String> S = new __Stack<>();
+            for (int i = to; i != from; i = edgeTo[i])  
+                S.push(SG.name(i));
+            S.push(SG.name(from));
+            
+            /* 打印结果 */
+            StdOut.println(s);
+            while (!S.isEmpty()) 
+                StdOut.println("  " + S.pop());
+        }
+        return disTo;
     }
     static class SymbolGraph {
         private HashMap<String, Integer> ST;
         private String[] name;
-        private String[] movie;
         private Graph G;
         SymbolGraph(String filename, String delim) {
             ST = new HashMap<String, Integer>();
@@ -110,6 +126,7 @@ public class Practise_4_1_21 {
                     String[] arr = line.split("/");
                     allLines.add(arr);
                     for (int i = 0; i < arr.length; i++) {
+                        /* 电影 or 名字 -> 索引 */
                         if (!ST.containsKey(arr[i]))
                             ST.put(arr[i], count++);
                     }
@@ -124,11 +141,14 @@ public class Practise_4_1_21 {
                     } catch (IOException e1) { }
                 }
             }
-            G = new Graph(ST.size());
+            
+            /*  索引 -> 电影 or 名字 */
             name = new String[ST.size()];
             for (Entry<String, Integer> ent :  ST.entrySet()) 
                 name[ent.getValue().intValue()] = ent.getKey();
             
+            /* 初始化图结构 */
+            G = new Graph(ST.size());
             for (int i = 0; i < allLines.size(); i++) {
                 String[] arr = allLines.get(i);
                 String movie = arr[0];
@@ -139,14 +159,26 @@ public class Practise_4_1_21 {
         public Graph G() { return G; }
         public String name(int v) { return name[v]; }
         public int index(String s) { return ST.get(s); }
-        public boolean contains(String s) { return ST.containsKey(s); }
-        
+        public boolean contains(String s) { return ST.containsKey(s); } 
     }
     public static void main(String[] args) {
+        
+        /* 4.1.21 */
         String path = "/Users/bot/Desktop/algs4-data/movies.txt";
         SymbolGraph SG = new SymbolGraph(path, "/");
-        BaconKevin(SG, "Kidman, Nicole");
-        BaconKevin(SG, "Grant, Cary");
+        BaconKevin(SG, "Kidman, Nicole", true);
+        BaconKevin(SG, "Grant, Cary", true);
+        
+        /* 4.1.22 画图的 API 不想用了...直接看数字吧 - -| */
+        int[] disTo = BaconKevin(SG, null, false);
+        int count[] = new int[100];
+        for (int i = 0; i < disTo.length; i++) 
+            if (disTo[i] >= 0 && disTo[i] % 2 == 0)  /* 演员和演员之间一定会有一个电影 */
+                count[disTo[i] / 2]++; 
+            
+        for (int i = 0; i < count.length; i++) 
+            if (count[i] != 0) 
+                StdOut.printf("距 KevinBacon 距离为 %d 的演员有 %d 名\n", i, count[i]);
     }
     /*
      * output
