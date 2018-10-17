@@ -66,10 +66,63 @@ public class Practise_4_1_16 {
             for (int i = 0; i < g.V(); i++) {
                 edgeTo[i] = new int[g.V()];
                 disTo[i] = new int[g.V()];
+                for (int j = 0; j < g.V(); j++) {
+                    edgeTo[i][j] = -1;
+                    disTo[i][j] = 0;
+                }
             }
             for (int i = 0; i < g.V(); i++) 
                 if (!BFS(i))
                     throw new RuntimeException("not connected graph! sometimes happen, try again!");
+        }
+        public static void printArray(int[][] a) {
+            for (int i = 0; i < a.length; i++) {
+                for (int j = 0; j < a[i].length; j++) {
+                    StdOut.printf("%-3d", a[i][j]);
+                }
+                StdOut.println();
+            }
+        }
+        int girth(boolean logon) {
+            int min = Integer.MAX_VALUE;
+            int from = -1, to = -1;
+            for (int i = 0; i < g.V(); i++) {
+                for (int j = 0; j < g.V(); j++) {
+                    if (i == j) continue;
+                    // 由 i 发起的 bfs 到达 j
+                    // 由 j 发起的 bfs 到达 i
+                    if (disTo[i][j] + disTo[j][i] < min) {
+                        min = disTo[i][j] + disTo[j][i];
+                        from = i; to = j;
+                    }
+                }
+            }
+            if (logon) {
+                __Stack<Integer> S = new __Stack<>();
+                // edgeTo[from] 记录由 from 发起的 bfs 到所有其他点的最短路径
+                for (int w = to; w != from; w = edgeTo[from][w]) 
+                    S.push(w);
+                S.push(from);
+                StringBuilder sb = new StringBuilder();
+                sb.append(String.format("from %d to %d : ", from, to));
+                while (!S.isEmpty())
+                    sb.append(String.format("%d -> ", S.pop()));
+                sb.delete(sb.length() - 4, sb.length());
+                StdOut.println(sb.toString());
+                
+                S.clear();
+                
+                for (int w = from; w != to; w = edgeTo[to][w]) 
+                    S.push(w);
+                S.push(to);
+                sb = new StringBuilder();
+                sb.append(String.format("from %d to %d : ", to, from));
+                while (!S.isEmpty())
+                    sb.append(String.format("%d -> ", S.pop()));
+                sb.delete(sb.length() - 4, sb.length());
+                StdOut.println(sb.toString());
+            }
+            return min;
         }
         void clearAllMarked() {
             for (int i = 0; i < marked.length; i++)
@@ -154,13 +207,25 @@ public class Practise_4_1_16 {
         }
     }
     public static void main(String[] args) {
-        Graph g = new Graph(13);
-        g.genRandom(24);
+        Graph g = new Graph(100);
+        g.genRandom(1000);
+//        g.addEdge(0, 1);
+//        g.addEdge(1, 2);
+//        g.addEdge(2, 3);
+//        g.addEdge(3, 4);
+//        g.addEdge(4, 5);
+//        g.addEdge(5, 0);
+//        g.addEdge(6, 0);
+//        g.addEdge(6, 1);
+//        g.addEdge(6, 2);
+//        g.addEdge(6, 3);
+//        g.addEdge(6, 4);
+//        g.addEdge(6, 5);
         StdOut.println(g);
         GraphProperties gp = new GraphProperties(g);
         StdOut.printf("\n直径 : %d\n\n", gp.diameter());
         StdOut.printf("\n半径 : %d\n\n", gp.radius());
-        StdOut.printf("\n中点 : %d\n", gp.center());
+        StdOut.printf("\n中点 : %d\n\n", gp.center());
     }
     /*
      *  12 9
