@@ -7,6 +7,6 @@ public class Pair {
         this.w = w;
     }
     public String toString() {
-        return String.format("{%d %d}", v, w);
+        return String.format("%d %d", v, w);
     }
 }

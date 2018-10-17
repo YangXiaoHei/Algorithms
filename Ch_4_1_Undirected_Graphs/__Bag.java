@@ -35,6 +35,12 @@ public class __Bag<T> implements Iterable<T> {
         return sb.toString();
         
     }
+    public boolean contains(T item) {
+        for (T i : this)
+            if (item.equals(i))
+                return true;
+        return false;
+    }
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             Node cur = head;
