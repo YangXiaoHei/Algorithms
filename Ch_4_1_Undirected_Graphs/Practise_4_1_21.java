@@ -183,7 +183,7 @@ public class Practise_4_1_21 {
     /*
      * output
      * 
-     *  Kidman, Nicole
+     *    Kidman, Nicole
           Bacon, Kevin
           Animal House (1978)
           Sutherland, Donald (I)
@@ -195,5 +195,11 @@ public class Practise_4_1_21 {
           Matthau, Walter
           Charade (1963)
           Grant, Cary
+        距 KevinBacon 距离为 0 的演员有 1 名
+        距 KevinBacon 距离为 1 的演员有 1324 名
+        距 KevinBacon 距离为 2 的演员有 70717 名
+        距 KevinBacon 距离为 3 的演员有 40862 名
+        距 KevinBacon 距离为 4 的演员有 1591 名
+        距 KevinBacon 距离为 5 的演员有 125 名
      */
 }
