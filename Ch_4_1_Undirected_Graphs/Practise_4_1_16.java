@@ -68,7 +68,7 @@ public class Practise_4_1_16 {
                 disTo[i] = new int[g.V()];
             }
             for (int i = 0; i < g.V(); i++) 
-                if (!DFS(i))
+                if (!BFS(i))
                     throw new RuntimeException("not connected graph! sometimes happen, try again!");
         }
         void clearAllMarked() {
@@ -76,7 +76,7 @@ public class Practise_4_1_16 {
                 marked[i] = false;
             currentMarkedCount = 0;
         }
-        boolean DFS(int v) {
+        boolean BFS(int v) {
             clearAllMarked();
             __Queue<Integer> q = new __Queue<>();
             marked[v] = true;
