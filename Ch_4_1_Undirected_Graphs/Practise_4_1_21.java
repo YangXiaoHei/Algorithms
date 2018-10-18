@@ -2,7 +2,9 @@ package Ch_4_1_Undirected_Graphs;
 
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.regex.Pattern;
 import java.io.*;
+import java.util.regex.*;
 
 import edu.princeton.cs.algs4.StdOut;
 
@@ -79,9 +81,9 @@ public class Practise_4_1_21 {
             v = Q.dequeue();
             for (int w : SG.G.adjs(v))
                 if (!marked[w]) {
+                    marked[w] = true;
                     edgeTo[w] = v;
                     disTo[w] = disTo[v] + 1;
-                    marked[w] = true;
                     Q.enqueue(w);
                 }
         }
@@ -113,7 +115,7 @@ public class Practise_4_1_21 {
         private HashMap<String, Integer> ST;
         private String[] name;
         private Graph G;
-        SymbolGraph(String filename, String delim) {
+        SymbolGraph(String filename, String delim, int y) {
             ST = new HashMap<String, Integer>();
             ArrayList<String[]> allLines = new ArrayList<>();
             File file = new File(filename);
@@ -152,7 +154,13 @@ public class Practise_4_1_21 {
             for (int i = 0; i < allLines.size(); i++) {
                 String[] arr = allLines.get(i);
                 String movie = arr[0];
-                for (int j = 1; j < arr.length; j++)
+                
+                /* 4.1.24 */
+                Matcher m = Pattern.compile("\\d{4}").matcher(movie);
+                if (m.find())
+                    if (Integer.parseInt(m.group(0)) > y) 
+                        continue;
+                for (int j = 1; j < arr.length; j++) 
                     G.addEdge(ST.get(movie), ST.get(arr[j]));
             }
         }
@@ -165,9 +173,9 @@ public class Practise_4_1_21 {
         
         /* 4.1.21 */
         String path = "/Users/bot/Desktop/algs4-data/movies.txt";
-        SymbolGraph SG = new SymbolGraph(path, "/");
-        BaconKevin(SG, "Kidman, Nicole", true);
-        BaconKevin(SG, "Grant, Cary", true);
+        SymbolGraph SG = new SymbolGraph(path, "/", 2002  /* 4.1.24 */);
+        BaconKevin(SG, "Kidman, Nicole",  true);
+        BaconKevin(SG, "Grant, Cary",  true);
         
         /* 4.1.22 画图的 API 不想用了...直接看数字吧 - -| */
         int[] disTo = BaconKevin(SG, null, false);
