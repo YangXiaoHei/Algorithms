@@ -14,6 +14,13 @@ public class __DiGraph {
     }
     public int E() { return E; }
     public int V() { return V; }
+    public Iterable<Integer> cycle() {
+        DirectedCycle dc = new DirectedCycle(this);
+        if (dc.hasCycle())
+            return dc.cycle();
+        else
+            return null;
+    }
     public void genRandom(int count) {
         EG eg = new EG(V);
         while (count-- > 0) {
