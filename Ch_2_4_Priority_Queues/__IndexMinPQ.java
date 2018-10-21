@@ -101,6 +101,7 @@ public class __IndexMinPQ <Key extends Comparable<Key>> implements Iterable<Key>
         int t = pq[i];
         pq[i] = pq[j];
         pq[j] = t;
+        
         qp[pq[i]] = i;
         qp[pq[j]] = j;
     }

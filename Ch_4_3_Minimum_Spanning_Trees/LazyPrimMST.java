@@ -14,7 +14,10 @@ public class LazyPrimMST {
         while (!pq.isEmpty()) {
             Edge e = pq.delMin();
             int v = e.either(), w = e.other(v);
-            if (marked[v] && marked[w]) continue;
+            if (marked[v] && marked[w]) {
+                StdOut.println("--------" + e);
+                continue;
+            }
             mst.enqueue(e);
             if (!marked[v])
                 visit(g, v);
