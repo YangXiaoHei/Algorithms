@@ -63,18 +63,26 @@ public class __Queue<T> implements Iterable<T> {
     public String toString() {
         if (isEmpty()) return "[empty]";
         StringBuilder sb = new StringBuilder();
-        sb.append("|");
-        for(int i = 0; i < items.length; i++)
-            sb.append(String.format(" %3s |", items[i] == null ? " " : items[i]));
-        sb.append(String.format(""
-                + "           "
-                + "<<<<<<<<<< "
-                + "size : %d "
-                + "head : %d "
-                + "tail : %d "
-                + "cap : %d"
-                + " >>>>>>>>>>", size, head, tail, items.length));
+        int cur = head;
+        do {
+            sb.append(items[cur] + " ");
+            cur++;
+            if (cur == items.length)
+                cur = 0;
+        } while (cur != tail);
         return sb.toString();
+//        sb.append("|");
+//        for(int i = 0; i < items.length; i++)
+//            sb.append(String.format(" %3s |", items[i] == null ? " " : items[i]));
+//        sb.append(String.format(""
+//                + "           "
+//                + "<<<<<<<<<< "
+//                + "size : %d "
+//                + "head : %d "
+//                + "tail : %d "
+//                + "cap : %d"
+//                + " >>>>>>>>>>", size, head, tail, items.length));
+//        return sb.toString();
     }
     public static void main(String[] args) {
         __Queue<Integer> q = new __Queue<>();

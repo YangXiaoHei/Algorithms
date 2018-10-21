@@ -50,6 +50,12 @@ public class __Stack<T> implements Iterable<T> {
             }
         };
     }
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (T item : this)
+            sb.append(item + " ");
+        return sb.toString();
+    }
     public static void main(String[] args) {
         __Stack<Integer> stack = new __Stack<>();
         int i = 0;
