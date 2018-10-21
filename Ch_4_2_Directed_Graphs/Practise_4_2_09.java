@@ -2,7 +2,7 @@ package Ch_4_2_Directed_Graphs;
 
 import edu.princeton.cs.algs4.StdOut;
 
-public class Practise_4_2_08 {
+public class Practise_4_2_09 {
     static class Digraph {
         private __Bag<Integer> adjs[];
         private int E;
