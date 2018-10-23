@@ -29,7 +29,15 @@ public class Practise_2_4_29 {
                 min[i] = minKeys[i];
             minKeys = min;
         }
-        public boolean isEmpty() { return delCount == totalSize; }
+        public boolean isEmpty() {
+            if (delCount != totalSize)
+                return false;
+            if (maxSize != 0)
+                maxKeys = (Key[])new Comparable[2];
+            if (minSize != 0)
+                minKeys = (Key[])new Comparable[2];
+            return true;
+        }
         public Key max() { return max; }
         public Key min() { return min; }
         public void insert(Key key) {
