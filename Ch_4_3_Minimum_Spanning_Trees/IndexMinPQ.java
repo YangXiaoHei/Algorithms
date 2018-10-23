@@ -2,6 +2,7 @@ package Ch_4_3_Minimum_Spanning_Trees;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import java.util.*;
 
 public class IndexMinPQ <T extends Comparable<T>> {
     private int pq[];
@@ -12,34 +13,70 @@ public class IndexMinPQ <T extends Comparable<T>> {
         pq = new int[n + 1];
         qp = new int[n + 1];
         keys = (T[])new Comparable[n];
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n + 1; i++)
             pq[i] = qp[i] = -1;
+    }
+    public T[] allKeys() {
+        T[] k = (T[])new Comparable[keys.length];
+        for (int i = 0; i < keys.length; i++)
+            k[i] = keys[i];
+        return k;
+    }
+    public IndexMinPQ<T> dupIndexMinPQ() {
+        IndexMinPQ<T> pqI = new IndexMinPQ<>(keys.length);
+        for (int i = 0; i < keys.length; i++)
+            pqI.keys[i] = keys[i];
+        for (int j = 0; j < keys.length + 1; j++) {
+            pqI.pq[j] = pq[j];
+            pqI.qp[j] = qp[j];
+        }
+        pqI.size = size;
+        return pqI;
     }
     public T minKey() { return keys[pq[1]]; }
     public int minIndex() { return pq[1]; }
-    public void insert(T item) {
+    public void insert(int k, T item) {
         if (size == keys.length)
             throw new RuntimeException("overflow");
-        keys[size++] = item;
-        pq[size] = size - 1;
-        qp[pq[size]] = size;    
+        if (contains(k))
+            throw new RuntimeException("already exist!");
+        pq[++size] = k;
+        qp[k] = size;    
+        keys[k] = item;
         swim(size);
     }
+    public boolean contains(int i) { return keys[i] != null; }
     public int size() { return size; }
-    public T delMin() {
-        T minKey = keys[pq[1]];
-        pq[1] = pq[size--];
+    public int delMin() {
+        if (isEmpty())
+            throw new NoSuchElementException("underflow!");
+        /* 取出最小值的索引 */
+        int min = pq[1];
+        /* 交换位置 */
+        pq[1] = pq[size];
+        /* 更新索引位置信息 */
         qp[pq[1]] = 1;
+        size--;
         sink(1);
-        return minKey;
+        /* 把这两个货搞成 -1 免得混淆视听 */
+        pq[size + 1] = -1;
+        qp[min] = -1;
+        /* 有助于垃圾回收 */
+        keys[min] = null;
+        return min;
     }
-    // 不改变元素的数组
     public void delete(int i) {
-        int k = qp[i];  // 得到该元素索引的下标
-        pq[k] = pq[size--]; 
+        if (!contains(i))
+            throw new NoSuchElementException("delete a nonexist element");
+        int k = qp[i];  
+        pq[k] = pq[size]; 
         qp[pq[k]] = k;
+        size--;
         swim(k);
         sink(k);
+        pq[size + 1] = -1;
+        qp[i] = -1;
+        keys[i] = null;
     }
     public void change(int i, T item) {
         keys[i] = item;
@@ -74,52 +111,141 @@ public class IndexMinPQ <T extends Comparable<T>> {
     }
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < size; i++)
-            sb.append(keys[pq[qp[i]]] + "  ");
+        sb.append(String.format("%-6c", ' '));
+        for (int i = 0; i < pq.length; i++) 
+            sb.append(String.format("%-6d", i));
+        sb.append("\n");
+        sb.append(String.format("%-6s", "pq : "));
+        for (int i = 0; i < pq.length; i++)
+            sb.append(String.format("%-6d", pq[i]));
+        sb.append("\n");
+        sb.append(String.format("%-6s", "qp : "));
+        for (int i = 0; i < qp.length; i++)
+            sb.append(String.format("%-6d", qp[i]));
+        sb.append("\n");
+        sb.append(String.format("%-7s", "keys : "));
+        for (int i = 0; i < keys.length; i++)
+            sb.append(String.format("%-6d", keys[i]));
         sb.append("\n");
         return sb.toString();
     }
-    /*
-     *  6  3  1  2  1  3  4  5  
-
-        6  3  1  2  1  3  4  5  
-        
-        删除第 0 个元素
-        把第 0 个元素改成 18
-        删除最小值为 : 1
-        18  3  1  2  1  3  
-        
-        删除第 0 个元素
-        把第 1 个元素改成 13
-        删除最小值为 : 1
-        18  13  1  2  
-        
-        删除第 3 个元素
-        把第 1 个元素改成 17
-        删除最小值为 : 3
-        18  17  
-        
-        删除第 0 个元素
-        把第 0 个元素改成 13
-        删除最小值为 : 4
-     */
+    
     public static void main(String[] args) {
-        IndexMinPQ<Integer> pq = new IndexMinPQ<>(8);
-        int k = 8;
-        while (k-- > 0) 
-            pq.insert(StdRandom.uniform(1, 10));
+        
+        IndexMinPQ<Integer> pq = new IndexMinPQ<>(10);
+        pq.insert(3, 33);
+        pq.insert(8, 22);
+        pq.insert(2, 65);
+        pq.insert(4, 12);
+        pq.insert(6, 98);
+        pq.insert(5, 73);
+        pq.insert(1, 71);
+        pq.insert(0, 68);
+        pq.insert(9, 56);
+        pq.insert(7, 11);
         StdOut.println(pq);
-        while (!pq.isEmpty()) {
-            StdOut.println(pq);
-            int toDelete = StdRandom.uniform(0, pq.size());
-            pq.delete(toDelete);
-            StdOut.printf("删除第 %d 个元素\n", toDelete);
-            int toChange = StdRandom.uniform(0, pq.size());
-            int value = StdRandom.uniform(10, 20);
-            StdOut.printf("把第 %d 个元素改成 %d\n", toChange, value);
-            pq.change(toChange, value);
-            int min = pq.delMin();
-            StdOut.printf("删除最小值为 : %d\n", min);
-        }
+        
+        Comparable[] keys = pq.allKeys();
+        IndexMinPQ<Integer> dup = pq.dupIndexMinPQ();
+        
+        while (!pq.isEmpty())
+            StdOut.println(keys[pq.delMin()]);
+        
+        dup.delete(3);
+        StdOut.println(dup);
+        
+        dup.delete(8);
+        StdOut.println(dup);
+        
+        dup.delete(2);
+        StdOut.println(dup);
+        
+        dup.delete(7);
+        StdOut.println(dup);
+        
+        dup.delete(1);
+        StdOut.println(dup);
+        
+        dup.delete(0);
+        StdOut.println(dup);
+        
+        dup.delete(4);
+        StdOut.println(dup);
+        
+        dup.delete(5);
+        StdOut.println(dup);
+        
+        dup.delete(6);
+        StdOut.println(dup);
+        
+        dup.delete(9);
+        StdOut.println(dup);
     }
+    // output
+    /*
+     *     0     1     2     3     4     5     6     7     8     9     10    
+    pq :   -1    7     4     2     3     8     5     1     0     9     6     
+    qp :   8     7     3     4     2     6     10    1     5     9     -1    
+    keys : 68    71    65    33    12    73    98    11    22    56    
+    
+    11
+    12
+    22
+    33
+    56
+    65
+    68
+    71
+    73
+    98
+          0     1     2     3     4     5     6     7     8     9     10    
+    pq :  -1    7     4     2     9     8     5     1     0     6     -1    
+    qp :  8     7     3     -1    2     6     9     1     5     4     -1    
+    keys : 68    71    65    null  12    73    98    11    22    56    
+    
+          0     1     2     3     4     5     6     7     8     9     10    
+    pq :  -1    7     4     2     9     6     5     1     0     -1    -1    
+    qp :  8     7     3     -1    2     6     5     1     -1    4     -1    
+    keys : 68    71    65    null  12    73    98    11    null  56    
+    
+          0     1     2     3     4     5     6     7     8     9     10    
+    pq :  -1    7     4     0     9     6     5     1     -1    -1    -1    
+    qp :  3     7     -1    -1    2     6     5     1     -1    4     -1    
+    keys : 68    71    null  null  12    73    98    11    null  56    
+    
+          0     1     2     3     4     5     6     7     8     9     10    
+    pq :  -1    4     9     0     1     6     5     -1    -1    -1    -1    
+    qp :  3     4     -1    -1    1     6     5     -1    -1    2     -1    
+    keys : 68    71    null  null  12    73    98    null  null  56    
+    
+          0     1     2     3     4     5     6     7     8     9     10    
+    pq :  -1    4     9     0     5     6     -1    -1    -1    -1    -1    
+    qp :  3     -1    -1    -1    1     4     5     -1    -1    2     -1    
+    keys : 68    null  null  null  12    73    98    null  null  56    
+    
+          0     1     2     3     4     5     6     7     8     9     10    
+    pq :  -1    4     9     6     5     -1    -1    -1    -1    -1    -1    
+    qp :  -1    -1    -1    -1    1     4     3     -1    -1    2     -1    
+    keys : null  null  null  null  12    73    98    null  null  56    
+    
+          0     1     2     3     4     5     6     7     8     9     10    
+    pq :  -1    9     5     6     -1    -1    -1    -1    -1    -1    -1    
+    qp :  -1    -1    -1    -1    -1    2     3     -1    -1    1     -1    
+    keys : null  null  null  null  null  73    98    null  null  56    
+    
+          0     1     2     3     4     5     6     7     8     9     10    
+    pq :  -1    9     6     -1    -1    -1    -1    -1    -1    -1    -1    
+    qp :  -1    -1    -1    -1    -1    -1    2     -1    -1    1     -1    
+    keys : null  null  null  null  null  null  98    null  null  56    
+    
+          0     1     2     3     4     5     6     7     8     9     10    
+    pq :  -1    9     -1    -1    -1    -1    -1    -1    -1    -1    -1    
+    qp :  -1    -1    -1    -1    -1    -1    -1    -1    -1    1     -1    
+    keys : null  null  null  null  null  null  null  null  null  56    
+    
+          0     1     2     3     4     5     6     7     8     9     10    
+    pq :  -1    -1    -1    -1    -1    -1    -1    -1    -1    -1    -1    
+    qp :  -1    -1    -1    -1    -1    -1    -1    -1    -1    -1    -1    
+    keys : null  null  null  null  null  null  null  null  null  null  
+     */
 }
