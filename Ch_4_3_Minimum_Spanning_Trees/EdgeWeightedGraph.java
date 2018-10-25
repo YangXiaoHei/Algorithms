@@ -6,8 +6,10 @@ public class EdgeWeightedGraph {
     private final int V;
     private int E;
     private __Bag<Edge> adjs[];
+    private __Queue<Edge> edges;
     public EdgeWeightedGraph(int V) {
         this.V = V;
+        edges = new __Queue<Edge>();
         adjs = (__Bag<Edge>[])new __Bag[V];
         for (int i = 0; i < V; i++)
             adjs[i] = new __Bag<Edge>();
@@ -18,8 +20,10 @@ public class EdgeWeightedGraph {
         int v = e.either(), w = e.other(v);
         adjs[v].add(e);
         adjs[w].add(e);
+        edges.enqueue(e);
         E++;
     }
+    public Iterable<Edge> edges() { return edges; }
     public Iterable<Edge> adj(int v) {
         return adjs[v];
     }

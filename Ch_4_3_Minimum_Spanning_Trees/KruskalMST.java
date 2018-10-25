@@ -2,24 +2,22 @@ package Ch_4_3_Minimum_Spanning_Trees;
 
 import edu.princeton.cs.algs4.StdOut;
 
-public class LazyPrimMST {
-    private boolean[] marked;
+public class KruskalMST {
     private __Queue<Edge> mst;
-    private MinPQ<Edge> pq;
-    public LazyPrimMST(EdgeWeightedGraph g) {
-        pq = new MinPQ<Edge>();
-        marked = new boolean[g.V()];
+    public KruskalMST(EdgeWeightedGraph g) {
         mst = new __Queue<Edge>();
-        visit(g, 0);
-        while (!pq.isEmpty()) {
+        MinPQ<Edge> pq = new MinPQ<Edge>();
+        
+        for (Edge e : g.edges()) 
+            pq.insert(e);
+        
+        WeightedQuickUnion uf = new WeightedQuickUnion(g.V());
+        while (!pq.isEmpty() && mst.size() < g.V() - 1) {
             Edge e = pq.delMin();
             int v = e.either(), w = e.other(v);
-            if (marked[v] && marked[w]) continue;
+            if (uf.connected(v, w)) continue;
+            uf.union(v, w);
             mst.enqueue(e);
-            if (!marked[v])
-                visit(g, v);
-            if (!marked[w])
-                visit(g, w);
         }
     }
     public Iterable<Edge> edges() {
@@ -27,15 +25,9 @@ public class LazyPrimMST {
     }
     public double weight() {
         double sum = 0;
-        for (Edge e : edges())
+        for (Edge e : mst)
             sum += e.weight();
         return sum;
-    }
-    private void visit(EdgeWeightedGraph g, int v) { // 从 v 点发出
-        marked[v] = true;
-        for (Edge e : g.adj(v))
-            if (!marked[e.other(v)])
-                pq.insert(e);
     }
     public static void main(String[] args) {
         EdgeWeightedGraph wg = new EdgeWeightedGraph(8);
@@ -57,7 +49,7 @@ public class LazyPrimMST {
         wg.addEdge(new Edge(6, 4, .93));
         StdOut.println(wg);
         
-        LazyPrimMST mst = new LazyPrimMST(wg);
+        KruskalMST mst = new KruskalMST(wg);
         for (Edge w : mst.edges())
             StdOut.println(w);
         StdOut.printf("total sum = %.3f\n", mst.weight());
@@ -75,13 +67,12 @@ public class LazyPrimMST {
         
         
         {0-7 0.16}
+        {2-3 0.17}
         {1-7 0.19}
         {0-2 0.26}
-        {2-3 0.17}
         {5-7 0.28}
         {4-5 0.35}
         {6-2 0.40}
         total sum = 1.810
-
      */
 }

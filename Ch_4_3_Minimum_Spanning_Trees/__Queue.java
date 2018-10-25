@@ -22,6 +22,7 @@ public class __Queue<T> implements Iterable<T> {
         tail = k;
         items = newItems;
     }
+    public int size() { return size; }
     public void enqueue(T item) {
         if (size == items.length)
             resize(size << 1);
@@ -48,10 +49,12 @@ public class __Queue<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             int cur = head;
+            int i = 0;
             public boolean hasNext() {
-                return cur != tail;
+                return i != size;
             }
             public T next() {
+                i++;
                 T item = items[cur];
                 if (++cur == items.length)
                     cur = 0;
