@@ -6,12 +6,18 @@ import edu.princeton.cs.algs4.StdOut;
 public class EdgeWeightedDigraph {
     private int V;
     private int E;
+    private EG eg;
     private __Bag<DirectedEdge> adjs[];
     public EdgeWeightedDigraph(int V) {
         adjs = (__Bag<DirectedEdge>[])new __Bag[V];
         this.V = V;
+        eg = new EG(V);
         for (int i = 0; i < V; i++)
             adjs[i] = new __Bag<DirectedEdge>();
+    }
+    public void genRandom(int edgeCount) {
+        while (edgeCount-- > 0) 
+            addEdge(eg.nextW());
     }
     public EdgeWeightedDigraph(In in) {
         this(in.readInt());
@@ -23,8 +29,13 @@ public class EdgeWeightedDigraph {
     }
     public int V() { return V; }
     public int E() { return E; }
+    public boolean hasEdge(int v, int w) {
+        return adjs[v].contains(new DirectedEdge(v, w, 0));
+    }
     public Iterable<DirectedEdge> adj(int v) { return adjs[v]; }
     public void addEdge(DirectedEdge e) {
+        if (e.from() == e.to() || hasEdge(e.from(), e.to()))
+            return;
         adjs[e.from()].add(e);
         E++;
     }

@@ -38,9 +38,24 @@ public class DijkstraSP {
             S.push(e);
         return S;
     }
-    public static void main(String[] args) {
+    public static void basicFunctionTest() {
         String s = "/Users/bot/Desktop/algs4-data/tinyEWD.txt";
         EdgeWeightedDigraph g = new EdgeWeightedDigraph(new In(s));
+        DijkstraSP sp = new DijkstraSP(g, 0);
+        for (int i = 0; i < g.V(); i++) {
+            if (sp.hasPathTo(i)) {
+                StdOut.printf("from %d to %d : ",0, i);
+                for (DirectedEdge e : sp.pathTo(i))
+                    StdOut.print(e + "  ");
+                StdOut.println();
+            } else 
+                StdOut.printf("%d cannot reach to %d\n", 0, i); 
+        }
+    }
+    public static void main(String[] args) {
+        EdgeWeightedDigraph g = new EdgeWeightedDigraph(7);
+        g.genRandom(50);
+        StdOut.println(g);
         DijkstraSP sp = new DijkstraSP(g, 0);
         for (int i = 0; i < g.V(); i++) {
             if (sp.hasPathTo(i)) {

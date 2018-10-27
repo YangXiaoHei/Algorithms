@@ -10,6 +10,11 @@ public class EG {
         return new Pair(StdRandom.uniform(0, V),
                 StdRandom.uniform(0, V));
     }
+    public DirectedEdge nextW() {
+        return new DirectedEdge(StdRandom.uniform(0, V),
+                                StdRandom.uniform(0, V), 
+                                StdRandom.uniform(1, 20) * 1.0);
+    }
     public static void main(String[] args) {
         EG gen = new EG(13);
         for (int i = 0; i < 10; i++)
