@@ -41,7 +41,7 @@ public class EdgeWeightedDigraphCycle {
         }
         onStack[v] = false;
     }
-    private boolean hasCycle() {
+    public boolean hasCycle() {
         return cycle != null;
     }
     public static void main(String[] args) {

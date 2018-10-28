@@ -74,7 +74,7 @@ public class IndexMinPQ <Key extends Comparable<Key>> {
         int top = pq[k];
         while ((k << 1) <= n) {
             int j = k << 1;
-            if (j < n && keys[pq[j]].compareTo(keys[pq[j + 1]]) > 0) j++;
+            if (keys[pq[j]].compareTo(keys[pq[j + 1]]) > 0) j++;
             if (keys[top].compareTo(keys[pq[j]]) <= 0) break;
             pq[k] = pq[j];
             qp[pq[k]] = k;

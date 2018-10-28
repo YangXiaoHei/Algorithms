@@ -30,7 +30,8 @@ public class EdgeWeightedDigraph {
     public int V() { return V; }
     public int E() { return E; }
     public boolean hasEdge(int v, int w) {
-        return adjs[v].contains(new DirectedEdge(v, w, 0));
+        return adjs[v].contains(new DirectedEdge(v, w, 0)) ||
+               adjs[w].contains(new DirectedEdge(w, v, 0));
     }
     public Iterable<DirectedEdge> adj(int v) { return adjs[v]; }
     public void addEdge(DirectedEdge e) {
