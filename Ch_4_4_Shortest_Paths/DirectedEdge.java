@@ -13,7 +13,7 @@ public class DirectedEdge {
     public int from() { return from; }
     public int to() { return to; }
     public String toString() {
-        return String.format("{%d->%d %.0f}", from, to, weight);
+        return String.format("{%d->%d %.2f}", from, to, weight);
     }
     public boolean equals(Object that) {
         DirectedEdge t = (DirectedEdge)that;

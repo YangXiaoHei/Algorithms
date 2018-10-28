@@ -18,6 +18,7 @@ public class AcyclicLP {
         for (int v : tp.sortOrder())
             relax(v);
     }
+    public double disTo(int v) { return disTo[v]; }
     public boolean hasPathTo(int v) { return disTo[v] > Double.NEGATIVE_INFINITY; }
     public Iterable<DirectedEdge> pathTo(int v) {
         __Stack<DirectedEdge> S = new __Stack<>();

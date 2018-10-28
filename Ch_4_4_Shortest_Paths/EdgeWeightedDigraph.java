@@ -22,10 +22,12 @@ public class EdgeWeightedDigraph {
     public EdgeWeightedDigraph(In in) {
         this(in.readInt());
         int E = in.readInt();
-        while (E-- > 0)
-            addEdge(new DirectedEdge(in.readInt(), 
-                                     in.readInt(), 
-                                     in.readDouble()));
+        while (E-- > 0) {
+            int v = in.readInt(), w = in.readInt();
+            double weight = in.readDouble();
+//            StdOut.printf("v = %d w = %d weight = %.3f\n", v, w, weight);
+            addEdge(new DirectedEdge(v, w, weight));
+        }
     }
     public int V() { return V; }
     public int E() { return E; }
@@ -35,8 +37,8 @@ public class EdgeWeightedDigraph {
     }
     public Iterable<DirectedEdge> adj(int v) { return adjs[v]; }
     public void addEdge(DirectedEdge e) {
-        if (e.from() == e.to() || hasEdge(e.from(), e.to()))
-            return;
+//        if (e.from() == e.to() || hasEdge(e.from(), e.to()))
+//            return;
         adjs[e.from()].add(e);
         E++;
     }

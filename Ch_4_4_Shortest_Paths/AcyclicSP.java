@@ -30,6 +30,7 @@ public class AcyclicSP {
             }
         }
     }
+    public double disTo(int v) { return disTo[v]; }
     public boolean hasPathTo(int v) { return disTo[v] < Double.POSITIVE_INFINITY; }
     public Iterable<DirectedEdge> pathTo(int v) {
         __Stack<DirectedEdge> S = new __Stack<>();
