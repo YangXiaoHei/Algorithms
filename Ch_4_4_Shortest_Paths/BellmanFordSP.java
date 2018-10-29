@@ -33,7 +33,6 @@ public class BellmanFordSP {
             if (disTo[w] > disTo[v] + e.weight()) {
                 disTo[w] = disTo[v] + e.weight();
                 edgeTo[w] = e;
-//                StdOut.printf("e = %s  w = %d\n", e, w);
                 if (!onQ[w]) {
                     queue.enqueue(w);
                     onQ[w] = true;
@@ -43,7 +42,6 @@ public class BellmanFordSP {
                 print();
                 findNegativeCycle();
                 StdOut.printf("queue size = %d queue = %s\n", queue.size(), queue);
-
             }
         }
     }
