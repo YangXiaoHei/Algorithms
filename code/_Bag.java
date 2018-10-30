@@ -18,6 +18,7 @@ public class _Bag<T> implements Iterable<T> {
         first = new Node(v, first);
         size++;
     }
+    public int size() { return size; }
     public boolean isEmpty() { return size == 0; }
     public boolean contains(T v) {
         if (isEmpty())

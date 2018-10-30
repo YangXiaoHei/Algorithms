@@ -14,6 +14,11 @@ public class _Stack<T> implements Iterable<T> {
     }
     private Node first;
     private int size;
+    public T top() {
+        if (isEmpty())
+            throw new NoSuchElementException();
+        return first.value;
+    }
     public void push(T v) {
         first = new Node(v, first);
         size++;
