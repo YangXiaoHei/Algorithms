@@ -3,24 +3,30 @@ package code;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
-public class DepthFirstPath {
-    private boolean marked[];
+public class BreadthFirstPath {
     private Graph g;
-    private int[] edgeTo;
+    private boolean marked[];
+    private int edgeTo[];
     private int source;
-    public DepthFirstPath(Graph g, int s) {
+    public BreadthFirstPath(Graph g, int s) {
         this.g = g;
-        source = s;
-        edgeTo = new int[g.V()];
         marked = new boolean[g.V()];
-        dfs(s);
+        edgeTo = new int[g.V()];
+        source = s;
+        bfs(s);
     }
-    private void dfs(int v) {
+    private void bfs(int v) {
+        _Queue<Integer> q = new _Queue<>();
         marked[v] = true;
-        for (int w : g.adj(v)) {
-            if (!marked[w]) {
-                edgeTo[w] = v;
-                dfs(w);
+        q.enqueue(v);
+        while (!q.isEmpty()) {
+            v = q.dequeue();
+            for (int w : g.adj(v)) {
+                if (!marked[w]) {
+                    marked[w] = true;
+                    edgeTo[w] = v;
+                    q.enqueue(w);
+                }
             }
         }
     }
@@ -39,12 +45,12 @@ public class DepthFirstPath {
             if (w == source)
                 StdOut.printf("%d", w);
             else
-                StdOut.printf(" -> %d", w);
+                StdOut.printf("-> %d", w);
         StdOut.println();
     }
     public static void main(String[] args) {
         Graph g = new Graph(new In("/Users/bot/Desktop/algs4-data/tinyCG.txt"));
-        DepthFirstPath dfs = new DepthFirstPath(g, 0);
+        BreadthFirstPath dfs = new BreadthFirstPath(g, 0);
         for (int i = 0; i < g.V(); i++)
             if (dfs.hasPathTo(i))
                 dfs.printPath(i);
