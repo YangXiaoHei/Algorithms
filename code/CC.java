@@ -30,7 +30,7 @@ public class CC {
             if (!marked[w]) 
                 dfs(w);
     }
-    public int size(int v) { return size[v]; }
+    public int size(int v) { return size[id[v]]; }
     public int id(int v) { return id[v]; }
     public int count() { return count; }
     public boolean areConnected(int v, int w) { return id[v] == id[w]; }
