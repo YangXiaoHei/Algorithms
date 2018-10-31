@@ -49,6 +49,9 @@ public class Graph {
         adjs[w].add(v);
         E++;
     }
+    public int degree(int v) {
+        return adjs[v].size();
+    }
     public Iterable<Integer> adj(int v) {
         checkVertex(v);
         return adjs[v];
