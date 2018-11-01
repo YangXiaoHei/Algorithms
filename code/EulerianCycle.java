@@ -19,7 +19,7 @@ public class EulerianCycle {
             isUsed = false;
         }
         
-        public String toString() { return String.format("{%d %d}%d ", v, w, id); }
+        public String toString() { return String.format("{%d %d}-%d ", v, w, id); }
 
         // returns the other vertex of the edge
         public int other(int vertex) {
@@ -65,6 +65,7 @@ public class EulerianCycle {
                 }
                 else if (v < w) {
                     Edge e = new Edge(v, w);
+                    StdOut.printf("[%d %d]\n", v, w);
                     adj[v].enqueue(e);
                     adj[w].enqueue(e);
                 }

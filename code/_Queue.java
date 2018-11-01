@@ -58,12 +58,12 @@ public class _Queue<T> implements Iterable<T> {
     }
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        int k = head;
-        do {
+        int k = head, sz = size;
+        while (sz-- > 0) {
             sb.append(String.format("%5s", value[k++]));
             if (k == value.length)
                 k = 0;
-        } while (k != tail);
+        } 
         return sb.toString();
     }
     public static void main(String[] args) {
