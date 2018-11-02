@@ -42,6 +42,7 @@ public class Graph {
         if (v < 0 || v >= V)
             throw new IllegalArgumentException();
     }
+    public int adjSize(int v) { return adjs[v].size(); }
     public void addEdge(int v, int w) {
         checkVertex(v);
         checkVertex(w);
