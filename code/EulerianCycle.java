@@ -25,6 +25,13 @@ public class EulerianCycle {
     }
     private _Stack<Integer> cycle;
     public EulerianCycle(Graph g) {
+       /*
+        * 欧拉环至少要有两条边
+        * 1 - 2 - 1
+        * 一个顶点也可以是欧拉环
+        */
+       if (g.V() < 1 || g.E() < 2) return;
+        
        this.g = g;
        cycle = new _Stack<>();
        
