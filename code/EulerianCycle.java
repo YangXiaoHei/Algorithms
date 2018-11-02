@@ -117,7 +117,6 @@ public class EulerianCycle {
            StdOut.printf("cycle constructed by %d\n", from);
            cycle.push(from);
        }
-       
        /*
         * 把一笔画摊开
         * 

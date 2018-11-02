@@ -10,12 +10,12 @@ public class GraphGenerator {
         if (V <= 0)
             throw new IllegalArgumentException("An Eulerian cycle must have at least one vertex");
         Graph G = new Graph(V);
-//        int[] vertices = new int[E];
-//        for (int i = 0; i < E; i++)
-//            vertices[i] = StdRandom.uniform(V);
+        int[] vertices = new int[E];
+        for (int i = 0; i < E; i++)
+            vertices[i] = StdRandom.uniform(V);
 //        int[] vertices = ArrayGenerator.parseInts("3    2    0    1    3    9    6    1    4    8 ");
 //        int[] vertices = ArrayGenerator.parseInts("9    3    7    2    1    7    5    0    5    2  ");
-        int[] vertices = ArrayGenerator.parseInts("7    5    3    7    9    6    9    7    3    6  ");
+//        int[] vertices = ArrayGenerator.parseInts("7    5    3    7    9    6    9    7    3    6  ");
         
         for (int i = 0; i < E - 1; i++) 
             G.addEdge(vertices[i], vertices[i + 1]);
