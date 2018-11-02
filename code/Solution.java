@@ -6,8 +6,6 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Solution {
     public static <T extends Comparable<T>> int findDuplicatedInSortedArray(T[] sortedArray) {
-        if (sortedArray.length == 1)
-            return 1;
         assert isSorted(sortedArray);
         int i = 0, j = 0, count = 1;
         while (j < sortedArray.length) {
