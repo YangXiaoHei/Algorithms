@@ -100,6 +100,33 @@ public class DigraphGenerator {
          }
          return s;
     }
+    public static Digraph eulerianCycle(int V, int E) {
+        if (V < 1)
+            throw new IllegalArgumentException("too less V");
+        if (E < 1)
+            throw new IllegalArgumentException("too less edges");
+        Digraph g = new Digraph(V);
+        int[] vs = new int[E];
+        for (int i = 0; i < E; i++)
+            vs[i] = StdRandom.uniform(V);
+        for (int i = 0; i < E - 1; i++)
+            g.addEdge(vs[i], vs[i + 1]);
+        g.addEdge(vs[E - 1], vs[0]);
+        return g;
+    }
+    public static Digraph eulerianPath(int V, int E) {
+        if (V < 1)
+            throw new IllegalArgumentException("too less V");
+        if (E < 1)
+            throw new IllegalArgumentException("too less edges");
+        Digraph g = new Digraph(V);
+        int[] vs = new int[E + 1];
+        for (int i = 0; i < E + 1; i++)
+            vs[i] = StdRandom.uniform(V);
+        for (int i = 0; i < E; i++)
+            g.addEdge(vs[i], vs[i + 1]);
+        return g;
+    }
     public static void main(String[] args) {
         Digraph g = cycle(10);
         StdOut.println(g);
