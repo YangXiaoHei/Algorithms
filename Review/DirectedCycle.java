@@ -35,8 +35,9 @@ public class DirectedCycle {
                 return;
             }
         }
+        onStack[v] = false;
     }
-    public Iterable<Integer> cycle() { 
+    public _Stack<Integer> cycle() { 
         if (!hasCycle())
             throw new RuntimeException("no cycle");
         return cycle; 

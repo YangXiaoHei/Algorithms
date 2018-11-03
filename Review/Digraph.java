@@ -29,6 +29,7 @@ public class Digraph {
         inDegree[w]++;
         E++;
     }
+    public boolean hasEdge(int v, int w) { return adjs[v].contains(w); }
     @SuppressWarnings("unchecked")
     public Digraph(In in) {
         int V = in.readInt();

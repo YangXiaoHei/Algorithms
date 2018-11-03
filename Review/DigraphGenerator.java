@@ -6,17 +6,12 @@ import java.util.*;
 import java.util.regex.*;
 
 public class DigraphGenerator {
-    static class Edge implements Comparable<Edge> {
+    static class Edge 
+   // implements Comparable<Edge> 
+    {
         int v;
         int w;
         public Edge(int v, int w) { this.v = v; this.w = w; }
-        public int compareTo(Edge that) {
-            if (v < that.v) return -1;
-            if (v > that.v) return 1;
-            if (w < that.w) return -1;
-            if (w > that.w) return 1;
-            return 0;
-        }
         public String toString() { return String.format("{ %d %d }", v, w); }
     }
     /*
@@ -42,15 +37,11 @@ public class DigraphGenerator {
         if (E < 0)
             throw new IllegalArgumentException("too less edges");
         Digraph g = new Digraph(V);
-        HashSet<Edge> set = new HashSet<>();
         while (g.E() < E) {
             int v = StdRandom.uniform(V);
             int w = StdRandom.uniform(V);
-            Edge e = new Edge(v, w);
-            if ((v != w) && !set.contains(e)) {
-                set.add(e);
+            if ((v != w) && !g.hasEdge(v, w)) 
                 g.addEdge(v, w);
-            }
         }
         return g;
     }
@@ -97,13 +88,13 @@ public class DigraphGenerator {
         String s = null;
          while (true) {
              Digraph g = DigraphGenerator.normal(V, E, q);
-             DirectedCycleX c = new DirectedCycleX(g);
-             StdOut.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-             if (c.hasCycle() && c.cycle().size() == nVertices) {
+             DirectedCycle c = new DirectedCycle(g);
+             if (c.hasCycle() && c.cycle().size() > nVertices) {
                  s = q.toString();
-//                 StdOut.print("环: ");
-//                 for (int w : c.cycle())
-//                     StdOut.print(w + " ");
+                 StdOut.print("环: ");
+                 for (int w : c.cycle())
+                     StdOut.print(w + " ");
+                 StdOut.println();
                  break;
              }
          }

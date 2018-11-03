@@ -1,99 +1,92 @@
 package Review;
 
-import java.util.regex.*;
-
 import edu.princeton.cs.algs4.StdOut;
 
 public class DirectedCycleX {
-    private _Stack<Integer> cycle;     // the directed cycle; null if digraph is acyclic
-
-    public DirectedCycleX(Digraph G) {
-
-        // indegrees of remaining vertices
-        int[] indegree = new int[G.V()];
-        for (int v = 0; v < G.V(); v++) 
-            indegree[v] = G.indegree(v);
-
-        // initialize queue to contain all vertices with indegree = 0
-        _Queue<Integer> queue = new _Queue<Integer>();
-        for (int v = 0; v < G.V(); v++)
-            if (indegree[v] == 0) 
-                queue.enqueue(v);
-
-        while (!queue.isEmpty()) {
-            int v = queue.dequeue();
-            StdOut.printf("//////////// %d\n", v);
-            for (int w : G.adj(v)) {
-                indegree[w]--;
-                if (indegree[w] == 0) 
-                    queue.enqueue(w);
-            }
+    private _Stack<Integer> cycle;
+    public DirectedCycleX(Digraph g) {
+        _Queue<Integer> q = new _Queue<>();
+        /*
+         * 把所有入度为 0 的点收集起来
+         */
+        int[] indegree = new int[g.V()];
+        for (int i = 0; i < g.V(); i++)
+            indegree[i] = g.indegree(i);
+        for (int i = 0; i < g.V(); i++)
+            if (g.indegree(i) == 0)
+                q.enqueue(i);
+        
+        /*
+         * 删掉入度为 0 的点，必然会导致它所有邻接点的入度减 1
+         * 若邻接点入度减为 0，则再以此开始将其邻接点入度减 1
+         * 直到连锁反应停止
+         */
+        while (!q.isEmpty()) {
+            int v = q.dequeue();
+            for (int w : g.adj(v)) 
+                if (--indegree[w] == 0)
+                    q.enqueue(w);
         }
-
-        // there is a directed cycle in subgraph of vertices with indegree >= 1.
-        int[] edgeTo = new int[G.V()];
-        int root = -1;  // any vertex with indegree >= -1
-        for (int v = 0; v < G.V(); v++) {
-            if (indegree[v] == 0) 
+        
+        int root = -1;
+        int[] edgeTo = new int[g.V()];
+        for (int i = 0; i < g.V(); i++) {
+            
+            /* 忽略所有入度为 0 的点，
+             * 上面只是用 indegree 数组记录
+             * 并没有真的删除那些顶点 */
+            if (indegree[i] == 0)
                 continue;
             
-            root = v;
-            for (int w : G.adj(v)) {
-                if (indegree[w] > 0) {
-                    edgeTo[w] = v;
-                }
-            }
+            /* 连接 i -> w，并始终用最新的 i -> w 替换该边
+             * 保证只有一条边指向 w */
+            root = i;
+            for (int w : g.adj(root)) 
+                if (indegree[w] > 0)
+                    edgeTo[w] = root;
+        }
+     
+        /* 如果没有环 */
+        if (root == -1) return;
+        
+        boolean[] visited = new boolean[g.V()];
+        while (!visited[root]) {
+            visited[root] = true;
+            root = edgeTo[root];
         }
         
-        StdOut.println("root -- " + root);
-        
-        StdOut.println("**********************");
-        for (int i = 0; i < edgeTo.length; i++)
-            StdOut.printf("%-5d", i);
-        StdOut.println();
-        for (int i = 0; i < edgeTo.length; i++)
-            StdOut.printf("%-5d", edgeTo[i]);
-        StdOut.println("\n**********************");
-
-        if (root != -1) {
-
-            // find any vertex on cycle
-            boolean[] visited = new boolean[G.V()];
-            while (!visited[root]) {
-                visited[root] = true;
-                root = edgeTo[root];
-            }
-
-            // extract cycle
-            cycle = new _Stack<Integer>();
-            int v = root;
-            do {
-                cycle.push(v);
-                v = edgeTo[v];
-            } while (v != root);
-            cycle.push(root);
-        }
-    }
-
-    public _Stack<Integer> cycle() {
-        return cycle;
-    }
-
-    public boolean hasCycle() {
-        return cycle != null;
-    }
-
+        cycle = new _Stack<>();
+        int i = root;
+        do {
+            cycle.push(i);
+            i = edgeTo[i];
+        } while (i != root);
+        cycle.push(root);
+    }   
+    public boolean hasCycle() { return cycle != null; }
+    public Iterable<Integer> cycle() { return cycle; }
     public static void main(String[] args) {
-//      Digraph g = new Digraph("{ 3 0 }{ 2 1 }{ 3 7 }{ 8 7 }{ 9 4 }{ 7 3 }{ 3 2 }{ 2 7 }{ 6 6 }{ 0 8 }{ 0 2 }{ 4 6 }{ 2 4 }{ 2 1 }{ 5 6 }{ 6 7 }{ 2 1 }{ 3 9 }{ 6 4 }{ 4 3 }");
-        Digraph g = new Digraph("{ 9 8 }{ 2 7 }{ 9 5 }{ 1 9 }{ 5 4 }{ 9 5 }{ 6 3 }{ 1 7 }{ 9 4 }{ 2 0 }{ 5 1 }{ 8 1 }{ 3 8 }{ 6 1 }{ 0 6 }");
-//        String s;
-//        Digraph g = new Digraph((s = DigraphGenerator.genCycleDigraphWithVertexCount(10, 15, 4)));
-//        StdOut.println(s);
-        
+        Digraph g = DigraphGenerator.simple(10, 15);
         StdOut.println(g);
-        DirectedCycleX c = new DirectedCycleX(g);
-        if (c.hasCycle())
+        
+        DirectedCycleX cx = new DirectedCycleX(g);
+        if (cx.hasCycle()) {
+            StdOut.print("DirectedCycleX : ");
+            for (int w : cx.cycle())
+                StdOut.print(w + " ");
+        } else {
+            StdOut.print("DirectedCycleX not find cycle!");
+        }
+        StdOut.println();
+
+        DirectedCycle c = new DirectedCycle(g);
+        if (c.hasCycle()) {
+            StdOut.print("DirectedCycle : ");
             for (int w : c.cycle())
                 StdOut.print(w + " ");
+        } else {
+            StdOut.print("DirectedCycle not find cycle!");
+        }
+        StdOut.println();
     }
 }
