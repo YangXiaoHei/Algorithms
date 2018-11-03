@@ -1,4 +1,4 @@
-package code;
+package Review;
 
 import java.util.*;
 import edu.princeton.cs.algs4.StdOut;
@@ -21,6 +21,10 @@ public class _Queue<T> implements Iterable<T> {
         value = newValue;
         head = 0;
         tail = size;
+    }
+    public void clear() {
+        while (!isEmpty())
+            dequeue();
     }
     public void enqueue(T v) {
         if (size == value.length)

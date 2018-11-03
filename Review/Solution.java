@@ -1,4 +1,4 @@
-package code;
+package Review;
 
 import java.util.*;
 import static Tool.ArrayGenerator.*;

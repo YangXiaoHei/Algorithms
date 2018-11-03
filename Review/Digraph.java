@@ -1,5 +1,9 @@
-package code;
+package Review;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import Review.DigraphGenerator.Edge;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
@@ -42,15 +46,47 @@ public class Digraph {
         while (E-- > 0)
             addEdge(in.readInt(), in.readInt());
     }
-    public Graph reverse() {
-        Graph reverse = new Graph(V);
+    /*
+     * mystr example : { 3 3 } { 2 4 } { 3 3 } { 3 1 } { 8 2 } 
+     */
+    public Digraph(String mystr) {
+        int V = 0;
+        _Queue<Edge> q = new _Queue<>();
+        Pattern p = Pattern.compile("\\{[^}]+\\}");
+        Matcher m = p.matcher(mystr);
+        while (m.find()) {
+            Pattern pp = Pattern.compile("\\d+");
+            Matcher mm = pp.matcher(m.group());
+            int[] twoVertices = new int[2];
+            int i = 0;
+            while (mm.find()) 
+                twoVertices[i++] = Integer.parseInt(mm.group());
+            if (twoVertices[0] > V)
+                V = twoVertices[0];
+            if (twoVertices[1] > V)
+                V = twoVertices[1];
+            q.enqueue(new Edge(twoVertices[0], twoVertices[1]));
+        }
+//        StdOut.println(q);
+        V++;
+        
+        inDegree = new int[V];
+        adjs = (_Bag<Integer>[])new _Bag[V];
+        for (int i = 0; i < V; i++)
+            adjs[i] = new _Bag<>();
+        this.V = V;
+        for (Edge e : q)
+            addEdge(e.v, e.w);
+    }
+    public Digraph reverse() {
+        Digraph reverse = new Digraph(V);
         for (int i = 0; i < V; i++)
             for (int w : adjs[i])
                 reverse.addEdge(w, i);
         return reverse;
     }
-    public int outDegree(int v) { checkVertex(v); return adjs[v].size(); }
-    public int inDegree(int v) { checkVertex(v); return inDegree[v]; }
+    public int outdegree(int v) { checkVertex(v); return adjs[v].size(); }
+    public int indegree(int v) { checkVertex(v); return inDegree[v]; }
     private void checkVertex(int ...s) {
         for (int i = 0; i < s.length; i++)
         if (s[i] < 0 || s[i] >= V)
