@@ -19,7 +19,7 @@ public class Topological {
                 rank[w] = i++;
         }
     }
-    public Iterable<Integer> sort() { 
+    public Iterable<Integer> order() { 
         if (!hasOrder())
             throw new RuntimeException("cycle exist, no sort!");
         return order; 
@@ -38,7 +38,7 @@ public class Topological {
         StdOut.println(g);
         Topological tp = new Topological(g);
         if (tp.hasOrder())
-            for (int w : tp.sort())
+            for (int w : tp.order())
                 StdOut.print(w + " ");
     }
 }

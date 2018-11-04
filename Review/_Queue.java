@@ -22,6 +22,7 @@ public class _Queue<T> implements Iterable<T> {
         head = 0;
         tail = size;
     }
+    public int size() { return size; }
     public void clear() {
         while (!isEmpty())
             dequeue();
