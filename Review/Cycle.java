@@ -14,9 +14,7 @@ public class Cycle {
     public boolean hasCycle() {
         if (cycle != null) return true;
         if (hasSelfLoop()) return true;
-        StdOut.println("Y");
         if (hasParallelEdge()) return true;
-        StdOut.println("X");
         marked = new boolean[g.V()];
         edgeTo = new int[g.V()];
         dfs(-1, 0);
@@ -50,6 +48,10 @@ public class Cycle {
         marked = new boolean[g.V()];
         for (int i = 0; i < g.V(); i++) {
             for (int w : g.adj(i)) {
+                /*
+                 * 如果有平行边，那么遍历邻接点时会
+                 * 标记同一个顶点两次
+                 */
                 if (marked[w]) {
                     cycle = new _Stack<>();
                     cycle.push(i);
