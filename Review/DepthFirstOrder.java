@@ -8,13 +8,15 @@ public class DepthFirstOrder {
     private _Stack<Integer> postReverse;
     private Digraph g;
     private boolean marked[];
-    public DepthFirstOrder(Digraph g, int s) {
+    public DepthFirstOrder(Digraph g) {
         this.g = g;
         pre = new _Queue<>();
         post = new _Queue<>();
         postReverse = new _Stack<>();
         marked = new boolean[g.V()];
-        dfs(s);
+        for (int i = 0; i < g.V(); i++)
+            if (!marked[i])
+                dfs(i);
     }
     private void dfs(int v) {
         marked[v] = true;
@@ -31,7 +33,7 @@ public class DepthFirstOrder {
     public static void main(String[] args) {
         Digraph g = DigraphGenerator.simple(10, 10);
         StdOut.println(g);
-        DepthFirstOrder dfo = new DepthFirstOrder(g, 0);
+        DepthFirstOrder dfo = new DepthFirstOrder(g);
         StdOut.print("前序: ");
         for (int w : dfo.preOrder())
             StdOut.print(w + " ");

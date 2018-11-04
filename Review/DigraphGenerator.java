@@ -6,12 +6,17 @@ import java.util.*;
 import java.util.regex.*;
 
 public class DigraphGenerator {
-    static class Edge 
-   // implements Comparable<Edge> 
-    {
+    static class Edge implements Comparable<Edge> {
         int v;
         int w;
         public Edge(int v, int w) { this.v = v; this.w = w; }
+        public int compareTo(Edge that) {
+            if (this.v < that.v) return -1;
+            if (this.v > that.v) return +1;
+            if (this.w < that.w) return -1;
+            if (this.w > that.w) return +1;
+            return 0;
+        }
         public String toString() { return String.format("{ %d %d }", v, w); }
     }
     /*
@@ -42,6 +47,43 @@ public class DigraphGenerator {
             int w = StdRandom.uniform(V);
             if ((v != w) && !g.hasEdge(v, w)) 
                 g.addEdge(v, w);
+        }
+        return g;
+    }
+    public static Digraph DAG(int V, int E) {
+        if (E > V * (V - 1)) 
+            throw new IllegalArgumentException("too many edges");
+        if (E < 0)
+            throw new IllegalArgumentException("too less edges");
+        int[] vertices = new int[V];
+        for (int i = 0; i < V; i++)
+            vertices[i] = i;
+        StdRandom.shuffle(vertices);
+        Digraph g = new Digraph(V);
+        TreeSet<Edge> set = new TreeSet<>();
+        while (g.E() < E) {
+            int v = StdRandom.uniform(V);
+            int w = StdRandom.uniform(V);
+            Edge e = new Edge(v, w);
+            /*
+             * 若有一堆顶点如下星罗棋布
+             * 
+             *      .  .   .        .
+             *    .  . .  ...  .
+             *  . .  .    .        .
+             *       .   .  .   .  . .
+             *    ... . .  .  ..  . .
+             *  .    . .  .  .  .
+             *  
+             *  ---------------------> 顶点索引正方向
+             *  那么只要规定有向边的方向只能从左到右，
+             *  就绝对不会出现环
+             */
+            if (v < w /* 边的方向只能从左到右 */ && 
+                !set.contains(e) /* 禁止平行边的存在 */) {
+                set.add(e);
+                g.addEdge(vertices[v], vertices[w]);
+            }
         }
         return g;
     }
