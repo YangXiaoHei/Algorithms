@@ -42,12 +42,19 @@ public class DigraphGenerator {
         if (E < 0)
             throw new IllegalArgumentException("too less edges");
         Digraph g = new Digraph(V);
+        Edge[] edges = new Edge[E];
+        int i = 0;
         while (g.E() < E) {
             int v = StdRandom.uniform(V);
             int w = StdRandom.uniform(V);
-            if ((v != w) && !g.hasEdge(v, w)) 
+            if ((v != w) && !g.hasEdge(v, w)) {
                 g.addEdge(v, w);
+                edges[i++] = new Edge(v, w);
+            }
         }
+        for (int j = 0; j < i; j++)
+            StdOut.print(edges[j] + " ");
+        StdOut.println();
         return g;
     }
     public static Digraph DAG(int V, int E) {
