@@ -84,14 +84,18 @@ public class TarjanSCC {
             throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
     }
     public static void main(String[] args) {
-//        Digraph g = DigraphGenerator.normal(8, 10);
+        Digraph g = DigraphGenerator.normal(8, 10);
 //        Digraph g = new Digraph("{ 4 5 } { 5 7 } { 7 0 } { 7 8 } { 3 8 } { 7 1 } { 8 0 } "
 //                              + "{ 2 1 } { 6 7 } { 5 7 } { 0 6 } { 3 7 } { 5 2 } { 3 6 } "
 //                              + "{ 6 8 } { 1 3 } { 1 7 } { 9 2 } { 3 2 } { 8 6 } { 4 1 } "
 //                              + "{ 4 0 } { 9 9 } { 3 0 } { 2 4 } { 5 0 } { 5 7 } { 3 7 } "
 //                              + "{ 6 0 } { 7 8 }");
-        Digraph g = new Digraph("{ 6 5 } { 3 6 } { 0 6 } { 6 0 } { 2 6 } "
-                              + "{ 4 3 } { 7 2 } { 7 2 } { 3 5 } { 5 4 } ");
+//        Digraph g = new Digraph("{ 6 5 } { 3 6 } { 0 6 } { 6 0 } { 2 6 } "
+//                              + "{ 4 3 } { 7 2 } { 7 2 } { 3 5 } { 5 4 } ");
+        
+        // 4 连通分量: { 5 3 } { 4 1 } { 6 5 } { 0 7 } { 3 0 } { 1 6 } { 3 5 } { 3 6 } { 6 4 } { 4 6 } 
+        // 3 连通分量: { 5 4 } { 0 6 } { 3 5 } { 6 7 } { 2 4 } { 5 1 } { 1 0 } { 3 6 } { 6 5 } { 4 3 } 
+        // 4 连通分量: { 7 1 } { 0 7 } { 0 0 } { 6 4 } { 1 6 } { 7 6 } { 3 0 } { 1 7 } { 6 0 } { 0 3 } 
         StdOut.println(g);
         TarjanSCC scc = new TarjanSCC(g);
         StdOut.print("强连通分量的个数: " + scc.count());
