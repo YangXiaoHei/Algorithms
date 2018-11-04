@@ -32,24 +32,27 @@ public class TarjanSCC {
             if (!marked[w]) 
                 dfs(G, w);
             StdOut.printf("邻边 w = %d\n", w);
+            // min = MIN(low[w], min)
             if (low[w] < min) {
                 StdOut.printf("min 修改为 %d\n", low[w]);
                 min = low[w];
             } 
         }
         
+        // low[v] = MIN(low[v], min)
         if (min < low[v]) {
             StdOut.printf("跳出遍历邻边的循环，此时 low[%d] 从 %d 修改为 %d\n",v, low[v], min);
             low[v] = min;
             return;
         } 
+        
         int w;
         do {
             w = stack.pop();
             StdOut.printf("pop:%d\n", w);
             id[w] = count;
             low[w] = G.V();
-            StdOut.printf("low[%d] 修改为 %d\n", low[w], G.V());
+            StdOut.printf("low[%d] 修改为 %d\n", w, G.V());
         } while (w != v);
         count++;
     }
@@ -81,15 +84,16 @@ public class TarjanSCC {
             throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
     }
     public static void main(String[] args) {
-//        Digraph g = DigraphGenerator.normal(10, 30);
-        Digraph g = new Digraph("{ 4 5 } { 5 7 } { 7 0 } { 7 8 } { 3 8 } { 7 1 } { 8 0 } "
-                                + "{ 2 1 } { 6 7 } { 5 7 } { 0 6 } { 3 7 } { 5 2 } { 3 6 } "
-                                + "{ 6 8 } { 1 3 } { 1 7 } { 9 2 } { 3 2 } { 8 6 } { 4 1 } "
-                                + "{ 4 0 } { 9 9 } { 3 0 } { 2 4 } { 5 0 } { 5 7 } { 3 7 } "
-                                + "{ 6 0 } { 7 8 }");
+//        Digraph g = DigraphGenerator.normal(8, 10);
+//        Digraph g = new Digraph("{ 4 5 } { 5 7 } { 7 0 } { 7 8 } { 3 8 } { 7 1 } { 8 0 } "
+//                              + "{ 2 1 } { 6 7 } { 5 7 } { 0 6 } { 3 7 } { 5 2 } { 3 6 } "
+//                              + "{ 6 8 } { 1 3 } { 1 7 } { 9 2 } { 3 2 } { 8 6 } { 4 1 } "
+//                              + "{ 4 0 } { 9 9 } { 3 0 } { 2 4 } { 5 0 } { 5 7 } { 3 7 } "
+//                              + "{ 6 0 } { 7 8 }");
+        Digraph g = new Digraph("{ 6 5 } { 3 6 } { 0 6 } { 6 0 } { 2 6 } "
+                              + "{ 4 3 } { 7 2 } { 7 2 } { 3 5 } { 5 4 } ");
         StdOut.println(g);
         TarjanSCC scc = new TarjanSCC(g);
-        StdOut.print(scc.count());
-        
+        StdOut.print("强连通分量的个数: " + scc.count());
     }
 }
