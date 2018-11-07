@@ -42,7 +42,7 @@ public class EdgeWeightedGraph {
         int selfLoops = 0;
         for (int i = 0; i < V; i++) {
             for (Edge e : adj(i)) {
-                if (e.v == e.w) {
+                if (e.isSelfLoop()) {
                     if (selfLoops % 2 == 0)
                         q.enqueue(e);
                     selfLoops++;

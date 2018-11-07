@@ -1,6 +1,6 @@
 package Review;
 
-public class Edge {
+public class Edge implements Comparable<Edge> {
     public final int v;
     public final int w;
     public final double weight;
@@ -9,6 +9,10 @@ public class Edge {
         this.w = w;
         this.weight = weight;
     }
+    public int compareTo(Edge that) {
+        return weight < that.weight ? -1 : weight > that.weight ? 1 : 0;
+    }
+    public boolean isSelfLoop() { return v == w; }
     public int either() { return v; }  
     public int other(int t) { 
         if (t == w) return v;
