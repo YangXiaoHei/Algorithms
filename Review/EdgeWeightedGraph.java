@@ -65,8 +65,9 @@ public class EdgeWeightedGraph {
         addEdge(new Edge(v, w, weight));
     }
     public void addEdge(Edge e) {
-        adjs[e.v].add(e);
-        adjs[e.w].add(e);
+        int v = e.either(), w = e.other(v);
+        adjs[v].add(e);
+        adjs[w].add(e);
         E++;
     }
     public static void main(String[] args) {

@@ -44,9 +44,9 @@ public class PrimMST {
             /* e 有望成为一个最小横切边的选择，因此将其加入堆
              * 如果堆中已经存在到达 w 的横切边，说明又发现一个更小的
              * （但还有没有更小的呢？目前还不知道），只要更改其优先级 */
-            if (e.weight < disTo[w]) {
+            if (e.weight() < disTo[w]) {
                 edgeTo[w] = e;
-                disTo[w] = e.weight;
+                disTo[w] = e.weight();
                 if (pq.contains(w)) pq.decreaseKey(w, disTo[w]);
                 else                pq.insert(w, disTo[w]);
             }
@@ -56,7 +56,7 @@ public class PrimMST {
         double sum = 0;
         for (int i = 0; i < edgeTo.length; i++) 
             if (edgeTo[i] != null)
-                sum += edgeTo[i].weight;
+                sum += edgeTo[i].weight();
         return sum;
     }
     public Iterable<Edge> edges() {

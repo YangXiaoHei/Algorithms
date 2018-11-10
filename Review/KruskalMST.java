@@ -20,7 +20,7 @@ public class KruskalMST {
             if (!uf.connected(v, w)) {
                 uf.union(v, w);
                 mst.enqueue(e);
-                totalWeight += e.weight;
+                totalWeight += e.weight();
             }
         }
     }

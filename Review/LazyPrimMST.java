@@ -23,7 +23,7 @@ public class LazyPrimMST {
             Edge e = pq.delMin();
             int v = e.either(), w = e.other(v);
             if (marked[v] && marked[w]) continue;
-            totalWeight += e.weight;
+            totalWeight += e.weight();
             mst.enqueue(e);
             if (!marked[v])
                 visit(v);
