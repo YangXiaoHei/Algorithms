@@ -10,12 +10,19 @@ public class TopologicalX {
         rank = new int[g.V()];
         _Queue<Integer> queue = new _Queue<>();
         int[] indegree = new int[g.V()];
+        /*
+         * 收集所有入度为 0 的顶点
+         */
         for (int i = 0; i < g.V(); i++) {
             indegree[i] = g.indegree(i);
             if (indegree[i] == 0)
                 queue.enqueue(i);
         }
-        
+        /*
+         * 逐个删除入度为 0 的点，并遍历其邻接点将其入度减 1
+         * 如果发现新的入度减为 1 的点，再将其加入队列
+         * 如此循环直到队列为空
+         */
         order = new _Queue<>();
         while (!queue.isEmpty()) {
             int v = queue.dequeue();
