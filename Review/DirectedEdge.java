@@ -8,6 +8,7 @@ public class DirectedEdge {
     public String toString() {
         return String.format("{ %d -> %d %.0f }", v, w, weight);
     }
+    public double weight() { return weight; }
     public int from() { return v; }
     public int to() { return w; }
 }
