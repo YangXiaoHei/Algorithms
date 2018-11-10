@@ -5,6 +5,31 @@ import edu.princeton.cs.algs4.StdOut;
 public class TopologicalX {
     private _Queue<Integer> order;
     private int[] rank;
+    public TopologicalX(EdgeWeightedDigraph g) {
+        int count = 0;
+        rank = new int[g.V()];
+        _Queue<Integer> queue = new _Queue<>();
+        int[] indegree = new int[g.V()];
+        
+        for (int i = 0; i < g.V(); i++) {
+            indegree[i] = g.indegree(i);
+            if (g.indegree(i) == 0)
+                queue.enqueue(i);
+        }
+        
+        order = new _Queue<>();
+        while (!queue.isEmpty()) {
+            int v = queue.dequeue();
+            order.enqueue(v);
+            rank[v] = count++;  /* 记录每个点的秩 */
+            for (DirectedEdge e : g.adj(v)) 
+                if (--indegree[e.to()] == 0)
+                    queue.enqueue(e.to());
+        }
+        
+        if (order.size() != g.V())
+            order = null; /* 说明有环 */
+    }
     public TopologicalX(Digraph g) {
         int count = 0;
         rank = new int[g.V()];

@@ -21,10 +21,8 @@ public class DijkstraAllPairSP {
         StdOut.println(g);
         
         DijkstraAllPairSP dj = new DijkstraAllPairSP(g);
-        
         for (int i = 0; i < g.V(); i++)
             for (int j = 0; j < g.V(); j++) {
-                
                 if (dj.hasPath(i, j)) {
                     StdOut.printf("%d to %d [%.2f]: ", i, j, dj.dis(i, j));
                     for (DirectedEdge e : dj.pathBetween(i, j))
