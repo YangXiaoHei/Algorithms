@@ -55,7 +55,6 @@ public class IndexMinPQ<T extends Comparable<T>> {
         keys[minIndex] = null;
         qp[minIndex] = -1;
         pq[n + 1] = -1;
-//        StdOut.println(this);
         return minIndex;
     }
     public void insert(int i, T key) {
@@ -68,7 +67,7 @@ public class IndexMinPQ<T extends Comparable<T>> {
         pq[n] = i;
         qp[pq[n]] = n;
         swim(n); 
-        StdOut.println(this);
+//        StdOut.println(this);
     }
     public T minKey() {
         if (isEmpty())
@@ -90,7 +89,7 @@ public class IndexMinPQ<T extends Comparable<T>> {
         keys[i] = key;
         swim(qp[i]);
         sink(qp[i]);
-        StdOut.println(this);
+//        StdOut.println(this);
     }
     public void delete(int i) {
         if (isEmpty())
@@ -105,7 +104,7 @@ public class IndexMinPQ<T extends Comparable<T>> {
         keys[i] = null;
         qp[i] = -1;
         pq[n + 1] = -1;
-        StdOut.println(this);
+//        StdOut.println(this);
     }
     public void decreaseKey(int i, T key) {
         if (isEmpty())
@@ -115,7 +114,7 @@ public class IndexMinPQ<T extends Comparable<T>> {
         keys[i] = key;
         int index = qp[i];
         swim(index);
-        StdOut.println(this);
+//        StdOut.println(this);
     }
     public void increaseKey(int i, T key) {
         if (isEmpty())
@@ -125,7 +124,7 @@ public class IndexMinPQ<T extends Comparable<T>> {
         keys[i] = key;
         int index = qp[i];
         sink(index);
-        StdOut.println(this);
+//        StdOut.println(this);
     }
     public boolean contains(int i) {
         return keys[i] != null;
