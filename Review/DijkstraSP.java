@@ -6,11 +6,9 @@ public class DijkstraSP {
     private IndexMinPQ<Double> pq;
     private double disTo[];
     private DirectedEdge edgeTo[];
-    private int source;
     public DijkstraSP(EdgeWeightedDigraph g, int s) {
         pq = new IndexMinPQ<>(g.V());
         disTo = new double[g.V()];
-        source = s;
         edgeTo = new DirectedEdge[g.V()];
         for (int i = 0; i < g.V(); i++)
             disTo[i] = Double.POSITIVE_INFINITY;

@@ -6,10 +6,8 @@ public class DijkstraUndirectedSP {
     private IndexMinPQ<Double> pq;
     private double disTo[];
     private Edge edgeTo[];
-    private int source;
     public DijkstraUndirectedSP(EdgeWeightedGraph g, int s) {
         disTo = new double[g.V()];
-        source = s;
         edgeTo = new Edge[g.V()];
         pq = new IndexMinPQ<>(g.V());
         for (int i = 0; i < g.V(); i++)
