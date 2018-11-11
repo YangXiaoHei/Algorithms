@@ -30,6 +30,7 @@ public class BellmanFordSP {
     private void relax(int v) {
         for (DirectedEdge e : g.adj(v)) {
             int w = e.to();
+            StdOut.printf("正在遍历 %d 的邻边 %s\n", v, e);
             if (disTo[w] > disTo[v] + e.weight()) {
                 disTo[w] = disTo[v] + e.weight();
                 edgeTo[w] = e;
@@ -37,6 +38,7 @@ public class BellmanFordSP {
                     queue.enqueue(w);
                     onQ[w] = true;
                 }
+                StdOut.println("队列内容 : " + queue);
             }
             if (cost++ % g.V() == 0) {
                 findNegativeCycle();
@@ -44,6 +46,7 @@ public class BellmanFordSP {
             }
         }
     }
+    public int cost() { return cost; }
     public boolean hasPathTo(int v) { return disTo[v] < Double.POSITIVE_INFINITY; }
     public Iterable<DirectedEdge> pathTo(int v) {
         if (!hasPathTo(v))
@@ -71,13 +74,13 @@ public class BellmanFordSP {
         return cycle != null;
     }
     public static void main(String[] args) {
-        String s = "/Users/bot/Desktop/Algorithms4/Algorithms4/src/Review/DijkstraSP_test_data.txt";    
+        String s = "/Users/bot/Desktop/Algorithms4/Algorithms4/src/Review/BellmanFordSP_test_data_negative_cycle.txt";    
         EdgeWeightedDigraph g = new EdgeWeightedDigraph(new In(s));
         StdOut.println(g);
         
         BellmanFordSP sp = new BellmanFordSP(g, 0);
         if (sp.hasNegativeCycle()) {
-            StdOut.print("负权重的环 : ");
+            StdOut.printf("负权重的环 [%d]: ", sp.cost());
             for (DirectedEdge e : sp.negativeCycle())
                 StdOut.print(e + " ");
             StdOut.println();
@@ -92,5 +95,4 @@ public class BellmanFordSP {
             }
         }
     }
-      
 }
