@@ -70,9 +70,9 @@ public class BellmanFordSP {
     private boolean hasNegativeCycle() {
         return cycle != null;
     }
-
     public static void main(String[] args) {
-        EdgeWeightedDigraph g = new EdgeWeightedDigraph(10, 30, true);
+        String s = "/Users/bot/Desktop/Algorithms4/Algorithms4/src/Review/DijkstraSP_test_data.txt";    
+        EdgeWeightedDigraph g = new EdgeWeightedDigraph(new In(s));
         StdOut.println(g);
         
         BellmanFordSP sp = new BellmanFordSP(g, 0);
@@ -85,9 +85,8 @@ public class BellmanFordSP {
             for (int i = 0; i < g.V(); i++) {
                 if (sp.hasPathTo(i)) {
                     StdOut.printf("%d to %d [%.2f] ", 0, i, sp.disTo(i));
-                    for (DirectedEdge e : sp.pathTo(i)) {
+                    for (DirectedEdge e : sp.pathTo(i)) 
                         StdOut.print(e + " ");
-                    }
                     StdOut.println();
                 }
             }
