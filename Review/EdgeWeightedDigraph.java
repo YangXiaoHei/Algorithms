@@ -24,6 +24,20 @@ public class EdgeWeightedDigraph {
                     StdRandom.uniform(V),
                     StdRandom.uniform(1.0, 100.0)));    
     }
+    public EdgeWeightedDigraph(int V, int E, boolean negative) {
+        this(V);
+        if (negative) {
+            while (E-- > 0) 
+                addEdge(new DirectedEdge(StdRandom.uniform(V),
+                                         StdRandom.uniform(V),
+                                         StdRandom.uniform(-50.0, 100.0)));  
+        } else {
+            while (E-- > 0) 
+                addEdge(new DirectedEdge(StdRandom.uniform(V),
+                        StdRandom.uniform(V),
+                        StdRandom.uniform(1.0, 100.0))); 
+        }
+    }
     @SuppressWarnings("unchecked")
     public EdgeWeightedDigraph(In in) {
         int V = in.readInt();
