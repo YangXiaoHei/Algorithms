@@ -50,11 +50,11 @@ public class AcyclicSP {
     public static void main(String[] args) {
         EdgeWeightedDigraph g = new EdgeWeightedDigraph(new In("/Users/bot/Desktop/algs4-data/tinyEWDAG.txt"));
         StdOut.println(g);
-        
-        AcyclicSP sp = new AcyclicSP(g, 5);
+        int s = 5;
+        AcyclicSP sp = new AcyclicSP(g, s);
         for (int i = 0; i < g.V(); i++)
             if (sp.hasPathTo(i)) {
-                StdOut.printf("from %d to %d [%.2f] : ", 0, i, sp.disTo(i));
+                StdOut.printf("from %d to %d [%.2f] : ", s, i, sp.disTo(i));
                 for (DirectedEdge e : sp.pathTo(i)) 
                     StdOut.print(e + " ");
                 StdOut.println();
