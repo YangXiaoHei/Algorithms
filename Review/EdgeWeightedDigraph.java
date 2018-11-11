@@ -22,7 +22,7 @@ public class EdgeWeightedDigraph {
         while (E-- > 0) 
             addEdge(new DirectedEdge(StdRandom.uniform(V),
                     StdRandom.uniform(V),
-                    StdRandom.uniform(1.0, 100.0)));    
+                    StdRandom.uniform(1.0, 100.0) / 100.0));    
     }
     public EdgeWeightedDigraph(int V, int E, boolean negative) {
         this(V);
@@ -30,7 +30,7 @@ public class EdgeWeightedDigraph {
             while (E-- > 0) 
                 addEdge(new DirectedEdge(StdRandom.uniform(V),
                                          StdRandom.uniform(V),
-                                         StdRandom.uniform(-50.0, 100.0)));  
+                                         StdRandom.uniform(-50.0, 100.0) / 100.0));  
         } else {
             while (E-- > 0) 
                 addEdge(new DirectedEdge(StdRandom.uniform(V),
@@ -77,6 +77,8 @@ public class EdgeWeightedDigraph {
     public int indegree(int w) { return indegree[w]; }
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append(String.format("V:%d\n", V));
+        sb.append(String.format("E:%d\n", E));
         for (int i = 0; i < V; i++) 
             sb.append(String.format("%-2d: %s", i, adjs[i]));
         sb.append("\n");

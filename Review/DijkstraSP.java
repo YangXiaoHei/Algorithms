@@ -1,6 +1,7 @@
 package Review;
 
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.In;
 
 public class DijkstraSP {
     private IndexMinPQ<Double> pq;
@@ -38,7 +39,8 @@ public class DijkstraSP {
         return s;
     }
     public static void main(String[] args) {
-        EdgeWeightedDigraph g = new EdgeWeightedDigraph(10, 20);
+        String s = "/Users/bot/Desktop/Algorithms4/Algorithms4/src/Review/DijkstraSP_test_data.txt";    
+        EdgeWeightedDigraph g = new EdgeWeightedDigraph(new In(s));
         StdOut.println(g);
         
         DijkstraSP sp = new DijkstraSP(g, 0);
