@@ -15,28 +15,12 @@ public class NonoptimizedDijkstraSP {
         disTo[s] = 0.0;
         arr = new ArrayList<>();
         arr.add(s);
-        while (!arr.isEmpty()) {
+        while (!arr.isEmpty()) 
             relax(g, findMin());
-            
-//            for (int i = 0; i < g.V(); i++) {
-//                StdOut.printf("%-15.0f", disTo[i]);
-//            }
-//            StdOut.println();
-//            for (int i = 0; i < g.V(); i++) {
-//                StdOut.printf("%-15s", edgeTo[i]);
-//            }
-//            StdOut.println();
-//            for (int i = 0; i < arr.size(); i++) {
-//                StdOut.printf("%-15d", arr.get(i));
-//            }
-//            StdOut.println("\n---------------------------------");
-        }
     }
     private void relax(EdgeWeightedGraph g, int v) {
         for (Edge e : g.adj(v)) {
             int w = e.other(v);
-//            StdOut.println("HansonTest ---- " + v);
-            
             if (disTo[w] > disTo[v] + e.weight()) {
                 disTo[w] = disTo[v] + e.weight();
                 edgeTo[w] = e;
