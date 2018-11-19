@@ -1,7 +1,6 @@
 package Review.Graph;
 
 import java.util.*;
-
 import edu.princeton.cs.algs4.StdOut;
 
 public class NonoptimizedDijkstraSPX {
@@ -68,19 +67,8 @@ public class NonoptimizedDijkstraSPX {
         return s;
     }
     public double disTo(int v) { return disTo[v]; }
-    /*
-     *  0 : { 0 0 44 } { 0 0 44 } { 0 0 49 } { 0 0 49 } { 0 0 77 } { 0 0 77 } 
-        1 : 
-        2 : 
-        3 : 
-        4 : 
-
-     */
     public static void main(String[] args) {
-        EdgeWeightedGraph g = new EdgeWeightedGraph(5);
-        g.addEdge(new Edge(0, 0, 44));
-        g.addEdge(new Edge(0, 0, 49));
-        g.addEdge(new Edge(0, 0, 77));
+        EdgeWeightedGraph g = new EdgeWeightedGraph(30, 80);
         StdOut.println(g);
         
         DijkstraUndirectedSP sp = new DijkstraUndirectedSP(g, 0);
