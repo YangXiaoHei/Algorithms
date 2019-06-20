@@ -9,7 +9,7 @@ public class Practise_1_4_05 {
 		 * d, 2N^3 - 15N^2 + N ~ N^3
 		 * e, lg(2N)/lgN = (lg2 + lgN) / lgN ~1
 		 * f, lg(N^2 + 1)/lgN ~ lg(N^2)/lgN = 2lgN/lgN ~ 2
-		 * N^100/2^N ~ N^100
+		 * N^100/2^N ~ 0
 		 */
 	}
 }
