@@ -46,30 +46,54 @@ public class __AllSortCompare {
         quick(a, 0, a.length - 1);
         return timer.elapsedTime();
     }
+    private static void exch(int[] a, int j, int i) {
+        int t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+    }
+    
     private static void quick(int[] a, int lo, int hi) {
         if (hi - lo + 1 < 7) {
             insertion(a, lo, hi);
             return;
         }
+        
+//        1 9 5 -> 
         int mid = (lo + hi) >> 1;
-        if (a[mid] < a[lo]) /* exch (a, mid, lo); */ { int t = a[mid]; a[mid] = a[lo]; a[lo] = t; }
-        if (a[hi] < a[lo])  /* exch (a, hi, lo); */  { int t = a[hi]; a[hi] = a[lo]; a[lo] = t; }
-        if (a[mid] < a[hi]) /* exch (a, mid, hi); */ { int t = a[mid]; a[mid] = a[hi]; a[hi] = t; }
+        // 保证 lo 不是最大
+        if (a[mid] < a[lo]) exch (a, mid, lo); 
+        // 保证 lo 是最小
+        if (a[hi] < a[lo])   exch (a, hi, lo);
+        // 保证 mid 是中间
+        if (a[mid] < a[hi])  exch (a, mid, hi); 
+        
+        // pivot = 4
+        //
+        /*
+         * 
+         * 
+         * 
+         * 3   2   3   1   1   4   1   0   2   4   4   2   0   4   2
+         * 
+         */
         
         int i = lo - 1, p = lo - 1, j = hi, q = hi, v = a[hi];
         while (true) {
             while (a[++i] < v);
             while (a[--j] > v);
             if (i >= j) break;
-            /* exch(a, i, j); */ { int t = a[i]; a[i] = a[j]; a[j] = t; }
-            if (a[i] == v) /* exch(a, i, ++p); */ { ++p; int t = a[p]; a[p] = a[i]; a[i] = t; }
-            if (a[j] == v) /* exch(a, j, --q); */ { --q; int t = a[q]; a[q] = a[j]; a[j] = t; }
+             exch(a, i, j); 
+             
+            if (a[i] == v)  exch(a, i, ++p); 
+            if (a[j] == v)  exch(a, j, --q);  
         }
-        /* exch(a, hi, i); */ { int t = a[hi]; a[hi] = a[i]; a[i] = t; }
+         exch(a, hi, i); 
         
         int lt = i - 1, gt = i + 1, k = lo, m = hi - 1;
-        while (k <= p) /* exch(a, k++, lt--); */ {  int t = a[k]; a[k] = a[lt]; a[lt] = t; k++; lt--; }
-        while (m >= q) /* exch(a, m--, gt++); */ {  int t = a[m]; a[m] = a[gt]; a[gt] = t; m--; gt++; }
+        while (k <= p)  
+            exch(a, k++, lt--); 
+        while (m >= q)  
+            exch(a, m--, gt++); 
         
         quick(a, lo, lt);
         quick(a, gt, hi);
